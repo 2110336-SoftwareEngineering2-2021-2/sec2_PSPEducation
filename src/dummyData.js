@@ -23,19 +23,22 @@ export const apptData = [
 
 export const myCourseData = [
   {
-    subject: "Badminton with AongAong",
-    location: "@CU_SportComplex",
-    time: "10:00-12:00",
+    course_name: "Badminton w/ AongAong",
+    status: "Newly Open",
+    registered_num: 1,
+    max_capacity: 1,
   },
   {
-    subject: "English",
-    location: "@SiamKitt(HollyCoffee)",
-    time: "14:00-16:00",
+    course_name: "Software Engineer II (HL)",
+    status: "Studying",
+    registered_num: 129,
+    max_capacity: 140,
   },
   {
-    subject: "Physics",
-    location: "@SamyanMitrtown",
-    time: "16:30-18:00",
+    course_name: "OS SYS PROG (UNIX)",
+    status: "Studying",
+    registered_num: 120,
+    max_capacity: 140,
   },
 ];
 
@@ -49,12 +52,10 @@ export const msgData = [
   },
 ];
 
-export const userData = 
-  {
-    fullname: "Fuutarou Uesugi",
-    username: "@futaro_15",
-    credit_balance: 100.0,
-    imgURL:
-      "https://i.pinimg.com/564x/2c/82/0d/2c820d2ea88ad5c92141e282074ddfe7.jpg",
-  }
-;
+export const userData = {
+  fullname: "Fuutarou Uesugi",
+  username: "@futaro_15",
+  credit_balance: 100.0,
+  imgURL:
+    "https://i.pinimg.com/564x/2c/82/0d/2c820d2ea88ad5c92141e282074ddfe7.jpg",
+};
