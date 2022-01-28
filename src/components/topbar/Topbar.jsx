@@ -5,10 +5,10 @@ import {
   EmailOutlined,
   NotificationsNoneOutlined,
 } from "@mui/icons-material";
+import { userData } from "../../dummyData";
 
 export default function Topbar() {
-  const imgSrc =
-    "https://i.pinimg.com/564x/2c/82/0d/2c820d2ea88ad5c92141e282074ddfe7.jpg";
+  const imgSrc = userData.imgURL;
   return (
     <div className="topbar">
       <div className="topbarWrapper">
@@ -30,8 +30,12 @@ export default function Topbar() {
             <NotificationsNoneOutlined />
             <span className="topIconBadge">8</span>
           </div>
-
           <img src={imgSrc} alt="" className="topAvatar" />
+          {/* <div className="userInfo">
+            <span className="fullName">{userData.fullname}</span>
+            <span className="userName">{userData.username}</span>
+            <span>credit: {userData.credit_balance}</span>
+          </div> */}
         </div>
       </div>
     </div>

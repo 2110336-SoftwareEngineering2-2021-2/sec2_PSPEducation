@@ -21,10 +21,10 @@ export const apptData = [
   },
 ];
 
-export const classData = [
+export const myCourseData = [
   {
-    subject: "Maths",
-    location: "@SiamDiscovery",
+    subject: "Badminton with AongAong",
+    location: "@CU_SportComplex",
     time: "10:00-12:00",
   },
   {
@@ -44,6 +44,17 @@ export const msgData = [
     fullname: "Itsuki Nakano",
     username: "@it-tsuki5",
     content: "Uesugu-kun, we'll be waiting at Cafe.",
-    imgURL: "http://pm1.narvii.com/7164/138f64a909260c53492ff549125858e140372130r1-750-750v2_00.jpg"
+    imgURL:
+      "http://pm1.narvii.com/7164/138f64a909260c53492ff549125858e140372130r1-750-750v2_00.jpg",
   },
 ];
+
+export const userData = 
+  {
+    fullname: "Fuutarou Uesugi",
+    username: "@futaro_15",
+    credit_balance: 100.0,
+    imgURL:
+      "https://i.pinimg.com/564x/2c/82/0d/2c820d2ea88ad5c92141e282074ddfe7.jpg",
+  }
+;

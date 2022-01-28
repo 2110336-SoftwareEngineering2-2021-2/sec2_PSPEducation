@@ -78,3 +78,8 @@
   padding: 2px;
   background: white;
 }
+
+.userInfo{
+  display: flex;
+  flex-direction: column;
+}
