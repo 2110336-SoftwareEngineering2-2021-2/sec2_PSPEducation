@@ -1,6 +1,7 @@
 import "./sidebar.css";
 import {
-  DateRange,
+  AutoAwesomeMotionOutlined,
+  TaskOutlined,
   DynamicFeedOutlined,
   ForumOutlined,
 } from "@mui/icons-material";
@@ -20,7 +21,7 @@ export default function Sidebar() {
               <div className="sidebarTitleBadge">{myCourseData.length}</div>
             </div>
             <div className="sidebarTitleRight">
-              <DateRange className="sidebarTitleIcon" />
+              <AutoAwesomeMotionOutlined className="sidebarTitleIcon" />
             </div>
           </div>
           <div className="sideBarCardWrapper">
@@ -30,11 +31,11 @@ export default function Sidebar() {
         <div className="sidebarMenu">
           <div className="sidebarTitle">
             <div className="sidebarTitleLeft">
-              <div className="sidebarTitleName">Appointment Request</div>
+              <div className="sidebarTitleName">Enrollment Requests</div>
               <div className="sidebarTitleBadge">{apptData.length}</div>
             </div>
             <div className="sidebarTitleRight">
-              <DynamicFeedOutlined className="sidebarTitleIcon" />
+              <TaskOutlined className="sidebarTitleIcon" />
             </div>
           </div>
           <div className="sideBarCardWrapper">
