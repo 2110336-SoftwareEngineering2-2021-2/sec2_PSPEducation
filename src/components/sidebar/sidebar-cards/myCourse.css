@@ -1,11 +1,11 @@
-.todayClassList {
+.myCourseList {
   display: flex;
   flex-direction: column;
   padding-left: 20px;
   padding-right: 55px;
 }
 
-.todayClassListItem {
+.myCourseListItem {
   font-size: 14px;
   font-weight: 600;
   list-style: none;
@@ -13,16 +13,20 @@
   white-space: nowrap;
 }
 
-.classTime {
+.courseName {
   border-right: 2px solid;
   border-color: rgb(80, 83, 83);
   padding-right: 5px;
 }
 
-.classSubject {
+.courseStatus {
   padding: 5px;
 }
 
-.classLocation {
+.courseStudentNum {
+  font-weight: 300;
+}
+
+.courseMaxCap {
   font-weight: 300;
 }

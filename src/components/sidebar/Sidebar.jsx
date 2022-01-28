@@ -4,28 +4,27 @@ import {
   DynamicFeedOutlined,
   ForumOutlined,
 } from "@mui/icons-material";
-import { TodayClass } from "./sidebar-cards/TodayClass";
+import { MyCourses } from "./sidebar-cards/MyCourse";
 import { Appts } from "./sidebar-cards/ApptReq";
 import { MsgReq } from "./sidebar-cards/MsgReq";
-import { classData, apptData, msgData } from "../../dummyData";
+import { myCourseData, apptData, msgData } from "../../dummyData";
 
 export default function Sidebar() {
-  console.log(classData.length);
   return (
     <div className="sidebar">
       <div className="sidebarWrapper">
         <div className="sidebarMenu">
           <div className="sidebarTitle">
             <div className="sidebarTitleLeft">
-              <div className="sidebarTitleName">Today's Class</div>
-              <div className="sidebarTitleBadge">{classData.length}</div>
+              <div className="sidebarTitleName">My Courses</div>
+              <div className="sidebarTitleBadge">{myCourseData.length}</div>
             </div>
             <div className="sidebarTitleRight">
               <DateRange className="sidebarTitleIcon" />
             </div>
           </div>
           <div className="sideBarCardWrapper">
-            <TodayClass />
+            <MyCourses />
           </div>
         </div>
         <div className="sidebarMenu">
