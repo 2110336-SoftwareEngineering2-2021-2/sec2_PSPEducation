@@ -1,11 +1,16 @@
 .home {
+  top: 55px;
   flex: 4;
 }
 
 .homeWrapper {
-  height: 100%;
-  padding: 0px 20px;
+  padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.midAvatar {
+  opacity: 0.2;
+  object-fit: fill;
 }

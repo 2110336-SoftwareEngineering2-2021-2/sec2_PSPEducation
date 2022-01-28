@@ -1,0 +1,28 @@
+.todayClassList {
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+  padding-right: 55px;
+}
+
+.todayClassListItem {
+  font-size: 14px;
+  font-weight: 600;
+  list-style: none;
+  padding: 10px 0px;
+  white-space: nowrap;
+}
+
+.classTime {
+  border-right: 2px solid;
+  border-color: rgb(80, 83, 83);
+  padding-right: 5px;
+}
+
+.classSubject {
+  padding: 5px;
+}
+
+.classLocation {
+  font-weight: 300;
+}
