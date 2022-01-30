@@ -7,12 +7,12 @@ export default function Home() {
         <div className="content">
           <div className="card">
             <div className="cardContent">
-              <div className="image">
-                <img
+              <div className="">
+                {/* <img
                   src="https://source.unsplash.com/random/1600x900/?lightblue"
                   alt=""
                   className="midAvatar"
-                />
+                /> */}
               </div>
             </div>
           </div>
