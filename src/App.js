@@ -1,17 +1,12 @@
 import "./app.css";
-import Topbar from "./components/topbar/Topbar";
-import Sidebar from "./components/sidebar/Sidebar";
-import Home from "./pages/home/Home";
+import Home from "./pages/tutor/home/Home";
+import AdminHome from "./pages/admin/home/AdminHome";
 
 function App() {
   return (
-    <div className="App">
-      <Topbar />
-      <div className="container">
-        <Sidebar />
-        <Home />
-      </div>
-    </div>
+    <>
+      <AdminHome />
+    </>
   );
 }
 
