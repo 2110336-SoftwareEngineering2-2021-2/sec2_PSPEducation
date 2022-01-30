@@ -1,3 +1,8 @@
+.container {
+  display: flex;
+  margin-top: 0px;
+}
+
 .home {
   top: 55px;
   flex: 4;
@@ -11,9 +16,4 @@
   align-items: center;
   justify-content: center;
   background-color: #f0f8ff;
-}
-
-.midAvatar {
-  opacity: 0.2;
-  object-fit: fill;
 }
