@@ -1,6 +1,6 @@
 import { React } from "react";
 import "./myCourse.css";
-import { myCourseData } from "../../../dummyData";
+import { myCourseData } from "../../../../dummyData";
 import { PeopleAltSharp } from "@mui/icons-material";
 
 export const MyCourses = () => {

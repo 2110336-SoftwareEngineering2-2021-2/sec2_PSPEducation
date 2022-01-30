@@ -1,6 +1,6 @@
 import { React } from "react";
 import "./msgReq.css";
-import { msgData } from "../../../dummyData";
+import { msgData } from "../../../../dummyData";
 import { MoreHorizOutlined } from "@mui/icons-material";
 
 export const MsgReq = () => {
