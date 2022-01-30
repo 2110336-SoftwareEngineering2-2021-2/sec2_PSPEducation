@@ -1,0 +1,42 @@
+.myCourseList {
+  display: flex;
+  flex-direction: column;
+  padding-left: 20px;
+  padding-right: 55px;
+}
+
+.myCourseListItem {
+  font-size: 14px;
+  font-weight: 600;
+  list-style: none;
+  padding: 10px 0px;
+  white-space: nowrap;
+}
+
+.courseName {
+  border-right: 2px solid;
+  border-color: rgb(80, 83, 83);
+  padding-right: 5px;
+}
+
+.courseStatus {
+  border-right: 2px solid;
+  border-color: rgb(80, 83, 83);
+  padding: 5px;
+}
+
+.courseStudentNum {
+  padding-left: 5px;
+  font-weight: 400;
+}
+
+.courseMaxCap {
+  font-weight: 400;
+}
+
+.coursePeopleIcon {
+  cursor: pointer;
+  position: relative;
+  bottom: -7px;
+  transform: scale(0.7);
+}
