@@ -6,7 +6,7 @@ import {
   NotificationsNoneOutlined,
   SearchOutlined,
 } from "@mui/icons-material";
-import { userData } from "../../dummyData";
+import { userData } from "../../../dummyData";
 
 export default function Topbar() {
   const imgSrc = userData.imgURL;
@@ -43,10 +43,10 @@ export default function Topbar() {
             </div>
             <img src={imgSrc} alt="" className="topAvatar" />
             <div className="userInfo">
-            {/* <span className="fullName">{userData.fullname}</span>
+              {/* <span className="fullName">{userData.fullname}</span>
             <span className="userName">{userData.username}</span>
             <span>credit: {userData.credit_balance}</span> */}
-          </div>
+            </div>
           </div>
         </div>
       </div>

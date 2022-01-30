@@ -2,13 +2,12 @@ import "./sidebar.css";
 import {
   AutoAwesomeMotionOutlined,
   TaskOutlined,
-  DynamicFeedOutlined,
   ForumOutlined,
 } from "@mui/icons-material";
 import { MyCourses } from "./sidebar-cards/MyCourse";
 import { Appts } from "./sidebar-cards/ApptReq";
 import { MsgReq } from "./sidebar-cards/MsgReq";
-import { myCourseData, apptData, msgData } from "../../dummyData";
+import { myCourseData, apptData, msgData } from "../../../dummyData";
 
 export default function Sidebar() {
   return (
