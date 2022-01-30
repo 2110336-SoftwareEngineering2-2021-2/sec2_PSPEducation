@@ -1,0 +1,12 @@
+.feed {
+  height: calc(100vh - 55px);
+  padding: 5px;
+  /* background-color: rgb(100, 110, 101); */
+}
+
+.feedWrapper {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+}

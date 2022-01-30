@@ -10,10 +10,9 @@ export default function AdminHome() {
       <Topbar />
       <div className="container">
         <Sidebar />
-        <div className="home">
-          <div className="homeWrapper">
-            <Feed />
-          </div>
+
+        <div className="homeWrapper">
+          <Feed />
         </div>
       </div>
     </>
