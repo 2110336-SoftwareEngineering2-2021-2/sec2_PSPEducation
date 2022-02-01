@@ -1,11 +1,11 @@
-.container {
+.homeContainer {
   display: flex;
   margin-top: 0px;
 }
 
 .home {
   top: 55px;
-  flex: 4;
+  flex: 7;
 }
 
 .homeWrapper {

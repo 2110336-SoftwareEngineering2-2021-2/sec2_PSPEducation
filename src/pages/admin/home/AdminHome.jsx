@@ -1,4 +1,3 @@
-import React from "react";
 import "./adminHome.css";
 import Topbar from "../../../components/admin/topbar/Topbar";
 import Sidebar from "../../../components/admin/sidebar/Sidebar";
@@ -8,11 +7,12 @@ export default function AdminHome() {
   return (
     <>
       <Topbar />
-      <div className="container">
+      <div className="homeContainer">
         <Sidebar />
-
-        <div className="homeWrapper">
-          <Feed />
+        <div className="home">
+          <div className="homeWrapper">
+            <Feed />
+          </div>
         </div>
       </div>
     </>
