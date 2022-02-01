@@ -1,21 +1,14 @@
 import "./app.css";
 
 import * as React from "react";
-import { Routes, Route, Outlet, Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import AdminHome from "./pages/admin/home/AdminHome";
 import Home from "./pages/tutor/home/Home";
 
 function App() {
   return (
     <>
-      <Navbar />
-      <div className="container">
-        <Routes>
-          <Route path="/" element={<Layout />} />
-          <Route path="tutor" element={<Home />} />
-          <Route path="admin" element={<AdminHome />} />
-        </Routes>
-      </div>
+      <Layout />
     </>
   );
 }
@@ -25,19 +18,19 @@ export default App;
 function Layout() {
   return (
     <div>
-      <h3>Please access via following links:</h3>
-      <hr />
-      <nav>
+      <Navbar />
+      <div className="container">
+        <h3>Please access via following links:</h3>
+        <hr />
         <ul>
           <li>
-            <Link to="/tutor">TutorHome</Link>
+            <NavLink to="/tutor">TutorHome</NavLink>
           </li>
           <li>
-            <Link to="/admin">AdminHome</Link>
+            <NavLink to="/admin">AdminHome</NavLink>
           </li>
         </ul>
-      </nav>
-      <Outlet />
+      </div>
     </div>
   );
 }
