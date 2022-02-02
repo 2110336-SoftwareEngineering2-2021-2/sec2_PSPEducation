@@ -3,7 +3,7 @@ import "./app.css";
 import * as React from "react";
 import { NavLink } from "react-router-dom";
 import AdminHome from "./pages/admin/home/AdminHome";
-import Home from "./pages/tutor/home/Home";
+import TutorHome from "./pages/tutor/home/TutorHome";
 
 function App() {
   return (
