@@ -1,5 +1,5 @@
 import React from "react";
-import "./topbar.css";
+import "./tutorTopbar.css";
 import {
   AppsOutlined,
   EmailOutlined,
@@ -8,7 +8,7 @@ import {
 } from "@mui/icons-material";
 import { userData } from "../../../dummyData";
 
-export default function Topbar() {
+export default function TutorTopbar() {
   const imgSrc = userData.imgURL;
   return (
     <div className="topbar">
@@ -43,10 +43,10 @@ export default function Topbar() {
             </div>
             <img src={imgSrc} alt="" className="topAvatar" />
             <div className="userInfo">
-            {/* <span className="fullName">{userData.fullname}</span>
+              {/* <span className="fullName">{userData.fullname}</span>
             <span className="userName">{userData.username}</span>
             <span>credit: {userData.credit_balance}</span> */}
-          </div>
+            </div>
           </div>
         </div>
       </div>

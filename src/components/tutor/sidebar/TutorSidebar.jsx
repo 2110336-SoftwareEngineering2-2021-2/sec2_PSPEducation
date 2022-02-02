@@ -1,15 +1,15 @@
-import "./sidebar.css";
+import "./tutorSidebar.css";
 import {
   AutoAwesomeMotionOutlined,
   TaskOutlined,
   ForumOutlined,
 } from "@mui/icons-material";
-import { MyCourses } from "./sidebar-cards/MyCourse";
-import { Appts } from "./sidebar-cards/ApptReq";
-import { MsgReq } from "./sidebar-cards/MsgReq";
+import { MyCourses } from "./tutor-sidebar-cards/MyCourse";
+import { Appts } from "./tutor-sidebar-cards/ApptReq";
+import { MsgReq } from "./tutor-sidebar-cards/MsgReq";
 import { myCourseData, apptData, msgData } from "../../../dummyData";
 
-export default function Sidebar() {
+export default function TutorSidebar() {
   return (
     <div className="sidebar">
       <div className="sidebarWrapper">

@@ -1,14 +1,14 @@
 import "./adminHome.css";
-import Topbar from "../../../components/admin/topbar/Topbar";
-import Sidebar from "../../../components/admin/sidebar/Sidebar";
+import AdminTopbar from "../../../components/admin/topbar/AdminTopbar";
+import AdminSidebar from "../../../components/admin/sidebar/AdminSidebar";
 import Feed from "../../../components/admin/feed/Feed";
 
 export default function AdminHome() {
   return (
     <>
-      <Topbar />
+      <AdminTopbar />
       <div className="homeContainer">
-        <Sidebar />
+        <AdminSidebar />
         <div className="home">
           <div className="homeWrapper">
             <Feed />

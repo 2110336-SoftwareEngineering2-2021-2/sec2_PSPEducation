@@ -1,13 +1,13 @@
-import "./home.css";
-import Topbar from "../../../components/tutor/topbar/Topbar";
-import Sidebar from "../../../components/tutor/sidebar/Sidebar";
+import "./tutorHome.css";
+import TutorTopbar from "../../../components/tutor/topbar/TutorTopbar";
+import TutorSidebar from "../../../components/tutor/sidebar/TutorSidebar";
 
-export default function Home() {
+export default function TutorHome() {
   return (
     <>
-      <Topbar />
+      <TutorTopbar />
       <div className="homeContainer">
-        <Sidebar />
+        <TutorSidebar />
         <div className="home">
           <div className="homeWrapper">
             <div className="content">

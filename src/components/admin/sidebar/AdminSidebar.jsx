@@ -1,4 +1,4 @@
-import "./sidebar.css";
+import "./adminSidebar.css";
 import {
   ViewListRounded,
   HowToRegRounded,
@@ -13,7 +13,7 @@ import {
 // import { MsgReq } from "./sidebar-cards/MsgReq";
 // import { myCourseData, apptData, msgData } from "../../../dummyData";
 
-export default function Sidebar() {
+export default function AdminSidebar() {
   return (
     <div className="sidebar">
       <div className="sidebarWrapper">

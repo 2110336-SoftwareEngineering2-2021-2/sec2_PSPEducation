@@ -1,5 +1,5 @@
 import React from "react";
-import "./topbar.css";
+import "./adminTopbar.css";
 import {
   AppsOutlined,
   EmailOutlined,
@@ -8,7 +8,7 @@ import {
 } from "@mui/icons-material";
 import { userData } from "../../../dummyData";
 
-export default function Topbar() {
+export default function AdminTopbar() {
   const imgSrc = userData.imgURL;
   return (
     <div className="topbar">
