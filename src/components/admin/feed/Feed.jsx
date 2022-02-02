@@ -1,17 +1,26 @@
 import React from "react";
 import "./feed.css";
-import Card from "./card/Card";
+import TutorValidationCard from "./card/tutorValidation/TutorValidationCard";
 
 export default function Feed() {
   return (
     <div className="feed">
       <div className="feedWrapper">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        <TutorValidationCard />
+        <TutorValidationCard />
+        <TutorValidationCard />
+        <TutorValidationCard />
+        <TutorValidationCard />
+        <TutorValidationCard />
+        <TutorValidationCard />
+        <TutorValidationCard />
+        <TutorValidationCard />
+        <TutorValidationCard />
+        <TutorValidationCard />
+        <TutorValidationCard />
+        <TutorValidationCard />
+        <TutorValidationCard />
+        <TutorValidationCard />
       </div>
     </div>
   );
