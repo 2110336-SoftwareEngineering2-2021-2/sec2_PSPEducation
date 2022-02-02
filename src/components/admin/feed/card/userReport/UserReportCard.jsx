@@ -1,23 +1,27 @@
-import React from "react";
 import "./userReportCard.css";
 // import { StarRounded, StarOutlineRounded } from "@mui/icons-material";
 
 export default function UserReportCard() {
-  const imgSrc = "https://source.unsplash.com/random/300×300/?face";
+  const imgSrc = "https://source.unsplash.com/random/300×300/?report";
   return (
-    <div className="card">
-      <div className="cardContent">
-        <div className="cardImageContainer">
-          <img src={imgSrc} alt="" className="cardImageAvatar" />
+    <div className="userReportCard">
+      <div className="userReportCardContent">
+        <div className="userReportCardImageContainer">
+          <img src={imgSrc} alt="" className="userReportCardImageAttached" />
         </div>
-        <div className="tutorName">
-          <span className="fullName">Tutor Name1</span>
-          <span className="profession">SE II</span>
+        <div className="userReportCardReportInfo">
+          <span className="userReportCardHeader">Report Topic1</span>
+          <span className="userReportCardDetail">
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Fugit
+            voluptatibus sed corrupti laborum quasi? Delectus aut, dolorum
+            voluptatum quod quae impedit neque culpa deleniti, commodi, fugit
+            doloribus ut iste nulla.
+          </span>
         </div>
 
-        <div className="cardButton">
-          <button className="cardButtonView">view</button>
-          <button className="cardButtonRemove">remove</button>
+        <div className="userReportCardButton">
+          <button className="userReportCardButtonView">add</button>
+          <button className="userReportCardButtonRemove">dismiss</button>
         </div>
       </div>
     </div>

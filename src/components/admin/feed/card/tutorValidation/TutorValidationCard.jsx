@@ -1,4 +1,3 @@
-import React from "react";
 import "./tutorValidationCard.css";
 // import { StarRounded, StarOutlineRounded } from "@mui/icons-material";
 
