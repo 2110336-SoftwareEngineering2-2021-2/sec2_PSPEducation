@@ -1,7 +1,7 @@
 .feed {
   height: calc(100vh - 55px);
   padding: 5px;
-  /* background-color: rgb(100, 110, 101); */
+  background-color: rgb(221, 231, 250);
 }
 
 .feedWrapper {
