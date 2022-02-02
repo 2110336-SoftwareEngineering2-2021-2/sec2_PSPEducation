@@ -18,7 +18,7 @@ export default App;
 function Layout() {
   return (
     <div>
-      <Navbar />
+      <FakeNavbar />
       <div className="container">
         <h3>Please access via following links:</h3>
         <hr />
@@ -35,7 +35,7 @@ function Layout() {
   );
 }
 
-function Navbar() {
+function FakeNavbar() {
   return (
     <>
       <div className="topbar">
