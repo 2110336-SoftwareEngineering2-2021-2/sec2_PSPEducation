@@ -1,12 +1,8 @@
 .feed {
   height: calc(100vh - 55px);
+  width: 100%;
   padding: 5px;
   background-color: rgb(221, 231, 250);
 }
 
-.feedWrapper {
-  display: flex;
-  flex-flow: row wrap;
-  align-items: center;
-  justify-content: center;
-}
+
