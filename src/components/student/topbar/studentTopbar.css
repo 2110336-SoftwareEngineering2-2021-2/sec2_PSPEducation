@@ -1,0 +1,126 @@
+.topbar {
+  height: 60px;
+  background-color: rgb(87, 112, 221);
+  display: flex;
+  top: 0;
+  z-index: 999;
+}
+
+.topbarWrapper {
+  width: 100%;
+  padding: 0px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.topLeft {
+  flex: 3;
+  justify-content: center;
+}
+
+.topLeftContainer {
+  top: -10px;
+  position: relative;
+  white-space: nowrap;
+}
+
+.topLeftlogo {
+  font-size: 24px;
+  margin-left: 20px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+}
+
+.topLeftlogoLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.topLeftauthor {
+  font-size: 16px;
+  font-weight: 400;
+  color: white;
+  position: absolute;
+  top: 29px;
+  left: 54px;
+}
+
+.topCenter {
+  flex: 3;
+}
+
+.searchIcon {
+  font-size: 20px !important;
+  margin-left: 10px;
+}
+
+.searchInput {
+  font-size: 14px;
+  border: none;
+  width: 70%;
+  background-color: #f0f8ff;
+}
+
+.searchInput:focus {
+  outline: none;
+}
+
+.searchbar {
+  width: 100%;
+  height: 30px;
+  background-color: #f0f8ff;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.topRight {
+  flex: 2;
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  justify-content: flex-end;
+}
+
+.topRightContainer {
+  display: flex;
+}
+
+.topbarIconContainer {
+  position: relative;
+  cursor: pointer;
+  margin-right: 20px;
+  color: white;
+}
+
+.topIconBadge {
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  bottom: 0px;
+  right: -5px;
+  background-color: red;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+.topAvatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 50% 0%;
+  cursor: pointer;
+  /* padding: 2px;
+  background: white; */
+}
+
+.userInfo {
+  display: flex;
+  flex-direction: column;
+}
