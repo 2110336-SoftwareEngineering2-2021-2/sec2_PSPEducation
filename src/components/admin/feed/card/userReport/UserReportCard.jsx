@@ -2,12 +2,22 @@ import "./userReportCard.css";
 // import { StarRounded, StarOutlineRounded } from "@mui/icons-material";
 
 export default function UserReportCard() {
-  const imgSrc = "https://source.unsplash.com/random/300×300/?report";
+  const imgTopicSrc = "https://source.unsplash.com/random/300×300/?report";
+  const imgBgReportSrc =
+    "https://source.unsplash.com/random/300×300/?workspace";
+
+  var root = document.querySelector(":root");
+  root.style.setProperty("--imgBgReport", "url(" + imgBgReportSrc + ")");
+
   return (
     <div className="userReportCard">
       <div className="userReportCardContent">
         <div className="userReportCardImageContainer">
-          <img src={imgSrc} alt="" className="userReportCardImageAttached" />
+          <img
+            src={imgTopicSrc}
+            alt=""
+            className="userReportCardImageAttached"
+          />
         </div>
         <div className="userReportCardReportInfo">
           <span className="userReportCardHeader">Report Topic1</span>

@@ -7,6 +7,10 @@
   font-family: "Poppins", sans-serif;
 }
 
+:root {
+  --imgBgReport: url("https://source.unsplash.com/random/300×300/?blank");
+}
+
 .userReportCard {
   margin: 10px;
   position: relative;
@@ -16,7 +20,7 @@
       rgb(102, 101, 101),
       rgb(47, 47, 47)
     ),
-    url("https://source.unsplash.com/random/300×300/?workspace");
+    var(--imgBgReport);
   background-size: cover;
   border-radius: 20px;
 }
