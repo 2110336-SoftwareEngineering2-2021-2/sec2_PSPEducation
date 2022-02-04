@@ -8,10 +8,6 @@ import {
   HelpOutline,
   Event,
 } from "@mui/icons-material";
-// import { MyCourses } from "./sidebar-cards/MyCourse";
-// import { Appts } from "./sidebar-cards/ApptReq";
-// import { MsgReq } from "./sidebar-cards/MsgReq";
-// import { myCourseData, apptData, msgData } from "../../../dummyData";
 
 export default function AdminSidebar() {
   return (
@@ -53,13 +49,7 @@ export default function AdminSidebar() {
             <span className="sidebarListItemText">Events</span>
           </li>
         </ul>
-        <button className="sidebarButton">Show More</button>
         <hr className="sidebarHr" />
-        {/* <ul className="sidebarFriendList">
-          {Users.map((u) => (
-            <CloseFriend key={u.id} user={u} />
-          ))}
-        </ul> */}
       </div>
     </div>
   );
