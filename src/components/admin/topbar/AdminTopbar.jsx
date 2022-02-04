@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./adminTopbar.css";
 import {
   AppsOutlined,
@@ -15,7 +16,11 @@ export default function AdminTopbar() {
       <div className="topbarWrapper">
         <div className="topLeft">
           <div className="topLeftContainer">
-            <span className="topLeftlogo">WhereIsMyTutor?</span>
+            <span className="topLeftlogo">
+              <Link className="topLeftlogoLink" to="/">
+                WhereIsMyTutor?
+              </Link>
+            </span>
             <span className="topLeftauthor">Powered by PSPEducaion</span>
           </div>
         </div>
