@@ -38,4 +38,16 @@ export class CourseService {
     }
     return course
   }
+
+  async publishCourse(id: string){ // course_id
+    if (!mongoose.isValidObjectId(id)){
+      throw new HttpException("This course ID isn't valid", 404);
+    }
+    const course = await this.courseModel.findById(id)
+    if (!course){
+      throw new NotFoundException("This course ID doesn't exist");
+    }
+    course.status = "published"
+    return course
+  }
 }

@@ -44,6 +44,12 @@ export class Course {
   @Prop({required: true})
   status: string;
 
+  @Prop({required: true})
+  learningType: string;
+
+  @Prop({required: true})
+  location: string;
+
   @Prop({required: true, default: Date.now})
   dateTimeCreated: Date;
 
