@@ -1,7 +1,7 @@
 import "./adminHome.css";
 import AdminTopbar from "../../../components/admin/topbar/AdminTopbar";
 import AdminSidebar from "../../../components/admin/sidebar/AdminSidebar";
-import Feed from "../../../components/admin/feed/Feed";
+import AdminFeed from "../../../components/admin/feed/AdminFeed";
 
 export default function AdminHome() {
   return (
@@ -13,7 +13,7 @@ export default function AdminHome() {
         </div>
         <div className="homeContainer">
           <div className="homeWrapper">
-            <Feed />
+            <AdminFeed />
           </div>
         </div>
       </div>
