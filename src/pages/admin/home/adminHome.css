@@ -1,11 +1,15 @@
-.homeContainer {
+.pageContent {
   display: flex;
   margin-top: 0px;
 }
 
-.home {
+.sidebarContainer {
+  flex: 2;
+}
+
+.homeContainer {
+  flex: 8;
   top: 55px;
-  flex: 7;
 }
 
 .homeWrapper {

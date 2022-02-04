@@ -7,9 +7,11 @@ export default function AdminHome() {
   return (
     <>
       <AdminTopbar />
-      <div className="homeContainer">
-        <AdminSidebar />
-        <div className="home">
+      <div className="pageContent">
+        <div className="sidebarContainer">
+          <AdminSidebar />
+        </div>
+        <div className="homeContainer">
           <div className="homeWrapper">
             <Feed />
           </div>

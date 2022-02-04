@@ -6,9 +6,12 @@ export default function TutorHome() {
   return (
     <>
       <TutorTopbar />
-      <div className="homeContainer">
-        <TutorSidebar />
-        <div className="home">
+      <div className="pageContent">
+        <div className="sidebarContainer">
+          <TutorSidebar />
+        </div>
+
+        <div className="homeContainer">
           <div className="homeWrapper">
             <div className="content">
               <div className="card">
