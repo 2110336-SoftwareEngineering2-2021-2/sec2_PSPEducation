@@ -1,14 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap");
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
-
 :root {
-  --imgBgReport: url("https://source.unsplash.com/random/300×300/?blank");
+  --imgBgReport: url("https://source.unsplash.com/random/800×300/?blank");
 }
 
 .userReportCard {
@@ -62,16 +53,22 @@
 }
 
 .userReportCardDetail {
-  font-size: 15px;
+  font-size: 12px;
   font-weight: 500;
   width: 180px;
-  height: 80px;
+  height: 60px;
   display: -webkit-box;
   -webkit-line-clamp: 3;
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
   border: 3px solid rgb(107, 107, 107);
+}
+
+.userReportCardUserName {
+  font-size: 14px;
+  font-weight: 300;
+  color: rgb(214, 214, 214);
 }
 
 .userReportCardButton {

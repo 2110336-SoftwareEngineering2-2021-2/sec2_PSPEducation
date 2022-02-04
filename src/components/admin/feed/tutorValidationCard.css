@@ -1,16 +1,5 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap");
-
-*,
-*::before,
-*::after {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
-}
-
 :root {
-  --imgBgTutorValid: url("https://source.unsplash.com/random/300×300/?blank");
+  --imgBgTutorValid: url("https://source.unsplash.com/random/800×300/?blank");
 }
 
 .tutorValidCard {
@@ -20,9 +9,9 @@
   background: linear-gradient(
     rgb(102, 101, 101),
     transparent,
-    rgb(102, 101, 101)
+    rgb(102, 101, 101),
+    var(--imgBgTutorValid)
   );
-  background-image: var(--imgBgTutorValid);
   background-size: cover;
   border-radius: 20px;
 }
@@ -84,7 +73,7 @@
 
 .tutorUserName {
   font-size: 15px;
-  color: gray;
+  color: rgb(214, 214, 214);
   font-weight: 400;
 }
 
