@@ -1,6 +1,7 @@
 import "./tutorHome.css";
 import TutorTopbar from "../../../components/tutor/topbar/TutorTopbar";
 import TutorSidebar from "../../../components/tutor/sidebar/TutorSidebar";
+import TutorFeed from "../../../components/tutor/feed/TutorFeed";
 
 export default function TutorHome() {
   return (
@@ -10,16 +11,9 @@ export default function TutorHome() {
         <div className="sidebarContainer">
           <TutorSidebar />
         </div>
-
         <div className="homeContainer">
           <div className="homeWrapper">
-            <div className="content">
-              <div className="card">
-                <div className="cardContent">
-                  <div className="">feed</div>
-                </div>
-              </div>
-            </div>
+            <TutorFeed />
           </div>
         </div>
       </div>
