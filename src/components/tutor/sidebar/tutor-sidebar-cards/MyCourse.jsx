@@ -28,7 +28,7 @@ const Course = ({ course_name, status, registered_num, max_capacity }) => {
       <span className="courseName">{course_name}</span>
       <span className="courseStatus">{status}</span>
       <span className="courseStudentNum">{registered_num}</span>
-      <span className="courseMaxCap">/{max_capacity}</span>
+      <span className="courseMaxCap">{max_capacity}</span>
       <PeopleAltSharp className="coursePeopleIcon" />
     </div>
   );
