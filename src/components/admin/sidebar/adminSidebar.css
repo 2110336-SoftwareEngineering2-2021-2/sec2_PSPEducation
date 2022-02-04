@@ -1,4 +1,5 @@
 .sidebar {
+  flex: 2;
   height: calc(100vh - 55px);
   top: 55px;
   background: rgb(234, 234, 248);
@@ -51,21 +52,3 @@
 .sidebarHr {
   margin: 20px 0;
 }
-
-/* .sidebarFriendList {
-  padding: 0;
-  margin: 0;
-  list-style: none;
-} */
-
-/* .sidebarTitleBadge {
-  width: 15px;
-  height: 15px;
-  background-color: rgb(80, 83, 83);
-  color: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 14px;
-} */
