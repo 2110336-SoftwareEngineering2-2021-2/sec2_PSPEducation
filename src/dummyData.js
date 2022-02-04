@@ -90,7 +90,7 @@ export const ReportCardData = [
     username: "@aong.aong",
     detail:
       "I forgot my password, and there's no reset password function on Login page",
-    imgTopicURL: "https://source.unsplash.com/random/300×300/?report",
+    imgTopicURL: "https://source.unsplash.com/random/300×300/?login",
     imgBgURL: "https://source.unsplash.com/random/800×300/?workspace",
   },
   {
@@ -98,7 +98,7 @@ export const ReportCardData = [
     username: "@psp.master",
     detail:
       "I cannot withdraw 9999 credit from my tutor account to bank account",
-    imgTopicURL: "https://source.unsplash.com/random/300×300/?report",
-    imgBgURL: "https://source.unsplash.com/random/800×300/?cafe",
+    imgTopicURL: "https://source.unsplash.com/random/300×300/?money",
+    imgBgURL: "https://source.unsplash.com/random/800×300/?money",
   },
 ];
