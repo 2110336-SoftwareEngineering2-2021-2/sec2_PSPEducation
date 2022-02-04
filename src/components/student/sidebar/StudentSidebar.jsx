@@ -1,61 +1,46 @@
 import "./studentSidebar.css";
 import {
-  AutoAwesomeMotionOutlined,
-  TaskOutlined,
-  ForumOutlined,
+  HistoryEduOutlined,
+  GroupAddRounded,
+  ReceiptLongRounded,
+  PaymentsRounded,
+  HelpOutline,
+  Event,
 } from "@mui/icons-material";
-import { MyCourses } from "./student-sidebar-cards/MyCourse";
-import { Appts } from "./student-sidebar-cards/ApptReq";
-import { MsgReq } from "./student-sidebar-cards/MsgReq";
-import { myCourseData, apptData, msgData } from "../../../dummyData";
 
 export default function StudentSidebar() {
   return (
-    <div className="sidebar">
-      <div className="sidebarWrapper">
-        <div className="sidebarMenu">
-          <div className="sidebarTitle">
-            <div className="sidebarTitleLeft">
-              <div className="sidebarTitleName">My Courses</div>
-              <div className="sidebarTitleBadge">{myCourseData.length}</div>
-            </div>
-            <div className="sidebarTitleRight">
-              <AutoAwesomeMotionOutlined className="sidebarTitleIcon" />
-            </div>
-          </div>
-          <div className="sideBarCardWrapper">
-            <MyCourses />
-          </div>
-        </div>
-        <div className="sidebarMenu">
-          <div className="sidebarTitle">
-            <div className="sidebarTitleLeft">
-              <div className="sidebarTitleName">Enrollment Requests</div>
-              <div className="sidebarTitleBadge">{apptData.length}</div>
-            </div>
-            <div className="sidebarTitleRight">
-              <TaskOutlined className="sidebarTitleIcon" />
-            </div>
-          </div>
-          <div className="sideBarCardWrapper">
-            <Appts />
-          </div>
-        </div>
+    <div className="studentSidebar">
+      <div className="studentSidebarWrapper">
+        <ul className="studentSidebarList">
+          <li className="studentSidebarListItem">
+            <HistoryEduOutlined className="studentSidebarIcon" />
+            <span className="studentSidebarListItemText">My Courses</span>
+          </li>
 
-        <div className="sidebarMenu">
-          <div className="sidebarTitle">
-            <div className="sidebarTitleLeft">
-              <div className="sidebarTitleName">Message Request</div>
-              <div className="sidebarTitleBadge">{msgData.length}</div>
-            </div>
-            <div className="sidebarTitleRight">
-              <ForumOutlined className="sidebarTitleIcon" />
-            </div>
-          </div>
-          <div className="sideBarCardWrapper">
-            <MsgReq />
-          </div>
-        </div>
+          <li className="studentSidebarListItem">
+            <GroupAddRounded className="studentSidebarIcon" />
+            <span className="studentSidebarListItemText">
+              Enrollment Requests
+            </span>
+          </li>
+
+          <li className="studentSidebarListItem">
+            <PaymentsRounded className="studentSidebarIcon" />
+            <span className="studentSidebarListItemText">Payment</span>
+          </li>
+
+          <li className="studentSidebarListItem">
+            <HelpOutline className="studentSidebarIcon" />
+            <span className="studentSidebarListItemText">FAQ</span>
+          </li>
+
+          <li className="studentSidebarListItem">
+            <Event className="studentSidebarIcon" />
+            <span className="studentSidebarListItemText">Events</span>
+          </li>
+        </ul>
+        <hr className="studentSidebarHr" />
       </div>
     </div>
   );
