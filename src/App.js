@@ -2,8 +2,6 @@ import "./app.css";
 
 import * as React from "react";
 import { NavLink } from "react-router-dom";
-import AdminHome from "./pages/admin/home/AdminHome";
-import TutorHome from "./pages/tutor/home/TutorHome";
 
 function App() {
   return (
@@ -24,10 +22,13 @@ function Layout() {
         <hr />
         <ul>
           <li>
+            <NavLink to="/admin">AdminHome</NavLink>
+          </li>
+          <li>
             <NavLink to="/tutor">TutorHome</NavLink>
           </li>
           <li>
-            <NavLink to="/admin">AdminHome</NavLink>
+            <NavLink to="/student">StudentHome</NavLink>
           </li>
         </ul>
       </div>
