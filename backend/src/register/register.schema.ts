@@ -36,11 +36,14 @@ export class Register {
   @Prop({required: true})
   gender: string;
 
+  @Prop()
+  status: string
+
   @Prop({required: true})
   educationalLevel: number;
 
   @Prop()
-  picture: string; //Choose be Binary type
+  picture: string; 
 
   @Prop({unique: true})
   citizenId: string;
