@@ -1,0 +1,73 @@
+.feed {
+  flex: 4;
+  height: calc(100vh - 55px);
+  top: 55px;
+  width: 100%;
+  padding: 5px;
+  background-color: rgb(221, 231, 250);
+  position: sticky;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(179, 179, 179);
+}
+
+.feedWrapper {
+  padding: 20px;
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+.feedMenu {
+  margin: 20px;
+  padding: 10px;
+  color: rgb(80, 83, 83);
+  background-color: white !important;
+  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  border-radius: 10px;
+}
+
+.feedTitle {
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.feedTitleLeft {
+  display: flex;
+  align-items: center;
+}
+
+.feedTitleName {
+  font-weight: 600;
+  margin: 0px 10px;
+  font-size: 17px;
+}
+
+.feedTitleBadge {
+  width: 15px;
+  height: 15px;
+  background-color: rgb(80, 83, 83);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.feedTitleIcon {
+  cursor: pointer;
+}
