@@ -59,3 +59,46 @@ export const userData = {
   imgURL:
     "https://i.pinimg.com/564x/2c/82/0d/2c820d2ea88ad5c92141e282074ddfe7.jpg",
 };
+
+export const tutorValidationCardData = [
+  {
+    fullname: "Jim Riley",
+    username: "@jim.riley",
+    profession: "SE II",
+    imgAvatarURL: "https://source.unsplash.com/random/300×300/?face",
+    imgBgURL: "https://source.unsplash.com/random/800×300/?lecture",
+  },
+  {
+    fullname: "Georgia Curtis",
+    username: "@georgia.curtis",
+    profession: "Rock Climbing",
+    imgAvatarURL: "https://source.unsplash.com/random/300×300/?people",
+    imgBgURL: "https://source.unsplash.com/random/800×300/?mountain",
+  },
+  {
+    fullname: "Angel May",
+    username: "@angel.may",
+    profession: "Swimming Lesson",
+    imgAvatarURL: "https://source.unsplash.com/random/300×300/?human",
+    imgBgURL: "https://source.unsplash.com/random/800×300/?swim",
+  },
+];
+
+export const ReportCardData = [
+  {
+    header: "Login Problems",
+    username: "@aong.aong",
+    detail:
+      "I forgot my password, and there's no reset password function on Login page",
+    imgTopicURL: "https://source.unsplash.com/random/300×300/?report",
+    imgBgURL: "https://source.unsplash.com/random/800×300/?workspace",
+  },
+  {
+    header: "Cannot withdraw credit",
+    username: "@psp.master",
+    detail:
+      "I cannot withdraw 9999 credit from my tutor account to bank account",
+    imgTopicURL: "https://source.unsplash.com/random/300×300/?report",
+    imgBgURL: "https://source.unsplash.com/random/800×300/?cafe",
+  },
+];
