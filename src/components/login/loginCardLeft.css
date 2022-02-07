@@ -1,0 +1,61 @@
+@import url("https://fonts.googleapis.com/css2?family=Festive&family=Poppins:wght@300;400;500;600;700&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap");
+
+.left {
+  flex: 1;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: white;
+  border-radius: 20px 0px 0px 20px;
+}
+
+.leftPSP {
+  padding: 30px;
+}
+
+.leftPSPLogo {
+  width: 351px;
+  height: 212px;
+}
+
+.leftTeamDevelop {
+  border-top: 1px solid rgb(43, 54, 105);
+  margin: 10px 0px;
+}
+
+.leftTeamDevelopTitle {
+  font-size: 20px;
+  text-align: center;
+  margin: 20px 0px;
+  color: rgb(43, 54, 105);
+}
+
+.leftDeveloperList {
+  width: 80%;
+  display: flex;
+  flex-flow: wrap;
+  margin-top: 10px;
+  margin: auto;
+}
+
+.leftDeveloperItem {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1 0 21%;
+  margin: 5px;
+}
+
+.leftDevItemAvatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+}
+
+.leftDevItemName {
+  font-size: 13px;
+  color: rgb(43, 54, 105);
+}
