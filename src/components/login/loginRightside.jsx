@@ -1,8 +1,6 @@
 import React from "react";
 import "./loginRightside.css";
 
-// import AdminCards from "./AdminCards";
-
 export default function LoginRightside() {
   return (
     <div className="right">

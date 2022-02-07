@@ -72,14 +72,14 @@ export const tutorValidationCardData = [
     fullname: "Georgia Curtis",
     username: "@georgia.curtis",
     profession: "Rock Climbing",
-    imgAvatarURL: "https://source.unsplash.com/random/300×300/?people",
+    imgAvatarURL: "https://source.unsplash.com/random/300×300/?human",
     imgBgURL: "https://source.unsplash.com/random/800×300/?mountain",
   },
   {
     fullname: "Angel May",
     username: "@angel.may",
     profession: "Swimming Lesson",
-    imgAvatarURL: "https://source.unsplash.com/random/300×300/?human",
+    imgAvatarURL: "https://source.unsplash.com/random/300×300/?women",
     imgBgURL: "https://source.unsplash.com/random/800×300/?swim",
   },
 ];
