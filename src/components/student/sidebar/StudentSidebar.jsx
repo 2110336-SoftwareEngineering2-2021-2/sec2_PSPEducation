@@ -2,7 +2,7 @@ import "./studentSidebar.css";
 import {
   HistoryEduOutlined,
   GroupAddRounded,
-  ReceiptLongRounded,
+  //ReceiptLongRounded,
   PaymentsRounded,
   HelpOutline,
   Event,

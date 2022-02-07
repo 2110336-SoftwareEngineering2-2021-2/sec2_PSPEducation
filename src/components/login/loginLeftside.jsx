@@ -1,9 +1,6 @@
 import React from "react";
-import PspIcon from "../../PSP-logo.ico";
 import PspPic from "../../PSP-logo.png";
 import "./loginLeftside.css";
-// import "./studentFeed.css";
-// import AdminCards from "./AdminCards";
 
 export default function LoginLeftside() {
   return (

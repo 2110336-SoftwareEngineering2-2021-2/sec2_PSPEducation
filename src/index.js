@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import AdminHome from "./pages/admin/home/AdminHome";
 import TutorHome from "./pages/tutor/home/TutorHome";
 import StudentHome from "./pages/student/home/StudentHome";
