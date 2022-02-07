@@ -70,7 +70,7 @@
   width: 70%;
   height: 100%;
   background-color: #f0f8ff;
-  border: 0px;
+  margin: 1px;
 }
 
 .searchInput:focus {
