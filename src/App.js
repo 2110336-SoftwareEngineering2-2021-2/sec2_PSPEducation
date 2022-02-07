@@ -1,6 +1,8 @@
 import "./app.css";
 
 import * as React from "react";
+import Navbar from "./components/simple/navbar/Navbar";
+import Footer from "./components/simple/footer/Footer";
 import { NavLink } from "react-router-dom";
 
 function App() {
@@ -15,8 +17,8 @@ export default App;
 
 function Layout() {
   return (
-    <div>
-      <FakeNavbar />
+    <div className="layout">
+      <Navbar />
       <div className="container">
         <h3>Please access via following links:</h3>
         <hr />
@@ -33,25 +35,14 @@ function Layout() {
           <li>
             <NavLink to="/login">Login</NavLink>
           </li>
+          <li>
+            <NavLink to="/register">Register</NavLink>
+          </li>
         </ul>
-      </div>
-    </div>
-  );
-}
-
-function FakeNavbar() {
-  return (
-    <>
-      <div className="topbar">
-        <div className="topbarWrapper">
-          <div className="topLeft">
-            <div className="topLeftContainer">
-              <span className="topLeftlogo">WhereIsMyTutor?</span>
-              <span className="topLeftauthor">Powered by PSPEducaion</span>
-            </div>
-          </div>
+        <div className="appFooter">
+          <Footer />
         </div>
       </div>
-    </>
+    </div>
   );
 }
