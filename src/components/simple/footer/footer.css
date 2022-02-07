@@ -1,0 +1,28 @@
+.footer {
+  width: 100%;
+  margin: auto;
+  margin-top: 25px;
+  border-top: 1px solid #dddfe2;
+  align-items: center;
+}
+
+.footerWrapper {
+  padding: 10px;
+  font-size: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.platform-version-text {
+  display: inline-block;
+  padding: 0 8px;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+  border-radius: 4px;
+}
+
+.platform-policy {
+  text-decoration: none;
+  color: inherit;
+}
