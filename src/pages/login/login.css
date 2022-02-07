@@ -1,11 +1,17 @@
 .login {
-  height: calc(100vh - 50px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  overflow: hidden;
+  background-color: rgba(122, 141, 228, 0.1);
 }
 
-.wrapper {
+.loginWrapper {
+  height: calc(100vh - 60px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.loginCard {
   width: 60%;
   height: 75%;
   -webkit-box-shadow: 0px 5px 33px -21px rgba(66, 68, 90, 1);
@@ -31,12 +37,14 @@
   justify-content: center;
   position: relative;
 }
-.anotherLogin {
+
+/* .anotherLogin {
   position: absolute;
   top: 700px;
   align-items: center;
   justify-content: center;
-}
+} */
+
 .changeType {
   /* position: absolute; */
   /* top: 1000px; */
@@ -48,8 +56,33 @@
   border-radius: 5px;
 }
 
-.loginTitle {
+/* .loginTitle {
   position: absolute;
   top: 200px;
   color: lightgray;
+} */
+
+.loginFooter {
+  border-top: 1px solid #dddfe2;
+  width: 60%;
+  padding: 10px;
+  height: 8px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 25px;
+  font-size: 10px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.platform-version-text {
+  display: inline-block;
+  padding: 0 8px;
+  background-color: rgba(0, 0, 0, 0.4);
+  color: white;
+  border-radius: 4px;
+}
+
+.platform-version-text a {
+  text-decoration: none;
 }
