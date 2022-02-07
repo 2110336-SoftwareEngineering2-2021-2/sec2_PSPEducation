@@ -17,7 +17,9 @@ export default function StudentTopbar() {
         <div className="topLeft">
           <div className="topLeftContainer">
             <span className="topLeftlogo">
-              <Link className="topLeftlogoLink" to="/">WhereIsMyTutor?</Link>
+              <Link className="topLeftlogoLink" to="/">
+                WhereIsMyTutor?
+              </Link>
             </span>
             <span className="topLeftauthor">Powered by PSPEducaion</span>
           </div>
@@ -26,8 +28,12 @@ export default function StudentTopbar() {
           <div className="searchbar">
             <SearchOutlined className="searchIcon" />
             <input
+              type="search"
+              autocomplete="off"
+              spellcheck="false"
               placeholder="Search for course, tutor or subject"
               className="searchInput"
+              aria-invalid="false"
             />
           </div>
         </div>
