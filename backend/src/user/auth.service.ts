@@ -19,6 +19,30 @@ export class AuthService {
       throw new BadRequestException("Email or Password is incorrect.")
     }
 
+    if (user.isAdmin) {
+      throw new BadRequestException("Admin cannot login here")
+    }
+    return user;
+  }
+
+  async signinAdmin(email: string, password: string) {
+    // find user 
+    const user = await this.userService.findByEmail(email);
+    if (!user) {
+      // there is no email
+      throw new BadRequestException("Email or Password is incorrect.")
+    }
+
+    // check password
+    if (user.password !== password) {
+      // password is incorrect
+      throw new BadRequestException("Email or Password is incorrect.")
+    }
+
+    if (!user.isAdmin) {
+      throw new BadRequestException("Not Authorize")
+    }
+
     return user;
   }
 }

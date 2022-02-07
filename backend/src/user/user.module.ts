@@ -1,20 +1,21 @@
-import { Module } from '@nestjs/common';
-import { APP_INTERCEPTOR } from '@nestjs/core';
+import { Module, MiddlewareConsumer } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserController } from './user.controller';
 import { UserSchema } from './user.schema';
 import { UserService } from './user.service';
 import { AuthService } from './auth.service';
-import { CurrentUserInterceptor } from './interceptors/current-user.interceptor';
-
+import { CurrentUserMiddleware } from './middlewares/current-user.middleware';
 
 @Module({
-  imports: [MongooseModule.forFeature([{ name: 'users', schema: UserSchema }])],
+  imports: [
+    MongooseModule.forFeature([{ name: 'users', schema: UserSchema }])
+],
   controllers: [UserController],
-  providers: [UserService, AuthService, {
-    provide: APP_INTERCEPTOR,
-    useClass: CurrentUserInterceptor
-  }],
+  providers: [UserService, AuthService],
   exports: [UserService]
 })
-export class UserModule {}
+export class UserModule {
+  configure(consumer: MiddlewareConsumer) {
+    consumer.apply(CurrentUserMiddleware).forRoutes('*');
+  }
+}

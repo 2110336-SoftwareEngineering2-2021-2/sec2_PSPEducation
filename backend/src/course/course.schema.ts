@@ -1,7 +1,7 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-import { ObjectId } from 'mongodb';
 import { TimeSlot } from './dto/timeSlot.dto';
+import { ObjectId } from 'mongodb';
 
 export type CourseDocument = Course & Document;
 
@@ -49,6 +49,9 @@ export class Course {
 
   @Prop({required: true})
   location: string;
+
+  @Prop({required: true, default: []})
+  students: String[]
 
   @Prop({required: true, default: Date.now})
   dateTimeCreated: Date;

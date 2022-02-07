@@ -34,17 +34,43 @@ export class RegisterService {
     if (!mongoose.isValidObjectId(id)){
       throw new BadRequestException("This register ID isn't valid");
     }
-    const user = await this.registerModel.findById(id)
-    if (!user){
+    const registerItem = await this.registerModel.findById(id)
+    if (!registerItem){
       throw new NotFoundException("This register ID doesn't exist");
     }
-    return user
+    return registerItem
   }
 
   async findWaitingTutorRegister() {
     return await this.registerModel.find({type: "tutor", status: STATUS_WAITING}).sort({dateTimeCreated: 1})
   }
 
+  async changeRegisterStatus(id: string, status: string) {
+    const registerItem = await this.registerModel.findById(id);
+    if (!registerItem) {
+      throw new NotFoundException("This register ID doesn't exist");
+    }
+    registerItem.status = status;
+    if (status === 'approved') {
+      this.userService.createUser({
+        type: registerItem.type,
+        firstname: registerItem.firstname,
+        lastname: registerItem.lastname,
+        username: registerItem.username,
+        password: registerItem.password,
+        email: registerItem.email,
+        phoneNumber: registerItem.phoneNumber,
+        displayName: registerItem.displayName,
+        birthdate: registerItem.birthdate,
+        gender: registerItem.gender,
+        educationalLevel: registerItem.educationalLevel,
+        picture: registerItem.picture,
+        citizenId: registerItem.citizenId,
+        citizenImage: registerItem.citizenId
+      });
+    }
 
-  
+    registerItem.dateTimeUpdated = Date.now()
+    return await registerItem.save();
+  }
 }

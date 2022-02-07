@@ -5,6 +5,9 @@ export class UserDto {
   type: string;
 
   @Expose()
+  isAdmin: boolean;
+
+  @Expose()
   firstname: string;
 
   @Expose()

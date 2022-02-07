@@ -6,7 +6,9 @@ import { CreateRegisterDto } from 'src/register/dto/create-register.dto';
 
 @Injectable()
 export class UserService {
-  constructor(@InjectModel('users') private readonly userModel: Model<any>) {}
+  constructor(
+    @InjectModel('users') private readonly userModel: Model<any>
+  ) {}
 
   async createUser(body: CreateRegisterDto){
     const user = new this.userModel(body)

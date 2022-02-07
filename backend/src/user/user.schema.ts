@@ -1,5 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import { Course } from 'src/course/course.schema';
 
 export type UserDocument = User & Document;
 
@@ -8,6 +9,9 @@ export class User {
 
   @Prop({required: true})
   type: string;
+
+  @Prop()
+  isAdmin: boolean;
 
   @Prop({required: true})
   firstname: string;
@@ -47,6 +51,9 @@ export class User {
 
   @Prop()
   citizenImage: string;
+
+  @Prop({default: []})
+  coursesLearned: string[];
 
   @Prop({required: true, default: Date.now})
   dateTimeCreated: Date;

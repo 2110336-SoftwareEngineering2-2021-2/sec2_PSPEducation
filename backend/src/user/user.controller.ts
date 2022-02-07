@@ -1,12 +1,16 @@
 import { Controller, Get, Post, Body, Param, Session, UseGuards } from '@nestjs/common';
+import { CurrentUser } from './decorators/current-user.decorator';
+import { Serialize } from 'src/interceptors/serialize.interceptor';
+// Service
 import { UserService } from './user.service';
 import { AuthService } from './auth.service';
+// Dto
+import { UserDto } from './dto/user.dto';
 import { CreateRegisterDto } from 'src/register/dto/create-register.dto';
 import { SignInUserDto } from './dto/signin-user.dto';
+// Guard
 import { AuthGuard } from 'src/guard/auth.guard';
-import { CurrentUser } from './decorators/current-user.decorator';
-import { UserDto } from './dto/user.dto';
-import { Serialize } from 'src/interceptors/serialize.interceptor';
+import { AdminGuard } from 'src/guard/admin.guard';
 
 @Controller('auth')
 @Serialize(UserDto)
@@ -44,6 +48,16 @@ export class UserController {
     return user
   }
 
+  @Post('/admin/signin')
+  async adminSignin(@Body () body: SignInUserDto, @Session() session: any) {
+    const email = body.email
+    const password = body.password
+    const user = await this.authService.signinAdmin(email, password)
+    // save session
+    session.userId = user._id;
+    return user
+  }
+
   @Post('/signout')
   signOut(@Session() session: any) {
     // clear session
@@ -56,4 +70,9 @@ export class UserController {
     return user;
   }
 
+  @Get('/checkAdmin')
+  @UseGuards(AdminGuard)
+  checkAdmin(@Session() session: any, @CurrentUser() user: UserDto) {
+    return "YOU ARE ADMIN!!!";
+  }
 }

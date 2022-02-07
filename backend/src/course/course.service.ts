@@ -1,14 +1,26 @@
-import { HttpException, Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, HttpException, Injectable, NotFoundException, Session } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import * as mongoose from 'mongoose'
 import { CreateCourseDto } from './dto/create-course.dto';
+import { UpdateCourseStatusDto } from './dto/update-course-status.dto';
+import { Course } from './course.schema';
 
 @Injectable()
 export class CourseService {
-  constructor(@InjectModel('courses') private readonly courseModel: Model<any>) {}
+  constructor(
+    @InjectModel('courses') private readonly courseModel: Model<any>,
+    @InjectModel('users') private readonly userModel: Model<any>
+  ) {}
 
   async createCourse(body: CreateCourseDto){
+    const tutor = await this.userModel.findById(body.tutorId)
+    if(!tutor){
+      throw new NotFoundException("This tutor ID doesn't exist");
+    }
+    if(tutor.type !== "tutor"){
+      throw new HttpException("This user Id isn't tutor", 404);
+    }
     const course = new this.courseModel(body)
     return await course.save()
   }
@@ -17,7 +29,7 @@ export class CourseService {
     return await this.courseModel.find()
   }
 
-  async findById(id: string) {
+  async findById(id: string) { // course_id
     if (!mongoose.isValidObjectId(id)){
       throw new HttpException("This course ID isn't valid", 404);
     }
@@ -28,9 +40,16 @@ export class CourseService {
     return course
   }
 
-  async findByTutor(id: string){
+  async findByTutor(id: string){ // tutor_id
     if (!mongoose.isValidObjectId(id)){
       throw new HttpException("This tutor ID isn't valid", 404);
+    }
+    const tutor = await this.userModel.findById(id)
+    if(!tutor){
+      throw new NotFoundException("This tutor ID doesn't exist");
+    }
+    if(tutor.type !== "tutor"){
+      throw new HttpException("This user Id isn't tutor", 404);
     }
     const course = await this.courseModel.find({ tutorId: id })
     if (!course){
@@ -39,7 +58,8 @@ export class CourseService {
     return course
   }
 
-  async publishCourse(id: string){ // course_id
+  async updateCourseStatus(id: string, body: UpdateCourseStatusDto ,tutorId: string){ // course_id
+    
     if (!mongoose.isValidObjectId(id)){
       throw new HttpException("This course ID isn't valid", 404);
     }
@@ -47,7 +67,28 @@ export class CourseService {
     if (!course){
       throw new NotFoundException("This course ID doesn't exist");
     }
-    course.status = "published"
-    return course
+
+    if (course.tutorId !== tutorId) {
+      throw new BadRequestException("This course ID is not yours");
+    }
+
+    course.status = body.status;
+    course.dateTimeUpdated = Date.now();
+    return await course.save()
   }
+
+  async updateCourse(id: string, attrs: Partial<Course>){ // course_id
+    if (!mongoose.isValidObjectId(id)){
+      throw new HttpException("This course ID isn't valid", 404);
+    }
+    const course = await this.courseModel.findById(id)
+    if (!course){
+      throw new NotFoundException("This course ID doesn't exist");
+    }
+    const filter = { id: course.id };
+    const answer = await this.courseModel.findOneAndUpdate(filter, attrs, { new: true })
+    answer.dateTimeUpdated = Date.now()
+    return await answer.save()
+  }
+
 }
