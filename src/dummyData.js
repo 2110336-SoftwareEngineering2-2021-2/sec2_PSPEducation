@@ -102,3 +102,46 @@ export const ReportCardData = [
     imgBgURL: "https://source.unsplash.com/random/800×300/?money",
   },
 ];
+
+export const DeveloperCardData = [
+  {
+    imgAvatarURL:
+      "https://cdn.discordapp.com/avatars/218005260080381955/ffb4791856ab7bd06d1c6cf3407911d1.webp?size=32",
+    devName: "Molk",
+  },
+  {
+    imgAvatarURL:
+      "https://cdn.discordapp.com/avatars/552812105745825802/2f64f03ece9d9b911b20e45e27d0fd2c.webp?size=32",
+    devName: "Mames",
+  },
+  {
+    imgAvatarURL:
+      "https://cdn.discordapp.com/avatars/195929709882638336/ee81982d99e5b0e4c6268ba38b8b7ac4.webp?size=32",
+    devName: "Mong",
+  },
+  {
+    imgAvatarURL:
+      "https://cdn.discordapp.com/avatars/274922997377138689/e8108d297ef173188f3cf26a6f0fc000.webp?size=32",
+    devName: "MeeMut",
+  },
+  {
+    imgAvatarURL:
+      "https://cdn.discordapp.com/avatars/372376899923476510/bfec971642c33c2346dd1479d68404aa.webp?size=32",
+    devName: "Mact",
+  },
+  {
+    imgAvatarURL:
+      "https://cdn.discordapp.com/avatars/217651898533019648/d090f361f81f56bfd95f796d0996a5e7.webp?size=32",
+    devName: "Moey",
+  },
+  {
+    imgAvatarURL:
+      "https://i.pinimg.com/originals/7c/8f/47/7c8f476123d28d103efe381543274c25.png",
+    devName: "Mron",
+  },
+  {
+    imgAvatarURL:
+      "https://cdn.discordapp.com/avatars/367612200157970432/d718cabcc2e0147863f6b23581e012cc.webp?size=32",
+    devName: "Mhane",
+  },
+];
