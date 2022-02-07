@@ -28,8 +28,12 @@ export default function AdminTopbar() {
           <div className="searchbar">
             <SearchOutlined className="searchIcon" />
             <input
+              type="search"
+              autocomplete="off"
+              spellcheck="false"
               placeholder="Search for course, tutor or subject"
               className="searchInput"
+              aria-invalid="false"
             />
           </div>
         </div>
