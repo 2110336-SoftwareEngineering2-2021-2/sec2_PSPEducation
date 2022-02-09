@@ -1,9 +1,10 @@
-import { Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
+import { Injectable, NotFoundException, BadRequestException, HttpException, ForbiddenException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import * as mongoose from 'mongoose'
 import { CreateRegisterDto } from './dto/create-register.dto';
 import { UserService } from 'src/user/user.service';
+import { assert } from 'console';
 
 const STATUS_WAITING = "waiting"
 
@@ -23,7 +24,10 @@ export class RegisterService {
     } else if (body.type === "tutor") {
       registerItem = new this.registerModel({...body, status: STATUS_WAITING}) //automatically add "waiting" status to reigsterItem
     }
-    return await registerItem.save()
+
+    return await registerItem.save().catch(function(error) {
+      throw new BadRequestException({...error, message: "duplicate columns"});
+    })
   }
 
   async findAll() {
@@ -71,6 +75,8 @@ export class RegisterService {
     }
 
     registerItem.dateTimeUpdated = Date.now()
-    return await registerItem.save();
+    return await registerItem.save().catch(function(error) {
+      throw new BadRequestException({...error, message: "duplicate columns"});
+    });
   }
 }

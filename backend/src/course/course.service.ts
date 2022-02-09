@@ -6,6 +6,11 @@ import { CreateCourseDto } from './dto/create-course.dto';
 import { UpdateCourseStatusDto } from './dto/update-course-status.dto';
 import { Course } from './course.schema';
 
+process.on('unhandledRejection', (reason, p) => {
+  // console.log('Unhandled Rejection at: Promise', p, 'reason:', reason);
+  // application specific logging, throwing an error, or other logic here
+});
+
 @Injectable()
 export class CourseService {
   constructor(
@@ -22,7 +27,9 @@ export class CourseService {
       throw new HttpException("This user Id isn't tutor", 404);
     }
     const course = new this.courseModel(body)
-    return await course.save()
+    return await course.save().catch(function(error) {
+      throw new BadRequestException({...error, message: "duplicate columns"});
+    })
   }
 
   async findAll(){
@@ -74,10 +81,12 @@ export class CourseService {
 
     course.status = body.status;
     course.dateTimeUpdated = Date.now();
-    return await course.save()
+    return await course.save().catch(function(error) {
+      throw new BadRequestException({...error, message: "duplicate columns"});
+    })
   }
 
-  async updateCourse(id: string, attrs: Partial<Course>){ // course_id
+  async updateCourse(id: string, attrs: Partial<Course>, tutorId: string){ // course_id
     if (!mongoose.isValidObjectId(id)){
       throw new HttpException("This course ID isn't valid", 404);
     }
@@ -85,10 +94,17 @@ export class CourseService {
     if (!course){
       throw new NotFoundException("This course ID doesn't exist");
     }
+
+    if (course.tutorId !== tutorId) {
+      throw new BadRequestException("This course ID is not yours");
+    }
+
     const filter = { id: course.id };
     const answer = await this.courseModel.findOneAndUpdate(filter, attrs, { new: true })
     answer.dateTimeUpdated = Date.now()
-    return await answer.save()
+    return await answer.save().catch(function(error) {
+      throw new BadRequestException({...error, message: "duplicate columns"});
+    })
   }
 
 }

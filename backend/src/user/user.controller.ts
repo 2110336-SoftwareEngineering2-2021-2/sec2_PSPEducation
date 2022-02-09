@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Param, Session, UseGuards } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Session, UseGuards, BadRequestException } from '@nestjs/common';
 import { CurrentUser } from './decorators/current-user.decorator';
 import { Serialize } from 'src/interceptors/serialize.interceptor';
 // Service
@@ -40,6 +40,9 @@ export class UserController {
 
   @Post('/signin')
   async signin(@Body() body: SignInUserDto, @Session() session: any){
+    if (session.userId) {
+      throw new BadRequestException('There is already logged in user')
+    }
     const email = body.email
     const password = body.password
     const user = await this.authService.signin(email, password)
@@ -60,6 +63,9 @@ export class UserController {
 
   @Post('/signout')
   signOut(@Session() session: any) {
+    if (!session.userId) {
+      throw new BadRequestException("No one is logged in, so you cannot log out")
+    }
     // clear session
     session.userId = null;
   }

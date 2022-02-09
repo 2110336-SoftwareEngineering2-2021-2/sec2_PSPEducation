@@ -21,10 +21,12 @@ export class EnrollService {
       throw new BadRequestException("This course is not published yet.")
     }
     const enroll = new this.enrollModel({...body, status: STATUS_WAITING})
-    return await enroll.save()
+    return await enroll.save().catch(function(error) {
+      throw new BadRequestException({...error, message: "duplicate columns"});
+    })
   }
 
-  async findByCourseID(id: string){
+  async findByCourseId(id: string){
     if (!mongoose.isValidObjectId(id)){
       throw new HttpException("This course ID isn't valid", 404);
     }
@@ -35,33 +37,60 @@ export class EnrollService {
     return enroll
   }
 
-  async updateEnrollStatus(id: string, body: UpdateEnrollStatusDto){
-    if (!mongoose.isValidObjectId(id)){
+  async findWaitingByCourseId(courseId: string, tutorId: string){
+    if (!mongoose.isValidObjectId(courseId)){
       throw new HttpException("This course ID isn't valid", 404);
     }
-    const enroll = await this.enrollModel.findById(id)
+    const enroll = await this.enrollModel.find({ courseId: courseId, status: STATUS_WAITING })
+    const course = await this.courseModel.findById(courseId)
+    if(!course){
+      throw new NotFoundException("Can't find course");
+    }
+    if (course.tutorId !== tutorId){
+      throw new BadRequestException("This course is not yours")
+    }
+    return enroll
+  }
+
+  async updateEnrollStatus(enrollId: string, body: UpdateEnrollStatusDto, tutorId: string){
+    if (!mongoose.isValidObjectId(enrollId)){
+      throw new HttpException("This course ID isn't valid", 404);
+    }
+    const enroll = await this.enrollModel.findById(enrollId)
     if (!enroll){
       throw new NotFoundException("This enroll ID doesn't exist");
     }
+
+    const course = await this.courseModel.findById(enroll.courseId)
+    if (!course) {
+      throw new NotFoundException("Can't find course");
+    }
+    if (course.tutorId !== tutorId){
+      throw new BadRequestException("This course is not yours")
+    }
+
     enroll.status = body.status
 
     if (body.status === "approved"){
-      const course = await this.courseModel.findById(enroll.courseId)
-      if(!course){
-        throw new NotFoundException("Can't find course");
-      }
       course.students.push(enroll.studentId)
-      await course.save()
+      await course.save();
 
       const student = await this.userModel.findById(enroll.studentId)
-      if(!student){
+      if (!student) {
         throw new NotFoundException("Can't find student ID");
       }
+
+      if (student.coursesLearned.find(enroll.courseId)) {
+        throw new BadRequestException('You have already enrolled in this course.');
+      }
+
       student.coursesLearned.push(enroll.courseId)
-      await student.save()
+      await student.save();
     }
     
     enroll.dateTimeUpdated = Date.now()
-    return await enroll.save()
+    return await enroll.save().catch(function(error) {
+      throw new BadRequestException({...error, message: "duplicate columns"});
+    })
   }
 }

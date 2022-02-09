@@ -4,6 +4,11 @@ import { ValidationPipe } from '@nestjs/common';
 import { urlencoded, json } from 'express';
 const cookieSession = require('cookie-session')
 
+process.on('unhandledRejection', (reason, p) => {
+  // console.log('Unhandled Rejection at: Promise', p, 'reason:', reason);
+  // application specific logging, throwing an error, or other logic here
+});
+
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.use(cookieSession({

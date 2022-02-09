@@ -1,4 +1,4 @@
-import { HttpException, Injectable, NotFoundException } from '@nestjs/common';
+import { HttpException, Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import * as mongoose from 'mongoose'
@@ -12,7 +12,9 @@ export class UserService {
 
   async createUser(body: CreateRegisterDto){
     const user = new this.userModel(body)
-    return await user.save()
+    return await user.save().catch(function(error) {
+      throw new BadRequestException({...error, message: "duplicate columns"});
+    })
   }
 
   async findAll(){
