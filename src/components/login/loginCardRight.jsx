@@ -1,10 +1,10 @@
 import React from "react";
 import "./loginCardRight.css";
 
-export default function LoginCardRight() {
+export default function LoginCardRight(props) {
   return (
     <div className="right">
-      <div className="rightTitle">Welcome !!</div>
+      <div className="rightTitle">Welcome {props.position} !!</div>
       <div className="rightForm">
         <input
           className="rightFormEmail"

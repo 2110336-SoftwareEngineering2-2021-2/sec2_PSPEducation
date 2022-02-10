@@ -2,9 +2,9 @@ import LoginLeftside from "../../components/login/loginCardLeft";
 import LoginRightside from "../../components/login/loginCardRight";
 import Navbar from "../../components/simple/navbar/Navbar";
 import Footer from "../../components/simple/footer/Footer";
-import "./login.css";
+import "./loginUser.css";
 
-export default function Login() {
+export default function LoginUser() {
   return (
     <>
       <div className="login">
@@ -12,7 +12,7 @@ export default function Login() {
         <div className="loginWrapper">
           <div className="loginCard">
             <LoginLeftside />
-            <LoginRightside />
+            <LoginRightside position="user" />
           </div>
           <Footer />
         </div>

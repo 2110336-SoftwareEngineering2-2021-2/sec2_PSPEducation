@@ -33,7 +33,10 @@ function Layout() {
             <NavLink to="/student">StudentHome</NavLink>
           </li>
           <li>
-            <NavLink to="/login">Login</NavLink>
+            <NavLink to="/user/login">Login user</NavLink>
+          </li>
+          <li>
+            <NavLink to="/admin/login">Login admin</NavLink>
           </li>
           <li>
             <NavLink to="/register">Register</NavLink>
