@@ -91,9 +91,22 @@
 
 .topbarIconContainer {
   position: relative;
-  cursor: pointer;
   margin-right: 20px;
   color: white;
+}
+
+.topbarIcon{
+  padding-left: 3px;
+  padding-top: 3px;
+  width: 30px;
+  height: 30px;
+  background-color: rgb(87, 112, 221);
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.topbarIcon:hover{
+  filter: brightness(1.2);
 }
 
 .topIconBadge {
@@ -110,18 +123,52 @@
   font-size: 12px;
 }
 
-.topAvatar {
+.topAvatarContainer{
   width: 32px;
   height: 32px;
+  padding: 0px;
+  background-color: rgb(87, 112, 221);
+  border: none;
+}
+
+.topAvatar {
   border-radius: 50%;
   object-fit: cover;
   object-position: 50% 0%;
   cursor: pointer;
-  /* padding: 2px;
-  background: white; */
 }
 
-.userInfo {
+.topAvatar:hover{
+  filter: brightness(1.1);
+  filter: contrast(1.2);
+}
+
+.dropProfileMenu{
+  position: absolute;
+  top: 55px;
+  width: 250px;
+  transform: translateX(-85%);
+  padding: 10px;
+  z-index: 999;
+  overflow: hidden;
+}
+
+.viewPopupContainer {
+  position: relative;
+  padding: 30px;
+  height: 300px;
+  width: 100%;
+  max-width: 640px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  border: rgb(87, 112, 221) 1px solid;
+  overflow: auto;
+}
+
+.viewPopupContent{
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: black !important;
 }
