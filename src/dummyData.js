@@ -84,7 +84,7 @@ export const tutorValidationCardData = [
   },
 ];
 
-export const ReportCardData = [
+export const reportCardData = [
   {
     header: "Login Problems",
     username: "@aong.aong",
@@ -103,7 +103,7 @@ export const ReportCardData = [
   },
 ];
 
-export const DeveloperCardData = [
+export const developerCardData = [
   {
     imgAvatarURL:
       "https://cdn.discordapp.com/avatars/218005260080381955/ffb4791856ab7bd06d1c6cf3407911d1.webp?size=32",

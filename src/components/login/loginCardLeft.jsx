@@ -1,7 +1,7 @@
 import React from "react";
 import PspImgSrc from "../../PSP-logo.png";
 import "./loginCardLeft.css";
-import { DeveloperCardData } from "../../dummyData";
+import { developerCardData } from "../../dummyData";
 
 export default function LoginCardLeft() {
   return (
@@ -12,7 +12,7 @@ export default function LoginCardLeft() {
       <div className="leftTeamDevelop">
         <div className="leftTeamDevelopTitle">Team Developers</div>
         <div className="leftDeveloperList">
-          {DeveloperCardData.map((data, key) => {
+          {developerCardData.map((data, key) => {
             return (
               <DeveloperCard
                 key={key}
