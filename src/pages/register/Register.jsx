@@ -2,6 +2,7 @@
 // import LoginRightside from "../../components/login/loginRightside";
 import Navbar from "../../components/simple/navbar/Navbar";
 import Footer from "../../components/simple/footer/Footer";
+import RegisterCard from "../../components/register/RegisterCard.jsx";
 import "./register.css";
 
 export default function Register() {
@@ -10,7 +11,9 @@ export default function Register() {
       <div className="register">
         <Navbar />
         <div className="registerWrapper">
-          <div className="registerCard">BLANK</div>
+          <div className="registerCard">
+            <RegisterCard />
+          </div>
           <div className="registerFooter">
             <Footer />
           </div>
