@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./adminCards.css";
 import TutorValidationCard from "./admin-card-components/TutorValidationCard";
 import UserReportCard from "./admin-card-components/UserReportCard";
+import TutorCardPopup from "./admin-card-components/TutorCardPopup";
 import { tutorValidationCardData, reportCardData } from "../../../dummyData";
 import { CloseOutlined } from "@mui/icons-material";
 import { Outlet } from "react-router-dom";
@@ -22,12 +23,13 @@ function ViewPopup(props) {
           <CloseOutlined />
         </button>
         <div className="viewPopupContent">
-          <span>{props.data.key}</span>
-          <span>{props.data.fullname}</span>
-          <span>{props.data.username}</span>
-          <span>{props.data.profession}</span>
-          <span>{props.data.imgAvatarURL}</span>
-          <span>{props.data.imgBgURL}</span>
+          <TutorCardPopup
+            fullname={props.data.fullname}
+            username={props.data.username}
+            profession={props.data.profession}
+            imgAvatarURL={props.data.imgAvatarURL}
+            imgBgURL={props.data.imgBgURL}
+          />
         </div>
       </div>
     </div>
