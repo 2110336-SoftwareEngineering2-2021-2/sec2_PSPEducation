@@ -1,6 +1,7 @@
 import "./studentHome.css";
 import StudentTopbar from "../../../components/student/topbar/StudentTopbar";
 import StudentSidebar from "../../../components/student/sidebar/StudentSidebar";
+import StudentFeed from "../../../components/student/feed/StudentFeed";
 
 export default function StudentHome() {
   return (
@@ -13,13 +14,7 @@ export default function StudentHome() {
 
         <div className="homeContainer">
           <div className="homeWrapper">
-            <div className="content">
-              <div className="card">
-                <div className="cardContent">
-                  <div className="">studentfeed</div>
-                </div>
-              </div>
-            </div>
+            <StudentFeed />
           </div>
         </div>
       </div>
