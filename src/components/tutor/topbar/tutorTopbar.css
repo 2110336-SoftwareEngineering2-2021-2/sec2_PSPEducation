@@ -3,6 +3,7 @@
   --main-white :#f0f8ff;
   --main-border :rgb(116, 135, 219);
 }
+
 .topbar {
   height: 60px;
   background-color: var(--main-theme);
