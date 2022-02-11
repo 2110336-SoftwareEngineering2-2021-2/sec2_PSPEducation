@@ -36,25 +36,25 @@ export default function StudentSidebar() {
           <li className="studentSidebarListItem">
             <PaymentsRounded className="studentSidebarIcon" />
 
-            <Link className="studentSidebarListItemText" to="/student">
+            <span className="studentSidebarListItemText" to="/student">
               Payment
-            </Link>
+            </span>
           </li>
 
           <li className="studentSidebarListItem">
             <HelpOutline className="studentSidebarIcon" />
 
-            <Link className="studentSidebarListItemText" to="/student">
+            <span className="studentSidebarListItemText" to="/student">
               FAQ
-            </Link>
+            </span>
           </li>
 
           <li className="studentSidebarListItem">
             <Event className="studentSidebarIcon" />
 
-            <Link className="studentSidebarListItemText" to="/student">
+            <span className="studentSidebarListItemText" to="/student">
               Events
-            </Link>
+            </span>
           </li>
         </ul>
         <hr className="studentSidebarHr" />

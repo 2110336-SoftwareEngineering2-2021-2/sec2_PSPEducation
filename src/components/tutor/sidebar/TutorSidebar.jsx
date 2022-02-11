@@ -33,33 +33,33 @@ export default function TutorSidebar() {
           <li className="tutorSidebarListItem">
             <ReceiptLongRounded className="tutorSidebarIcon" />
 
-            <Link className="tutorSidebarListItemText" to="/tutor">
+            <span className="tutorSidebarListItemText" to="/tutor">
               Subscription
-            </Link>
+            </span>
           </li>
 
           <li className="tutorSidebarListItem">
             <PaymentsRounded className="tutorSidebarIcon" />
 
-            <Link className="tutorSidebarListItemText" to="/tutor">
+            <span className="tutorSidebarListItemText" to="/tutor">
               Payment
-            </Link>
+            </span>
           </li>
 
           <li className="tutorSidebarListItem">
             <HelpOutline className="tutorSidebarIcon" />
 
-            <Link className="tutorSidebarListItemText" to="/tutor">
+            <span className="tutorSidebarListItemText" to="/tutor">
               FAQ
-            </Link>
+            </span>
           </li>
 
           <li className="tutorSidebarListItem">
             <Event className="tutorSidebarIcon" />
 
-            <Link className="tutorSidebarListItemText" to="/tutor">
+            <span className="tutorSidebarListItemText" to="/tutor">
               Events
-            </Link>
+            </span>
           </li>
         </ul>
         <hr className="tutorSidebarHr" />
