@@ -22,8 +22,8 @@ export default function TutorValidationCard(props) {
       "url(" +
       imgBgTutorSrc +
       ")",
-    "background-size": "cover",
-    "border-radius": "20px",
+    backgroundSize: "cover",
+    borderRadius: "20px",
   };
 
   return (
