@@ -43,41 +43,33 @@ export default function StudentTopbar() {
         <div className="topRight">
           <div className="topRightContainer">
             <div className="topbarIconContainer">
-              <div className="topbarIcon">
-                <AppsOutlined />
-              </div>
+              <AppsOutlined />
             </div>
             <div className="topbarIconContainer">
-              <div className="topbarIcon">
-                <EmailOutlined />
-              </div>
+              <EmailOutlined />
               <span className="topIconBadge">3</span>
             </div>
             <div className="topbarIconContainer">
-              <div className="topbarIcon">
-                <NotificationsNoneOutlined />
-              </div>
+              <NotificationsNoneOutlined />
               <span className="topIconBadge">8</span>
             </div>
 
-            <div className="topbarMyProfile">
-              <button
-                onClick={() => setDropProfileState(!dropProfileState)}
-                className="topbarMyProfileButton"
-              >
-                <div className="topAvatarContainer">
-                  <img src={imgSrc} alt="" className="topAvatar" />
-                </div>
+            <button
+              onClick={() => setDropProfileState(!dropProfileState)}
+              className="studentProfileButton"
+            >
+              <div className="studentAvatarContainer">
+                <img src={imgSrc} alt="" className="studentAvatar" />
+              </div>
 
-                <div className="topbarCreditContainer">
-                  <span className="topbarCredit">
-                    credit: {userData.credit_balance}
-                  </span>
-                </div>
-              </button>
-            </div>
+              <div className="studentCreditContainer">
+                <span className="studentCredit">
+                  credit: {userData.credit_balance}
+                </span>
+              </div>
+            </button>
 
-            <DropProfileMenu
+            <StudentDropProfileMenu
               trigger={dropProfileState}
               setTrigger={setDropProfileState}
             />
@@ -88,15 +80,13 @@ export default function StudentTopbar() {
   );
 }
 
-function DropProfileMenu(props) {
+function StudentDropProfileMenu(props) {
   return props.trigger ? (
-    <div className="dropProfileMenu">
-      <div className="viewPopupContainer">
-        <div className="dropProfileList">
-          <div className="dropProfileItem">My Profile</div>
-          <div className="dropProfileItem">Setting</div>
-          <div className="dropProfileItem">Logout</div>
-        </div>
+    <div className="studentDropProfileMenu">
+      <div className="studentDropProfileList">
+        <div className="studentDropProfileItem">My Profile</div>
+        <div className="studentDropProfileItem">Setting</div>
+        <div className="studentDropProfileItem">Logout</div>
       </div>
     </div>
   ) : (

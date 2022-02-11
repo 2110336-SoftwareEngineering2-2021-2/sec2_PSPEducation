@@ -1,6 +1,12 @@
+:root {
+  --main-theme :rgb(87, 112, 221);
+  --main-white :#f0f8ff;
+  --main-border :rgb(116, 135, 219);
+}
+
 .topbar {
   height: 60px;
-  background-color: rgb(87, 112, 221);
+  background-color: var(--main-theme);
   display: flex;
   top: 0;
   z-index: 999;
@@ -53,7 +59,7 @@
 
 .searchbar {
   height: 30px;
-  background-color: #f0f8ff;
+  background-color: var(--main-white);
   border-radius: 30px;
   display: flex;
   align-items: center;
@@ -68,8 +74,8 @@
   font-size: 14px;
   border: none;
   width: 70%;
-  height: 100%;
-  background-color: #f0f8ff;
+  height: 15px;
+  background-color: var(--main-white);
   margin: 1px;
 }
 
@@ -93,7 +99,7 @@
   position: relative;
   cursor: pointer;
   margin-right: 20px;
-  color: white;
+  color: var(--main-white);
 }
 
 .topIconBadge {
@@ -110,111 +116,98 @@
   font-size: 12px;
 }
 
-.topbarMyProfile{
-}
-
-.topbarMyProfileButton {
+.studentProfileButton {
   display: flex;
   flex-direction: row;
   cursor: pointer;
+  background-color: var(--main-theme);
   border: none;
-  background-color: var(--main-white);
-  border-radius: 0 10px 10px 0;
 }
 
-.topbarMyProfileButton:hover .topAvatar {
+.studentProfileButton:hover .studentAvatar {
   filter: brightness(1.1);
   filter: contrast(1.2);
 }
 
-.topAvatarContainer{
-  padding: 0px;
+.studentAvatarContainer {
   position: relative;
   display: flex;
   background-color: var(--main-theme);
 }
 
-.topAvatarContainer::after {
+.studentAvatarContainer::after {
+  position: absolute;
   padding:0;
   margin:0;
   content: "";
-  width: 50%;
   height: 100%;
-  left: 60%;
+  left: 50%;
   right: 0;
-  position: absolute;
   background-color: var(--main-white);
-  border-top: rgb(116, 135, 219) 2px solid;
-  border-bottom: rgb(116, 135, 219) 2px solid;
-  
+  border-top: var(--main-border) 2px solid;
+  border-bottom: var(--main-border) 2px solid;
+  z-index: 998;
 }
 
-.topAvatar {
-  display: flex;
+.studentAvatar {
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   object-fit: cover;
   object-position: 50% 0%;
-  border: rgb(116, 135, 219) 2px solid;
+  border: var(--main-border) 2px solid;
+  z-index: 999;
 }
 
-.topbarCreditContainer{
+.studentCreditContainer{
   padding: 5px;
   max-height: 32px;
   border-radius: 0px 10px 10px 0;
   background-color: var(--main-white);
-  border: rgb(116, 135, 219) 2px solid;
+  border: var(--main-border) 2px solid;
   border-left: none;
 }
 
-.topbarCredit {
+.studentCredit {
   height: 100%;
   font-size: 14px;
   white-space: nowrap;
   text-align: center;
 }
 
-.dropProfileMenu {
+.studentDropProfileMenu {
   position: absolute;
-  top: 55px;
-  width: 250px;
-  transform: translateX(5%);
+  top: 63px;
+  transform: translateX(40%);
+  background-color: var(--main-white);
+  border-radius: 20px;
+  border: var(--main-border) 3px solid;
+  font-size: 16px;
+  height: auto;
+  width: 180px;
   padding: 10px;
   z-index: 999;
-  overflow: hidden;
-}
-
-.viewPopupContainer {
-  position: relative;
-  padding: 10px;
-  width: 100%;
-  height: 180px;
-  align-items: center;
-  justify-content: center;
-  max-width: 640px;
-  background-color: white;
-  border-radius: 20px;
-  border: var(--main-theme) 1px solid;
   overflow: auto;
 }
 
-.dropProfileList {
+.studentDropProfileList {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   color: black !important;
-  padding: 10px;
 }
 
-.dropProfileItem {
+
+.studentDropProfileItem {
   width: 100%;
   padding: 10px;
-  border-radius: 10px;
   text-align: center;
+  cursor: pointer;
 }
 
-.dropProfileItem:hover {
+.studentDropProfileItem:hover {
   border-radius: 10px;
-  border: var(--main-theme) 1px solid;
-  cursor: pointer;
+  border: var(--main-theme) 1.5px solid;
 }

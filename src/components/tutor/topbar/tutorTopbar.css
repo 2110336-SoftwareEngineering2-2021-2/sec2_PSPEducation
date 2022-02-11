@@ -1,7 +1,7 @@
 :root {
   --main-theme :rgb(87, 112, 221);
   --main-white :#f0f8ff;
-  --main-border :#f0f8ff;
+  --main-border :rgb(116, 135, 219);
 }
 .topbar {
   height: 60px;
@@ -128,111 +128,97 @@
   font-size: 12px;
 }
 
-.topbarMyProfile{
-}
-
-.topbarMyProfileButton {
+.tutorProfileButton {
   display: flex;
   flex-direction: row;
   cursor: pointer;
+  background-color: var(--main-theme);
   border: none;
-  background-color: var(--main-white);
-  border-radius: 0 10px 10px 0;
 }
 
-.topbarMyProfileButton:hover .topAvatar {
+.tutorProfileButton:hover .tutorAvatar {
   filter: brightness(1.1);
   filter: contrast(1.2);
 }
 
-.topAvatarContainer{
-  padding: 0px;
+.tutorAvatarContainer {
   position: relative;
   display: flex;
   background-color: var(--main-theme);
 }
 
-.topAvatarContainer::after {
+.tutorAvatarContainer::after {
+  position: absolute;
   padding:0;
   margin:0;
   content: "";
-  width: 50%;
   height: 100%;
-  left: 60%;
+  left: 50%;
   right: 0;
-  position: absolute;
   background-color: var(--main-white);
-  border-top: rgb(116, 135, 219) 2px solid;
-  border-bottom: rgb(116, 135, 219) 2px solid;
-  
+  border-top: var(--main-border) 2px solid;
+  border-bottom: var(--main-border) 2px solid;
+  z-index: 998;
 }
 
-.topAvatar {
-  display: flex;
+.tutorAvatar {
+  width: 32px;
+  height: 32px;
   border-radius: 50%;
   object-fit: cover;
   object-position: 50% 0%;
+  border: var(--main-border) 2px solid;
   z-index: 999;
-  border: rgb(116, 135, 219) 2px solid;
 }
 
-.topbarCreditContainer{
+.tutorCreditContainer {
   padding: 5px;
   max-height: 32px;
   border-radius: 0px 10px 10px 0;
-  border: rgb(116, 135, 219) 2px solid;
+  background-color: var(--main-white);
+  border: var(--main-border) 2px solid;
   border-left: none;
 }
 
-.topbarCredit {
+.tutorCredit {
   height: 100%;
   font-size: 14px;
   white-space: nowrap;
   text-align: center;
 }
 
-.dropProfileMenu {
+.tutorDropProfileMenu {
   position: absolute;
-  top: 55px;
-  width: 250px;
-  transform: translateX(5%);
+  top: 63px;
+  transform: translateX(40%);
+  background-color: var(--main-white);
+  border-radius: 20px;
+  border: var(--main-border) 3px solid;
+  font-size: 16px;
+  height: auto;
+  width: 180px;
   padding: 10px;
   z-index: 999;
-  overflow: hidden;
-}
-
-.viewPopupContainer {
-  position: relative;
-  padding: 10px;
-  width: 100%;
-  height: 180px;
-  align-items: center;
-  justify-content: center;
-  max-width: 640px;
-  background-color: white;
-  border-radius: 20px;
-  border: var(--main-theme) 1px solid;
   overflow: auto;
 }
 
-.dropProfileList {
+.tutorDropProfileList {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   color: black !important;
-  padding: 10px;
 }
 
-.dropProfileItem {
+.tutorDropProfileItem {
   width: 100%;
   padding: 10px;
-  border-radius: 10px;
   text-align: center;
+  cursor: pointer;
 }
 
-.dropProfileItem:hover {
+.tutorDropProfileItem:hover {
   border-radius: 10px;
-  border: var(--main-theme) 1px solid;
-  cursor: pointer;
+  border: var(--main-theme) 1.5px solid;
 }

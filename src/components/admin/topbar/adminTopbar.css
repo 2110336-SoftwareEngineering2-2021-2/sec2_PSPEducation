@@ -116,24 +116,24 @@
   font-size: 12px;
 }
 
-.topbarMyProfileButton {
+.adminTopbarProfileButton {
   display: flex;
   cursor: pointer;
   border: none;
 }
 
-.topbarMyProfileButton:hover .topAvatar {
+.adminTopbarProfileButton:hover .adminAvatar {
   filter: brightness(1.1);
   filter: contrast(1.2);
 }
 
-.topAvatarContainer {
+.adminAvatarContainer {
   position: relative;
   display: flex;
   background-color: var(--main-theme);
 }
 
-.topAvatar {
+.adminAvatar {
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -142,13 +142,14 @@
   border: var(--main-border) 2px solid;
 }
 
-.dropProfileMenu {
+.adminDropProfileMenu {
   position: absolute;
   top: 63px;
-  transform: translateX(-20%);
+  transform: translateX(-10%);
   background-color: var(--main-white);
   border-radius: 20px;
   border: var(--main-border) 3px solid;
+  font-size: 16px;
   height: auto;
   width: 180px;
   padding: 10px;
@@ -156,7 +157,7 @@
   overflow: auto;
 }
 
-.dropProfileList {
+.adminDropProfileList {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -166,14 +167,14 @@
 }
 
 
-.dropProfileItem {
+.adminDropProfileItem {
   width: 100%;
   padding: 10px 0px;
   text-align: center;
   cursor: pointer;
 }
 
-.dropProfileItem:hover {
+.adminDropProfileItem:hover {
   border-radius: 10px;
-  border: var(--main-theme) 1px solid;
+  border: var(--main-theme) 1.5px solid;
 }

@@ -52,18 +52,17 @@ export default function AdminTopbar() {
               <NotificationsNoneOutlined />
               <span className="topIconBadge">8</span>
             </div>
-            <div className="topbarMyProfile">
-              <button
-                onClick={() => setDropProfileState(!dropProfileState)}
-                className="topbarMyProfileButton"
-              >
-                <div className="topAvatarContainer">
-                  <img src={imgSrc} alt="" className="topAvatar" />
-                </div>
-              </button>
-            </div>
 
-            <DropProfileMenu
+            <button
+              onClick={() => setDropProfileState(!dropProfileState)}
+              className="adminTopbarProfileButton"
+            >
+              <div className="adminAvatarContainer">
+                <img src={imgSrc} alt="" className="adminAvatar" />
+              </div>
+            </button>
+
+            <AdminDropProfileMenu
               trigger={dropProfileState}
               setTrigger={setDropProfileState}
             />
@@ -74,16 +73,14 @@ export default function AdminTopbar() {
   );
 }
 
-function DropProfileMenu(props) {
+function AdminDropProfileMenu(props) {
   return props.trigger ? (
-    <div className="dropProfileMenu">
-      {/* <div className="viewPopupContainer"> */}
-      <div className="dropProfileList">
-        <div className="dropProfileItem">My Profile</div>
-        <div className="dropProfileItem">Setting</div>
-        <div className="dropProfileItem">Logout</div>
+    <div className="adminDropProfileMenu">
+      <div className="adminDropProfileList">
+        <div className="adminDropProfileItem">My Profile</div>
+        <div className="adminDropProfileItem">Setting</div>
+        <div className="adminDropProfileItem">Logout</div>
       </div>
-      {/* </div> */}
     </div>
   ) : (
     ""
