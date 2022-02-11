@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./adminTopbar.css";
 import {
@@ -10,6 +10,8 @@ import {
 import { userData } from "../../../dummyData";
 
 export default function AdminTopbar() {
+  const [dropProfileState, setDropProfileState] = useState(false);
+
   const imgSrc = userData.imgURL;
   return (
     <div className="topbar">
@@ -50,15 +52,40 @@ export default function AdminTopbar() {
               <NotificationsNoneOutlined />
               <span className="topIconBadge">8</span>
             </div>
-            <img src={imgSrc} alt="" className="topAvatar" />
-            <div className="userInfo">
-              {/* <span className="fullName">{userData.fullname}</span>
-            <span className="userName">{userData.username}</span>
-            <span>credit: {userData.credit_balance}</span> */}
+            <div className="topbarMyProfile">
+              <button
+                onClick={() => setDropProfileState(!dropProfileState)}
+                className="topbarMyProfileButton"
+              >
+                <div className="topAvatarContainer">
+                  <img src={imgSrc} alt="" className="topAvatar" />
+                </div>
+              </button>
             </div>
+
+            <DropProfileMenu
+              trigger={dropProfileState}
+              setTrigger={setDropProfileState}
+            />
           </div>
         </div>
       </div>
     </div>
+  );
+}
+
+function DropProfileMenu(props) {
+  return props.trigger ? (
+    <div className="dropProfileMenu">
+      {/* <div className="viewPopupContainer"> */}
+      <div className="dropProfileList">
+        <div className="dropProfileItem">My Profile</div>
+        <div className="dropProfileItem">Setting</div>
+        <div className="dropProfileItem">Logout</div>
+      </div>
+      {/* </div> */}
+    </div>
+  ) : (
+    ""
   );
 }

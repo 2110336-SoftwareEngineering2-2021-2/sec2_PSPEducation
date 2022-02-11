@@ -1,6 +1,12 @@
+:root {
+  --main-theme :rgb(87, 112, 221);
+  --main-white :#f0f8ff;
+  --main-border :rgb(116, 135, 219);
+}
+
 .topbar {
   height: 60px;
-  background-color: rgb(87, 112, 221);
+  background-color: var(--main-theme);
   display: flex;
   top: 0;
   z-index: 999;
@@ -53,7 +59,7 @@
 
 .searchbar {
   height: 30px;
-  background-color: #f0f8ff;
+  background-color: var(--main-white);
   border-radius: 30px;
   display: flex;
   align-items: center;
@@ -69,7 +75,7 @@
   border: none;
   width: 70%;
   height: 15px;
-  background-color: #f0f8ff;
+  background-color: var(--main-white);
   margin: 1px;
 }
 
@@ -93,7 +99,7 @@
   position: relative;
   cursor: pointer;
   margin-right: 20px;
-  color: white;
+  color: var(--main-white);
 }
 
 .topIconBadge {
@@ -110,18 +116,64 @@
   font-size: 12px;
 }
 
+.topbarMyProfileButton {
+  display: flex;
+  cursor: pointer;
+  border: none;
+}
+
+.topbarMyProfileButton:hover .topAvatar {
+  filter: brightness(1.1);
+  filter: contrast(1.2);
+}
+
+.topAvatarContainer {
+  position: relative;
+  display: flex;
+  background-color: var(--main-theme);
+}
+
 .topAvatar {
   width: 32px;
   height: 32px;
   border-radius: 50%;
   object-fit: cover;
   object-position: 50% 0%;
-  cursor: pointer;
-  /* padding: 2px;
-  background: white; */
+  border: var(--main-border) 2px solid;
 }
 
-.userInfo {
+.dropProfileMenu {
+  position: absolute;
+  top: 63px;
+  transform: translateX(-20%);
+  background-color: var(--main-white);
+  border-radius: 20px;
+  border: var(--main-border) 3px solid;
+  height: auto;
+  width: 180px;
+  padding: 10px;
+  z-index: 999;
+  overflow: auto;
+}
+
+.dropProfileList {
+  position: relative;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: black !important;
+}
+
+
+.dropProfileItem {
+  width: 100%;
+  padding: 10px 0px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.dropProfileItem:hover {
+  border-radius: 10px;
+  border: var(--main-theme) 1px solid;
 }
