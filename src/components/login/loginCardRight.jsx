@@ -9,16 +9,16 @@ export default function LoginCardRight() {
         <input
           className="rightFormEmail"
           type="text"
-          autocomplete="off"
-          spellcheck="false"
+          autoComplete="off"
+          spellCheck="false"
           placeholder="Email address"
           aria-invalid="false"
         />
         <input
           className="rightFormPassword"
           type="password"
-          autocomplete="off"
-          spellcheck="false"
+          autoComplete="off"
+          spellCheck="false"
           placeholder="Password"
           aria-invalid="false"
         />
