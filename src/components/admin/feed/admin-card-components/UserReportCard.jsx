@@ -23,8 +23,8 @@ export default function UserReportCard(props) {
       "url(" +
       imgBgReportSrc +
       ")",
-    "background-size": "cover",
-    "border-radius": "20px",
+    backgroundSize: "cover",
+    borderRadius: "20px",
   };
 
   return (
