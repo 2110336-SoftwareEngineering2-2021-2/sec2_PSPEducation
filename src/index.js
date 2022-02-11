@@ -16,6 +16,11 @@ import {
   MyCrsCompSt,
   EnrollReqCompSt,
 } from "./components/student/feed/StudentFeed";
+import {
+  AllCards,
+  TutorValidationCards,
+  UserReportCards,
+} from "./components/admin/feed/AdminCards";
 
 ReactDOM.render(
   <React.StrictMode>
@@ -23,16 +28,19 @@ ReactDOM.render(
       <Routes>
         <Route path="/" element={<App />} />
         <Route path="admin" element={<AdminHome />}>
-          <Route path="all" element={<MyCrsComp />} />
-          <Route path="tutorvalid" element={<EnrollReqComp />} />
-          <Route path="userrpt" element={<MsgReqComp />} />
+          <Route exact path="" element={<AllCards />} />
+          <Route path="all" element={<AllCards />} />
+          <Route path="tutorvalid" element={<TutorValidationCards />} />
+          <Route path="userrpt" element={<UserReportCards />} />
         </Route>
         <Route path="tutor" element={<TutorHome />}>
+          <Route exact path="" element={<MyCrsComp />} />
           <Route path="mycourse" element={<MyCrsComp />} />
           <Route path="enrollreq" element={<EnrollReqComp />} />
           <Route path="msgreq" element={<MsgReqComp />} />
         </Route>
         <Route path="student" element={<StudentHome />}>
+          <Route exact path="" element={<MyCrsCompSt />} />
           <Route path="mycourse" element={<MyCrsCompSt />} />
           <Route path="enrollreq" element={<EnrollReqCompSt />} />
         </Route>
