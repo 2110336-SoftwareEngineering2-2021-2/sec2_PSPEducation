@@ -110,18 +110,111 @@
   font-size: 12px;
 }
 
+.topbarMyProfile{
+}
+
+.topbarMyProfileButton {
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  border: none;
+  background-color: var(--main-white);
+  border-radius: 0 10px 10px 0;
+}
+
+.topbarMyProfileButton:hover .topAvatar {
+  filter: brightness(1.1);
+  filter: contrast(1.2);
+}
+
+.topAvatarContainer{
+  padding: 0px;
+  position: relative;
+  display: flex;
+  background-color: var(--main-theme);
+}
+
+.topAvatarContainer::after {
+  padding:0;
+  margin:0;
+  content: "";
+  width: 50%;
+  height: 100%;
+  left: 60%;
+  right: 0;
+  position: absolute;
+  background-color: var(--main-white);
+  border-top: rgb(116, 135, 219) 2px solid;
+  border-bottom: rgb(116, 135, 219) 2px solid;
+  
+}
+
 .topAvatar {
-  width: 32px;
-  height: 32px;
+  display: flex;
   border-radius: 50%;
   object-fit: cover;
   object-position: 50% 0%;
-  cursor: pointer;
-  /* padding: 2px;
-  background: white; */
+  border: rgb(116, 135, 219) 2px solid;
 }
 
-.userInfo {
+.topbarCreditContainer{
+  padding: 5px;
+  max-height: 32px;
+  border-radius: 0px 10px 10px 0;
+  background-color: var(--main-white);
+  border: rgb(116, 135, 219) 2px solid;
+  border-left: none;
+}
+
+.topbarCredit {
+  height: 100%;
+  font-size: 14px;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.dropProfileMenu {
+  position: absolute;
+  top: 55px;
+  width: 250px;
+  transform: translateX(5%);
+  padding: 10px;
+  z-index: 999;
+  overflow: hidden;
+}
+
+.viewPopupContainer {
+  position: relative;
+  padding: 10px;
+  width: 100%;
+  height: 180px;
+  align-items: center;
+  justify-content: center;
+  max-width: 640px;
+  background-color: white;
+  border-radius: 20px;
+  border: var(--main-theme) 1px solid;
+  overflow: auto;
+}
+
+.dropProfileList {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: black !important;
+  padding: 10px;
+}
+
+.dropProfileItem {
+  width: 100%;
+  padding: 10px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.dropProfileItem:hover {
+  border-radius: 10px;
+  border: var(--main-theme) 1px solid;
+  cursor: pointer;
 }

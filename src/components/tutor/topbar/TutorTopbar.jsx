@@ -59,20 +59,28 @@ export default function TutorTopbar() {
               </div>
               <span className="topIconBadge">8</span>
             </div>
-            <button
-              onClick={() => setDropProfileState(!dropProfileState)}
-              className="topAvatarContainer"
-            >
-              <img src={imgSrc} alt="" className="topAvatar" />
-            </button>
 
-            <div className="userInfo">
-              <DropProfileMenu
-                trigger={dropProfileState}
-                setTrigger={setDropProfileState}
-              />
-              {/*  */}
+            <div className="topbarMyProfile">
+              <button
+                onClick={() => setDropProfileState(!dropProfileState)}
+                className="topbarMyProfileButton"
+              >
+                <div className="topAvatarContainer">
+                  <img src={imgSrc} alt="" className="topAvatar" />
+                </div>
+
+                <div className="topbarCreditContainer">
+                  <span className="topbarCredit">
+                    credit: {userData.credit_balance}
+                  </span>
+                </div>
+              </button>
             </div>
+
+            <DropProfileMenu
+              trigger={dropProfileState}
+              setTrigger={setDropProfileState}
+            />
           </div>
         </div>
       </div>
@@ -84,14 +92,10 @@ function DropProfileMenu(props) {
   return props.trigger ? (
     <div className="dropProfileMenu">
       <div className="viewPopupContainer">
-        <div className="viewPopupContent">
-          <span className="dropProfileFullname">{userData.fullname}</span>
-          <span className="dropProfileUserName">{userData.username}</span>
-          <span className="dropProfileCredit">
-            credit: {userData.credit_balance}
-          </span>
-          <span className="dropProfileCredit">Setting</span>
-          <span className="dropProfileCredit">Logout</span>
+        <div className="dropProfileList">
+          <div className="dropProfileItem">My Profile</div>
+          <div className="dropProfileItem">Setting</div>
+          <div className="dropProfileItem">Logout</div>
         </div>
       </div>
     </div>
