@@ -41,7 +41,7 @@
   cursor: pointer;
 }
 
-.tutorSidebarListItemText{
+.studentSidebarListItemText{
   color: var(--main-black);
   text-decoration: none;
 }
