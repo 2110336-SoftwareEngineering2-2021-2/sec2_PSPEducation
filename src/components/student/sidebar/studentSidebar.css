@@ -1,8 +1,13 @@
+:root {
+  --main-black :rgb(68, 68, 67);
+  --main-bg :rgb(234, 238, 248);
+}
+
 .studentSidebar {
   flex: 2;
   height: calc(100vh - 55px);
   top: 55px;
-  background: rgb(234, 234, 248);
+  background: var(--main-bg);
   position: sticky;
   overflow-y: scroll;
 }
@@ -35,6 +40,12 @@
   margin-bottom: 20px;
   cursor: pointer;
 }
+
+.tutorSidebarListItemText{
+  color: var(--main-black);
+  text-decoration: none;
+}
+
 
 .studentSidebarIcon {
   margin-right: 15px;
