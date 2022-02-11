@@ -32,6 +32,7 @@
 .registerLastname,
 .registerUsername,
 .registerPassword,
+.registerConfirmPassword,
 .registerEmail,
 .registerPhoneNumber,
 .registerDisplayNumber,
@@ -48,6 +49,8 @@
   padding: 15px 20px;
   margin-bottom: 15px;
   border-radius: 30px;
+  background-color: white;
+  border: none;
 }
 
 .registerType:focus,
@@ -55,6 +58,7 @@
 .registerLastname:focus,
 .registerUsername:focus,
 .registerPassword:focus,
+.registerConfirmPassword:focus,
 .registerEmail:focus,
 .registerPhoneNumber:focus,
 .registerDisplayNumber:focus,
