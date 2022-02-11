@@ -12,46 +12,89 @@ import LoginUser from "./pages/login/LoginUser";
 import LoginAdmin from "./pages/login/LoginAdmin";
 import Register from "./pages/register/Register";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Component } from "react";
-
 function App() {
-  // const propTypes = {
-  //   cookies: instanceOf(Cookies).isRequired,
-  // };
-  // state = {
-  //   name: this.props.cookies.get("name") || "",
-  // };
-  const [cookies, setCookie] = useCookies(["name"]);
-  setCookie("user", "555", { path: "/" });
+  const [cookie, setCookie, removeCookie] = useCookies(["cookie-user"]);
+
   return (
     <>
-      <Layout />
-      <div>{cookies.name}</div>
       <Routes>
-        <Route path="/" element={<App />} />
-        <Route path="/admin" render={() => <AdminHome cookies={cookies} />} />
-        <Route path="/tutor" render={() => <TutorHome cookies={cookies} />} />
+        <Route path="/" element={<Layout />} />
+
+        <Route
+          path="/admin"
+          element={
+            <AdminHome
+              cookie={cookie}
+              setCookie={setCookie}
+              removeCookie={removeCookie}
+            />
+          }
+        />
+
+        <Route
+          path="/tutor"
+          element={
+            <TutorHome
+              cookie={cookie}
+              setCookie={setCookie}
+              removeCookie={removeCookie}
+            />
+          }
+        />
+
         <Route
           path="/student"
-          render={() => <StudentHome cookies={cookies} />}
+          element={
+            <StudentHome
+              cookie={cookie}
+              setCookie={setCookie}
+              removeCookie={removeCookie}
+            />
+          }
         />
+
         <Route
           path="/user/login"
-          render={() => <LoginUser cookies={cookies} />}
+          element={
+            <LoginUser
+              cookie={cookie}
+              setCookie={setCookie}
+              removeCookie={removeCookie}
+            />
+          }
         />
+
         <Route
           path="/admin/login"
-          render={() => <LoginAdmin cookies={cookies} />}
+          element={
+            <LoginAdmin
+              cookie={cookie}
+              setCookie={setCookie}
+              removeCookie={removeCookie}
+            />
+          }
         />
-        <Route path="/register" render={() => <Register cookies={cookies} />} />
+
+        <Route
+          path="/register"
+          element={
+            <Register
+              cookie={cookie}
+              setCookie={setCookie}
+              removeCookie={removeCookie}
+            />
+          }
+        />
       </Routes>
+      {/* <div>{}</div> */}
     </>
   );
 }
 
-export default withCookies(App);
+export default App;
 
 function Layout() {
+  // const isLoggedIn = isLoggedIn();
   return (
     <div className="layout">
       <Navbar />

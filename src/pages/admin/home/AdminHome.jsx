@@ -3,7 +3,7 @@ import AdminTopbar from "../../../components/admin/topbar/AdminTopbar";
 import AdminSidebar from "../../../components/admin/sidebar/AdminSidebar";
 import AdminFeed from "../../../components/admin/feed/AdminFeed";
 
-export default function AdminHome() {
+export default function AdminHome({ cookie, setCookie, removeCookie }) {
   return (
     <>
       <AdminTopbar />

@@ -4,7 +4,7 @@ import Navbar from "../../components/simple/navbar/Navbar";
 import Footer from "../../components/simple/footer/Footer";
 import "./loginUser.css";
 
-export default function LoginAdmin() {
+export default function LoginAdmin({ cookie, setCookie, removeCookie }) {
   return (
     <>
       <div className="login">
@@ -12,7 +12,12 @@ export default function LoginAdmin() {
         <div className="loginWrapper">
           <div className="loginCard">
             <LoginLeftside />
-            <LoginRightside position="admin" />
+            <LoginRightside
+              position="admin"
+              cookie={cookie}
+              setCookie={setCookie}
+              remove={removeCookie}
+            />
           </div>
           <Footer />
         </div>
