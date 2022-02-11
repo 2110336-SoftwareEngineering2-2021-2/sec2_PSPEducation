@@ -1,11 +1,11 @@
 import React from "react";
 import "./studentFeed.css";
-import AdminCards from "./AdminCards";
+// import StudentCards from "./StudentCards";
 
-export default function AdminFeed() {
+export default function StudentFeed() {
   return (
     <div className="feed">
-      <AdminCards />
+      {/* <StudentCards /> */}
     </div>
   );
 }
