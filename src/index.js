@@ -6,19 +6,27 @@ import TutorHome from "./pages/tutor/home/TutorHome";
 import StudentHome from "./pages/student/home/StudentHome";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
-
 import App from "./App";
+import {
+  MyCrsComp,
+  EnrollReqComp,
+  MsgReqComp,
+} from "./components/tutor/feed/TutorFeed";
 
 ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<App />} />
-        <Route path="/admin" element={<AdminHome />} />
-        <Route path="/tutor" element={<TutorHome />} />
-        <Route path="/student" element={<StudentHome />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/register" element={<Register />} />
+        <Route path="admin" element={<AdminHome />} />
+        <Route path="tutor" element={<TutorHome />}>
+          <Route path="mycourse" element={<MyCrsComp />} />
+          <Route path="enrollreq" element={<EnrollReqComp />} />
+          <Route path="msgreq" element={<MsgReqComp />} />
+        </Route>
+        <Route path="student" element={<StudentHome />} />
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
