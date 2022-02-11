@@ -31,8 +31,8 @@ export default function AdminTopbar() {
             <SearchOutlined className="searchIcon" />
             <input
               type="search"
-              autocomplete="off"
-              spellcheck="false"
+              autoComplete="off"
+              spellCheck="false"
               placeholder="Search for course, tutor or subject"
               className="searchInput"
               aria-invalid="false"
