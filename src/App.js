@@ -12,77 +12,80 @@ import LoginUser from "./pages/login/LoginUser";
 import LoginAdmin from "./pages/login/LoginAdmin";
 import Register from "./pages/register/Register";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import {
+  MyCrsComp,
+  EnrollReqComp,
+  MsgReqComp,
+} from "./components/tutor/feed/TutorFeed";
+import {
+  MyCrsCompSt,
+  EnrollReqCompSt,
+} from "./components/student/feed/StudentFeed";
+import {
+  AllCards,
+  TutorValidationCards,
+  UserReportCards,
+} from "./components/admin/feed/AdminCards";
 function App() {
   const [cookie, setCookie, removeCookie] = useCookies(["user", 'user_role']);
   return (
     <>
       <Routes>
-        <Route path="/" element={<Layout />} />
-
-        <Route
-          path="/admin"
-          element={
-            <AdminHome
-              cookie={cookie}
+        <Route path="/" element={<App cookie={cookie}
               setCookie={setCookie}
-              removeCookie={removeCookie}
-            />
-          }
-        />
-
-        <Route
-          path="/tutor"
-          element={
-            <TutorHome
-              cookie={cookie}
+              removeCookie={removeCookie} />} />
+        <Route path="admin" element={<AdminHome cookie={cookie}
               setCookie={setCookie}
-              removeCookie={removeCookie}
-            />
-          }
-        />
-
-        <Route
-          path="/student"
-          element={
-            <StudentHome
-              cookie={cookie}
+              removeCookie={removeCookie} />}>
+          <Route exact path="" element={<AllCards cookie={cookie}
               setCookie={setCookie}
-              removeCookie={removeCookie}
-            />
-          }
-        />
-
-        <Route
-          path="/user/login"
-          element={
-            <LoginUser
-              cookie={cookie}
+              removeCookie={removeCookie} />} />
+          <Route path="all" element={<AllCards cookie={cookie}
               setCookie={setCookie}
-            />
-          }
-        />
-
-        <Route
-          path="/admin/login"
-          element={
-            <LoginAdmin
-              cookie={cookie}
+              removeCookie={removeCookie} />} />
+          <Route path="tutorvalid" element={<TutorValidationCards cookie={cookie}
               setCookie={setCookie}
-            />
-          }
-        />
-
-        <Route
-          path="/register"
-          element={
-            <Register
-              cookie={cookie}
+              removeCookie={removeCookie} />} />
+          <Route path="userrpt" element={<UserReportCards cookie={cookie}
               setCookie={setCookie}
-            />
-          }
-        />
+              removeCookie={removeCookie} />} />
+        </Route>
+        <Route path="tutor" element={<TutorHome cookie={cookie}
+              setCookie={setCookie}
+              removeCookie={removeCookie} />}>
+          <Route exact path="" element={<MyCrsComp cookie={cookie}
+              setCookie={setCookie}
+              removeCookie={removeCookie} />} />
+          <Route path="mycourse" element={<MyCrsComp cookie={cookie}
+              setCookie={setCookie}
+              removeCookie={removeCookie} />} />
+          <Route path="enrollreq" element={<EnrollReqComp cookie={cookie}
+              setCookie={setCookie}
+              removeCookie={removeCookie} />} />
+          <Route path="msgreq" element={<MsgReqComp cookie={cookie}
+              setCookie={setCookie}
+              removeCookie={removeCookie} />} />
+        </Route>
+        <Route path="student" element={<StudentHome cookie={cookie}
+              setCookie={setCookie}
+              removeCookie={removeCookie} />}>
+          <Route exact path="" element={<MyCrsCompSt cookie={cookie}
+              setCookie={setCookie}
+              removeCookie={removeCookie} />} />
+          <Route path="mycourse" element={<MyCrsCompSt cookie={cookie}
+              setCookie={setCookie}
+              removeCookie={removeCookie} />} />
+          <Route path="enrollreq" element={<EnrollReqCompSt cookie={cookie}
+              setCookie={setCookie}
+              removeCookie={removeCookie} />} />
+        </Route>
+        <Route path="login" element={<Login cookie={cookie}
+              setCookie={setCookie}
+              removeCookie={removeCookie} />} />
+        <Route path="register" element={<Register cookie={cookie}
+              setCookie={setCookie}
+              removeCookie={removeCookie} />} />
       </Routes>
-      {/* <div>{}</div> */}
     </>
   );
 }
