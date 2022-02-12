@@ -1,11 +1,11 @@
-// import LoginLeftside from "../../components/login/loginLeftside";
-// import LoginRightside from "../../components/login/loginRightside";
+import LoginLeftside from "../../components/login/loginCardLeft";
+import LoginRightside from "../../components/login/loginCardRight";
 import Navbar from "../../components/simple/navbar/Navbar";
 import Footer from "../../components/simple/footer/Footer";
-import "./register.css";
+import "./loginUser.css";
+import { useState, useEffect, } from "react";
 import { Navigate } from "react-router-dom";
-import { useEffect, useState } from "react";
-export default function Register({ cookie, setCookie }) {
+export default function LoginAdmin({ cookie, setCookie }) {
   const [state, setState] = useState(false);
   useEffect(() => {
     // Update the document title using the browser API
@@ -19,13 +19,18 @@ export default function Register({ cookie, setCookie }) {
     {state && cookie.user_role ===  'tutor' && <Navigate to='/tutor'/>}
     {state && cookie.user_role ===  'student' && <Navigate to='/student'/>}
 
-      <div className="register">
+      <div className="login">
         <Navbar />
-        <div className="registerWrapper">
-          <div className="registerCard">BLANK</div>
-          <div className="registerFooter">
-            <Footer />
+        <div className="loginWrapper">
+          <div className="loginCard">
+            <LoginLeftside />
+            <LoginRightside
+              position="admin"
+              cookie={cookie}
+              setCookie={setCookie}
+            />
           </div>
+          <Footer />
         </div>
       </div>
     </>
