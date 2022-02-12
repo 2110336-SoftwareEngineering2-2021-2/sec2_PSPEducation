@@ -5,11 +5,7 @@ import "./loginCardRight.css";
 import { sha512_256 } from "js-sha512";
 import { Navigate } from "react-router-dom";
 
-export default function LoginCardRight({
-  cookie,
-  setCookie,
-  position
-}) {
+export default function LoginCardRight({ cookie, setCookie, position }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [state, setState] = useState(false);
@@ -20,15 +16,17 @@ export default function LoginCardRight({
 
   const handleSubmit = async () => {
     const hashedPassword = sha512_256(password);
+
     const user = { email, hashedPassword };
+
     axios
       .post(`/get${position}`, {
         body: JSON.stringify(user),
       })
       .then((e) => {
         setState(true);
-        setCookie('user', e.cookies);
-        setCookie('user_role', e.position)
+        setCookie("user", e.cookies);
+        setCookie("user_role", e.position);
         if (e.position === "tutor") {
           return <Navigate to="/tutor" />;
         } else if (e.position === "student") {
@@ -41,6 +39,7 @@ export default function LoginCardRight({
         console.log(e);
       });
   };
+
   return (
     <>
       {state && <Navigate to="/tutor" />}
