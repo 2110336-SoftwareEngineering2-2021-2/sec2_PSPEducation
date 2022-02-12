@@ -9,7 +9,6 @@ import LoginAdmin from "./pages/login/LoginAdmin";
 import Register from "./pages/register/Register";
 import App from "./App";
 import { CookiesProvider } from "react-cookie";
-import { withCookies, Cookies, useCookies } from "react-cookie";
 
 ReactDOM.render(
   <React.StrictMode>

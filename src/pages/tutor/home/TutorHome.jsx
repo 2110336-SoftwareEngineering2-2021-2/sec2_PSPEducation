@@ -8,14 +8,10 @@ export default function TutorHome({ cookie, setCookie, removeCookie }) {
   const [state, setState] = useState(false);
   useEffect(() => {
     // Update the document title using the browser API
-    console.log("home");
-    console.log(cookie);
-    console.log(cookie.user);
-    console.log("");
-    if (cookie.user === undefined) {
+    if (cookie.user === undefined || cookie.user === null || cookie.user ==='' ) {
       setState(true);
     }
-  }, []);
+  }, [state]);
   return (
     <>
       {state && <Navigate to="/user/login" />}

@@ -8,8 +8,7 @@ import { Navigate } from "react-router-dom";
 export default function LoginCardRight({
   cookie,
   setCookie,
-  removeCookie,
-  position,
+  position
 }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -22,31 +21,27 @@ export default function LoginCardRight({
   const handleSubmit = async () => {
     const hashedPassword = sha512_256(password);
     const user = { email, hashedPassword };
-    const d = new Date();
 
-    await setCookie("user", "5555", d.getTime() + 60 * 60 * 24, { path: "/" });
-    console.log("login");
-    console.log("cookie");
-    console.log(cookie);
-    console.log("");
-    setState(true);
-    // axios
-    //   .post(`/get${position}`, {
-    //     body: JSON.stringify(user),
-    //   })
-    //   .then((e) => {
-    //     setCookie(cookie, e.cookies, { path: "/" });
-    //     if (e.position === "tutor") {
-    //       return <Navigate to="/tutor" />;
-    //     } else if (e.position === "student") {
-    //       return <Navigate to="/student" />;
-    //     } else if (e.position === "admin") {
-    //       return <Navigate to="/admin" />;
-    //     }
-    //   })
-    //   .catch((e) => {
-    //     console.log(e);
-    //   });
+    
+    axios
+      .post(`/get${position}`, {
+        body: JSON.stringify(user),
+      })
+      .then((e) => {
+        setState(true);
+        setCookie('user', e.cookies);
+        setCookie('user_role', e.position)
+        if (e.position === "tutor") {
+          return <Navigate to="/tutor" />;
+        } else if (e.position === "student") {
+          return <Navigate to="/student" />;
+        } else if (e.position === "admin") {
+          return <Navigate to="/admin" />;
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   };
   return (
     <>

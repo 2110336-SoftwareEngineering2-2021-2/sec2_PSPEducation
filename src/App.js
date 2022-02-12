@@ -13,8 +13,7 @@ import LoginAdmin from "./pages/login/LoginAdmin";
 import Register from "./pages/register/Register";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 function App() {
-  const [cookie, setCookie, removeCookie] = useCookies(["cookie-user"]);
-
+  const [cookie, setCookie, removeCookie] = useCookies(["user", 'user_role']);
   return (
     <>
       <Routes>
@@ -59,7 +58,6 @@ function App() {
             <LoginUser
               cookie={cookie}
               setCookie={setCookie}
-              removeCookie={removeCookie}
             />
           }
         />
@@ -70,7 +68,6 @@ function App() {
             <LoginAdmin
               cookie={cookie}
               setCookie={setCookie}
-              removeCookie={removeCookie}
             />
           }
         />
@@ -81,7 +78,6 @@ function App() {
             <Register
               cookie={cookie}
               setCookie={setCookie}
-              removeCookie={removeCookie}
             />
           }
         />
