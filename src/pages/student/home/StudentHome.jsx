@@ -3,20 +3,26 @@ import StudentTopbar from "../../../components/student/topbar/StudentTopbar";
 import StudentSidebar from "../../../components/student/sidebar/StudentSidebar";
 import StudentFeed from "../../../components/student/feed/StudentFeed";
 import * as React from "react";
-import { useState, useEffect, } from "react";
+import { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
-function StudentHome({ cookie, setCookie, removeCookie }) {
+
+export default function StudentHome({ cookie, setCookie, removeCookie }) {
   const [state, setState] = useState(false);
+
   useEffect(() => {
     // Update the document title using the browser API
-    if (cookie.user === undefined || cookie.user === null || cookie.user ==='') {
+    if (
+      cookie.user === undefined ||
+      cookie.user === null ||
+      cookie.user === ""
+    ) {
       setState(true);
     }
   }, [state]);
+
   return (
     <>
-
-      {state && <Navigate to="/user/login" />}
+      {state && <Navigate to="/login/user" />}
       <StudentTopbar />
       <div className="pageContent">
         <div className="sidebarContainer">
@@ -32,4 +38,3 @@ function StudentHome({ cookie, setCookie, removeCookie }) {
     </>
   );
 }
-export default StudentHome;
