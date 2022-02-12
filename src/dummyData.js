@@ -62,27 +62,75 @@ export const userData = {
 
 export const tutorValidationCardData = [
   {
-    fullname: "Jim Riley",
-    username: "@jim.riley",
-    profession: "SE II",
-    imgAvatarURL: "https://source.unsplash.com/random/300×300/?face",
-    imgBgURL: "https://source.unsplash.com/random/800×300/?lecture",
+    firstname: "Steve",
+    lastname: "Rogers",
+    username: "@steve.rogers",
+    email: "steve.rogers@yahoo.com",
+    phoneNumber: "085645XXXX",
+    displayNumber: "",
+    birthdate: "1918-07-04",
+    gender: "male",
+    educationLevel: "6",
+    citizenId: "123XXXXXXXXXX",
+    citizenImage:
+      "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/c/c3/S.H.I.E.L.D._Rogers_file.jpg",
+    profession: "Shielded Hero",
+    imgAvatarURL:
+      "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/a/ac/154545385l.jpg",
+    imgAvatarBase64: "https://source.unsplash.com/random/300×300/?face",
+    imgBgURL: "https://source.unsplash.com/random/800×300/?america",
   },
   {
-    fullname: "Georgia Curtis",
-    username: "@georgia.curtis",
-    profession: "Rock Climbing",
-    imgAvatarURL: "https://source.unsplash.com/random/300×300/?human",
-    imgBgURL: "https://source.unsplash.com/random/800×300/?mountain",
+    firstname: "Daisy",
+    lastname: "Johnson",
+    username: "@daisy.johnson",
+    email: "daisy.johnson@outlook.com",
+    phoneNumber: "087515XXXX",
+    displayNumber: "",
+    birthdate: "1988-07-02",
+    gender: "female",
+    educationLevel: "6",
+    citizenId: "123XXXXXXXXXX",
+    citizenImage:
+      "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/1/16/Skye_File.jpg",
+    profession: "EarthQuake",
+    imgAvatarURL:
+      "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/7/79/Quake.jpg",
+    imgAvatarBase64: "https://source.unsplash.com/random/300×300/?face",
+    imgBgURL: "https://source.unsplash.com/random/800×300/?ruins",
   },
   {
-    fullname: "Angel May",
-    username: "@angel.may",
-    profession: "Swimming Lesson",
-    imgAvatarURL: "https://source.unsplash.com/random/300×300/?women",
-    imgBgURL: "https://source.unsplash.com/random/800×300/?swim",
+    firstname: "Clint",
+    lastname: "Barton",
+    username: "@clint.barton",
+    email: "clint.barton@hotmail.com",
+    phoneNumber: "098564XXXX",
+    displayNumber: "",
+    birthdate: "1975-10-06",
+    gender: "male",
+    educationLevel: "7",
+    citizenId: "123XXXXXXXXXX",
+    citizenImage:
+      "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/d/d6/Clint_Barton_File.jpg",
+    profession: "Expert Archery",
+    imgAvatarURL:
+      "https://static.wikia.nocookie.net/marvelcinematicuniverse/images/8/86/018hcb_ons_inl_04.jpg",
+    imgAvatarBase64: "https://source.unsplash.com/random/300×300/?face",
+    imgBgURL: "https://source.unsplash.com/random/800×300/?archer",
   },
 ];
+
+export const educationTable = {
+  0: "Not Defined",
+  1: "Pre-School",
+  2: "Primary (P.1 - P.3)",
+  3: "Primary (P.4 - P.6)",
+  4: "Secondary (M.1 - M.3)",
+  5: "Secondary (M.4 - M.6)",
+  6: "Bachelor Degree",
+  7: "Master Degree",
+  8: "Doctor Degree",
+};
 
 export const reportCardData = [
   {
