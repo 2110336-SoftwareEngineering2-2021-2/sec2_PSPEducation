@@ -22,15 +22,25 @@ function ViewPopup(props) {
         <button className="closePopup" onClick={() => props.setTrigger(false)}>
           <CloseOutlined />
         </button>
-        <div className="viewPopupContent">
-          <TutorCardPopup
-            fullname={props.data.fullname}
-            username={props.data.username}
-            profession={props.data.profession}
-            imgAvatarURL={props.data.imgAvatarURL}
-            imgBgURL={props.data.imgBgURL}
-          />
-        </div>
+        {/* <div className="viewPopupContent"> */}
+        <TutorCardPopup
+          firstname={props.data.firstname}
+          lastname={props.data.lastname}
+          username={props.data.username}
+          email={props.data.email}
+          phoneNumber={props.data.phoneNumber}
+          displayNumber={props.data.displayNumber}
+          birthdate={props.data.birthdate}
+          gender={props.data.gender}
+          educationLevel={props.data.educationLevel}
+          citizenId={props.data.citizenId}
+          citizenImage={props.data.citizenImage}
+          profession={props.data.profession}
+          imgAvatarURL={props.data.imgAvatarURL}
+          imgBgURL={props.data.imgBgURL}
+          setTriggerView={props.setDisplayState}
+          setTriggerData={props.setDataValidation}
+        />
       </div>
     </div>
   ) : (
@@ -41,9 +51,17 @@ function ViewPopup(props) {
 export function AllCards() {
   const [displayState, setDisplayState] = useState(false);
   const [dataValidation, setDataValidation] = useState({
-    key: -1,
-    fullname: "",
+    firstname: "",
+    lastname: "",
     username: "",
+    email: "",
+    phoneNumber: "",
+    displayNumber: "",
+    birthdate: "",
+    gender: "",
+    educationLevel: "",
+    citizenId: "",
+    citizenImage: "",
     profession: "",
     imgAvatarURL: "",
     imgBgURL: "",
@@ -54,8 +72,17 @@ export function AllCards() {
         return (
           <TutorValidationCard
             key={key}
-            fullname={data.fullname}
+            firstname={data.firstname}
+            lastname={data.lastname}
             username={data.username}
+            email={data.email}
+            phoneNumber={data.phoneNumber}
+            displayNumber={data.displayNumber}
+            birthdate={data.birthdate}
+            gender={data.gender}
+            educationLevel={data.educationLevel}
+            citizenId={data.citizenId}
+            citizenImage={data.citizenImage}
             profession={data.profession}
             imgAvatarURL={data.imgAvatarURL}
             imgBgURL={data.imgBgURL}
@@ -77,6 +104,7 @@ export function AllCards() {
         );
       })}
       <ViewPopup
+        className=""
         data={dataValidation}
         trigger={displayState}
         setTrigger={setDisplayState}
@@ -87,21 +115,39 @@ export function AllCards() {
 export function TutorValidationCards() {
   const [displayState, setDisplayState] = useState(false);
   const [dataValidation, setDataValidation] = useState({
-    key: -1,
-    fullname: "",
+    firstname: "",
+    lastname: "",
     username: "",
+    email: "",
+    phoneNumber: "",
+    displayNumber: "",
+    birthdate: "",
+    gender: "",
+    educationLevel: "",
+    citizenId: "",
+    citizenImage: "",
     profession: "",
     imgAvatarURL: "",
     imgBgURL: "",
   });
+
   return (
     <>
       {tutorValidationCardData.map((data, key) => {
         return (
           <TutorValidationCard
             key={key}
-            fullname={data.fullname}
+            firstname={data.firstname}
+            lastname={data.lastname}
             username={data.username}
+            email={data.email}
+            phoneNumber={data.phoneNumber}
+            displayNumber={data.displayNumber}
+            birthdate={data.birthdate}
+            gender={data.gender}
+            educationLevel={data.educationLevel}
+            citizenId={data.citizenId}
+            citizenImage={data.citizenImage}
             profession={data.profession}
             imgAvatarURL={data.imgAvatarURL}
             imgBgURL={data.imgBgURL}
@@ -110,6 +156,7 @@ export function TutorValidationCards() {
           />
         );
       })}
+
       <ViewPopup
         data={dataValidation}
         trigger={displayState}
