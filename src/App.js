@@ -26,65 +26,222 @@ import {
   TutorValidationCards,
   UserReportCards,
 } from "./components/admin/feed/AdminCards";
+
 function App() {
-  const [cookie, setCookie, removeCookie] = useCookies(["user", 'user_role']);
+  const [cookie, setCookie, removeCookie] = useCookies(["user", "user_role"]);
+
   return (
     <>
       <Routes>
-        <Route path="/" element={<App cookie={cookie}
+        <Route
+          path="/"
+          element={
+            <Layout
+              cookie={cookie}
               setCookie={setCookie}
-              removeCookie={removeCookie} />} />
-        <Route path="admin" element={<AdminHome cookie={cookie}
+              removeCookie={removeCookie}
+            />
+          }
+        />
+        <Route
+          path="admin"
+          element={
+            <AdminHome
+              cookie={cookie}
               setCookie={setCookie}
-              removeCookie={removeCookie} />}>
-          <Route exact path="" element={<AllCards cookie={cookie}
-              setCookie={setCookie}
-              removeCookie={removeCookie} />} />
-          <Route path="all" element={<AllCards cookie={cookie}
-              setCookie={setCookie}
-              removeCookie={removeCookie} />} />
-          <Route path="tutorvalid" element={<TutorValidationCards cookie={cookie}
-              setCookie={setCookie}
-              removeCookie={removeCookie} />} />
-          <Route path="userrpt" element={<UserReportCards cookie={cookie}
-              setCookie={setCookie}
-              removeCookie={removeCookie} />} />
+              removeCookie={removeCookie}
+            />
+          }
+        >
+          <Route
+            exact
+            path=""
+            element={
+              <AllCards
+                cookie={cookie}
+                setCookie={setCookie}
+                removeCookie={removeCookie}
+              />
+            }
+          />
+
+          <Route
+            path="all"
+            element={
+              <AllCards
+                cookie={cookie}
+                setCookie={setCookie}
+                removeCookie={removeCookie}
+              />
+            }
+          />
+
+          <Route
+            path="tutorvalid"
+            element={
+              <TutorValidationCards
+                cookie={cookie}
+                setCookie={setCookie}
+                removeCookie={removeCookie}
+              />
+            }
+          />
+
+          <Route
+            path="userrpt"
+            element={
+              <UserReportCards
+                cookie={cookie}
+                setCookie={setCookie}
+                removeCookie={removeCookie}
+              />
+            }
+          />
         </Route>
-        <Route path="tutor" element={<TutorHome cookie={cookie}
+
+        <Route
+          path="tutor"
+          element={
+            <TutorHome
+              cookie={cookie}
               setCookie={setCookie}
-              removeCookie={removeCookie} />}>
-          <Route exact path="" element={<MyCrsComp cookie={cookie}
-              setCookie={setCookie}
-              removeCookie={removeCookie} />} />
-          <Route path="mycourse" element={<MyCrsComp cookie={cookie}
-              setCookie={setCookie}
-              removeCookie={removeCookie} />} />
-          <Route path="enrollreq" element={<EnrollReqComp cookie={cookie}
-              setCookie={setCookie}
-              removeCookie={removeCookie} />} />
-          <Route path="msgreq" element={<MsgReqComp cookie={cookie}
-              setCookie={setCookie}
-              removeCookie={removeCookie} />} />
+              removeCookie={removeCookie}
+            />
+          }
+        >
+          <Route
+            exact
+            path=""
+            element={
+              <MyCrsComp
+                cookie={cookie}
+                setCookie={setCookie}
+                removeCookie={removeCookie}
+              />
+            }
+          />
+
+          <Route
+            path="mycourse"
+            element={
+              <MyCrsComp
+                cookie={cookie}
+                setCookie={setCookie}
+                removeCookie={removeCookie}
+              />
+            }
+          />
+
+          <Route
+            path="enrollreq"
+            element={
+              <EnrollReqComp
+                cookie={cookie}
+                setCookie={setCookie}
+                removeCookie={removeCookie}
+              />
+            }
+          />
+
+          <Route
+            path="msgreq"
+            element={
+              <MsgReqComp
+                cookie={cookie}
+                setCookie={setCookie}
+                removeCookie={removeCookie}
+              />
+            }
+          />
         </Route>
-        <Route path="student" element={<StudentHome cookie={cookie}
+
+        <Route
+          path="student"
+          element={
+            <StudentHome
+              cookie={cookie}
               setCookie={setCookie}
-              removeCookie={removeCookie} />}>
-          <Route exact path="" element={<MyCrsCompSt cookie={cookie}
-              setCookie={setCookie}
-              removeCookie={removeCookie} />} />
-          <Route path="mycourse" element={<MyCrsCompSt cookie={cookie}
-              setCookie={setCookie}
-              removeCookie={removeCookie} />} />
-          <Route path="enrollreq" element={<EnrollReqCompSt cookie={cookie}
-              setCookie={setCookie}
-              removeCookie={removeCookie} />} />
+              removeCookie={removeCookie}
+            />
+          }
+        >
+          <Route
+            exact
+            path=""
+            element={
+              <MyCrsCompSt
+                cookie={cookie}
+                setCookie={setCookie}
+                removeCookie={removeCookie}
+              />
+            }
+          />
+
+          <Route
+            path="mycourse"
+            element={
+              <MyCrsCompSt
+                cookie={cookie}
+                setCookie={setCookie}
+                removeCookie={removeCookie}
+              />
+            }
+          />
+
+          <Route
+            path="enrollreq"
+            element={
+              <EnrollReqCompSt
+                cookie={cookie}
+                setCookie={setCookie}
+                removeCookie={removeCookie}
+              />
+            }
+          />
         </Route>
-        <Route path="login" element={<Login cookie={cookie}
+
+        <Route
+          path="login"
+          element={
+            <LoginUser
+              cookie={cookie}
               setCookie={setCookie}
-              removeCookie={removeCookie} />} />
-        <Route path="register" element={<Register cookie={cookie}
+              removeCookie={removeCookie}
+            />
+          }
+        >
+          <Route
+            path="user"
+            element={
+              <LoginUser
+                cookie={cookie}
+                setCookie={setCookie}
+                removeCookie={removeCookie}
+              />
+            }
+          />
+          <Route
+            path="admin"
+            element={
+              <LoginAdmin
+                cookie={cookie}
+                setCookie={setCookie}
+                removeCookie={removeCookie}
+              />
+            }
+          />
+        </Route>
+
+        <Route
+          path="register"
+          element={
+            <Register
+              cookie={cookie}
               setCookie={setCookie}
-              removeCookie={removeCookie} />} />
+              removeCookie={removeCookie}
+            />
+          }
+        />
       </Routes>
     </>
   );
@@ -111,10 +268,10 @@ function Layout() {
             <NavLink to="/student">StudentHome</NavLink>
           </li>
           <li>
-            <NavLink to="/user/login">Login user</NavLink>
+            <NavLink to="/login/user">Login user</NavLink>
           </li>
           <li>
-            <NavLink to="/admin/login">Login admin</NavLink>
+            <NavLink to="/login/admin">Login admin</NavLink>
           </li>
           <li>
             <NavLink to="/register">Register</NavLink>
