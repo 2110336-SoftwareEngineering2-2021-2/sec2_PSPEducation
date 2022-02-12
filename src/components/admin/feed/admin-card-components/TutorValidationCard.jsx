@@ -1,7 +1,7 @@
 import "./tutorValidationCard.css";
 
 export default function TutorValidationCard(props) {
-  if (!props.fullname) return <div />;
+  if (!props.firstname) return <div />;
 
   const imgAvatarSrc = props.imgAvatarURL;
   const imgBgTutorSrc = props.imgBgURL;
@@ -37,7 +37,9 @@ export default function TutorValidationCard(props) {
           />
         </div>
         <div className="tutorName">
-          <span className="tutorFullName">{props.fullname}</span>
+          <span className="tutorFullName">
+            {props.firstname} {props.lastname}
+          </span>
           <span className="tutorUserName">{props.username}</span>
           <span className="tutorProfession">{props.profession}</span>
         </div>
@@ -48,9 +50,17 @@ export default function TutorValidationCard(props) {
             onClick={() => {
               props.setTriggerView(true);
               props.setTriggerData({
-                key: props.key,
-                fullname: props.fullname,
+                firstname: props.firstname,
+                lastname: props.lastname,
                 username: props.username,
+                email: props.email,
+                phoneNumber: props.phoneNumber,
+                displayNumber: props.displayNumber,
+                birthdate: props.birthdate,
+                gender: props.gender,
+                educationLevel: props.educationLevel,
+                citizenId: props.citizenId,
+                citizenImage: props.citizenImage,
                 profession: props.profession,
                 imgAvatarURL: props.imgAvatarURL,
                 imgBgURL: props.imgBgURL,
