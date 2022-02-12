@@ -11,7 +11,7 @@ export default function Footer() {
             <a href="privacypolicy-2021.html" className="platform-policy">
               Privacy Policy
             </a>{" "}
-            | updated on Feb 7 <sup>th</sup>, 2022
+            | updated on Feb 12 <sup>nd</sup>, 2022
           </span>
           <span>
             <span className="platform-name">WhereIsMyTutor?</span> is operated
