@@ -1,46 +1,60 @@
 :root {
   --imgBgTutorValid: url("https://source.unsplash.com/random/800×300/?blank");
+  --main-theme :rgb(87, 112, 221);
+  --main-white :#f0f8ff;
+  --main-border :rgb(116, 135, 219);
 }
 
-.tutorValidCard {
-  margin: 5px;
-  height: 337px;
-  position: relative;
+.tutorValidPopupCard {
+  top: 13px;
+  width: 100%;
+  min-height: 450px;
   background: linear-gradient(
     rgb(102, 101, 101),
     transparent,
-    rgb(102, 101, 101),
+    rgba(102, 101, 101, 0.411),
     var(--imgBgTutorValid)
   );
   background-size: cover;
   border-radius: 20px;
 }
 
-.tutorValidCard::before {
-  content: "";
-  position: absolute;
-  height: 80%;
-  width: 100%;
-  /* background: linear-gradient(rgb(255, 255, 255), rgb(87, 112, 221)); */
-  border-radius: 20px 20px 0 0;
-}
-
-.tutorValidCardContent {
+.tutorValidPopupCardContent {
+  padding-top: 20px;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 30px;
-  position: relative;
-  z-index: 100;
+  z-index: 900;
 }
 
-.tutorValidCardImageContainer {
+.tutorValidPopupCard::after {
+  content: "";
+  position: absolute;
+  bottom: 0px;
+  height: 60%;
+  width: 100%;
+  background: var(--main-white);
+  border-radius: 0 0 20px 20px;
+}
+
+.tutorValidPopupCardContentUpper {
+  position: relative;
+  padding-bottom: 15px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  z-index: 999;
+}
+
+.tutorValidPopupCardImageContainer {
   height: 140px;
   width: 140px;
   border-radius: 50%;
 }
 
-.tutorValidCardImageAvatar {
+.tutorValidPopupCardImageAvatar {
   height: 100%;
   width: 100%;
   object-fit: cover;
@@ -48,22 +62,23 @@
   border: 3px solid #fff;
 }
 
-.tutorName {
+.tutorValidPopupCardContentLower {
+  position: relative;
+  min-width: 500px;
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   align-items: center;
-  margin-top: 10px;
-  color: rgb(255, 255, 255);
+  justify-content: space-around;
+  z-index: 999;
+  margin-top: 20px;
+  padding: 0px 15px;
 }
 
-.tutorName span {
-  text-align: center;
-  width: 180px;
-  display: -webkit-box;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
+.tutorValidPopupCardContentLowerLeft {
+  display: flex;
+  flex-direction: column;
+  background-color: rgba(233, 233, 233, 0.555);
+  border-radius: 10px;
 }
 
 .tutorFullName {
@@ -77,19 +92,43 @@
   font-weight: 400;
 }
 
-.tutorProfession {
+.tutorEducation, .tutorEmail, .tutorPhoneNumber, .tutorBirthdate, .tutorCitizenId {
+  color: rgb(59, 59, 59);
   font-size: 15px;
-  font-weight: 500;
+  font-weight: 400;
+  white-space: nowrap;
+  overflow: hidden;
+  padding: 5px;
 }
 
-.tutorValidCardButton {
+.tutorValidPopupCardContentLowerRight {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tutorCitizenImgContainer {
+  height: 180px;
+  max-width: 180px;
+  padding: 0px 5px;
+}
+
+.tutorCitizenImg {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  /* border-radius: 50%; */
+  border: 3px solid var(--main-border);
+}
+
+.tutorValidPopupCardButton {
   display: flex;
   flex-direction: row;
   align-items: center;
   justify-content: space-around;
 }
 
-.tutorValidCardButton button {
+.tutorValidPopupCardButton button {
   color: #fff;
   outline: none;
   border: none;
@@ -99,25 +138,22 @@
   margin: 20px 5px;
 }
 
-.tutorValidCardButtonApprove {
-  background-color: rgb(137, 156, 241);
+.tutorValidPopupCardButtonApprove {
+  background-color: rgb(60, 151, 121);
   padding: 8px 20px;
   transition: all 0.3s ease;
 }
 
-.tutorValidCardButtonView:hover {
-  background-color: rgb(90, 116, 230);
+.tutorValidPopupCardButtonApprove:hover {
+  background-color: rgb(7, 107, 74);
 }
 
-.tutorValidCardButtonRemove {
+.tutorValidPopupCardButtonRemove {
   background-color: rgb(233, 123, 123);
   padding: 8px 10px;
   transition: all 0.3s ease;
 }
 
-.tutorValidCardButtonRemove:hover {
+.tutorValidPopupCardButtonRemove:hover {
   background-color: rgb(233, 86, 86);
 }
-
-
-
