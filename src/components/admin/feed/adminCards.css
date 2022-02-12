@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap");
 
+:root {
+  --card-theme:rgb(102, 124, 223);
+}
+
 *,
 *::before,
 *::after {
@@ -35,12 +39,17 @@
   height: 500px;
   width: 100%;
   max-width: 640px;
-  background-color: #fff;
+  background-color: var(--card-theme);
   border-radius: 20px;
-  overflow: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* overflow: auto; */
+
 }
 
 .closePopup{
+  color: white;
   position: absolute;
   top: 16px;
   right: 16px;
@@ -49,8 +58,8 @@
   border: none;
 }
 
-.viewPopupContent{
+/* .viewPopupContent{
+  height: 100%;
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  
-}
+} */
