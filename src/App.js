@@ -34,7 +34,7 @@ function App() {
     <>
       <Routes>
         <Route
-          path="/"
+          path=""
           element={
             <Layout
               cookie={cookie}
