@@ -147,7 +147,7 @@ export const reportCardData = [
     detail:
       "I cannot withdraw 9999 credit from my tutor account to bank account",
     imgTopicURL: "https://source.unsplash.com/random/300×300/?money",
-    imgBgURL: "https://source.unsplash.com/random/800×300/?money",
+    imgBgURL: "https://source.unsplash.com/random/800×300/?currency",
   },
 ];
 
