@@ -8,7 +8,6 @@ import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
 import CreateCourse from "./pages/course/CreateCourse";
 
-
 import App from "./App";
 
 ReactDOM.render(
