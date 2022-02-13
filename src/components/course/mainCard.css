@@ -1,5 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Festive&family=Poppins:wght@300;400;500;600;700&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap");
 
+* {
+  font-family: Poppins;
+}
+
+:root {
+  --main-theme : rgb(87, 112, 221)
+}
+
 .main {
   flex: 1;
   height: auto;
@@ -16,8 +24,8 @@
   font-size: 100px;
   font-family: Festive;
   color: white;
-  text-shadow: -0.2px 0.2px 0 rgb(87, 112, 221), 0.2px 0.2px 0 rgb(87, 112, 221),
-    0.2px -0.2px 0 rgb(87, 112, 221), -0.2px -0.2px 0 rgb(87, 112, 221);
+  text-shadow: -0.2px 0.2px 0 var(--main-theme), 0.2px 0.2px 0 var(--main-theme),
+    0.2px -0.2px 0 var(--main-theme), -0.2px -0.2px 0 var(--main-theme);
 }
 
 .mainForm {
@@ -47,16 +55,22 @@
   background-color: white;
 }
 
-.mainFormlearningType {
+.mainFormlearningTypeContainer{
   font-size: 16px;
   width: 500px;
   height: 50px;
   border: none;
-  padding: 15px 20px;
-  margin-bottom: 15px;
+  /* padding: 15px 10px; */
   border-radius: 30px;
-  background-color: white;
+  display: flex;
 }
+
+.mainFormlearningType {
+  font-size: 16px;
+  width: 100%;
+  font-family: Poppins;
+} 
+
 .mainFormDescription {
   font-size: 16px;
   width: 500px;
@@ -68,20 +82,16 @@
   resize: none;
 }
 
-.mainFormEmail:focus,
-.mainFormPassword:focus {
-  outline: none;
-}
-
 .mainFormSubmit {
   width: 250px;
-  background-color: rgb(87, 112, 221);
+  background-color: var(--main-theme);
   color: white;
   font-size: 16px;
   font-weight: 500;
   border: none;
   padding: 5px;
   margin-top: 10px;
+  margin-bottom: 20px;
   border-radius: 14px;
   cursor: pointer;
 }
@@ -91,7 +101,7 @@
 }
 
 .mainRegisterText {
-  /* border: 1px solid rgb(87, 112, 221); */
+  /* border: 1px solid var(--main-theme); */
   color: rgba(51, 51, 51, 0.712);
   padding: 15px 30px;
   border-radius: 20px;
