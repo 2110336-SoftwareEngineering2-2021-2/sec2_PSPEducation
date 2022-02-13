@@ -1,13 +1,8 @@
 import React from "react";
 import "./mainCard.css";
-import Dropdown from 'react-dropdown';
-import { useState } from 'react';
-import FormControl from '@mui/material/FormControl';
-import Select from '@mui/material/Select';
-import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-
+import { useState } from "react";
+import { FormControl, Select, Box, InputLabel, MenuItem } from "@mui/material";
+import { makeStyles } from "@material-ui/core/styles";
 
 export default function MainCard() {
   const [selectedOption, setSelectedOption] = useState(null);
@@ -15,10 +10,11 @@ export default function MainCard() {
   const handleChange = (event) => {
     setSelectedOption(event.target.value);
   };
-  
+
   return (
     <div className="main">
       <div className="mainTitle">Create Course</div>
+
       <div className="mainForm">
         <input
           className="mainFormCourseName"
@@ -28,6 +24,7 @@ export default function MainCard() {
           placeholder="Course name"
           aria-invalid="false"
         />
+
         <input
           className="mainFormSubject"
           type="text"
@@ -36,6 +33,7 @@ export default function MainCard() {
           placeholder="Subject"
           aria-invalid="false"
         />
+
         <input
           className="mainFormLesson"
           type="text"
@@ -44,16 +42,15 @@ export default function MainCard() {
           placeholder="lesson"
           aria-invalid="false"
         />
+
         <label for="start">Start date:</label>
-        <input 
-          className="mainFormStartDate"
-          id="start"
-          type="date"/>
+
+        <input className="mainFormStartDate" id="start" type="date" />
+
         <label for="finish">Finish date:</label>
-        <input 
-          className="mainFormFinishDate"
-          id="finish"
-          type="date"/>
+
+        <input className="mainFormFinishDate" id="finish" type="date" />
+
         <input
           className="mainFormPrice"
           type="number"
@@ -62,6 +59,7 @@ export default function MainCard() {
           max="5000"
           placeholder="Price"
         />
+
         <input
           className="mainFormCapacity"
           type="number"
@@ -70,6 +68,7 @@ export default function MainCard() {
           max="5000"
           placeholder="Capacity"
         />
+
         <input
           className="mainFormHour"
           type="number"
@@ -78,26 +77,76 @@ export default function MainCard() {
           max="5000"
           placeholder="Hour"
         />
+
         <textarea
           className="mainFormDescription"
           label="Description"
-          rows="10" cols="50"/>
+          rows="10"
+          cols="50"
+          placeholder="Description"
+        />
 
-        <Box sx={{ minWidth: 120 }}>
-          <InputLabel id="learningType-select-label">Learning type</InputLabel>
-            <Select
-              labelId="learningType-simple-select-label"
-              id="learningType-select-label"
-              className="mainFormlearningType"
-              value={selectedOption}
-              placeholder="Learning type"
-              onChange={handleChange}
+        <FormControl
+          variant="standard"
+          className="mainFormlearningTypeContainer"
+          sx={{
+            mb: 2,
+            minWidth: 120,
+            bgcolor: "white",
+            fontFamily: "Poppins",
+          }}
+        >
+          <InputLabel
+            id="learningType-select-label"
+            sx={{
+              fontFamily: "Poppins",
+              ml: 2.5,
+              my: -0.5,
+            }}
+          >
+            Learning type
+          </InputLabel>
+          <Select
+            labelId="learningType-simple-select-label"
+            id="learningType-simple-select"
+            className="mainFormlearningType"
+            value={selectedOption}
+            placeholder="Learning type"
+            onChange={handleChange}
+            sx={{
+              fontFamily: "Poppins",
+              ml: 2.5,
+              mr: 2.5,
+              my: -0.5,
+            }}
+            disableUnderline
+          >
+            <MenuItem
+              value="onsite"
+              sx={{
+                fontFamily: "Poppins",
+              }}
             >
-              <MenuItem value="onsite">Onsite</MenuItem>
-              <MenuItem value="online">Online</MenuItem>
-              <MenuItem value="mixed">Mixed</MenuItem>
-            </Select>
-        </Box>
+              Onsite
+            </MenuItem>
+            <MenuItem
+              value="online"
+              sx={{
+                fontFamily: "Poppins",
+              }}
+            >
+              Online
+            </MenuItem>
+            <MenuItem
+              value="mixed"
+              sx={{
+                fontFamily: "Poppins",
+              }}
+            >
+              Mixed
+            </MenuItem>
+          </Select>
+        </FormControl>
 
         <input
           className="mainFormLocation"
