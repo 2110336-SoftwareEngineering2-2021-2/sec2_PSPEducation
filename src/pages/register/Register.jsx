@@ -2,6 +2,7 @@
 // import LoginRightside from "../../components/login/loginRightside";
 import Navbar from "../../components/simple/navbar/Navbar";
 import Footer from "../../components/simple/footer/Footer";
+import RegisterCard from "../../components/register/RegisterCard.jsx";
 import "./register.css";
 import { Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -22,7 +23,9 @@ export default function Register({ cookie, setCookie }) {
       <div className="register">
         <Navbar />
         <div className="registerWrapper">
-          <div className="registerCard">BLANK</div>
+          <div className="registerCard">
+            <RegisterCard />
+          </div>
           <div className="registerFooter">
             <Footer />
           </div>
