@@ -21,7 +21,7 @@ export default function UpdateCourseCard(props) {
 
   return (
     <div className="updateCourse">
-      <div className="updateCourseTitle">update Course</div>
+      <div className="updateCourseTitle">Update Course</div>
       <div className="updateCourseForm">
         <input
           className="updateCourseFormCourseName"
