@@ -1,6 +1,5 @@
 import React, { useState, forwardRef } from "react";
-import PropTypes from "prop-types";
-import NumberFormat from "react-number-format";
+import { NumberFormatCustom } from "../../../../simple/NumberFormatCustom";
 import "./createCoursePopup.css";
 import {
   FormControl,
@@ -9,14 +8,9 @@ import {
   InputLabel,
   MenuItem,
   TextField,
-  Stack,
 } from "@mui/material";
 import DateAdapter from "@mui/lab/AdapterDateFns";
-import {
-  LocalizationProvider,
-  DesktopDatePicker,
-  MobileDatePicker,
-} from "@mui/lab";
+import { LocalizationProvider, DesktopDatePicker } from "@mui/lab";
 
 // import { makeStyles } from "@material-ui/core/styles";
 
@@ -34,32 +28,6 @@ const learningType = [
     label: "Mixed",
   },
 ];
-
-const NumberFormatCustom = forwardRef(function NumberFormatCustom(props, ref) {
-  const { onChange, ...other } = props;
-
-  return (
-    <NumberFormat
-      {...other}
-      getInputRef={ref}
-      onValueChange={(values) => {
-        onChange({
-          target: {
-            name: props.name,
-            value: values.value,
-          },
-        });
-      }}
-      thousandSeparator
-      isNumericString
-    />
-  );
-});
-
-NumberFormatCustom.propTypes = {
-  name: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-};
 
 export default function CreateCoursePopup(props) {
   const [selectedOption, setSelectedOption] = useState(null);
