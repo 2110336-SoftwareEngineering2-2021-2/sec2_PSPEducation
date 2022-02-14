@@ -15,39 +15,6 @@ export default function AdminCards() {
   );
 }
 
-function ViewPopup(props) {
-  return props.trigger ? (
-    <div className="viewPopup">
-      <div className="viewPopupContainer">
-        <button className="closePopup" onClick={() => props.setTrigger(false)}>
-          <CloseOutlined />
-        </button>
-        {/* <div className="viewPopupContent"> */}
-        <TutorCardPopup
-          firstname={props.data.firstname}
-          lastname={props.data.lastname}
-          username={props.data.username}
-          email={props.data.email}
-          phoneNumber={props.data.phoneNumber}
-          displayNumber={props.data.displayNumber}
-          birthdate={props.data.birthdate}
-          gender={props.data.gender}
-          educationLevel={props.data.educationLevel}
-          citizenId={props.data.citizenId}
-          citizenImage={props.data.citizenImage}
-          profession={props.data.profession}
-          imgAvatarURL={props.data.imgAvatarURL}
-          imgBgURL={props.data.imgBgURL}
-          setTriggerView={props.setDisplayState}
-          setTriggerData={props.setDataValidation}
-        />
-      </div>
-    </div>
-  ) : (
-    ""
-  );
-}
-
 export function AllCards() {
   const [displayState, setDisplayState] = useState(false);
   const [dataValidation, setDataValidation] = useState({
@@ -112,6 +79,40 @@ export function AllCards() {
     </>
   );
 }
+
+function ViewPopup(props) {
+  return props.trigger ? (
+    <div className="viewPopup">
+      <div className="viewPopupContainer">
+        <button className="closePopup" onClick={() => props.setTrigger(false)}>
+          <CloseOutlined />
+        </button>
+        {/* <div className="viewPopupContent"> */}
+        <TutorCardPopup
+          firstname={props.data.firstname}
+          lastname={props.data.lastname}
+          username={props.data.username}
+          email={props.data.email}
+          phoneNumber={props.data.phoneNumber}
+          displayNumber={props.data.displayNumber}
+          birthdate={props.data.birthdate}
+          gender={props.data.gender}
+          educationLevel={props.data.educationLevel}
+          citizenId={props.data.citizenId}
+          citizenImage={props.data.citizenImage}
+          profession={props.data.profession}
+          imgAvatarURL={props.data.imgAvatarURL}
+          imgBgURL={props.data.imgBgURL}
+          setTriggerView={props.setDisplayState}
+          setTriggerData={props.setDataValidation}
+        />
+      </div>
+    </div>
+  ) : (
+    ""
+  );
+}
+
 export function TutorValidationCards() {
   const [displayState, setDisplayState] = useState(false);
   const [dataValidation, setDataValidation] = useState({
