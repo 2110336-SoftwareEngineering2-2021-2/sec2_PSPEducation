@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import "./mainCourseCard.css";
-import ReactTable from "react-table-v6";
-import "react-table-v6/react-table.css";
-import { CloseOutlined, DeleteOutline } from "@mui/icons-material";
-import "react-datepicker/dist/react-datepicker.css";
+// import ReactTable from "react-table-v6";
+// import "react-table-v6/react-table.css";
+import { CloseOutlined } from "@mui/icons-material";
+// import "react-datepicker/dist/react-datepicker.css";
 import UpdateCourseCard from "./update/UpdateCourseCard";
 import { listCourseRows } from "../../dummyData";
 import { DataGrid } from "@mui/x-data-grid";
@@ -11,20 +11,17 @@ import { DataGrid } from "@mui/x-data-grid";
 export default function MainCourseCard() {
   const [displayState, setDisplayState] = useState(false);
   const [dataCourse, setDataCourse] = useState({
-    firstname: "",
-    lastname: "",
-    username: "",
-    email: "",
-    phoneNumber: "",
-    displayNumber: "",
-    birthdate: "",
-    gender: "",
-    educationLevel: "",
-    citizenId: "",
-    citizenImage: "",
-    profession: "",
-    imgAvatarURL: "",
-    imgBgURL: "",
+    id: "",
+    courseName: "",
+    subject: "",
+    lesson: "",
+    price: "",
+    courseStartDate: new Date(),
+    courseFinishDate: new Date(),
+    timeSlots: "",
+    capacity: "",
+    status: "",
+    learningType: "",
   });
 
   const handleDelete = (id) => {
@@ -32,24 +29,24 @@ export default function MainCourseCard() {
   };
 
   const columns = [
-    { field: "id", headerName: "ID" },
-    { field: "courseName", headerName: "Course name", width: 120 },
-    { field: "subject", headerName: "Subject", width: 120 },
-    { field: "lesson", headerName: "Lesson", width: 120 },
+    { field: "id", headerName: "ID", width: 80 },
+    { field: "courseName", headerName: "Course name", width: 280 },
+    { field: "subject", headerName: "Subject", width: 200 },
+    { field: "lesson", headerName: "Lesson", width: 220 },
     {
       field: "price",
-      headerName: "Price",
-      width: 120,
+      headerName: "Price ฿",
+      width: 150,
     },
     {
       field: "capacity",
       headerName: "Capacity",
-      width: 120,
+      width: 100,
     },
     {
       field: "action",
       headerName: "Action",
-      width: 150,
+      width: 200,
       renderCell: (params) => {
         return (
           <>
@@ -62,16 +59,6 @@ export default function MainCourseCard() {
             >
               Edit
             </button>
-          </>
-        );
-      },
-    },
-    {
-      field: "publish",
-      headerName: "Publish",
-      renderCell: (params) => {
-        return (
-          <>
             <button
               className="coursePublishButton"
               onClick={() => handleDelete(params.row.id)}
@@ -87,13 +74,14 @@ export default function MainCourseCard() {
   return (
     <div className="mainCourse">
       <div className="mainCourseTitle">List Course</div>
-      <div style={{ height: "900", width: "100%", overflow: "auto" }}>
+      <div className="mainCourseTable">
         <DataGrid
           rows={listCourseRows}
-          disableSelectionOnClick
           columns={columns}
-          pageSize={8}
+          pageSize={10}
+          disableSelectionOnClick
           checkboxSelection
+          disableColumnSelector
           setTrigger={setDisplayState}
         />
       </div>
@@ -110,26 +98,16 @@ export default function MainCourseCard() {
 
 function EditCoursePopup(props) {
   return props.trigger ? (
-    <div className="viewPopup">
-      <div className="viewPopupContainer">
-        <button className="closePopup" onClick={() => props.setTrigger(false)}>
+    <div className="viewEditCoursePopup">
+      <div className="viewEditCoursePopupContainer">
+        <button
+          className="closeEditCoursePopup"
+          onClick={() => props.setTrigger(false)}
+        >
           <CloseOutlined />
         </button>
         <UpdateCourseCard
           firstname={props.firstname}
-          lastname={props.lastname}
-          username={props.username}
-          email={props.email}
-          phoneNumber={props.phoneNumber}
-          displayNumber={props.displayNumber}
-          birthdate={props.birthdate}
-          gender={props.gender}
-          educationLevel={props.educationLevel}
-          citizenId={props.citizenId}
-          citizenImage={props.citizenImage}
-          profession={props.profession}
-          imgAvatarURL={props.imgAvatarURL}
-          imgBgURL={props.imgBgURL}
           setTrigger={props.setTrigger}
           setData={props.setData}
         />
