@@ -2,7 +2,7 @@ import "./tutorHome.css";
 import TutorTopbar from "../../components/tutor/topbar/TutorTopbar";
 import TutorSidebar from "../../components/tutor/sidebar/TutorSidebar";
 import TutorFeed from "../../components/tutor/feed/TutorFeed";
-import MainCourseCard from "../../components/course/mainCourseCard";
+import MainCourseCard from "../../components/tutor/course/MainCourseCard";
 
 export default function MainCourse() {
   return (
