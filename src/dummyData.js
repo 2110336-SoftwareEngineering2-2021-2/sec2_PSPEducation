@@ -145,3 +145,22 @@ export const DeveloperCardData = [
     devName: "Mhane",
   },
 ];
+
+export const listCourseData = [
+  {
+    id: 2,
+    courseName: "Tanner Linsley",
+    subject: "Math",
+    lesson: "pytagolus",
+    price: 2600,
+    capacity: 26,
+  },
+  {
+    id: 3,
+    courseName: "Taaaaaaaaaaaa",
+    subject: "Science",
+    lesson: "Enggian",
+    price: 3000,
+    capacity: 50,
+  },
+];
