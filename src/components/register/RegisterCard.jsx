@@ -1,208 +1,204 @@
-import React from "react";
-import { Box, InputLabel, MenuItem, Select, FormControl } from "@mui/material";
-// import FileUploader from "./FileUploader.jsx";
+import React, { useState } from "react";
+import { NumberFormatCustom } from "../simple/NumberFormatCustom";
 import "./registerCard.css";
+import {
+  Box,
+  InputLabel,
+  TextField,
+  MenuItem,
+  Select,
+  FormControl,
+} from "@mui/material";
+// import FileUploader from "./FileUploader.jsx";
+import DateAdapter from "@mui/lab/AdapterDateFns";
+import { LocalizationProvider, DesktopDatePicker } from "@mui/lab";
+
+const userTypeOption = [
+  {
+    value: "student",
+    label: "Student",
+  },
+  {
+    value: "tutor",
+    label: "Tutor",
+  },
+];
+
+const genderOption = [
+  {
+    value: "male",
+    label: "Male",
+  },
+  {
+    value: "female",
+    label: "Female",
+  },
+  {
+    value: "other",
+    label: "Other",
+  },
+];
+
+const educationOption = [
+  {
+    value: 0,
+    label: "Not Defined",
+  },
+  {
+    value: 1,
+    label: "Pre-school",
+  },
+  {
+    value: 2,
+    label: "Primary1-3",
+  },
+  {
+    value: 3,
+    label: "Primary4-6",
+  },
+  {
+    value: 4,
+    label: "Secondary1-3",
+  },
+  {
+    value: 5,
+    label: "Secondary4-6",
+  },
+  {
+    value: 6,
+    label: "Bachelor's Degree",
+  },
+  {
+    value: 7,
+    label: "Master's Degree",
+  },
+  {
+    value: 8,
+    label: "PhD",
+  },
+];
 
 export default function RegisterCard() {
-  const [userType, setUserType] = React.useState("");
-  const [gender, setGender] = React.useState("");
-  const [educationLevel, setEducationLevel] = React.useState("");
-  const handleTypeChange = (event) => {
-    setUserType(event.target.value);
-  };
-  const handleGenderChange = (event) => {
-    setGender(event.target.value);
-  };
-  const handleEducationLevelChange = (event) => {
-    setEducationLevel(event.target.value);
+  const [selectedOption, setSelectedOption] = useState({
+    userType: "",
+    gender: "",
+    educationLevel: "",
+  });
+
+  const [values, setValues] = useState({
+    birthdate: new Date(),
+  });
+
+  const handleChange = (event) => {
+    setSelectedOption(event.target.value);
+    setValues({
+      ...values,
+      [event.target.name]: event.target.value,
+    });
   };
 
-  const [selectedFile, setSelectedFile] = React.useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
 
   return (
     <div className="registerPage">
       <div className="registerTitle">Register</div>
-      <div className="registerForm">
-        {/* <input
-          className="registerType"
-          type="text"
-          autocomplete="off"
-          spellcheck="false"
-          placeholder="Type"
-          aria-invalid="false"
-        /> */}
-        {/* <select
-          className="registerType"
-          autocomplete="off"
-          spellcheck="false"
-          placeholder="Type"
-          aria-invalid="false"
-          required="true"
-          className="registerType"
-          value={userType}
-          // placeholder="User Type"
-          onChange={handleTypeChange}
-        >
-          <option>Select gender</option>
-          <option value="tutor">Tutor</option>
-          <option value="student">Student</option>
-        </select> */}
-        <Box sx={{ minWidth: 120 }}>
-          <InputLabel id="userType-simple-select">User Type</InputLabel>
-          <Select
-            labelId="userType-simple-select-label"
+      <Box
+        component="form"
+        sx={{
+          "& .MuiTextField-root": { m: 1, width: "300px", minWidth: 120 },
+        }}
+        noValidate
+        autoComplete="off"
+        spellCheck="false"
+      >
+        <div className="registerForm">
+          <TextField
             id="userType-simple-select"
-            className="registerType"
-            value={userType}
-            // placeholder="User Type"
-            onChange={handleTypeChange}
+            select
+            required
+            label="User Type"
+            value={selectedOption.userType}
+            onChange={handleChange}
+            helperText=""
           >
-            <MenuItem value="tutor">Tutor</MenuItem>
-            <MenuItem value="student">Student</MenuItem>
-          </Select>
-        </Box>
+            {userTypeOption.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
 
-        <InputLabel>Firstname</InputLabel>
+          <TextField id="form-register-firstname" required label="Firstname" />
 
-        <input
-          className="registerFirstname"
-          type="text"
-          autocomplete="off"
-          spellcheck="false"
-          // placeholder="Firstname"
-          aria-invalid="false"
-        />
+          <TextField id="form-register-lastname" required label="Lastname" />
 
-        <InputLabel>Lastname</InputLabel>
+          <TextField id="form-register-username" required label="Username" />
 
-        <input
-          className="registerLastname"
-          type="text"
-          autocomplete="off"
-          spellcheck="false"
-          // placeholder="Lastname"
-          aria-invalid="false"
-        />
+          <TextField id="form-register-password" required label="Password" />
 
-        <InputLabel>Username</InputLabel>
+          <TextField
+            id="form-register-confirm-password"
+            required
+            label="Confirm Password"
+          />
 
-        <input
-          className="registerUsername"
-          type="text"
-          autocomplete="off"
-          spellcheck="false"
-          // placeholder="Username"
-          aria-invalid="false"
-        />
+          <TextField id="form-register-email" required label="Email" />
 
-        <InputLabel>Password</InputLabel>
+          <TextField
+            id="form-register-phone-number"
+            required
+            label="Phone Number"
+          />
 
-        <input
-          className="registerPassword"
-          type="password"
-          autocomplete="off"
-          spellcheck="false"
-          // placeholder="Password"
-          aria-invalid="false"
-        />
+          <TextField
+            id="form-register-display-name"
+            required
+            label="Display Name"
+          />
 
-        <InputLabel>Confirm Password</InputLabel>
+          <LocalizationProvider dateAdapter={DateAdapter}>
+            <DesktopDatePicker
+              required
+              label="Birthdate"
+              inputFormat="MM/dd/yyyy"
+              value={values.birthdate}
+              onChange={handleChange}
+              renderInput={(params) => <TextField {...params} />}
+            />
+          </LocalizationProvider>
 
-        <input
-          className="registerConfirmPassword"
-          type="password"
-          autocomplete="off"
-          spellcheck="false"
-          // placeholder="Confirm Password"
-          aria-invalid="false"
-        />
-
-        <InputLabel>Email</InputLabel>
-
-        <input
-          className="registerEmail"
-          type="text"
-          autocomplete="off"
-          spellcheck="false"
-          // placeholder="Email"
-          aria-invalid="false"
-        />
-
-        <InputLabel>Phone Number</InputLabel>
-
-        <input
-          className="registerPhoneNumber"
-          type="text"
-          autocomplete="off"
-          spellcheck="false"
-          // placeholder="Phone Number"
-          aria-invalid="false"
-        />
-
-        <InputLabel>Display Name</InputLabel>
-
-        <input
-          className="registerDisplayNumber"
-          type="text"
-          autocomplete="off"
-          spellcheck="false"
-          // placeholder="Display Number"
-          aria-invalid="false"
-        />
-
-        <InputLabel>Birthdate</InputLabel>
-
-        <input
-          className="registerBirthdate"
-          type="date"
-          autocomplete="off"
-          spellcheck="false"
-          // placeholder="Birthdate"
-          aria-invalid="false"
-        />
-
-        <Box sx={{ minWidth: 120 }}>
-          <InputLabel id="gender-simple-select">Gender</InputLabel>
-          <Select
-            labelId="gender-simple-select-label"
-            id="gender-simple-select"
-            className="registerGender"
-            value={gender}
-            // placeholder="Gender"
-            onChange={handleGenderChange}
+          <TextField
+            id="form-register-gender"
+            select
+            required
+            value={selectedOption.gender}
+            label="Gender"
+            onChange={handleChange}
           >
-            <MenuItem value="male">Male</MenuItem>
-            <MenuItem value="female">Female</MenuItem>
-            <MenuItem value="other">Other</MenuItem>
-          </Select>
-        </Box>
+            {genderOption.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
 
-        <Box sx={{ minWidth: 120 }}>
-          <InputLabel id="education-level-simple-select">
-            Education Level
-          </InputLabel>
-          <Select
-            labelId="education-level-simple-select-label"
-            id="education-level-simple-select"
-            className="registerEducationLevel"
-            value={educationLevel}
-            // placeholder="Education Level"
-            onChange={handleEducationLevelChange}
+          <TextField
+            id="form-register-education"
+            select
+            required
+            value={selectedOption.educationLevel}
+            label="Education Level"
+            onChange={handleChange}
           >
-            <MenuItem value={0}>Not Defined</MenuItem>
-            <MenuItem value={1}>Pre-school</MenuItem>
-            <MenuItem value={2}>Primary1-3</MenuItem>
-            <MenuItem value={3}>Primary4-6</MenuItem>
-            <MenuItem value={4}>Secondary1-3</MenuItem>
-            <MenuItem value={5}>Secondary4-6</MenuItem>
-            <MenuItem value={6}>Bachelor's Degree</MenuItem>
-            <MenuItem value={7}>Master's Degree</MenuItem>
-            <MenuItem value={8}>PHD</MenuItem>
-          </Select>
-        </Box>
+            {educationOption.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.label}
+              </MenuItem>
+            ))}
+          </TextField>
 
-        <InputLabel>Profile Picture</InputLabel>
-        {/* <input
+          <InputLabel>Profile Picture</InputLabel>
+          {/* <input
           className="registerPicture"
           type="text"
           autocomplete="off"
@@ -211,41 +207,41 @@ export default function RegisterCard() {
           aria-invalid="false"
         /> */}
 
-        <input
-          className="registerPicture"
-          type="file"
-          value={selectedFile}
-          onChange={(e) => setSelectedFile(e.target.files[0])}
-        />
+          <input
+            className="registerPicture"
+            type="file"
+            value={selectedFile}
+            onChange={(e) => setSelectedFile(e.target.files[0])}
+          />
 
-        {/* <FileUploaded
+          {/* <FileUploaded
           onFileSelectSuccess={(file) => setSelectedFile(file)}
           onFileSelectError={({ error }) => alert(error)}
         /> */}
 
-        <InputLabel>Citizen ID</InputLabel>
+          <TextField
+            id="form-register-citizen-id"
+            required
+            label="Citizen ID"
+            InputProps={{
+              inputComponent: NumberFormatCustom,
+            }}
+          />
 
-        <input
-          className="registerCitizenId"
-          type="text"
-          autocomplete="off"
-          spellcheck="false"
-          // placeholder="Citizen ID"
-          aria-invalid="false"
-        />
+          <InputLabel>Citizen Image</InputLabel>
 
-        <InputLabel>Citizen Image</InputLabel>
+          <TextField
+            className="registerCitizenImage"
+            type="text"
+            autocomplete="off"
+            spellcheck="false"
+            // placeholder="Citizen Image"
+            aria-invalid="false"
+          />
+        </div>
 
-        <input
-          className="registerCitizenImage"
-          type="text"
-          autocomplete="off"
-          spellcheck="false"
-          // placeholder="Citizen Image"
-          aria-invalid="false"
-        />
         <button className="registerSubmit">Register</button>
-      </div>
+      </Box>
 
       <div className="Login">
         <p className="LoginText">

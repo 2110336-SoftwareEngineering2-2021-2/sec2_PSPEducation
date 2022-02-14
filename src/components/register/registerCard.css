@@ -27,7 +27,7 @@
   justify-content: center;
 }
 
-.registerType,
+/* .registerType,
 .registerFirstname,
 .registerLastname,
 .registerUsername,
@@ -69,7 +69,7 @@
 .registerCitizenId:focus,
 .registerCitizenImage:focus {
   outline: none;
-}
+} */
 
 .registerSubmit {
   width: 250px;
@@ -82,6 +82,7 @@
   margin-top: 10px;
   border-radius: 14px;
   cursor: pointer;
+
 }
 
 .registerSubmit:hover {
