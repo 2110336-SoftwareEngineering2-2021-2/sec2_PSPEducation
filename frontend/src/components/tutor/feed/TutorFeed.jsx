@@ -18,19 +18,17 @@ import MainCourseCard from "./course/MainCourseCard";
 export default function TutorFeed() {
   return (
     <>
-      <div className="tutorFeed">
-        <Outlet />
-      </div>
+      <Outlet />
     </>
   );
 }
 
-export function MyCrsComp() {
-  const [displayState, setDisplayState] = useState(false);
+export function MyCourseList() {
+  // const [displayState, setDisplayState] = useState(false);
 
   return (
-    <div className="tutorFeedWrapper">
-      <div className="tutorFeedCard">
+    <>
+      {/* <div className="tutorFeedCard">
         <div className="tutorFeedTitle">
           <div className="tutorFeedTitleLeft">
             <div className="tutorFeedTitleName">My Courses</div>
@@ -45,8 +43,9 @@ export function MyCrsComp() {
         <div className="tutorFeedWidgetWrapper">
           <MyCourses />
         </div>
-      </div>
-      <div className="tutorFeedAddCourse">
+      </div> */}
+      <MainCourseCard />
+      {/* <div className="tutorFeedAddCourse">
         <button
           className="tutorFeedAddCourseButton"
           onClick={() => setDisplayState(true)}
@@ -56,9 +55,8 @@ export function MyCrsComp() {
       </div>
       <ViewCreateCoursePopup
         trigger={displayState}
-        setTrigger={setDisplayState}
-      />
-    </div>
+        setTrigger={setDisplayState} */}
+    </>
   );
 }
 
@@ -109,24 +107,25 @@ export function EnrollReqComp() {
 
 export function MsgReqComp() {
   return (
-    <div className="tutorFeedWrapper">
-      <div className="tutorFeedCard">
-        <div className="tutorFeedTitle">
-          <div className="tutorFeedTitleLeft">
-            <div className="tutorFeedTitleName">Message Request</div>
-            <div className="tutorFeedTitleBadge">{msgData.length}</div>
+    <div className="tutorFeed">
+      <div className="tutorFeedWrapper">
+        <div className="tutorFeedCard">
+          <div className="tutorFeedTitle">
+            <div className="tutorFeedTitleLeft">
+              <div className="tutorFeedTitleName">Message Request</div>
+              <div className="tutorFeedTitleBadge">{msgData.length}</div>
+            </div>
+
+            <div className="tutorFeedTitleRight">
+              <ForumOutlined className="tutorFeedTitleIcon" />
+            </div>
           </div>
 
-          <div className="tutorFeedTitleRight">
-            <ForumOutlined className="tutorFeedTitleIcon" />
+          <div className="tutorFeedWidgetWrapper">
+            <MsgReq />
           </div>
-        </div>
-
-        <div className="tutorFeedWidgetWrapper">
-          <MsgReq />
         </div>
       </div>
     </div>
   );
 }
-
