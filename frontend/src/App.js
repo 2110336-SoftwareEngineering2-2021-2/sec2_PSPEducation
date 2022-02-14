@@ -11,7 +11,6 @@ import StudentHome from "./pages/student/home/StudentHome";
 import LoginUser from "./pages/login/LoginUser";
 import LoginAdmin from "./pages/login/LoginAdmin";
 import Register from "./pages/register/Register";
-import CreateCourse from "./pages/course/CreateCourse";
 
 import { BrowserRouter, Routes, Route, Redirect } from "react-router-dom";
 import {
@@ -228,17 +227,6 @@ function App() {
           path="register"
           element={
             <Register
-              cookie={cookie}
-              setCookie={setCookie}
-              removeCookie={removeCookie}
-            />
-          }
-        />
-
-        <Route
-          path="course/create"
-          element={
-            <CreateCourse
               cookie={cookie}
               setCookie={setCookie}
               removeCookie={removeCookie}
