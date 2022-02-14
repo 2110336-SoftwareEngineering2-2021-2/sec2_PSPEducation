@@ -1,11 +1,7 @@
 import React from "react";
-import Box from "@mui/material/Box";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-// import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
+import { Box, InputLabel, MenuItem, Select, FormControl } from "@mui/material";
 // import FileUploader from "./FileUploader.jsx";
-import "./RegisterCard.css";
+import "./registerCard.css";
 
 export default function RegisterCard() {
   const [userType, setUserType] = React.useState("");
@@ -65,7 +61,9 @@ export default function RegisterCard() {
             <MenuItem value="student">Student</MenuItem>
           </Select>
         </Box>
+
         <InputLabel>Firstname</InputLabel>
+
         <input
           className="registerFirstname"
           type="text"
@@ -74,7 +72,9 @@ export default function RegisterCard() {
           // placeholder="Firstname"
           aria-invalid="false"
         />
+
         <InputLabel>Lastname</InputLabel>
+
         <input
           className="registerLastname"
           type="text"
@@ -83,7 +83,9 @@ export default function RegisterCard() {
           // placeholder="Lastname"
           aria-invalid="false"
         />
+
         <InputLabel>Username</InputLabel>
+
         <input
           className="registerUsername"
           type="text"
@@ -92,7 +94,9 @@ export default function RegisterCard() {
           // placeholder="Username"
           aria-invalid="false"
         />
+
         <InputLabel>Password</InputLabel>
+
         <input
           className="registerPassword"
           type="password"
@@ -101,7 +105,9 @@ export default function RegisterCard() {
           // placeholder="Password"
           aria-invalid="false"
         />
+
         <InputLabel>Confirm Password</InputLabel>
+
         <input
           className="registerConfirmPassword"
           type="password"
@@ -110,7 +116,9 @@ export default function RegisterCard() {
           // placeholder="Confirm Password"
           aria-invalid="false"
         />
+
         <InputLabel>Email</InputLabel>
+
         <input
           className="registerEmail"
           type="text"
@@ -119,7 +127,9 @@ export default function RegisterCard() {
           // placeholder="Email"
           aria-invalid="false"
         />
+
         <InputLabel>Phone Number</InputLabel>
+
         <input
           className="registerPhoneNumber"
           type="text"
@@ -128,7 +138,9 @@ export default function RegisterCard() {
           // placeholder="Phone Number"
           aria-invalid="false"
         />
+
         <InputLabel>Display Name</InputLabel>
+
         <input
           className="registerDisplayNumber"
           type="text"
@@ -137,7 +149,9 @@ export default function RegisterCard() {
           // placeholder="Display Number"
           aria-invalid="false"
         />
+
         <InputLabel>Birthdate</InputLabel>
+
         <input
           className="registerBirthdate"
           type="date"
@@ -146,6 +160,7 @@ export default function RegisterCard() {
           // placeholder="Birthdate"
           aria-invalid="false"
         />
+
         <Box sx={{ minWidth: 120 }}>
           <InputLabel id="gender-simple-select">Gender</InputLabel>
           <Select
@@ -161,6 +176,7 @@ export default function RegisterCard() {
             <MenuItem value="other">Other</MenuItem>
           </Select>
         </Box>
+
         <Box sx={{ minWidth: 120 }}>
           <InputLabel id="education-level-simple-select">
             Education Level
@@ -184,6 +200,7 @@ export default function RegisterCard() {
             <MenuItem value={8}>PHD</MenuItem>
           </Select>
         </Box>
+
         <InputLabel>Profile Picture</InputLabel>
         {/* <input
           className="registerPicture"
@@ -193,17 +210,21 @@ export default function RegisterCard() {
           // placeholder="Picture"
           aria-invalid="false"
         /> */}
+
         <input
           className="registerPicture"
           type="file"
           value={selectedFile}
           onChange={(e) => setSelectedFile(e.target.files[0])}
         />
+
         {/* <FileUploaded
           onFileSelectSuccess={(file) => setSelectedFile(file)}
           onFileSelectError={({ error }) => alert(error)}
         /> */}
+
         <InputLabel>Citizen ID</InputLabel>
+
         <input
           className="registerCitizenId"
           type="text"
@@ -212,7 +233,9 @@ export default function RegisterCard() {
           // placeholder="Citizen ID"
           aria-invalid="false"
         />
+
         <InputLabel>Citizen Image</InputLabel>
+
         <input
           className="registerCitizenImage"
           type="text"
