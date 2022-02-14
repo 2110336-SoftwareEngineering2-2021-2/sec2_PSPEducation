@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Festive&family=Poppins:wght@300;400;500;600;700&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap");
 
 .left {
-  flex: 1;
   height: 100%;
   width: 100%;
   display: flex;
@@ -10,6 +9,9 @@
   justify-content: center;
   background-color: white;
   border-radius: 20px 0px 0px 20px;
+  -webkit-box-shadow: -5px 5px 33px -21px rgba(66, 68, 90, 1);
+  -moz-box-shadow: -5px 5px 33px -21px rgba(66, 68, 90, 1);
+  box-shadow: -5px 5px 33px -21px rgba(66, 68, 90, 1);
 }
 
 .leftPSP {

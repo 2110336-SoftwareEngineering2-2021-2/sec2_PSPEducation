@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Festive&family=Poppins:wght@300;400;500;600;700&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap");
 
 .right {
-  flex: 1;
   height: 100%;
   width: 100%;
   display: flex;
@@ -10,10 +9,14 @@
   justify-content: space-evenly;
   background-color: rgba(125, 170, 230, 0.7);
   border-radius: 0px 20px 20px 0px;
+  -webkit-box-shadow: 5px 5px 33px -21px rgba(66, 68, 90, 1);
+  -moz-box-shadow: 5px 5px 33px -21px rgba(66, 68, 90, 1);
+  box-shadow: 5px 5px 33px -21px rgba(66, 68, 90, 1);
 }
 
 .rightTitle {
   font-size: 100px;
+  white-space: nowrap;
   font-family: Festive;
   color: white;
   text-shadow: -0.2px 0.2px 0 rgb(87, 112, 221), 0.2px 0.2px 0 rgb(87, 112, 221),
@@ -31,6 +34,7 @@
 .rightFormPassword {
   font-size: 16px;
   width: 280px;
+  max-width: 60%;
   height: 15px;
   border: none;
   padding: 15px 20px;
@@ -44,6 +48,7 @@
 }
 
 .rightFormSubmit {
+  max-width: 60%;
   width: 250px;
   background-color: rgb(87, 112, 221);
   color: white;
