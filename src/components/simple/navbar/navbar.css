@@ -3,6 +3,7 @@
   background-color: rgb(87, 112, 221);
   display: flex;
   top: 0;
+  position: sticky;
   z-index: 999;
 }
 

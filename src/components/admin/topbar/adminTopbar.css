@@ -4,15 +4,16 @@
   --main-border :rgb(116, 135, 219);
 }
 
-.topbar {
+.adminTopbar {
   height: 60px;
   background-color: var(--main-theme);
   display: flex;
+  position: sticky;
   top: 0;
   z-index: 999;
 }
 
-.topbarWrapper {
+.adminTopbarWrapper {
   width: 100%;
   padding: 0px 18px;
   display: flex;
@@ -20,18 +21,18 @@
   justify-content: space-between;
 }
 
-.topLeft {
+.adminTopLeft {
   flex: 3;
   justify-content: center;
 }
 
-.topLeftContainer {
+.adminTopLeftContainer {
   top: -10px;
   position: relative;
   white-space: nowrap;
 }
 
-.topLeftlogo {
+.adminTopLeftlogo {
   font-size: 24px;
   margin-left: 20px;
   font-weight: bold;
@@ -39,12 +40,12 @@
   cursor: pointer;
 }
 
-.topLeftlogoLink {
+.adminTopLeftlogoLink {
   text-decoration: none;
   color: inherit;
 }
 
-.topLeftauthor {
+.adminTopLeftauthor {
   font-size: 16px;
   font-weight: 400;
   color: var(--main-white);
@@ -53,11 +54,11 @@
   left: 54px;
 }
 
-.topCenter {
+.adminTopCenter {
   flex: 3;
 }
 
-.searchbar {
+.adminSearchbar {
   height: 30px;
   background-color: var(--main-white);
   border-radius: 30px;
@@ -65,12 +66,12 @@
   align-items: center;
 }
 
-.searchIcon {
+.adminSearchIcon {
   font-size: 20px !important;
   margin-left: 10px;
 }
 
-.searchInput {
+.adminSearchInput {
   font-size: 14px;
   border: none;
   width: 70%;
@@ -79,11 +80,11 @@
   margin: 1px;
 }
 
-.searchInput:focus {
+.adminSearchInput:focus {
   outline: none;
 }
 
-.topRight {
+.adminTopRight {
   flex: 2;
   display: flex;
   align-items: center;
@@ -91,18 +92,18 @@
   justify-content: flex-end;
 }
 
-.topRightContainer {
+.adminTopRightContainer {
   display: flex;
 }
 
-.topbarIconContainer {
+.adminTopbarIconContainer {
   position: relative;
   cursor: pointer;
   margin-right: 20px;
   color: var(--main-white);
 }
 
-.topIconBadge {
+.adminTopIconBadge {
   width: 14px;
   height: 14px;
   position: absolute;

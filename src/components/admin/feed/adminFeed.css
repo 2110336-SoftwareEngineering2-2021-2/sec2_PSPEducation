@@ -1,7 +1,8 @@
-.feed {
+.adminFeed {
   flex: 4;
-  height: calc(100vh - 55px);
-  top: 55px;
+  /* height: calc(100vh - 60px); */
+  height: 100%;
+  top: 60px;
   width: 100%;
   padding: 5px;
   background-color: rgb(221, 231, 250);
@@ -20,7 +21,7 @@
   background-color: rgb(179, 179, 179);
 }
 
-.feedWrapper {
+.adminFeedWrapper {
   padding: 20px;
   display: flex;
   /* flex-flow: row wrap; */
@@ -28,7 +29,7 @@
   justify-content: center;
 }
 
-.feedMenu {
+.adminFeedMenu {
   margin: 20px;
   padding: 10px;
   color: rgb(80, 83, 83);
@@ -38,25 +39,25 @@
   border-radius: 10px;
 }
 
-.feedTitle {
+.adminFeedTitle {
   margin-bottom: 5px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
-.feedTitleLeft {
+.adminFeedTitleLeft {
   display: flex;
   align-items: center;
 }
 
-.feedTitleName {
+.adminFeedTitleName {
   font-weight: 600;
   margin: 0px 10px;
   font-size: 17px;
 }
 
-.feedTitleBadge {
+.adminFeedTitleBadge {
   width: 15px;
   height: 15px;
   background-color: rgb(80, 83, 83);
@@ -68,6 +69,6 @@
   font-size: 14px;
 }
 
-.feedTitleIcon {
+.adminFeedTitleIcon {
   cursor: pointer;
 }
