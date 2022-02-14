@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 export default function LoginUser({ cookie, setCookie }) {
   const [state, setState] = useState(false);
+
   useEffect(() => {
     // Update the document title using the browser API
     if (
