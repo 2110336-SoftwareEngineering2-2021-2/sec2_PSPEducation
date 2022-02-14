@@ -68,8 +68,8 @@ export default function CreateCoursePopup(props) {
     price: "",
     capacity: "",
     hour: "",
-    startDate: "",
-    endDate: "",
+    startDate: new Date(),
+    endDate: new Date(),
   });
 
   const handleChange = (event) => {
@@ -177,16 +177,6 @@ export default function CreateCoursePopup(props) {
             </TextField>
 
             <TextField id="form-location" label="Location" />
-
-            {/* <input
-            className="createCourseFormStatus"
-            disabled="true"
-            type="text"
-            autocomplete="off"
-            spellcheck="false"
-            placeholder="unpublished"
-            aria-invalid="false"
-          /> */}
 
             <div className="createCoursePopupButton">
               <button
