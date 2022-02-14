@@ -198,14 +198,6 @@ export default function RegisterCard() {
           </TextField>
 
           <InputLabel>Profile Picture</InputLabel>
-          {/* <input
-          className="registerPicture"
-          type="text"
-          autocomplete="off"
-          spellcheck="false"
-          // placeholder="Picture"
-          aria-invalid="false"
-        /> */}
 
           <input
             className="registerPicture"
@@ -230,13 +222,11 @@ export default function RegisterCard() {
 
           <InputLabel>Citizen Image</InputLabel>
 
-          <TextField
+          <input
             className="registerCitizenImage"
-            type="text"
-            autocomplete="off"
-            spellcheck="false"
-            // placeholder="Citizen Image"
-            aria-invalid="false"
+            type="file"
+            value={selectedFile}
+            onChange={(e) => setSelectedFile(e.target.files[0])}
           />
         </div>
 
