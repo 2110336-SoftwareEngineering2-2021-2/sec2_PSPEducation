@@ -15,7 +15,7 @@ import MainCourse from "./pages/course/MainCourse";
 
 import { BrowserRouter, Routes, Route, Redirect } from "react-router-dom";
 import {
-  MyCrsComp,
+  MyCourseList,
   EnrollReqComp,
   MsgReqComp,
 } from "./components/tutor/feed/TutorFeed";
@@ -115,7 +115,7 @@ function App() {
             exact
             path=""
             element={
-              <MyCrsComp
+              <MyCourseList
                 cookie={cookie}
                 setCookie={setCookie}
                 removeCookie={removeCookie}
@@ -126,7 +126,7 @@ function App() {
           <Route
             path="mycourse"
             element={
-              <MyCrsComp
+              <MyCourseList
                 cookie={cookie}
                 setCookie={setCookie}
                 removeCookie={removeCookie}
