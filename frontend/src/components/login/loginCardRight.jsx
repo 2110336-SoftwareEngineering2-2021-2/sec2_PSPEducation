@@ -7,7 +7,7 @@ import { Navigate } from "react-router-dom";
 
 export default function LoginCardRight({ cookie, setCookie, position }) {
   const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const [password_1, setPassword_1] = useState("");
   const [state, setState] = useState(false);
   useEffect(() => {
     // Update the document title using the browser API
@@ -15,23 +15,24 @@ export default function LoginCardRight({ cookie, setCookie, position }) {
   }, [state]);
 
   const handleSubmit = async () => {
-    const hashedPassword = sha512_256(password);
+    // const password = sha512_256(password_1);
+    const password = password_1;
 
-    const user = { email, hashedPassword };
-
+    const user = { email, password };
+    console.log()
     axios
-      .post(`/get${position}`, {
-        body: JSON.stringify(user),
-      })
-      .then((e) => {
+      .post(`http://localhost:3000/auth/signin`, user, { withCredentials: true })
+      .then((response) => {
+        const data = response.data
+        console.log(response);
         setState(true);
-        setCookie("user", e.cookies);
-        setCookie("user_role", e.position);
-        if (e.position === "tutor") {
+        setCookie("user", 'kuay');
+        setCookie("user_role", data.type);
+        if (data.type === "tutor") {
           return <Navigate to="/tutor" />;
-        } else if (e.position === "student") {
+        } else if (data.type === "student") {
           return <Navigate to="/student" />;
-        } else if (e.position === "admin") {
+        } else if (data.type === "admin") {
           return <Navigate to="/admin" />;
         }
       })
@@ -42,7 +43,7 @@ export default function LoginCardRight({ cookie, setCookie, position }) {
 
   return (
     <>
-      {state && <Navigate to="/tutor" />}
+      {state && <Navigate to="/student" />}
       <div className="right">
         <div className="rightTitle">Welcome {state} !!</div>
         <div className="rightForm">
@@ -50,7 +51,7 @@ export default function LoginCardRight({ cookie, setCookie, position }) {
             className="rightFormEmail"
             type="text"
             autocomplete="off"
-            spellcheck="false"
+            spellCheck="false"
             placeholder="Email address"
             aria-invalid="false"
             onChange={(e) => setEmail(e.target.value)}
@@ -59,11 +60,11 @@ export default function LoginCardRight({ cookie, setCookie, position }) {
             className="rightFormPassword"
             type="password"
             autocomplete="off"
-            spellcheck="false"
+            spellCheck="false"
             placeholder="Password"
             aria-invalid="false"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            value={password_1}
+            onChange={(e) => setPassword_1(e.target.value)}
           />
           <button className="rightFormSubmit" onClick={() => handleSubmit()}>
             Login

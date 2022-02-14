@@ -219,6 +219,11 @@
   cursor: pointer;
 }
 
+.tutorDropProfileItem button{
+  border: none;
+  outline: none;
+}
+
 .tutorDropProfileItem:hover {
   border-radius: 10px;
   border: var(--main-theme) 1.5px solid;

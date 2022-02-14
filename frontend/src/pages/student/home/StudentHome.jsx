@@ -23,7 +23,7 @@ export default function StudentHome({ cookie, setCookie, removeCookie }) {
   return (
     <>
       {/* {state && <Navigate to="/login/user" />} */}
-      <StudentTopbar />
+      <StudentTopbar cookie = {cookie} setCookie = {setCookie} removeCookie = {removeCookie}/>
       <div className="pageContent">
         <div className="sidebarContainer">
           <StudentSidebar />

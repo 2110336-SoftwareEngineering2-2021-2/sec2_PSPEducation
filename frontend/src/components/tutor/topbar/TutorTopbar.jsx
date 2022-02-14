@@ -1,5 +1,6 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import "./tutorTopbar.css";
 import {
   AppsOutlined,
@@ -8,13 +9,32 @@ import {
   SearchOutlined,
 } from "@mui/icons-material";
 import { userData } from "../../../dummyData";
-
-export default function TutorTopbar() {
+import {Cookies } from 'react-cookie';
+export default function TutorTopbar({cookie, setCookie, removeCookie}) {
   const [dropProfileState, setDropProfileState] = useState(false);
-
+  const[state, setState] = useState(false)
   const imgSrc = userData.imgURL;
-
+  useEffect(() => {
+    // Update the document title using the browser API
+    console.log('this is the tutor top bar')
+    console.log(state);
+  }, [state]);
+  const handleLogout = async () => {
+    axios.post(`http://localhost:3000/auth/signout`, {}, { withCredentials: true })
+    .then((response) => {
+      removeCookie('user')
+      console.log('response ' + response)
+      removeCookie('user_role')
+      setState(true)
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+  }
+  
   return (
+    <>
+    {state && <Navigate to="/" />}
     <div className="topbar">
       <div className="topbarWrapper">
         <div className="topLeft">
@@ -78,11 +98,13 @@ export default function TutorTopbar() {
             <TutorDropProfileMenu
               trigger={dropProfileState}
               setTrigger={setDropProfileState}
+              handleChange={handleLogout}
             />
           </div>
         </div>
       </div>
     </div>
+    </>
   );
 }
 
@@ -92,7 +114,11 @@ function TutorDropProfileMenu(props) {
       <div className="tutorDropProfileList">
         <div className="tutorDropProfileItem">My Profile</div>
         <div className="tutorDropProfileItem">Setting</div>
-        <div className="tutorDropProfileItem">Logout</div>
+        <div className="tutorDropProfileItem">
+        <button onClick={() => props.handleChange()}>
+          Logout
+        </button>
+        </div>
       </div>
     </div>
   ) : (

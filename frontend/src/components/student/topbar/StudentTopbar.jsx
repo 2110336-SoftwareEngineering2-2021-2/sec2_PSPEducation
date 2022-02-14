@@ -1,5 +1,6 @@
+import axios from "axios";
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import "./studentTopbar.css";
 import {
   AppsOutlined,
@@ -8,13 +9,40 @@ import {
   SearchOutlined,
 } from "@mui/icons-material";
 import { userData } from "../../../dummyData";
+import {Cookies } from 'react-cookie';
 
-export default function StudentTopbar() {
+export default function StudentTopbar({cookie, setCookie, removeCookie}) {
   const [dropProfileState, setDropProfileState] = useState(false);
-
+  const [state, setState] = useState(false)
   const imgSrc = userData.imgURL;
+  let config = {
+    headers: {
+    }
+  }
+
+  useEffect(() => {
+    // Update the document title using the browser API
+    console.log('student top bar')
+    console.log(state);
+  }, [state]);
+
+  const handleLogout = async () => {
+    console.log("KUYKUYKUY")
+    axios.post(`http://localhost:3000/auth/signout`, {}, { withCredentials: true })
+    .then((response) => {
+      console.log("HELLO HELLO")
+      removeCookie('user')
+      removeCookie('user_role')
+      setState(true)
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+  }
 
   return (
+    <>
+    {state && <Navigate to="/login" />}
     <div className="topbar">
       <div className="topbarWrapper">
         <div className="topLeft">
@@ -72,11 +100,13 @@ export default function StudentTopbar() {
             <StudentDropProfileMenu
               trigger={dropProfileState}
               setTrigger={setDropProfileState}
+              handleChange={handleLogout}
             />
           </div>
         </div>
       </div>
     </div>
+    </>
   );
 }
 
@@ -86,7 +116,11 @@ function StudentDropProfileMenu(props) {
       <div className="studentDropProfileList">
         <div className="studentDropProfileItem">My Profile</div>
         <div className="studentDropProfileItem">Setting</div>
-        <div className="studentDropProfileItem">Logout</div>
+        <div className="studentDropProfileItem">
+        <button onClick={() => props.handleChange()}>
+          Logout
+        </button>
+        </div>
       </div>
     </div>
   ) : (

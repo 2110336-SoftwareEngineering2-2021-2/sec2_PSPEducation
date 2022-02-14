@@ -5,7 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { EnrollModule } from './enroll/enroll.module';
 
 @Module({
-  imports: [RegisterModule, CourseModule, MongooseModule.forRoot('mongodb://localhost:27017/whereismytutor'), EnrollModule],
+  imports: [RegisterModule, CourseModule, MongooseModule.forRoot('mongodb://localhost:27017/test'), EnrollModule],
   controllers: [],
   providers: [],
 })
