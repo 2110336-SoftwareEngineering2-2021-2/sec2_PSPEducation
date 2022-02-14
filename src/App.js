@@ -11,7 +11,7 @@ import StudentHome from "./pages/student/home/StudentHome";
 import LoginUser from "./pages/login/LoginUser";
 import LoginAdmin from "./pages/login/LoginAdmin";
 import Register from "./pages/register/Register";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Redirect } from "react-router-dom";
 import {
   MyCrsComp,
   EnrollReqComp,
