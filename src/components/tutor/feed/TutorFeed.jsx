@@ -1,68 +1,103 @@
-import React from "react";
+import React, { useState } from "react";
 import "./tutorFeed.css";
 import {
   AutoAwesomeMotionOutlined,
   TaskOutlined,
   ForumOutlined,
+  AddCircle,
+  CloseOutlined,
 } from "@mui/icons-material";
-import { MyCourses } from "./tutor-feed-widgets/MyCourse";
-import { EnrReq } from "./tutor-feed-widgets/EnrReq";
-import { MsgReq } from "./tutor-feed-widgets/MsgReq";
+import { MyCourses } from "./tutor-feed-widgets/mycourse/MyCourse";
+import { EnrReq } from "./tutor-feed-widgets/enrreq/EnrReq";
+import { MsgReq } from "./tutor-feed-widgets/msgreq/MsgReq";
 import { myCourseData, apptData, msgData } from "../../../dummyData";
 import { Outlet } from "react-router-dom";
+import CreateCoursePopup from "./tutor-feed-widgets/mycourse/CreateCoursePopup";
 
 export default function TutorFeed() {
   return (
     <>
-      <Outlet />
+      <div className="tutorFeed">
+        <Outlet />
+      </div>
     </>
   );
 }
 
 export function MyCrsComp() {
-  return (
-    <div className="feed">
-      <div className="feedWrapper">
-        <div className="feedCard">
-          <div className="feedTitle">
-            <div className="feedTitleLeft">
-              <div className="feedTitleName">My Courses</div>
-              <div className="feedTitleBadge">{myCourseData.length}</div>
-            </div>
+  const [displayState, setDisplayState] = useState(false);
 
-            <div className="feedTitleRight">
-              <AutoAwesomeMotionOutlined className="feedTitleIcon" />
-            </div>
+  return (
+    <div className="tutorFeedWrapper">
+      <div className="tutorFeedCard">
+        <div className="tutorFeedTitle">
+          <div className="tutorFeedTitleLeft">
+            <div className="tutorFeedTitleName">My Courses</div>
+            <div className="tutorFeedTitleBadge">{myCourseData.length}</div>
           </div>
 
-          <div className="feedWidgetWrapper">
-            <MyCourses />
+          <div className="tutorFeedTitleRight">
+            <AutoAwesomeMotionOutlined className="tutorFeedTitleIcon" />
           </div>
         </div>
+
+        <div className="tutorFeedWidgetWrapper">
+          <MyCourses />
+        </div>
+      </div>
+
+      <div className="tutorFeedAddCourse">
+        <button
+          className="tutorFeedAddCourseButton"
+          onClick={() => setDisplayState(true)}
+        >
+          <AddCircle />
+        </button>
+      </div>
+      <ViewCreateCoursePopup
+        trigger={displayState}
+        setTrigger={setDisplayState}
+      />
+    </div>
+  );
+}
+
+function ViewCreateCoursePopup(props) {
+  return props.trigger ? (
+    <div className="viewCreateCoursePopup">
+      <div className="viewCreateCoursePopupContainer">
+        <button className="closeCreateCoursePopup" onClick={() => props.setTrigger(false)}>
+          <CloseOutlined />
+        </button>
+        <CreateCoursePopup
+          className=""
+          trigger={props.trigger}
+          setTrigger={props.setTrigger}
+        />
       </div>
     </div>
+  ) : (
+    ""
   );
 }
 
 export function EnrollReqComp() {
   return (
-    <div className="feed">
-      <div className="feedWrapper">
-        <div className="feedCard">
-          <div className="feedTitle">
-            <div className="feedTitleLeft">
-              <div className="feedTitleName">Enrollment Requests</div>
-              <div className="feedTitleBadge">{apptData.length}</div>
-            </div>
-
-            <div className="feedTitleRight">
-              <TaskOutlined className="feedTitleIcon" />
-            </div>
+    <div className="tutorFeedWrapper">
+      <div className="tutorFeedCard">
+        <div className="tutorFeedTitle">
+          <div className="tutorFeedTitleLeft">
+            <div className="tutorFeedTitleName">Enrollment Requests</div>
+            <div className="tutorFeedTitleBadge">{apptData.length}</div>
           </div>
 
-          <div className="feedWidgetWrapper">
-            <EnrReq />
+          <div className="tutorFeedTitleRight">
+            <TaskOutlined className="tutorFeedTitleIcon" />
           </div>
+        </div>
+
+        <div className="tutorFeedWidgetWrapper">
+          <EnrReq />
         </div>
       </div>
     </div>
@@ -71,23 +106,21 @@ export function EnrollReqComp() {
 
 export function MsgReqComp() {
   return (
-    <div className="feed">
-      <div className="feedWrapper">
-        <div className="feedCard">
-          <div className="feedTitle">
-            <div className="feedTitleLeft">
-              <div className="feedTitleName">Message Request</div>
-              <div className="feedTitleBadge">{msgData.length}</div>
-            </div>
-
-            <div className="feedTitleRight">
-              <ForumOutlined className="feedTitleIcon" />
-            </div>
+    <div className="tutorFeedWrapper">
+      <div className="tutorFeedCard">
+        <div className="tutorFeedTitle">
+          <div className="tutorFeedTitleLeft">
+            <div className="tutorFeedTitleName">Message Request</div>
+            <div className="tutorFeedTitleBadge">{msgData.length}</div>
           </div>
 
-          <div className="feedWidgetWrapper">
-            <MsgReq />
+          <div className="tutorFeedTitleRight">
+            <ForumOutlined className="tutorFeedTitleIcon" />
           </div>
+        </div>
+
+        <div className="tutorFeedWidgetWrapper">
+          <MsgReq />
         </div>
       </div>
     </div>
