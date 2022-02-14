@@ -1,12 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import "./updateCourseCard.css";
 import Dropdown from "react-dropdown";
-import { useState } from "react";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
-import Box from "@mui/material/Box";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
+import { FormControl, Select, Box, InputLabel, MenuItem } from "@mui/material";
 
 export default function UpdateCourseCard(props) {
   const [selectedLt, setSelectedLt] = useState(null);
