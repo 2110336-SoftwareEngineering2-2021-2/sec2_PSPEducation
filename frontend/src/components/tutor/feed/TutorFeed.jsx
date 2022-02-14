@@ -13,6 +13,7 @@ import { MsgReq } from "./tutor-feed-widgets/msgreq/MsgReq";
 import { myCourseData, apptData, msgData } from "../../../dummyData";
 import { Outlet } from "react-router-dom";
 import CreateCoursePopup from "./tutor-feed-widgets/mycourse/CreateCoursePopup";
+import MainCourseCard from "./course/MainCourseCard";
 
 export default function TutorFeed() {
   return (
@@ -45,7 +46,6 @@ export function MyCrsComp() {
           <MyCourses />
         </div>
       </div>
-
       <div className="tutorFeedAddCourse">
         <button
           className="tutorFeedAddCourseButton"
@@ -66,7 +66,10 @@ function ViewCreateCoursePopup(props) {
   return props.trigger ? (
     <div className="viewCreateCoursePopup">
       <div className="viewCreateCoursePopupContainer">
-        <button className="closeCreateCoursePopup" onClick={() => props.setTrigger(false)}>
+        <button
+          className="closeCreateCoursePopup"
+          onClick={() => props.setTrigger(false)}
+        >
           <CloseOutlined />
         </button>
         <CreateCoursePopup
@@ -126,3 +129,4 @@ export function MsgReqComp() {
     </div>
   );
 }
+
