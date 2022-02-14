@@ -209,28 +209,18 @@ function App() {
               removeCookie={removeCookie}
             />
           }
-        >
-          <Route
-            path="user"
-            element={
-              <LoginUser
-                cookie={cookie}
-                setCookie={setCookie}
-                removeCookie={removeCookie}
-              />
-            }
-          />
-          <Route
-            path="admin"
-            element={
-              <LoginAdmin
-                cookie={cookie}
-                setCookie={setCookie}
-                removeCookie={removeCookie}
-              />
-            }
-          />
-        </Route>
+        />
+
+        <Route
+          path="adminlogin"
+          element={
+            <LoginAdmin
+              cookie={cookie}
+              setCookie={setCookie}
+              removeCookie={removeCookie}
+            />
+          }
+        />
 
         <Route
           path="register"
@@ -268,10 +258,10 @@ function Layout() {
             <NavLink to="/student">StudentHome</NavLink>
           </li>
           <li>
-            <NavLink to="/login/user">Login user</NavLink>
+            <NavLink to="/login">Login user</NavLink>
           </li>
           <li>
-            <NavLink to="/login/admin">Login admin</NavLink>
+            <NavLink to="/adminlogin">Login admin</NavLink>
           </li>
           <li>
             <NavLink to="/register">Register</NavLink>
