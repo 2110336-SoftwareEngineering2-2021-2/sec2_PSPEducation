@@ -8,7 +8,6 @@ export default function TutorCardPopup(props) {
   const imgAvatarSrc = props.imgAvatarURL;
   const imgBgTutorSrc = props.imgBgURL;
   const imgTutorCitizen = props.citizenImage;
-  // const educationLevel = props.educationLevel;
   const educationLevel = educationTable[props.educationLevel];
 
   const imgBgStyle = {
