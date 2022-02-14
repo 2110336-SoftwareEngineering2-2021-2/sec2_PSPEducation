@@ -1,4 +1,4 @@
-import React, { useState, forwardRef } from "react";
+import React, { useState } from "react";
 import { NumberFormatCustom } from "../../../../simple/NumberFormatCustom";
 import "./createCoursePopup.css";
 import {
@@ -14,7 +14,7 @@ import { LocalizationProvider, DesktopDatePicker } from "@mui/lab";
 
 // import { makeStyles } from "@material-ui/core/styles";
 
-const learningType = [
+const learningTypeOption = [
   {
     value: "onsite",
     label: "Onsite",
@@ -137,7 +137,7 @@ export default function CreateCoursePopup(props) {
               onChange={handleChange}
               helperText=""
             >
-              {learningType.map((option) => (
+              {learningTypeOption.map((option) => (
                 <MenuItem key={option.value} value={option.value}>
                   {option.label}
                 </MenuItem>
