@@ -5,7 +5,7 @@ import "./mainCourseCard.css";
 import { CloseOutlined } from "@mui/icons-material";
 // import "react-datepicker/dist/react-datepicker.css";
 import UpdateCourseCard from "./update/UpdateCourseCard";
-import { listCourseRows } from "../../dummyData";
+import { listCourseRows } from "../../../../dummyData";
 import { DataGrid } from "@mui/x-data-grid";
 
 export default function MainCourseCard() {
