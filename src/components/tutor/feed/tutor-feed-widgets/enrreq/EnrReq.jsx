@@ -1,6 +1,6 @@
 import React from "react";
 import "./enrReq.css";
-import { apptData } from "../../../../dummyData";
+import { apptData } from "../../../../../dummyData";
 
 export const EnrReq = () => {
   return (
