@@ -193,3 +193,62 @@ export const developerCardData = [
     devName: "Mhane",
   },
 ];
+
+export const listCourseRows = [
+  {
+    id: 1,
+    courseName: "Intania",
+    subject: "Com",
+    lesson: "Pypi",
+    price: 2600,
+    capacity: 26,
+  },
+  {
+    id: 2,
+    courseName: "Tanner Linsley",
+    subject: "Math",
+    lesson: "pytagolus",
+    price: 2600,
+    capacity: 26,
+  },
+  {
+    id: 3,
+    courseName: "Taadaaa",
+    subject: "Science",
+    lesson: "Enggian",
+    price: 3000,
+    capacity: 50,
+  },
+  {
+    id: 4,
+    courseName: "Ta4aaaa",
+    subject: "Science",
+    lesson: "Enggian",
+    price: 3000,
+    capacity: 50,
+  },
+  {
+    id: 5,
+    courseName: "Taa5aaa",
+    subject: "Science",
+    lesson: "Enggian",
+    price: 3000,
+    capacity: 50,
+  },
+  {
+    id: 6,
+    courseName: "Taaa6aaaaa",
+    subject: "Science",
+    lesson: "Enggian",
+    price: 3000,
+    capacity: 50,
+  },
+  {
+    id: 7,
+    courseName: "Taaaaa7aa",
+    subject: "Science",
+    lesson: "Enggian",
+    price: 3000,
+    capacity: 50,
+  },
+];

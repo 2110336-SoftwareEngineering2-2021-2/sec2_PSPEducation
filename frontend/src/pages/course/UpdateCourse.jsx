@@ -1,10 +1,10 @@
-import "./createCourse.css";
+import "./tutorHome.css";
 import TutorTopbar from "../../components/tutor/topbar/TutorTopbar";
 import TutorSidebar from "../../components/tutor/sidebar/TutorSidebar";
 import TutorFeed from "../../components/tutor/feed/TutorFeed";
-import CreateCourseCard from "../../components/course/create/createCourseCard";
+import UpdateCourseCard from "../../components/course/update/UpdateCourseCard";
 
-export default function CreateCourse() {
+export default function UpdateCourse() {
   return (
     <>
       <TutorTopbar />
@@ -14,7 +14,7 @@ export default function CreateCourse() {
         </div>
         <div className="homeContainer">
           <div className="homeWrapper">
-            <CreateCourseCard />
+            <UpdateCourseCard />
           </div>
         </div>
       </div>
