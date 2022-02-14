@@ -1,9 +1,6 @@
 import React, { useState } from "react";
 import "./mainCourseCard.css";
-// import ReactTable from "react-table-v6";
-// import "react-table-v6/react-table.css";
 import { CloseOutlined } from "@mui/icons-material";
-// import "react-datepicker/dist/react-datepicker.css";
 import UpdateCourseCard from "./update/UpdateCourseCard";
 import { listCourseRows } from "../../../../dummyData";
 import { DataGrid } from "@mui/x-data-grid";
@@ -81,7 +78,6 @@ export default function MainCourseCard() {
           pageSize={10}
           disableSelectionOnClick
           checkboxSelection
-          disableColumnSelector
           setTrigger={setDisplayState}
         />
       </div>
