@@ -5,7 +5,7 @@
 }
 
 :root {
-  --main-theme : rgb(87, 112, 221)
+  --main-theme : rgb(87, 112, 221);
 }
 
 .createCourse {
@@ -16,7 +16,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
-  background-color: rgba(125, 170, 230, 0.7);
+  background-color: rgba(167, 196, 233, 0.7);
   border-radius: 100px;
 }
 
