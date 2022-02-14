@@ -5,8 +5,8 @@
 
 .tutorSidebar {
   flex: 2;
-  height: calc(100vh - 55px);
-  top: 55px;
+  height: calc(100vh - 60px);
+  top: 60px;
   background: var(--main-bg);
   position: sticky;
   overflow-y: scroll;
