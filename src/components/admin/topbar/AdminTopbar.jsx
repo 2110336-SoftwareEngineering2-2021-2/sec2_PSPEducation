@@ -14,43 +14,43 @@ export default function AdminTopbar() {
 
   const imgSrc = userData.imgURL;
   return (
-    <div className="topbar">
-      <div className="topbarWrapper">
-        <div className="topLeft">
-          <div className="topLeftContainer">
-            <span className="topLeftlogo">
-              <Link className="topLeftlogoLink" to="/">
+    <div className="adminTopbar">
+      <div className="adminTopbarWrapper">
+        <div className="adminTopLeft">
+          <div className="adminTopLeftContainer">
+            <span className="adminTopLeftlogo">
+              <Link className="adminTopLeftlogoLink" to="/">
                 WhereIsMyTutor?
               </Link>
             </span>
-            <span className="topLeftauthor">Powered by PSPEducaion</span>
+            <span className="adminTopLeftauthor">Powered by PSPEducaion</span>
           </div>
         </div>
-        <div className="topCenter">
-          <div className="searchbar">
+        <div className="adminTopCenter">
+          <div className="adminSearchbar">
             <SearchOutlined className="searchIcon" />
             <input
               type="search"
               autoComplete="off"
               spellCheck="false"
               placeholder="Search for course, tutor or subject"
-              className="searchInput"
+              className="adminSearchInput"
               aria-invalid="false"
             />
           </div>
         </div>
-        <div className="topRight">
-          <div className="topRightContainer">
-            <div className="topbarIconContainer">
+        <div className="adminTopRight">
+          <div className="adminTopRightContainer">
+            <div className="adminTopbarIconContainer">
               <AppsOutlined />
             </div>
-            <div className="topbarIconContainer">
+            <div className="adminTopbarIconContainer">
               <EmailOutlined />
-              <span className="topIconBadge">3</span>
+              <span className="adminTopIconBadge">3</span>
             </div>
-            <div className="topbarIconContainer">
+            <div className="adminTopbarIconContainer">
               <NotificationsNoneOutlined />
-              <span className="topIconBadge">8</span>
+              <span className="adminTopIconBadge">8</span>
             </div>
 
             <button

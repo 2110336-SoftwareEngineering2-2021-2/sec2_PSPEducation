@@ -24,10 +24,10 @@ export default function LoginUser({ cookie, setCookie }) {
       {state && cookie.user_role === "tutor" && <Navigate to="/tutor" />}
       {state && cookie.user_role === "student" && <Navigate to="/student" />}
 
-      <div className="login">
+      <div className="userLogin">
         <Navbar />
-        <div className="loginWrapper">
-          <div className="loginCard">
+        <div className="userLoginWrapper">
+          <div className="userLoginCard">
             <LoginLeftside />
             <LoginRightside
               position="user"

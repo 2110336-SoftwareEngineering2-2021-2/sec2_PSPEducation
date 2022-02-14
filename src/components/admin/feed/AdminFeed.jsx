@@ -4,7 +4,7 @@ import AdminCards from "./AdminCards";
 
 export default function AdminFeed() {
   return (
-    <div className="feed">
+    <div className="adminFeed">
       <AdminCards />
     </div>
   );
