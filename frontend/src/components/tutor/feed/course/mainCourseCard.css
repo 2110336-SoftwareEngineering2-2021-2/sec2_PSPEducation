@@ -1,21 +1,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Festive&family=Poppins:wght@300;400;500;600;700&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap");
 
-root {
+:root {
   --main-theme: rgb(87, 112, 221);
   --card-theme:rgb(102, 124, 223);
 }
 
-*,
-*::before,
-*::after {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Poppins", sans-serif;
+  font-family: Poppins, sans-serif;
 }
 
 .mainCourse {
-  flex: 4;
   height: 100%;
   width: 100%;
   display: flex;
@@ -48,7 +45,7 @@ root {
   justify-content: center;
 }
 
-.viewEditCoursePopup{
+.viewEditCoursePopup {
   position: fixed;
   top: 0px;
   left: 0;
