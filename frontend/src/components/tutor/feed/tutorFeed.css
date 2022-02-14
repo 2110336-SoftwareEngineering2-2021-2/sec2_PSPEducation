@@ -1,8 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Festive&family=Poppins:wght@300;400;500;600;700&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap");
+
+
 :root {
   --main-theme :rgb(87, 112, 221);
   --main-white :#f0f8ff;
   --main-border :rgb(116, 135, 219);
   --body-bgcolor: rgb(221, 231, 250);
+}
+
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Poppins, sans-serif;
 }
 
 .tutorFeed {
@@ -30,14 +41,17 @@
 .tutorFeedWrapper {
   padding: 20px;
   display: flex;
-  /* flex-flow: row wrap; */
   align-items: center;
   justify-content: center;
 }
 
+.tutorFeedCourseList {
+
+}
+
 .tutorFeedCard {
   margin: 20px;
-  padding: 10px;
+  padding: 10px; 
   color: rgb(80, 83, 83);
   background-color: white !important;
   box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
