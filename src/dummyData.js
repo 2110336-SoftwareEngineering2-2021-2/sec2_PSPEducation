@@ -165,7 +165,7 @@ export const listCourseRows = [
   },
   {
     id: 3,
-    courseName: "Taaaaaaaaaaaa",
+    courseName: "Taadaaa",
     subject: "Science",
     lesson: "Enggian",
     price: 3000,
@@ -173,7 +173,7 @@ export const listCourseRows = [
   },
   {
     id: 4,
-    courseName: "Taaaaaaaaaaaa",
+    courseName: "Ta4aaaa",
     subject: "Science",
     lesson: "Enggian",
     price: 3000,
@@ -181,7 +181,7 @@ export const listCourseRows = [
   },
   {
     id: 5,
-    courseName: "Taaaaaaaaaaaa",
+    courseName: "Taa5aaa",
     subject: "Science",
     lesson: "Enggian",
     price: 3000,
@@ -189,7 +189,7 @@ export const listCourseRows = [
   },
   {
     id: 6,
-    courseName: "Taaaaaaaaaaaa",
+    courseName: "Taaa6aaaaa",
     subject: "Science",
     lesson: "Enggian",
     price: 3000,
@@ -197,7 +197,7 @@ export const listCourseRows = [
   },
   {
     id: 7,
-    courseName: "Taaaaaaaaaaaa",
+    courseName: "Taaaaa7aa",
     subject: "Science",
     lesson: "Enggian",
     price: 3000,
