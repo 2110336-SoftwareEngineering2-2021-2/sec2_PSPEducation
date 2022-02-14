@@ -1,6 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Festive&family=Poppins:wght@300;400;500;600;700&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap");
 
-.main {
+.mainCourse {
   flex: 1;
   height: auto;
   width: 100%;
@@ -9,10 +9,10 @@
   align-items: center;
   justify-content: space-evenly;
   background-color: rgba(125, 170, 230, 0.7);
-  border-radius: 100px;
+  font-size: 12px;
 }
 
-.mainTitle {
+.mainCourseTitle {
   font-size: 100px;
   font-family: Festive;
   color: white;
@@ -20,23 +20,24 @@
     0.2px -0.2px 0 rgb(87, 112, 221), -0.2px -0.2px 0 rgb(87, 112, 221);
 }
 
-.mainForm {
+.mainCourseForm {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.mainFormCourseName,
-.mainFormLesson,
-.mainFormSubject,
-.mainFormPrice,
-.mainFormStartDate,
-.mainFormFinishDate,
-.mainFormCapacity,
-.mainFormHour,
-.mainFormLocation,
-.mainFormStatus{
+.mainCourseFormCourseName,
+.mainCourseFormLesson,
+.mainCourseFormSubject,
+.mainCourseFormPrice,
+.mainCourseFormStartDate,
+.mainCourseFormFinishDate,
+.mainCourseFormCapacity,
+.mainCourseFormHour,
+.mainCourseFormLocation,
+.mainCourseFormStatus,
+.mainCourseFormTimeslot{
   font-size: 16px;
   width: 500px;
   height: 15px;
@@ -47,7 +48,7 @@
   background-color: white;
 }
 
-.mainFormlearningType {
+.mainCourseFormlearningType {
   font-size: 16px;
   width: 500px;
   height: 50px;
@@ -57,7 +58,7 @@
   border-radius: 30px;
   background-color: white;
 }
-.mainFormDescription {
+.mainCourseFormDescription {
   font-size: 16px;
   width: 500px;
   height: 200px;
@@ -68,36 +69,36 @@
   resize: none;
 }
 
-.mainFormEmail:focus,
-.mainFormPassword:focus {
+.mainCourseFormEmail:focus,
+.mainCourseFormPassword:focus {
   outline: none;
 }
 
-.mainFormSubmit {
-  width: 250px;
+.mainCourseFormSubmit {
+  width: 50px;
   background-color: rgb(87, 112, 221);
   color: white;
-  font-size: 16px;
-  font-weight: 500;
+  font-size: 12px;
+  /* font-weight: 50; */
   border: none;
-  padding: 5px;
-  margin-top: 10px;
-  border-radius: 14px;
+  /* padding: 5px; */
+  /* margin-top: 10px; */
+  border-radius: 10px;
   cursor: pointer;
 }
 
-.mainFormSubmit:hover {
+.mainCourseFormSubmit:hover {
   background-color: rgb(93, 122, 250);
 }
 
-.mainRegisterText {
+.mainCourseRegisterText {
   /* border: 1px solid rgb(87, 112, 221); */
   color: rgba(51, 51, 51, 0.712);
   padding: 15px 30px;
   border-radius: 20px;
 }
 
-.mainRegisterLink {
+.mainCourseRegisterLink {
   font-size: 15px;
   font-weight: 500;
   text-decoration: none;
@@ -109,6 +110,6 @@
   margin-left: 10px;
 }
 
-.mainRegisterLink:hover {
+.mainCourseRegisterLink:hover {
   background-color: rgb(81, 196, 70);
 }

@@ -6,7 +6,9 @@ import TutorHome from "./pages/tutor/home/TutorHome";
 import StudentHome from "./pages/student/home/StudentHome";
 import Login from "./pages/login/Login";
 import Register from "./pages/register/Register";
+import MainCourse from "./pages/course/MainCourse";
 import CreateCourse from "./pages/course/CreateCourse";
+import UpdateCourse from "./pages/course/UpdateCourse";
 
 
 import App from "./App";
@@ -21,7 +23,9 @@ ReactDOM.render(
         <Route path="/student" element={<StudentHome />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
+        <Route path="/course" element={<MainCourse />} />
         <Route path="/course/create" element={<CreateCourse />} />
+        <Route path="/course/update" element={<UpdateCourse />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>,
