@@ -11,6 +11,7 @@ import {
 import DateAdapter from "@mui/lab/AdapterDateFns";
 import { LocalizationProvider, DesktopDatePicker } from "@mui/lab";
 import axios from "axios";
+import { format } from "date-fns";
 
 const learningTypeOption = [
   {
@@ -85,22 +86,22 @@ export default function CreateCoursePopup(props) {
     );
   }
 
-  // useEffect(() => {
-  //   // Update the document title using the browser API
-  //   console.log(values.createdSuccess);
-  // }, [values.createdSuccess]);
+  useEffect(() => {
+    // Update the document title using the browser API
+    console.log(createSuccess);
+  }, [createSuccess]);
 
   const handleSubmit = async () => {
     console.log("handleSubmit");
 
     if (checkEmpty() && checkMinLength() && checkMaxLength()) {
       const course = {
-        tutorID: props.cookie.user,
+        tutorId: props.cookie.user,
         courseName: values.courseName,
         subject: values.subject,
         lesson: values.lesson,
-        courseStartDate: values.startDate,
-        courseFinishDate: values.endDate,
+        courseStartDate: format(startDate, "yyyy-MM-dd"),
+        courseFinishDate: format(endDate, "yyyy-MM-dd"),
         //dummyTimeSlot
         timeSlots: [
           {
@@ -109,10 +110,10 @@ export default function CreateCoursePopup(props) {
             timeFinish: "09:00",
           },
         ],
-        price: values.price,
-        capacity: values.capacity,
+        price: parseInt(values.price),
+        capacity: parseInt(values.capacity),
         description: values.description,
-        hour: values.hour,
+        hour: parseInt(values.hour),
         status: "unpublished",
         learningType: values.learningType,
         location: values.location,
@@ -192,7 +193,7 @@ export default function CreateCoursePopup(props) {
                 id="form-start-date"
                 label="Start Date"
                 inputFormat="MM/dd/yyyy"
-                value={values.startDate}
+                value={startDate}
                 onChange={(newValue) => {
                   setStartDate(newValue);
                 }}
@@ -204,7 +205,7 @@ export default function CreateCoursePopup(props) {
                 id="form-end-date"
                 label="End Date"
                 inputFormat="MM/dd/yyyy"
-                value={values.endDate}
+                value={endDate}
                 onChange={(newValue) => {
                   setEndDate(newValue);
                 }}
