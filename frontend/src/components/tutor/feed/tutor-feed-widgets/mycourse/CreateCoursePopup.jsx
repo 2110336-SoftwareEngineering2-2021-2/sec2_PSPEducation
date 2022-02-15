@@ -1,18 +1,16 @@
-import React, { useState } from "react";
-import { NumberFormatCustom } from "../../../../simple/NumberFormatCustom";
+import React, { useState, useEffect } from "react";
 import "./createCoursePopup.css";
 import {
   FormControl,
   Select,
   Box,
+  TextField,
   InputLabel,
   MenuItem,
-  TextField,
 } from "@mui/material";
 import DateAdapter from "@mui/lab/AdapterDateFns";
 import { LocalizationProvider, DesktopDatePicker } from "@mui/lab";
-
-// import { makeStyles } from "@material-ui/core/styles";
+import axios from "axios";
 
 const learningTypeOption = [
   {
@@ -30,22 +28,111 @@ const learningTypeOption = [
 ];
 
 export default function CreateCoursePopup(props) {
-  const [selectedOption, setSelectedOption] = useState(null);
-
   const [values, setValues] = useState({
+    courseName: "",
+    subject: "",
+    lesson: "",
     price: "",
-    capacity: "",
     hour: "",
-    startDate: new Date(),
-    endDate: new Date(),
+    capacity: "",
+    description: "",
+    learningType: "",
+    location: "",
   });
 
-  const handleChange = (event) => {
-    setSelectedOption(event.target.value);
+  const [startDate, setStartDate] = useState(null);
+
+  const [endDate, setEndDate] = useState(null);
+
+  const [createSuccess, setCreateSuccess] = useState(false);
+
+  const handleChange = (prop) => (event) => {
     setValues({
       ...values,
-      [event.target.name]: event.target.value,
+      [prop]: event.target.value,
     });
+  };
+
+  function checkEmpty() {
+    return (
+      values.courseName !== "" &&
+      values.subject !== "" &&
+      values.price !== "" &&
+      values.hour !== "" &&
+      values.capacity !== "" &&
+      values.learningType !== "" &&
+      values.location !== ""
+    );
+  }
+
+  function checkMinLength() {
+    return (
+      values.courseName.length >= 1 &&
+      values.subject.length >= 1 &&
+      values.price.length >= 1 &&
+      values.hour.length >= 1 &&
+      values.capacity.length >= 1 &&
+      values.location.length >= 1
+    );
+  }
+
+  function checkMaxLength() {
+    return (
+      values.courseName.length <= 45 &&
+      values.subject.length <= 45 &&
+      values.lesson.length <= 45 &&
+      values.location.length <= 45
+    );
+  }
+
+  // useEffect(() => {
+  //   // Update the document title using the browser API
+  //   console.log(values.createdSuccess);
+  // }, [values.createdSuccess]);
+
+  const handleSubmit = async () => {
+    console.log("handleSubmit");
+
+    if (checkEmpty() && checkMinLength() && checkMaxLength()) {
+      const course = {
+        tutorID: props.cookie.user,
+        courseName: values.courseName,
+        subject: values.subject,
+        lesson: values.lesson,
+        courseStartDate: values.startDate,
+        courseFinishDate: values.endDate,
+        //dummyTimeSlot
+        timeSlots: [
+          {
+            day: "Sun",
+            timeStart: "08:00",
+            timeFinish: "09:00",
+          },
+        ],
+        price: values.price,
+        capacity: values.capacity,
+        description: values.description,
+        hour: values.hour,
+        status: "unpublished",
+        learningType: values.learningType,
+        location: values.location,
+      };
+
+      console.log(course);
+
+      axios
+        .post(`http://localhost:3000/course`, course, { withCredentials: true })
+        .then((response) => {
+          const data = response.data;
+          console.log(data);
+          setCreateSuccess(true);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    } else {
+      console.log("Create failed");
+    }
   };
 
   return (
@@ -59,65 +146,97 @@ export default function CreateCoursePopup(props) {
           }}
           noValidate
           autoComplete="off"
-          spellCheck="false"
         >
           <div className="createCourseForm">
-            <TextField required id="form-course-name" label="Course name" />
-
-            <TextField required id="form-subject" label="Subject" />
-
-            <TextField id="form-course-name" label="Lesson" />
+            <TextField
+              required
+              id="form-course-name"
+              label="Course name"
+              value={values.courseName}
+              onChange={handleChange("courseName")}
+            />
 
             <TextField
-              id="form-price"
               required
+              id="form-subject"
+              label="Subject"
+              value={values.subject}
+              onChange={handleChange("subject")}
+            />
+
+            <TextField
+              id="form-Lesson"
+              label="Lesson"
+              value={values.lesson}
+              onChange={handleChange("lesson")}
+            />
+
+            <TextField
+              required
+              id="form-price"
               label="Price"
               helperText="Total Price"
               value={values.price}
-              onChange={handleChange}
-              InputProps={{
-                inputComponent: NumberFormatCustom,
+              onChange={handleChange("price")}
+              onInput={(e) => {
+                e.target.value = e.target.value
+                  ? Math.max(0, parseInt(e.target.value))
+                      .toString()
+                      .slice(0, 10)
+                  : "";
               }}
             />
             <LocalizationProvider dateAdapter={DateAdapter}>
               <DesktopDatePicker
+                required
+                id="form-start-date"
                 label="Start Date"
                 inputFormat="MM/dd/yyyy"
                 value={values.startDate}
-                onChange={handleChange}
+                onChange={(newValue) => {
+                  setStartDate(newValue);
+                }}
                 renderInput={(params) => <TextField {...params} />}
               />
 
               <DesktopDatePicker
+                required
+                id="form-end-date"
                 label="End Date"
                 inputFormat="MM/dd/yyyy"
                 value={values.endDate}
-                onChange={handleChange}
+                onChange={(newValue) => {
+                  setEndDate(newValue);
+                }}
                 renderInput={(params) => <TextField {...params} />}
               />
             </LocalizationProvider>
 
             <TextField
-              id="form-hour"
               required
+              id="form-hour"
               label="Hour"
               helperText="Total Hour"
               value={values.hour}
-              onChange={handleChange}
-              InputProps={{
-                inputComponent: NumberFormatCustom,
+              onChange={handleChange("hour")}
+              onInput={(e) => {
+                e.target.value = e.target.value
+                  ? Math.max(0, parseInt(e.target.value)).toString().slice(0, 9)
+                  : "";
               }}
             />
 
             <TextField
-              id="form-capacity"
               required
+              id="form-capacity"
               label="Capacity"
               helperText="Normal subscription max at 12, Premium subscription max at 50"
               value={values.capacity}
-              onChange={handleChange}
-              InputProps={{
-                inputComponent: NumberFormatCustom,
+              onChange={handleChange("capacity")}
+              onInput={(e) => {
+                e.target.value = e.target.value
+                  ? Math.max(0, parseInt(e.target.value)).toString().slice(0, 2)
+                  : "";
               }}
             />
 
@@ -126,15 +245,17 @@ export default function CreateCoursePopup(props) {
               label="Description"
               multiline
               rows={4}
+              value={values.description}
+              onChange={handleChange("description")}
             />
 
             <TextField
+              required
               id="form-learning-type"
               select
-              required
               label="Learning type"
-              value={selectedOption}
-              onChange={handleChange}
+              value={values.learningType}
+              onChange={handleChange("learningType")}
               helperText=""
             >
               {learningTypeOption.map((option) => (
@@ -144,20 +265,26 @@ export default function CreateCoursePopup(props) {
               ))}
             </TextField>
 
-            <TextField id="form-location" label="Location" />
+            <TextField
+              required
+              id="form-location"
+              label="Location"
+              value={values.location}
+              onChange={handleChange("location")}
+            />
 
             <div className="createCoursePopupButton">
               <button
                 className="createCoursePopupButtonCreate"
-                onClick={() => {}}
+                onClick={handleSubmit}
               >
-                create
+                Create
               </button>
               <button
                 className="createCoursePopupButtonClear"
                 onClick={() => {}}
               >
-                clear
+                Clear
               </button>
             </div>
           </div>
