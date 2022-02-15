@@ -1,17 +1,7 @@
 import React, { useState, useEffect } from "react";
-import {
-  NumberFormatCustom,
-  NumberFormatCustomNoComma,
-} from "../simple/NumberFormatCustom";
+import { NumberFormatCustomNoComma } from "../simple/NumberFormatCustom";
 import "./registerCard.css";
-import {
-  Box,
-  InputLabel,
-  TextField,
-  MenuItem,
-  Select,
-  FormControl,
-} from "@mui/material";
+import { Box, InputLabel, TextField, MenuItem } from "@mui/material";
 // import FileUploader from "./FileUploader.jsx";
 import DateAdapter from "@mui/lab/AdapterDateFns";
 import { LocalizationProvider, DatePicker } from "@mui/lab";
@@ -244,7 +234,7 @@ export default function RegisterCard() {
         >
           <div className="registerForm">
             <TextField
-              id="userType-simple-select"
+              id="form-register-user-type"
               select
               required
               label="User Type"
