@@ -80,7 +80,7 @@ export class EnrollService {
         throw new NotFoundException("Can't find student ID");
       }
 
-      if (student.coursesLearned.find(enroll.courseId)) {
+      if (student.coursesLearned.find(element => element === enroll.courseId)) {
         throw new BadRequestException('You have already enrolled in this course.');
       }
 
