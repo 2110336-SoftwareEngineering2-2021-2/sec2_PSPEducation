@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { NumberFormatCustomNoComma } from "../simple/NumberFormatCustom";
 import "./registerCard.css";
 import { Box, InputLabel, TextField, MenuItem } from "@mui/material";
 // import FileUploader from "./FileUploader.jsx";
@@ -247,7 +246,6 @@ export default function RegisterCard() {
                 </MenuItem>
               ))}
             </TextField>
-
             <TextField
               id="form-register-firstname"
               required
@@ -256,7 +254,6 @@ export default function RegisterCard() {
               inputProps={{ maxLength: 45 }}
               onChange={handleChange("firstname")}
             />
-
             <TextField
               id="form-register-lastname"
               required
@@ -265,7 +262,6 @@ export default function RegisterCard() {
               inputProps={{ maxLength: 45 }}
               onChange={handleChange("lastname")}
             />
-
             <TextField
               id="form-register-username"
               required
@@ -274,7 +270,6 @@ export default function RegisterCard() {
               inputProps={{ minLength: 8, maxLength: 16 }}
               onChange={handleChange("username")}
             />
-
             <TextField
               id="form-register-password"
               required
@@ -282,7 +277,6 @@ export default function RegisterCard() {
               value={values.password}
               onChange={handleChange("password")}
             />
-
             <TextField
               id="form-register-confirm-password"
               required
@@ -290,7 +284,6 @@ export default function RegisterCard() {
               value={values.passwordConfirm}
               onChange={handleChange("passwordConfirm")}
             />
-
             <TextField
               id="form-register-email"
               required
@@ -304,10 +297,15 @@ export default function RegisterCard() {
               required
               label="Phone Number"
               value={values.phoneNumber}
-              inputProps={{ maxLength: 10 }}
+              onInput={(e) => {
+                e.target.value = e.target.value
+                  ? Math.max(0, parseInt(e.target.value))
+                      .toString()
+                      .slice(0, 10)
+                  : "";
+              }}
               onChange={handleChange("phoneNumber")}
             />
-
             <TextField
               id="form-register-display-name"
               required
@@ -316,7 +314,6 @@ export default function RegisterCard() {
               inputProps={{ minLength: 5, maxLength: 45 }}
               onChange={handleChange("displayName")}
             />
-
             <LocalizationProvider dateAdapter={DateAdapter}>
               <DatePicker
                 required
@@ -329,7 +326,6 @@ export default function RegisterCard() {
                 renderInput={(params) => <TextField {...params} />}
               />
             </LocalizationProvider>
-
             <TextField
               id="form-register-gender"
               select
@@ -344,7 +340,6 @@ export default function RegisterCard() {
                 </MenuItem>
               ))}
             </TextField>
-
             <TextField
               id="form-register-education"
               select
@@ -359,34 +354,32 @@ export default function RegisterCard() {
                 </MenuItem>
               ))}
             </TextField>
-
             <InputLabel>Profile Picture</InputLabel>
-
             <input
               className="registerPicture"
               type="file"
               value={values.profileImage}
               onChange={onProfileImageChange}
             />
-
             <img className="profileImage" src={profileImage} alt="Profile" />
-
             {/* <FileUploaded
           onFileSelectSuccess={(file) => setSelectedFile(file)}
           onFileSelectError={({ error }) => alert(error)}
         /> */}
-
             <TextField
               id="form-register-citizen-id"
               required
               label="Citizen ID"
-              inputProps={{
-                inputComponent: NumberFormatCustomNoComma,
-                minLength: 13,
-                maxLength: 13,
+              value={values.citizenId}
+              onChange={handleChange("citizenId")}
+              onInput={(e) => {
+                e.target.value = e.target.value
+                  ? Math.max(0, parseInt(e.target.value))
+                      .toString()
+                      .slice(0, 13)
+                  : "";
               }}
             />
-
             <InputLabel>Citizen Image</InputLabel>
             <input
               className="registerPicture"
