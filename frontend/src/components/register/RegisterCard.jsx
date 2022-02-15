@@ -129,7 +129,7 @@ export default function RegisterCard() {
       values.userType !== "" &&
       values.firstname !== "" &&
       values.username !== "" &&
-      values.password.length !== "" &&
+      values.password !== "" &&
       values.passwordConfirm !== "" &&
       values.email !== "" &&
       values.phoneNumber !== "" &&
@@ -177,6 +177,11 @@ export default function RegisterCard() {
   }, [values.registerSuccess]);
 
   const handleSubmit = async () => {
+    if (checkEmpty()) console.log("checkEmpty");
+    if (checkMinLength()) console.log("checkMinLength");
+    if (checkMaxLength()) console.log("checkMaxLength");
+    if (checkOtherConstraint()) console.log("checkOtherConstraint");
+
     if (
       checkEmpty() &&
       checkMinLength() &&
@@ -302,13 +307,13 @@ export default function RegisterCard() {
               required
               label="Phone Number"
               value={values.phoneNumber}
-              onInput={(e) => {
-                e.target.value = e.target.value
-                  ? Math.max(0, parseInt(e.target.value))
-                      .toString()
-                      .slice(0, 10)
-                  : "";
-              }}
+              // onInput={(e) => {
+              //   e.target.value = e.target.value
+              //     ? Math.max(0, parseInt(e.target.value))
+              //         .toString()
+              //         .slice(0, 10)
+              //     : "";
+              // }}
               onChange={handleChange("phoneNumber")}
             />
             <TextField
