@@ -10,7 +10,7 @@ export default function MainCourseCard({ cookie, setCookie, removeCookie }) {
 
   useEffect(() => {
     axios
-    .get(`http://localhost:3000/course`, { withCredentials: true })
+    .get(`http://localhost:3000/course/tutor/${cookie.user}`, { withCredentials: true })
     .then((response) => {
       // const data = response.data
       setCourse(response.data)
