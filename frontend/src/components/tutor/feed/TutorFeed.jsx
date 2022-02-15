@@ -23,8 +23,8 @@ export default function TutorFeed() {
   );
 }
 
-export function MyCourseList() {
-  // const [displayState, setDisplayState] = useState(false);
+export function MyCourseList({ cookie, setCookie, removeCookie }) {
+  const [displayState, setDisplayState] = useState(false);
 
   return (
     <>
@@ -44,8 +44,8 @@ export function MyCourseList() {
           <MyCourses />
         </div>
       </div> */}
-      <MainCourseCard />
-      {/* <div className="tutorFeedAddCourse">
+      <MainCourseCard cookie={cookie} setCookie={setCookie} removeCookie={removeCookie}/>
+      <div className="tutorFeedAddCourse">
         <button
           className="tutorFeedAddCourseButton"
           onClick={() => setDisplayState(true)}
@@ -55,7 +55,7 @@ export function MyCourseList() {
       </div>
       <ViewCreateCoursePopup
         trigger={displayState}
-        setTrigger={setDisplayState} */}
+        setTrigger={setDisplayState}/>
     </>
   );
 }

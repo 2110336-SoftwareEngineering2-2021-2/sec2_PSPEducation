@@ -202,6 +202,7 @@ export const listCourseRows = [
     lesson: "Pypi",
     price: 2600,
     capacity: 26,
+    fdasdf: 1
   },
   {
     id: 2,

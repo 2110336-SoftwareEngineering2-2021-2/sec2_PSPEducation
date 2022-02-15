@@ -19,16 +19,22 @@ export default function LoginCardRight({ cookie, setCookie, position }) {
     const password = password_1;
 
     const user = { email, password };
+    console.log()
     axios
-      .post(`http://localhost:3000/auth/signin`, user, {
-        withCredentials: true,
-      })
+      .post(`http://localhost:3000/auth/signin`, user, { withCredentials: true })
       .then((response) => {
-        const data = response.data;
+        const data = response.data
         console.log(response);
         setState(true);
-        setCookie("user", "kuay");
+        setCookie("user", 'kuay');
         setCookie("user_role", data.type);
+        if (data.type === "tutor") {
+          return <Navigate to="/tutor" />;
+        } else if (data.type === "student") {
+          return <Navigate to="/student" />;
+        } else if (data.type === "admin") {
+          return <Navigate to="/admin" />;
+        }
       })
       .catch((e) => {
         console.log(e);
@@ -37,12 +43,9 @@ export default function LoginCardRight({ cookie, setCookie, position }) {
 
   return (
     <>
-      {state && cookie.user_role == "student" && <Navigate to="/student" />}
-      {state && cookie.user_role == "tutor" && <Navigate to="/tutor" />}
-      {state && cookie.user_role == "admin" && <Navigate to="/admin" />}
-
+      {state && <Navigate to="/student" />}
       <div className="right">
-        <div className="rightTitle">Welcome {position} !!</div>
+        <div className="rightTitle">Welcome {state} !!</div>
         <div className="rightForm">
           <input
             className="rightFormEmail"

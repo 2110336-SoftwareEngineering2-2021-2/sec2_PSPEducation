@@ -3,15 +3,37 @@ import "./updateCourseCard.css";
 import Dropdown from "react-dropdown";
 import { FormControl, Select, Box, InputLabel, MenuItem } from "@mui/material";
 
-export default function UpdateCourseCard(props) {
-  const [selectedLt, setSelectedLt] = useState(null);
-  const [selectedStatus, setSelectedStatus] = useState(null);
 
-  const handleChangeLearningType = (event) => {
-    setSelectedLt(event.target.value);
-  };
-  const handleChangeStatus = (event) => {
-    setSelectedStatus(event.target.value);
+export default function UpdateCourseCard(props) {
+  console.log(props)
+  // const [selectedLt, setSelectedLt] = useState(null);
+  // const [selectedStatus, setSelectedStatus] = useState(null);
+  const [dataCourse, setDataCourse] = useState({
+    tutorId: props.data.tutorId,
+    courseName: props.data.courseName,
+    subject: props.data.subject,
+    lesson: props.data.lesson,
+    price: props.data.price,
+    courseStartDate: props.data.courseStartDate,
+    courseFinishDate: props.data.courseFinishDate,
+    timeSlots: props.data.timeSlots,
+    capacity: props.data.capacity,
+    status: props.data.status,
+    learningType: props.data.learningType,
+    description: props.data.description,
+    hour: props.data.hour,
+    location: props.data.location,
+  });
+  // const handleChangeLearningType = (event) => {
+  //   setSelectedLt(event.target.value);
+  // };
+  // const handleChangeStatus = (event) => {
+  //   setSelectedStatus(event.target.value);
+  // };
+  const handle = (event) => {
+    console.log(props.data.tutorId)
+    setDataCourse({"courseName": event.target.value});
+    console.log(dataCourse)
   };
 
   return (
@@ -25,6 +47,8 @@ export default function UpdateCourseCard(props) {
           spellcheck="false"
           placeholder="Course name"
           aria-invalid="false"
+          value={dataCourse.courseName}
+          onChange={handle}
         />
         <input
           className="updateCourseFormSubject"
@@ -33,6 +57,8 @@ export default function UpdateCourseCard(props) {
           spellcheck="false"
           placeholder="Subject"
           aria-invalid="false"
+          value={dataCourse.subject}
+          onChange={(e) => setDataCourse(e.target.value)}
         />
         <input
           className="updateCourseFormLesson"
@@ -41,6 +67,8 @@ export default function UpdateCourseCard(props) {
           spellcheck="false"
           placeholder="lesson"
           aria-invalid="false"
+          value={dataCourse.lesson}
+          onChange={(e) => setDataCourse(e.target.value)}
         />
         <input
           className="updateCourseFormPrice"
@@ -49,6 +77,8 @@ export default function UpdateCourseCard(props) {
           min="0"
           max="5000"
           placeholder="Price"
+          value={dataCourse.price}
+          onChange={(e) => setDataCourse(e.target.value)}
         />
         <input
           className="updateCourseFormCapacity"
@@ -57,6 +87,8 @@ export default function UpdateCourseCard(props) {
           min="0"
           max="5000"
           placeholder="Capacity"
+          value={dataCourse.capacity}
+          onChange={(e) => setDataCourse(e.target.value)}
         />
         <input
           className="updateCourseFormHour"
@@ -139,9 +171,9 @@ export default function UpdateCourseCard(props) {
             labelId="learningType-simple-select-label"
             id="learningType-select-label"
             className="createCourseFormlearningType"
-            value={selectedLt}
+            // value={selectedLt}
             placeholder="Learning type"
-            onChange={handleChangeLearningType}
+            // onChange={}
           >
             <MenuItem value="onsite">Onsite</MenuItem>
             <MenuItem value="online">Online</MenuItem>
@@ -152,9 +184,9 @@ export default function UpdateCourseCard(props) {
             labelId="status-simple-select-label"
             id="status-select-label"
             className="createCourseFormlearningType"
-            value={selectedStatus}
+            // value={selectedStatus}
             placeholder="Status"
-            onChange={handleChangeStatus}
+            // onChange={handleChangeStatus}
           >
             <MenuItem value="unpublished">unpublished</MenuItem>
             <MenuItem value="publish">publish</MenuItem>
