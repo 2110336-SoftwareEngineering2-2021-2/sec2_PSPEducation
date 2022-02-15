@@ -2,10 +2,11 @@ import React, { useState } from "react";
 import "./updateCourseCard.css";
 import Dropdown from "react-dropdown";
 import { FormControl, Select, Box, InputLabel, MenuItem } from "@mui/material";
+import axios from "axios";
 
 
 export default function UpdateCourseCard(props) {
-  console.log(props)
+  // console.log(props)
   // const [selectedLt, setSelectedLt] = useState(null);
   // const [selectedStatus, setSelectedStatus] = useState(null);
   const [dataCourse, setDataCourse] = useState({
@@ -30,9 +31,17 @@ export default function UpdateCourseCard(props) {
   // const handleChangeStatus = (event) => {
   //   setSelectedStatus(event.target.value);
   // };
-  const handle = (event) => {
-    console.log(props.data.tutorId)
-    setDataCourse({"courseName": event.target.value});
+  const handleUpdate = (event) => {
+    console.log(dataCourse)
+    axios
+      .patch(`http://localhost:3000/course/update/${props.id}`, dataCourse, { withCredentials: true })
+  };
+
+  const handleChange = (prop) => (event) => {
+    setDataCourse({
+      ...dataCourse,
+      [prop]: event.target.value,
+    });
     console.log(dataCourse)
   };
 
@@ -48,7 +57,7 @@ export default function UpdateCourseCard(props) {
           placeholder="Course name"
           aria-invalid="false"
           value={dataCourse.courseName}
-          onChange={handle}
+          onChange={handleChange("courseName")}
         />
         <input
           className="updateCourseFormSubject"
@@ -58,7 +67,7 @@ export default function UpdateCourseCard(props) {
           placeholder="Subject"
           aria-invalid="false"
           value={dataCourse.subject}
-          onChange={(e) => setDataCourse(e.target.value)}
+          onChange={handleChange("subject")}
         />
         <input
           className="updateCourseFormLesson"
@@ -68,7 +77,7 @@ export default function UpdateCourseCard(props) {
           placeholder="lesson"
           aria-invalid="false"
           value={dataCourse.lesson}
-          onChange={(e) => setDataCourse(e.target.value)}
+          onChange={handleChange("courseName")}
         />
         <input
           className="updateCourseFormPrice"
@@ -78,7 +87,7 @@ export default function UpdateCourseCard(props) {
           max="5000"
           placeholder="Price"
           value={dataCourse.price}
-          onChange={(e) => setDataCourse(e.target.value)}
+          onChange={handleChange("courseName")}
         />
         <input
           className="updateCourseFormCapacity"
@@ -88,7 +97,7 @@ export default function UpdateCourseCard(props) {
           max="5000"
           placeholder="Capacity"
           value={dataCourse.capacity}
-          onChange={(e) => setDataCourse(e.target.value)}
+          onChange={handleChange("courseName")}
         />
         <input
           className="updateCourseFormHour"
@@ -97,6 +106,8 @@ export default function UpdateCourseCard(props) {
           min="0"
           max="5000"
           placeholder="Hour"
+          value={dataCourse.hour}
+          onChange={handleChange("hour")}
         />
         <Box sx={{ minWidth: 120 }}>
           <InputLabel id="Description">Description</InputLabel>
@@ -192,7 +203,7 @@ export default function UpdateCourseCard(props) {
             <MenuItem value="publish">publish</MenuItem>
           </Select>
         </Box>
-        <button className="updateCourseFormSubmit">update</button>
+        <button className="updateCourseFormSubmit" onClick={handleUpdate}>update</button>
       </div>
     </div>
   );

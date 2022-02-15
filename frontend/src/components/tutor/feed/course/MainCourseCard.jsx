@@ -23,6 +23,7 @@ export default function MainCourseCard({ cookie, setCookie, removeCookie }) {
   }, [`http://localhost:3000/course/${cookie.user}`, push]);
   const [course, setCourse] = useState(null)
   const [displayState, setDisplayState] = useState(false);
+  const [courseId, setCourseID] = useState(null);
   const [dataCourse, setDataCourse] = useState({
     // id: "",
     // courseName: "",
@@ -42,6 +43,7 @@ export default function MainCourseCard({ cookie, setCookie, removeCookie }) {
       .get(`http://localhost:3000/course/${id}`, { withCredentials: true })
       .then((response) => {
         setDataCourse(response.data)
+        setCourseID(id)
       })
       .catch((e) => {
         console.log(e);
@@ -135,6 +137,7 @@ export default function MainCourseCard({ cookie, setCookie, removeCookie }) {
         setTrigger={setDisplayState}
         data={dataCourse}
         setData={setDataCourse}
+        id={courseId}
       />
     </div>
   );
@@ -151,7 +154,9 @@ function EditCoursePopup(props) {
         >
           <CloseOutlined />
         </button>
-        <UpdateCourseCard data={props.data}
+        <UpdateCourseCard 
+          id = {props.id}
+          data={props.data}
           firstname={props.firstname}
           setTrigger={props.setTrigger}
           setData={props.setData}
