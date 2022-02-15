@@ -26,7 +26,7 @@ export default function LoginCardRight({ cookie, setCookie, position }) {
         const data = response.data
         console.log(response);
         setState(true);
-        setCookie("user", 'kuay');
+        setCookie("user", data.id);
         setCookie("user_role", data.type);
         if (data.type === "tutor") {
           return <Navigate to="/tutor" />;
