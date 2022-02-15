@@ -1,16 +1,16 @@
 import React, { useState } from "react";
 import "./tutorFeed.css";
 import {
-  AutoAwesomeMotionOutlined,
+  // AutoAwesomeMotionOutlined,
   TaskOutlined,
   ForumOutlined,
   AddCircle,
   CloseOutlined,
 } from "@mui/icons-material";
-import { MyCourses } from "./tutor-feed-widgets/mycourse/MyCourse";
+// import { MyCourses } from "./tutor-feed-widgets/mycourse/MyCourse";
 import { EnrReq } from "./tutor-feed-widgets/enrreq/EnrReq";
 import { MsgReq } from "./tutor-feed-widgets/msgreq/MsgReq";
-import { myCourseData, apptData, msgData } from "../../../dummyData";
+import { apptData, msgData } from "../../../dummyData";
 import { Outlet } from "react-router-dom";
 import CreateCoursePopup from "./tutor-feed-widgets/mycourse/CreateCoursePopup";
 import MainCourseCard from "./course/MainCourseCard";
@@ -44,7 +44,11 @@ export function MyCourseList({ cookie, setCookie, removeCookie }) {
           <MyCourses />
         </div>
       </div> */}
-      <MainCourseCard cookie={cookie} setCookie={setCookie} removeCookie={removeCookie}/>
+      <MainCourseCard
+        cookie={cookie}
+        setCookie={setCookie}
+        removeCookie={removeCookie}
+      />
       <div className="tutorFeedAddCourse">
         <button
           className="tutorFeedAddCourseButton"
@@ -54,8 +58,12 @@ export function MyCourseList({ cookie, setCookie, removeCookie }) {
         </button>
       </div>
       <ViewCreateCoursePopup
+        cookie={cookie}
+        setCookie={setCookie}
+        removeCookie={removeCookie}
         trigger={displayState}
-        setTrigger={setDisplayState}/>
+        setTrigger={setDisplayState}
+      />
     </>
   );
 }
@@ -71,9 +79,11 @@ function ViewCreateCoursePopup(props) {
           <CloseOutlined />
         </button>
         <CreateCoursePopup
-          className=""
           trigger={props.trigger}
           setTrigger={props.setTrigger}
+          cookie={props.cookie}
+          setCookie={props.setCookie}
+          removeCookie={props.removeCookie}
         />
       </div>
     </div>
