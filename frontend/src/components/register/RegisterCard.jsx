@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./registerCard.css";
 import { Box, InputLabel, TextField, MenuItem } from "@mui/material";
-// import FileUploader from "./FileUploader.jsx";
 import DateAdapter from "@mui/lab/AdapterDateFns";
 import { LocalizationProvider, DatePicker } from "@mui/lab";
 import axios from "axios";
@@ -131,7 +130,7 @@ export default function RegisterCard() {
       values.firstname !== "" &&
       values.username !== "" &&
       values.password.length !== "" &&
-      values.password_confirm !== "" &&
+      values.passwordConfirm !== "" &&
       values.email !== "" &&
       values.phoneNumber !== "" &&
       values.displayName !== "" &&
@@ -246,6 +245,7 @@ export default function RegisterCard() {
                 </MenuItem>
               ))}
             </TextField>
+
             <TextField
               id="form-register-firstname"
               required
@@ -254,6 +254,7 @@ export default function RegisterCard() {
               inputProps={{ maxLength: 45 }}
               onChange={handleChange("firstname")}
             />
+
             <TextField
               id="form-register-lastname"
               required
@@ -262,6 +263,7 @@ export default function RegisterCard() {
               inputProps={{ maxLength: 45 }}
               onChange={handleChange("lastname")}
             />
+
             <TextField
               id="form-register-username"
               required
@@ -270,6 +272,7 @@ export default function RegisterCard() {
               inputProps={{ minLength: 8, maxLength: 16 }}
               onChange={handleChange("username")}
             />
+
             <TextField
               id="form-register-password"
               required
@@ -277,6 +280,7 @@ export default function RegisterCard() {
               value={values.password}
               onChange={handleChange("password")}
             />
+
             <TextField
               id="form-register-confirm-password"
               required
@@ -284,6 +288,7 @@ export default function RegisterCard() {
               value={values.passwordConfirm}
               onChange={handleChange("passwordConfirm")}
             />
+
             <TextField
               id="form-register-email"
               required
@@ -314,6 +319,7 @@ export default function RegisterCard() {
               inputProps={{ minLength: 5, maxLength: 45 }}
               onChange={handleChange("displayName")}
             />
+
             <LocalizationProvider dateAdapter={DateAdapter}>
               <DatePicker
                 required
@@ -326,6 +332,7 @@ export default function RegisterCard() {
                 renderInput={(params) => <TextField {...params} />}
               />
             </LocalizationProvider>
+
             <TextField
               id="form-register-gender"
               select
@@ -340,6 +347,7 @@ export default function RegisterCard() {
                 </MenuItem>
               ))}
             </TextField>
+
             <TextField
               id="form-register-education"
               select
@@ -354,18 +362,18 @@ export default function RegisterCard() {
                 </MenuItem>
               ))}
             </TextField>
+
             <InputLabel>Profile Picture</InputLabel>
+
             <input
               className="registerPicture"
               type="file"
               value={values.profileImage}
               onChange={onProfileImageChange}
             />
+
             <img className="profileImage" src={profileImage} alt="Profile" />
-            {/* <FileUploaded
-          onFileSelectSuccess={(file) => setSelectedFile(file)}
-          onFileSelectError={({ error }) => alert(error)}
-        /> */}
+
             <TextField
               id="form-register-citizen-id"
               required
@@ -380,13 +388,16 @@ export default function RegisterCard() {
                   : "";
               }}
             />
+
             <InputLabel>Citizen Image</InputLabel>
+
             <input
               className="registerPicture"
               type="file"
               value={citizenImage}
               onChange={onCitizenImageChange}
             />
+
             <img className="citizenImage" src={citizenImage} alt="Citizen" />
           </div>
 
