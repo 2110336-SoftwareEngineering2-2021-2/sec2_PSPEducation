@@ -7,20 +7,21 @@ import { DataGrid } from "@mui/x-data-grid";
 import axios from "axios";
 
 export default function MainCourseCard({ cookie, setCookie, removeCookie }) {
-
   useEffect(() => {
     axios
-    .get(`http://localhost:3000/course/tutor/${cookie.user}`, { withCredentials: true })
-    .then((response) => {
-      // const data = response.data
-      setCourse(response.data)
-      // console.log(response);
-    })
-    .catch((e) => {
-      console.log(e);
-    });
+      .get(`http://localhost:3000/course/tutor/${cookie.user}`, {
+        withCredentials: true,
+      })
+      .then((response) => {
+        // const data = response.data
+        setCourse(response.data);
+        // console.log(response);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   }, [`http://localhost:3000/course/`]);
-  const [course, setCourse] = useState(null)
+  const [course, setCourse] = useState(null);
   const [displayState, setDisplayState] = useState(false);
   const [dataCourse, setDataCourse] = useState({
     // id: "",
@@ -42,10 +43,9 @@ export default function MainCourseCard({ cookie, setCookie, removeCookie }) {
       .then((response) => {
         // const data = response.data
         // console.log(response);
-        setDataCourse(response.data)
+        setDataCourse(response.data);
         // console.log(dataCourse.courseName)
         // console.log(course);
-
       })
       .catch((e) => {
         console.log(e);
@@ -56,7 +56,6 @@ export default function MainCourseCard({ cookie, setCookie, removeCookie }) {
   };
 
   const columns = [
-    // { field: "_id", headerName: "ID", width: 80 },
     { field: "courseName", headerName: "Course name", width: 280 },
     { field: "subject", headerName: "Subject", width: 200 },
     { field: "lesson", headerName: "Lesson", width: 220 },
@@ -81,7 +80,7 @@ export default function MainCourseCard({ cookie, setCookie, removeCookie }) {
               className="courseEditButton"
               onClick={() => {
                 setDisplayState(true);
-                setDataCourse({"id":params.id});
+                setDataCourse({ id: params.id });
                 handleEdit(params.id);
                 // console.log(params.id);
               }}
@@ -136,7 +135,8 @@ function EditCoursePopup(props) {
         >
           <CloseOutlined />
         </button>
-        <UpdateCourseCard data={props.data}
+        <UpdateCourseCard
+          data={props.data}
           firstname={props.firstname}
           setTrigger={props.setTrigger}
           setData={props.setData}
