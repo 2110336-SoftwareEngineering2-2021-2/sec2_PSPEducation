@@ -38,10 +38,6 @@ export default function MainCourseCard({ cookie, setCookie, removeCookie }) {
     learningType: "",
   });
 
-  const [startDate, setStartDate] = useState(null);
-
-  const [endDate, setEndDate] = useState(null);
-
   const handleChange = (prop) => (event) => {
     setDataCourse({
       ...dataCourse,
@@ -126,7 +122,7 @@ export default function MainCourseCard({ cookie, setCookie, removeCookie }) {
                 Publish
               </button>
             )}
-            {params.row.status == "published" && (
+            {params.row.status === "published" && (
               <button
                 className="coursePublishButton"
                 onClick={() => handlePublish(true, params.id)}
@@ -147,7 +143,6 @@ export default function MainCourseCard({ cookie, setCookie, removeCookie }) {
         <DataGrid
           rows={course}
           columns={columns}
-          pageSize={10}
           getRowId={(r) => r._id}
           disableSelectionOnClick
           checkboxSelection
