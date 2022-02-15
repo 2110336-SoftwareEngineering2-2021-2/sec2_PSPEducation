@@ -4,7 +4,7 @@ import StudentSidebar from "../../../components/student/sidebar/StudentSidebar";
 import StudentFeed from "../../../components/student/feed/StudentFeed";
 import * as React from "react";
 import { useState, useEffect } from "react";
-// import { Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 export default function StudentHome({ cookie, setCookie, removeCookie }) {
   const [state, setState] = useState(false);
@@ -22,8 +22,12 @@ export default function StudentHome({ cookie, setCookie, removeCookie }) {
 
   return (
     <>
-      {/* {state && <Navigate to="/login/user" />} */}
-      <StudentTopbar cookie = {cookie} setCookie = {setCookie} removeCookie = {removeCookie}/>
+      {state && <Navigate to="/login" />}
+      <StudentTopbar
+        cookie={cookie}
+        setCookie={setCookie}
+        removeCookie={removeCookie}
+      />
       <div className="pageContent">
         <div className="sidebarContainer">
           <StudentSidebar />

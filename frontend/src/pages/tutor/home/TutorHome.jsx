@@ -3,7 +3,7 @@ import TutorTopbar from "../../../components/tutor/topbar/TutorTopbar";
 import TutorSidebar from "../../../components/tutor/sidebar/TutorSidebar";
 import TutorFeed from "../../../components/tutor/feed/TutorFeed";
 import React, { useState, useEffect } from "react";
-// import { Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 export default function TutorHome({ cookie, setCookie, removeCookie }) {
   const [state, setState] = useState(false);
@@ -21,8 +21,12 @@ export default function TutorHome({ cookie, setCookie, removeCookie }) {
 
   return (
     <>
-      {/* {state && <Navigate to="/login/user" />} */}
-      <TutorTopbar cookie = {cookie} setCookie = {setCookie} removeCookie = {removeCookie}/>
+      {state && <Navigate to="/login" />}
+      <TutorTopbar
+        cookie={cookie}
+        setCookie={setCookie}
+        removeCookie={removeCookie}
+      />
       <div className="pageContent">
         <div className="sidebarContainer">
           <TutorSidebar />
