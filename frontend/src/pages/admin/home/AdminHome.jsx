@@ -22,7 +22,11 @@ export default function AdminHome({ cookie, setCookie, removeCookie }) {
   return (
     <>
       {/* {state && <Navigate to="/login/admin" />} */}
-      <AdminTopbar />
+      <AdminTopbar
+        cookie={cookie}
+        setCookie={setCookie}
+        removeCookie={removeCookie}
+      />
       <div className="pageContent">
         <div className="sidebarContainer">
           <AdminSidebar />
