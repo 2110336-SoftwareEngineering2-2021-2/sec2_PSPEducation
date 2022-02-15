@@ -8,64 +8,83 @@ import axios from "axios";
 
 export default function MainCourseCard({ cookie, setCookie, removeCookie }) {
   const [push, setPush] = useState(false);
-  
+
   useEffect(() => {
     axios
-    .get(`http://localhost:3000/course/tutor/${cookie.user}`, { withCredentials: true })
-    .then((response) => {
-      // const data = response.data
-      setCourse(response.data)
-      // console.log(response);
-    })
-    .catch((e) => {
-      console.log(e);
-    });
+      .get(`http://localhost:3000/course/tutor/${cookie.user}`, {
+        withCredentials: true,
+      })
+      .then((response) => {
+        // const data = response.data
+        setCourse(response.data);
+        // console.log(response);
+      })
+      .catch((e) => {
+        console.log(e);
+      });
   }, [`http://localhost:3000/course/${cookie.user}`, push]);
-  const [course, setCourse] = useState(null)
+  const [course, setCourse] = useState(null);
   const [displayState, setDisplayState] = useState(false);
   const [courseId, setCourseID] = useState(null);
   const [dataCourse, setDataCourse] = useState({
-    // id: "",
-    // courseName: "",
-    // subject: "",
-    // lesson: "",
-    // price: "",
-    // courseStartDate: new Date(),
-    // courseFinishDate: new Date(),
-    // timeSlots: "",
-    // capacity: "",
-    // status: "",
-    // learningType: "",
+    id: "",
+    courseName: "",
+    subject: "",
+    lesson: "",
+    price: "",
+    timeSlots: "",
+    capacity: "",
+    status: "",
+    learningType: "",
   });
+
+  const [startDate, setStartDate] = useState(null);
+
+  const [endDate, setEndDate] = useState(null);
+
+  const handleChange = (prop) => (event) => {
+    setDataCourse({
+      ...dataCourse,
+      [event.target.name]: event.target.value,
+    });
+  };
+
   const handleEdit = (id) => {
     // console.log()
     axios
       .get(`http://localhost:3000/course/${id}`, { withCredentials: true })
       .then((response) => {
-        setDataCourse(response.data)
-        setCourseID(id)
+        setDataCourse(response.data);
+        setCourseID(id);
       })
       .catch((e) => {
         console.log(e);
       });
   };
+
   const handleDelete = (id) => {
     setDataCourse(dataCourse.filter((item) => item.id !== id));
   };
 
-  const handlePublish = (isPublished, id) =>{
-    console.log(id)
-    if (isPublished){
-      axios
-      .patch(`http://localhost:3000/course/update/status/${id}`, {"status":"unpublished"}, { withCredentials: true })
-      setPush(!push)
+  const handlePublish = (isPublished, id) => {
+    console.log(id);
+    if (isPublished) {
+      axios.patch(
+        `http://localhost:3000/course/update/status/${id}`,
+        { status: "unpublished" },
+        { withCredentials: true }
+      );
+      setPush(!push);
     } else {
-      axios
-      .patch(`http://localhost:3000/course/update/status/${id}`, {"status":"published"}, { withCredentials: true })
-      setPush(!push)
+      axios.patch(
+        `http://localhost:3000/course/update/status/${id}`,
+        { status: "published" },
+        { withCredentials: true }
+      );
+      setPush(!push);
     }
   };
-  
+
   const columns = [
     // { field: "_id", headerName: "ID", width: 80 },
     { field: "courseName", headerName: "Course name", width: 280 },
@@ -92,25 +111,29 @@ export default function MainCourseCard({ cookie, setCookie, removeCookie }) {
               className="courseEditButton"
               onClick={() => {
                 setDisplayState(true);
-                setDataCourse({"id":params.id});
+                setDataCourse({ id: params.id });
                 handleEdit(params.id);
                 // console.log(params.id);
               }}
             >
               Edit
             </button>
-            {params.row.status==="unpublished" &&<button
-              className="coursePublishButton"
-              onClick={() => handlePublish(false, params.id)}
-            >
-              Publish
-            </button>}
-            {params.row.status=="published" &&<button
-              className="coursePublishButton"
-              onClick={() => handlePublish(true, params.id)}
-            >
-              Unpublish
-            </button>}
+            {params.row.status === "unpublished" && (
+              <button
+                className="coursePublishButton"
+                onClick={() => handlePublish(false, params.id)}
+              >
+                Publish
+              </button>
+            )}
+            {params.row.status == "published" && (
+              <button
+                className="coursePublishButton"
+                onClick={() => handlePublish(true, params.id)}
+              >
+                Unpublish
+              </button>
+            )}
           </>
         );
       },
@@ -154,8 +177,8 @@ function EditCoursePopup(props) {
         >
           <CloseOutlined />
         </button>
-        <UpdateCourseCard 
-          id = {props.id}
+        <UpdateCourseCard
+          id={props.id}
           data={props.data}
           firstname={props.firstname}
           setTrigger={props.setTrigger}
