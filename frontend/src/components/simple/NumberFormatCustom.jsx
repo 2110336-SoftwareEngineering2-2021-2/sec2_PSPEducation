@@ -21,40 +21,39 @@ export const NumberFormatCustom = forwardRef(function NumberFormatCustom(
         });
       }}
       thousandSeparator
-      isNumericString
     />
   );
 });
 
-NumberFormatCustom.propTypes = {
-  name: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-};
+// NumberFormatCustom.propTypes = {
+//   name: PropTypes.string.isRequired,
+//   onChange: PropTypes.func.isRequired,
+// };
 
-export const NumberFormatCustomNoComma = forwardRef(function NumberFormatCustom(
-  props,
-  ref
-) {
-  const { onChange, ...other } = props;
+// export const NumberFormatCustomNoComma = forwardRef(function NumberFormatCustom(
+//   props,
+//   ref
+// ) {
+//   const { onChange, ...other } = props;
 
-  return (
-    <NumberFormat
-      {...other}
-      getInputRef={ref}
-      onValueChange={(values) => {
-        onChange({
-          target: {
-            name: props.name,
-            value: values.value,
-          },
-        });
-      }}
-      isNumericString
-    />
-  );
-});
+//   return (
+//     <NumberFormat
+//       {...other}
+//       getInputRef={ref}
+//       onValueChange={(values) => {
+//         onChange({
+//           target: {
+//             name: props.name,
+//             value: values.value,
+//           },
+//         });
+//       }}
+//       isNumericString
+//     />
+//   );
+// });
 
-NumberFormatCustomNoComma.propTypes = {
-  name: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-};
+// NumberFormatCustomNoComma.propTypes = {
+//   name: PropTypes.string.isRequired,
+//   onChange: PropTypes.func.isRequired,
+// };
