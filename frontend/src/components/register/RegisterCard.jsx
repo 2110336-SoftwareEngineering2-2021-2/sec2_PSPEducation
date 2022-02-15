@@ -1,5 +1,8 @@
-import React, { useState } from "react";
-import { NumberFormatCustom } from "../simple/NumberFormatCustom";
+import React, { useState, useEffect } from "react";
+import {
+  NumberFormatCustom,
+  NumberFormatCustomNoComma,
+} from "../simple/NumberFormatCustom";
 import "./registerCard.css";
 import {
   Box,
@@ -11,7 +14,10 @@ import {
 } from "@mui/material";
 // import FileUploader from "./FileUploader.jsx";
 import DateAdapter from "@mui/lab/AdapterDateFns";
-import { LocalizationProvider, DesktopDatePicker } from "@mui/lab";
+import { LocalizationProvider, DatePicker } from "@mui/lab";
+import axios from "axios";
+import sha512_256 from "js-sha512";
+import { Navigate } from "react-router-dom";
 
 const userTypeOption = [
   {
@@ -79,168 +85,342 @@ const educationOption = [
 ];
 
 export default function RegisterCard() {
-  const [selectedOption, setSelectedOption] = useState({
+  const [values, setValues] = useState({
     userType: "",
+    firstname: "",
+    lastname: "",
+    username: "",
+    email: "",
+    phoneNumber: "",
+    displayName: "",
+    password: "",
+    passwordConfirm: "",
     gender: "",
     educationLevel: "",
+    citizenId: "",
   });
 
-  const [values, setValues] = useState({
-    birthdate: new Date(),
-  });
+  const [birthdate, setBirthdate] = useState(null);
 
-  const handleChange = (event) => {
-    setSelectedOption(event.target.value);
+  const [isError, setIsError] = useState("");
+
+  const [registerSuccess, setRegisterSuccess] = useState(false);
+
+  const handleChange = (prop) => (event) => {
     setValues({
       ...values,
-      [event.target.name]: event.target.value,
+      [prop]: event.target.value,
     });
+    if (values.password !== event.target.value) {
+      setIsError("The password doesn't match.");
+    } else {
+      setIsError("");
+    }
   };
 
-  const [selectedFile, setSelectedFile] = useState(null);
+  const [profileImage, setProfileImage] = useState(null);
+
+  const onProfileImageChange = (event) => {
+    if (event.target.files && event.target.files[0]) {
+      setProfileImage(URL.createObjectURL(event.target.files[0]));
+    }
+  };
+
+  const [citizenImage, setCitizenImage] = useState(null);
+
+  const onCitizenImageChange = (event) => {
+    if (event.target.files && event.target.files[0]) {
+      setCitizenImage(URL.createObjectURL(event.target.files[0]));
+    }
+  };
+
+  const [imageURL, setImageURL] = useState(null);
+
+  function checkEmpty() {
+    return (
+      values.userType !== "" &&
+      values.firstname !== "" &&
+      values.username !== "" &&
+      values.password.length !== "" &&
+      values.password_confirm !== "" &&
+      values.email !== "" &&
+      values.phoneNumber !== "" &&
+      values.displayName !== "" &&
+      values.birthdate !== "" &&
+      values.gender !== "" &&
+      values.educationLevel !== ""
+    );
+  }
+
+  function checkMinLength() {
+    return (
+      values.userType.length >= 1 &&
+      values.lastname.length >= 1 &&
+      values.username.length >= 8 &&
+      values.password.length >= 1 &&
+      values.passwordConfirm.length >= 1 &&
+      values.displayName.length >= 1
+    );
+  }
+
+  function checkMaxLength() {
+    return (
+      values.userType.length <= 45 &&
+      values.lastname.length <= 45 &&
+      values.username.length <= 16 &&
+      values.displayName.length <= 45
+    );
+  }
+
+  function checkOtherConstraint() {
+    return (
+      values.password === values.passwordConfirm &&
+      values.phoneNumber.length === 10 &&
+      values.phoneNumber[0] === "0" &&
+      (values.phoneNumber[1] === "6" ||
+        values.phoneNumber[1] === "8" ||
+        values.phoneNumber[1] === "9")
+    );
+  }
+
+  useEffect(() => {
+    // Update the document title using the browser API
+    console.log(values.registerSuccess);
+  }, [values.registerSuccess]);
+
+  const handleSubmit = async () => {
+    if (
+      checkEmpty() &&
+      checkMinLength() &&
+      checkMaxLength() &&
+      checkOtherConstraint()
+    ) {
+      const user = {
+        type: values.userType,
+        firstname: values.firstname,
+        lastname: values.lastname,
+        username: values.username,
+        password: sha512_256(values.password),
+        email: values.email,
+        phoneNumber: values.phoneNumber,
+        displayName: values.displayName,
+        birthdate: values.birthdate,
+        gender: values.gender,
+        educationLevel: values.educationLevel,
+        // picture: profileImage,
+      };
+      if (values.userType === "tutor") {
+        // user.citizenId = citizenId;
+        // user.citizenImage = citizenImage;
+      }
+      console.log(user);
+      axios
+        .post(`http://localhost:3000/register`, user, { withCredentials: true })
+        .then((response) => {
+          const data = response.data;
+          console.log(data);
+          setRegisterSuccess(true);
+        })
+        .catch((e) => {
+          console.log(e);
+        });
+    } else {
+      console.log("Registration failed");
+    }
+  };
 
   return (
-    <div className="registerPage">
-      <div className="registerTitle">Register</div>
-      <Box
-        component="form"
-        sx={{
-          "& .MuiTextField-root": { m: 1, width: "300px", minWidth: 120 },
-        }}
-        noValidate
-        autoComplete="off"
-        spellCheck="false"
-      >
-        <div className="registerForm">
-          <TextField
-            id="userType-simple-select"
-            select
-            required
-            label="User Type"
-            value={selectedOption.userType}
-            onChange={handleChange}
-            helperText=""
-          >
-            {userTypeOption.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
-
-          <TextField id="form-register-firstname" required label="Firstname" />
-
-          <TextField id="form-register-lastname" required label="Lastname" />
-
-          <TextField id="form-register-username" required label="Username" />
-
-          <TextField id="form-register-password" required label="Password" />
-
-          <TextField
-            id="form-register-confirm-password"
-            required
-            label="Confirm Password"
-          />
-
-          <TextField id="form-register-email" required label="Email" />
-
-          <TextField
-            id="form-register-phone-number"
-            required
-            label="Phone Number"
-          />
-
-          <TextField
-            id="form-register-display-name"
-            required
-            label="Display Name"
-          />
-
-          <LocalizationProvider dateAdapter={DateAdapter}>
-            <DesktopDatePicker
+    <>
+      {registerSuccess && <Navigate to="/login" />}
+      <div className="registerPage">
+        <div className="registerTitle">Register</div>
+        <Box
+          component="form"
+          sx={{
+            "& .MuiTextField-root": { m: 1, width: "300px", minWidth: 120 },
+          }}
+          noValidate
+          autoComplete="off"
+        >
+          <div className="registerForm">
+            <TextField
+              id="userType-simple-select"
+              select
               required
-              label="Birthdate"
-              inputFormat="MM/dd/yyyy"
-              value={values.birthdate}
-              onChange={handleChange}
-              renderInput={(params) => <TextField {...params} />}
+              label="User Type"
+              value={values.userType}
+              onChange={handleChange("userType")}
+            >
+              {userTypeOption.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
+
+            <TextField
+              id="form-register-firstname"
+              required
+              label="Firstname"
+              value={values.firstname}
+              inputProps={{ maxLength: 45 }}
+              onChange={handleChange("firstname")}
             />
-          </LocalizationProvider>
 
-          <TextField
-            id="form-register-gender"
-            select
-            required
-            value={selectedOption.gender}
-            label="Gender"
-            onChange={handleChange}
-          >
-            {genderOption.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
+            <TextField
+              id="form-register-lastname"
+              required
+              label="Lastname"
+              value={values.lastname}
+              inputProps={{ maxLength: 45 }}
+              onChange={handleChange("lastname")}
+            />
 
-          <TextField
-            id="form-register-education"
-            select
-            required
-            value={selectedOption.educationLevel}
-            label="Education Level"
-            onChange={handleChange}
-          >
-            {educationOption.map((option) => (
-              <MenuItem key={option.value} value={option.value}>
-                {option.label}
-              </MenuItem>
-            ))}
-          </TextField>
+            <TextField
+              id="form-register-username"
+              required
+              label="Username"
+              value={values.username}
+              inputProps={{ minLength: 8, maxLength: 16 }}
+              onChange={handleChange("username")}
+            />
 
-          <InputLabel>Profile Picture</InputLabel>
+            <TextField
+              id="form-register-password"
+              required
+              label="Password"
+              value={values.password}
+              onChange={handleChange("password")}
+            />
 
-          <input
-            className="registerPicture"
-            type="file"
-            value={selectedFile}
-            onChange={(e) => setSelectedFile(e.target.files[0])}
-          />
+            <TextField
+              id="form-register-confirm-password"
+              required
+              label="Confirm Password"
+              value={values.passwordConfirm}
+              onChange={handleChange("passwordConfirm")}
+            />
 
-          {/* <FileUploaded
+            <TextField
+              id="form-register-email"
+              required
+              label="Email"
+              value={values.email}
+              onChange={handleChange("email")}
+            />
+
+            <TextField
+              id="form-register-phone-number"
+              required
+              label="Phone Number"
+              value={values.phoneNumber}
+              inputProps={{ maxLength: 10 }}
+              onChange={handleChange("phoneNumber")}
+            />
+
+            <TextField
+              id="form-register-display-name"
+              required
+              label="Display Name"
+              value={values.displayName}
+              inputProps={{ minLength: 5, maxLength: 45 }}
+              onChange={handleChange("displayName")}
+            />
+
+            <LocalizationProvider dateAdapter={DateAdapter}>
+              <DatePicker
+                required
+                label="Birthdate"
+                inputFormat="MM/dd/yyyy"
+                value={birthdate}
+                onChange={(newValue) => {
+                  setBirthdate(newValue);
+                }}
+                renderInput={(params) => <TextField {...params} />}
+              />
+            </LocalizationProvider>
+
+            <TextField
+              id="form-register-gender"
+              select
+              required
+              value={values.gender}
+              label="Gender"
+              onChange={handleChange("gender")}
+            >
+              {genderOption.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
+
+            <TextField
+              id="form-register-education"
+              select
+              required
+              value={values.educationLevel}
+              label="Education Level"
+              onChange={handleChange("educationLevel")}
+            >
+              {educationOption.map((option) => (
+                <MenuItem key={option.value} value={option.value}>
+                  {option.label}
+                </MenuItem>
+              ))}
+            </TextField>
+
+            <InputLabel>Profile Picture</InputLabel>
+
+            <input
+              className="registerPicture"
+              type="file"
+              value={values.profileImage}
+              onChange={onProfileImageChange}
+            />
+
+            <img className="profileImage" src={profileImage} alt="Profile" />
+
+            {/* <FileUploaded
           onFileSelectSuccess={(file) => setSelectedFile(file)}
           onFileSelectError={({ error }) => alert(error)}
         /> */}
 
-          <TextField
-            id="form-register-citizen-id"
-            required
-            label="Citizen ID"
-            InputProps={{
-              inputComponent: NumberFormatCustom,
-            }}
-          />
+            <TextField
+              id="form-register-citizen-id"
+              required
+              label="Citizen ID"
+              inputProps={{
+                inputComponent: NumberFormatCustomNoComma,
+                minLength: 13,
+                maxLength: 13,
+              }}
+            />
 
-          <InputLabel>Citizen Image</InputLabel>
+            <InputLabel>Citizen Image</InputLabel>
+            <input
+              className="registerPicture"
+              type="file"
+              value={citizenImage}
+              onChange={onCitizenImageChange}
+            />
+            <img className="citizenImage" src={citizenImage} alt="Citizen" />
+          </div>
 
-          <input
-            className="registerCitizenImage"
-            type="file"
-            value={selectedFile}
-            onChange={(e) => setSelectedFile(e.target.files[0])}
-          />
+          <button className="registerSubmit" onClick={handleSubmit}>
+            Register
+          </button>
+        </Box>
+
+        <div className="Login">
+          <p className="LoginText">
+            Already a user?
+            <a className="LoginLink" href="/login">
+              Login
+            </a>
+          </p>
         </div>
-
-        <button className="registerSubmit">Register</button>
-      </Box>
-
-      <div className="Login">
-        <p className="LoginText">
-          Already a user?
-          <a className="LoginLink" href="/login">
-            Login
-          </a>
-        </p>
       </div>
-    </div>
+    </>
   );
 }
