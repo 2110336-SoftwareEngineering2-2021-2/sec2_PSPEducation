@@ -24,8 +24,7 @@ export class CourseService {
     @InjectModel('users') private readonly userModel: Model<any>,
   ) {}
 
-  async createCourse(body: CreateCourseDto){
-    
+  async createCourse(body: CreateCourseDto){ 
     const tutor = await this.userModel.findById(body.tutorId)
     if(!tutor){
       throw new NotFoundException("This tutor ID doesn't exist");

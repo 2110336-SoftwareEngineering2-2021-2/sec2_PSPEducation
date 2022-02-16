@@ -26,7 +26,7 @@ export class Course {
   @Prop({required: true})
   courseFinishDate: Date;
 
-  @Prop({required: true})
+  @Prop({required: true, default: []})
   timeSlots: Array<TimeSlot>; // Not sure
 
   @Prop({required: true})
@@ -41,7 +41,7 @@ export class Course {
   @Prop({required: true})
   hour: number; // Not sure
 
-  @Prop({required: true})
+  @Prop({required: true, default: "unpublished"})
   status: string;
 
   @Prop({required: true})

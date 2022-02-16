@@ -9,8 +9,11 @@ import { UserDto } from '../user/dto/user.dto'
 import { AuthGuard } from 'src/guard/auth.guard';
 import { TutorGuard } from 'src/guard/tutor.guard';
 import { UpdateCourseStatusDto } from './dto/update-course-status.dto';
+import { CourseDto } from './dto/course.dto';
+import { Serialize } from 'src/interceptors/serialize.interceptor';
 
 @Controller('course')
+@Serialize(CourseDto)
 export class CourseController {
   constructor(private courseService: CourseService){}
 

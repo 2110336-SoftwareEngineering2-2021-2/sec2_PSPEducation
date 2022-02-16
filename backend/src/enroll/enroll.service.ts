@@ -67,7 +67,7 @@ export class EnrollService {
       let e2: EnrollDto;
       const student = await this.userModel.findById(e.studentId);
       e2 = {
-        ...e,
+        ...e._doc,
         studentFirstName: student.firstname,
         studentLastName: student.lastname,
         courseName: course.courseName,
@@ -85,8 +85,8 @@ export class EnrollService {
 
     let response = []; // every response
     for (let i = 0; i < courses.length; i++) {
-      const enrolls = this.enrollModel.find({
-        courseId: courses[i]._id,
+      const enrolls = await this.enrollModel.find({
+        courseId: courses[i].id,
         status: STATUS_WAITING,
       }); // enrolls array
       response = response.concat(enrolls);
@@ -96,13 +96,13 @@ export class EnrollService {
       const student = await this.userModel.findById(response[i].studentId);
       const course = await this.courseModel.findById(response[i].courseId);
       response[i] = {
-        ...response[i],
+        ...response[i]._doc,
         studentFirstName: student.firstname,
         studentLastName: student.lastname,
         courseName: course.courseName,
       };
     }
-    return response
+    return response;
   }
 
   async updateEnrollStatus(
