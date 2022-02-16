@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import "./mainCourseCard.css";
+import "./myCourseListTable.css";
 import { CloseOutlined } from "@mui/icons-material";
 import UpdateCourseCard from "./update/UpdateCourseCard";
-import { listCourseRows } from "../../../../dummyData";
 import { DataGrid } from "@mui/x-data-grid";
 import axios from "axios";
 
-export default function MainCourseCard({ cookie, setCookie, removeCookie }) {
+export default function MyCourseListTable({ cookie, setCookie, removeCookie }) {
   const [push, setPush] = useState(false);
 
   useEffect(() => {
@@ -23,9 +22,13 @@ export default function MainCourseCard({ cookie, setCookie, removeCookie }) {
         console.log(e);
       });
   }, [`http://localhost:3000/course/${cookie.user}`, push]);
+
   const [course, setCourse] = useState(null);
+
   const [displayState, setDisplayState] = useState(false);
+
   const [courseId, setCourseID] = useState(null);
+
   const [dataCourse, setDataCourse] = useState({
     id: "",
     courseName: "",
