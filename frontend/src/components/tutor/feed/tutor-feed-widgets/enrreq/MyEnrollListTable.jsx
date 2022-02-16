@@ -10,7 +10,7 @@ export default function MyEnrollListTable({ cookie, setCookie, removeCookie }) {
 
   const [course, setCourse] = useState({});
 
-  var [enroll, setEnroll] = useState([]);
+  const [enroll, setEnroll] = useState([]);
 
   useEffect(() => {
     const FetchAPI = async () => {
@@ -36,13 +36,16 @@ export default function MyEnrollListTable({ cookie, setCookie, removeCookie }) {
                   });
                 })
                 .then((tmp) => {
+                  // setEnroll(prevEnroll => [...prevEnroll, { [i]: tmp } ]);
                   setEnroll(Object.assign([], enroll, { [i]: tmp }));
+                  // console.log(Object.assign([], enroll, [{ [i]: tmp }]));
                 });
             };
 
             for (let i = 0; i < 1; i++) {
               getRowAddInfo(response.data[i], i.toString());
             }
+            console.log(enroll);
           });
       } catch (e) {
         console.log(e);
@@ -121,9 +124,9 @@ export default function MyEnrollListTable({ cookie, setCookie, removeCookie }) {
       <div className="mainEnrollTitle">Enrollment Request</div>
       <div className="mainEnrollTable">
         <DataGrid
-          rows={enroll}
+          rows={course}
           columns={columns}
-          getRowId={(row) => row.id}
+          getRowId={(row) => row._id}
           disableSelectionOnClick
           checkboxSelection
         />
