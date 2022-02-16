@@ -15,7 +15,7 @@ import Register from "./pages/register/Register";
 import { BrowserRouter, Routes, Route, Redirect } from "react-router-dom";
 import {
   MyCourseList,
-  EnrollReqComp,
+  MyEnrollList,
   MsgReqComp,
 } from "./components/tutor/feed/TutorFeed";
 import {
@@ -136,7 +136,7 @@ function App() {
           <Route
             path="enrollreq"
             element={
-              <EnrollReqComp
+              <MyEnrollList
                 cookie={cookie}
                 setCookie={setCookie}
                 removeCookie={removeCookie}
