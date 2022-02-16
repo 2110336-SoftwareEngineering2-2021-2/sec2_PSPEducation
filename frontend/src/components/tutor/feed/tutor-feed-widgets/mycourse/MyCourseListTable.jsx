@@ -21,7 +21,7 @@ export default function MyCourseListTable({ cookie, setCookie, removeCookie }) {
       .catch((e) => {
         console.log(e);
       });
-  }, [`http://localhost:3000/course/${cookie.user}`, push]);
+  }, [push]);
 
   const [course, setCourse] = useState(null);
 
@@ -146,7 +146,7 @@ export default function MyCourseListTable({ cookie, setCookie, removeCookie }) {
         <DataGrid
           rows={course}
           columns={columns}
-          getRowId={(r) => r._id}
+          getRowId={(r) => r.id}
           disableSelectionOnClick
           checkboxSelection
           setTrigger={setDisplayState}
