@@ -6,6 +6,7 @@ import { LocalizationProvider, DatePicker } from "@mui/lab";
 import axios from "axios";
 import sha512_256 from "js-sha512";
 import { Navigate } from "react-router-dom";
+import { format } from "date-fns";
 
 const userTypeOption = [
   {
@@ -84,11 +85,11 @@ export default function RegisterCard() {
     password: "",
     passwordConfirm: "",
     gender: "",
-    educationLevel: "",
+    educationalLevel: "",
     citizenId: "",
   });
 
-  const [birthdate, setBirthdate] = useState(null);
+  const [birthdate, setBirthdate] = useState(new Date());
 
   const [isError, setIsError] = useState("");
 
@@ -107,7 +108,7 @@ export default function RegisterCard() {
     }
   };
 
-  const [profileImage, setProfileImage] = useState(null);
+  const [profileImage, setProfileImage] = useState("");
 
   const onProfileImageChange = (event) => {
     if (event.target.files && event.target.files[0]) {
@@ -115,7 +116,7 @@ export default function RegisterCard() {
     }
   };
 
-  const [citizenImage, setCitizenImage] = useState(null);
+  const [citizenImage, setCitizenImage] = useState("");
 
   const onCitizenImageChange = (event) => {
     if (event.target.files && event.target.files[0]) {
@@ -123,7 +124,7 @@ export default function RegisterCard() {
     }
   };
 
-  const [imageURL, setImageURL] = useState(null);
+  const [imageURL, setImageURL] = useState("");
 
   function checkEmpty() {
     return (
@@ -135,9 +136,9 @@ export default function RegisterCard() {
       values.email !== "" &&
       values.phoneNumber !== "" &&
       values.displayName !== "" &&
-      values.birthdate !== "" &&
+      birthdate !== "" &&
       values.gender !== "" &&
-      values.educationLevel !== ""
+      values.educationalLevel !== ""
     );
   }
 
@@ -179,16 +180,21 @@ export default function RegisterCard() {
 
   const handleSubmit = async () => {
     console.log(values);
+    console.log("-----------------start-------------");
+    console.log(birthdate);
+    console.log(format(birthdate, "yyyy-MM-dd"));
+    console.log("------------finish-----------");
     if (!checkEmpty()) console.log("checkEmpty Error!");
     if (!checkMinLength()) console.log("checkMinLength Error!");
     if (!checkMaxLength()) console.log("checkMaxLength Error!");
     if (!checkOtherConstraint()) console.log("checkOtherConstraint Error!");
 
     if (
-      checkEmpty() &&
-      checkMinLength() &&
-      checkMaxLength() &&
-      checkOtherConstraint()
+      true
+      // checkEmpty() &&
+      // checkMinLength() &&
+      // checkMaxLength() &&
+      // checkOtherConstraint()
     ) {
       const user = {
         type: values.userType,
@@ -199,16 +205,47 @@ export default function RegisterCard() {
         email: values.email,
         phoneNumber: values.phoneNumber,
         displayName: values.displayName,
-        birthdate: values.birthdate,
+        birthdate: format(birthdate, "yyyy-MM-dd"),
         gender: values.gender,
-        educationLevel: values.educationLevel,
-        // picture: profileImage,
+        educationalLevel: parseInt(values.educationalLevel),
+        picture: "",
+        citizenId: values.citizenId,
+        citizenImage: "",
       };
-      if (values.userType === "tutor") {
-        // user.citizenId = citizenId;
-        // user.citizenImage = citizenImage;
-      }
+
+      console.log(`type ${user.type}`);
+      console.log(`firstname ${user.firstname}`);
+      console.log(`lastname ${user.lastname}`);
+      console.log(`password ${user.password}`);
+      console.log(`email ${user.email}`);
+      console.log(`phoneNumber is ${user.phoneNumber}`);
+      console.log(`displayName${user.displayName}`);
+      console.log(`birthdate ${user.birthdate}`);
+      console.log(`gender ${user.gender}`);
+      console.log(`educationalLevel ${user.educationalLevel}`);
+      console.log(`picture ${user.picture}`);
+      console.log(`citizenId ${user.citizenId}`);
+      console.log(`citizenImage ${user.citizenImage}`);
+
+      //   const user = {
+      //     type: "tutor",
+      //     firstname: "aongaong",
+      //     lastname: "aongaong",
+      //     username: "aongaong",
+      //     email: "aongaong@gmail.com",
+      //     phoneNumber: "0999999999",
+      //     displayName: "aongaongaongaongaongaong",
+      //     password: "aongaong",
+      //     birthdate: "2022-02-02",
+      //     gender: "male",
+      //     educationalLevel: 5,
+      //     picture: "",
+      //     citizenId: "5404956171291",
+      //     citizenImage: ""
+      // }
+
       console.log(user);
+
       axios
         .post(`http://localhost:3000/register`, user, { withCredentials: true })
         .then((response) => {
@@ -359,9 +396,9 @@ export default function RegisterCard() {
               id="form-register-education"
               select
               required
-              value={values.educationLevel}
+              value={values.educationalLevel}
               label="Education Level"
-              onChange={handleChange("educationLevel")}
+              onChange={handleChange("educationalLevel")}
             >
               {educationOption.map((option) => (
                 <MenuItem key={option.value} value={option.value}>
@@ -379,14 +416,14 @@ export default function RegisterCard() {
               onChange={onProfileImageChange}
             />
 
-            <img className="profileImage" src={profileImage} alt="Profile" />
+            <img className="profileImage" src={profileImage} alt="" />
 
             <TextField
               required
               id="form-register-citizen-id"
               label="Citizen ID"
               value={values.citizenId}
-              onChange={handleChange("citizenId") || ""}
+              onChange={handleChange("citizenId")}
               onInput={(e) => {
                 e.target.value = e.target.value
                   ? Math.max(0, parseInt(e.target.value))
@@ -405,7 +442,7 @@ export default function RegisterCard() {
               onChange={onCitizenImageChange}
             />
 
-            <img className="citizenImage" src={citizenImage} alt="Citizen" />
+            <img className="citizenImage" src={citizenImage} alt="" />
           </div>
 
           <button className="registerSubmit" onClick={handleSubmit}>
