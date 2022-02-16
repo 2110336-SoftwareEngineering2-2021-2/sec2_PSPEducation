@@ -380,8 +380,8 @@ export default function RegisterCard() {
             <img className="profileImage" src={profileImage} alt="Profile" />
 
             <TextField
-              id="form-register-citizen-id"
               required
+              id="form-register-citizen-id"
               label="Citizen ID"
               value={values.citizenId}
               onChange={handleChange("citizenId")}
