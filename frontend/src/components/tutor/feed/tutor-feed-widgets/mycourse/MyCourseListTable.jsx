@@ -41,12 +41,12 @@ export default function MyCourseListTable({ cookie, setCookie, removeCookie }) {
     learningType: "",
   });
 
-  const handleChange = (prop) => (event) => {
-    setDataCourse({
-      ...dataCourse,
-      [event.target.name]: event.target.value,
-    });
-  };
+  // const handleChange = (prop) => (event) => {
+  //   setDataCourse({
+  //     ...dataCourse,
+  //     [event.target.name]: event.target.value,
+  //   });
+  // };
 
   const handleEdit = (id) => {
     // console.log()
@@ -61,9 +61,9 @@ export default function MyCourseListTable({ cookie, setCookie, removeCookie }) {
       });
   };
 
-  const handleDelete = (id) => {
-    setDataCourse(dataCourse.filter((item) => item.id !== id));
-  };
+  // const handleDelete = (id) => {
+  //   setDataCourse(dataCourse.filter((item) => item.id !== id));
+  // };
 
   const handlePublish = (isPublished, id) => {
     console.log(id);
