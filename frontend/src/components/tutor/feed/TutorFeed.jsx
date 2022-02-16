@@ -12,8 +12,8 @@ import { EnrReq } from "./tutor-feed-widgets/enrreq/EnrReq";
 import { MsgReq } from "./tutor-feed-widgets/msgreq/MsgReq";
 import { apptData, msgData } from "../../../dummyData";
 import { Outlet } from "react-router-dom";
-import CreateCoursePopup from "./tutor-feed-widgets/mycourse/CreateCoursePopup";
-import MainCourseCard from "./course/MainCourseCard";
+import CreateCoursePopup from "./tutor-feed-widgets/mycourse/create/CreateCoursePopup";
+import MyCourseListTable from "./tutor-feed-widgets/mycourse/MyCourseListTable";
 
 export default function TutorFeed() {
   return (
@@ -44,7 +44,7 @@ export function MyCourseList({ cookie, setCookie, removeCookie }) {
           <MyCourses />
         </div>
       </div> */}
-      <MainCourseCard
+      <MyCourseListTable
         cookie={cookie}
         setCookie={setCookie}
         removeCookie={removeCookie}
