@@ -19,8 +19,7 @@ export default function TutorTopbar({ cookie, setCookie, removeCookie }) {
 
   useEffect(() => {
     // Update the document title using the browser API
-    console.log("this is the tutor top bar");
-    console.log(state);
+    // console.log("logout: ", state);
   }, [state]);
 
   const handleLogout = async () => {
