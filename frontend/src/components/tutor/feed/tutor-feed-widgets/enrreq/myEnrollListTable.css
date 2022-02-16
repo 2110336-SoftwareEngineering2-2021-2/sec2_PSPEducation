@@ -12,7 +12,7 @@
   font-family: Poppins, sans-serif;
 }
 
-.mainCourse {
+.mainEnroll {
   height: 100%;
   width: 100%;
   display: flex;
@@ -24,7 +24,7 @@
   border-radius: 20px;
 }
 
-.mainCourseTitle {
+.mainEnrollTitle {
   font-size: 100px;
   font-family: Festive;
   color: white;
@@ -32,20 +32,20 @@
     0.2px -0.2px 0 rgb(87, 112, 221), -0.2px -0.2px 0 rgb(87, 112, 221);
 }
 
-.mainCourseTable {
+.mainEnrollTable {
   width: 100%;
   flex-grow: 1;
   background-color: white;
 }
 
-.mainCourseForm {
+.mainEnrollForm {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-.viewEditCoursePopup {
+.viewEditEnrollPopup {
   position: fixed;
   top: 0px;
   left: 0;
@@ -59,7 +59,7 @@
   overflow: auto;
 }
 
-.viewEditCoursePopupContainer {
+.viewEditEnrollPopupContainer {
   position: relative;
   padding: 32px;
   padding: 20px;
@@ -73,7 +73,7 @@
   overflow: auto;
 }
 
-.closeEditCoursePopup {
+.closeEditEnrollPopup {
   color: white;
   position: absolute;
   top: 16px;
@@ -84,27 +84,35 @@
   transform: scale(1.1);
 }
 
-.closeEditCoursePopup:hover {
+.closeEditEnrollPopup:hover {
   transform: scale(1.2);
   transition: all 0.2s ease;
 }
 
-.courseEditButton {
+.enrollApproveButton, .enrollRejectButton {
   border: none;
   border-radius: 10px;
   padding: 5px 10px;
-  background-color: #3bb077;
   color: white;
   cursor: pointer;
   margin-right: 20px;
 }
 
-.coursePublishButton {
-  border: none;
-  border-radius: 10px;
-  padding: 5px 10px;
-  background-color: #3b8bb0;
-  color: white;
-  cursor: pointer;
-  margin-right: 20px;
+.enrollApproveButton {
+  background-color: rgb(69, 173, 139);
+}
+
+.enrollApproveButton:hover {
+  background-color: rgb(7, 107, 74);
+}
+
+
+.enrollRejectButton {
+  background-color: rgb(233, 123, 123);
+  padding: 8px 10px;
+  transition: all 0.3s ease;
+}
+
+.enrollRejectButton:hover {
+  background-color: rgb(233, 86, 86);
 }
