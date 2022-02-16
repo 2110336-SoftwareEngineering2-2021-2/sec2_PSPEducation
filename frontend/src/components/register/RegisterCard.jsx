@@ -99,6 +99,7 @@ export default function RegisterCard() {
       ...values,
       [prop]: event.target.value,
     });
+    // console.log(values);
     if (values.password !== event.target.value) {
       setIsError("The password doesn't match.");
     } else {
@@ -173,14 +174,15 @@ export default function RegisterCard() {
 
   useEffect(() => {
     // Update the document title using the browser API
-    console.log(values.registerSuccess);
-  }, [values.registerSuccess]);
+    console.log("register :", registerSuccess);
+  }, [registerSuccess]);
 
   const handleSubmit = async () => {
-    if (checkEmpty()) console.log("checkEmpty");
-    if (checkMinLength()) console.log("checkMinLength");
-    if (checkMaxLength()) console.log("checkMaxLength");
-    if (checkOtherConstraint()) console.log("checkOtherConstraint");
+    console.log(values);
+    if (!checkEmpty()) console.log("checkEmpty Error!");
+    if (!checkMinLength()) console.log("checkMinLength Error!");
+    if (!checkMaxLength()) console.log("checkMaxLength Error!");
+    if (!checkOtherConstraint()) console.log("checkOtherConstraint Error!");
 
     if (
       checkEmpty() &&
@@ -224,7 +226,7 @@ export default function RegisterCard() {
 
   return (
     <>
-      {registerSuccess && <Navigate to="/login" />}
+      {/* {registerSuccess && <Navigate to="/login" />} */}
       <div className="registerPage">
         <div className="registerTitle">Register</div>
         <Box
@@ -373,7 +375,7 @@ export default function RegisterCard() {
             <input
               className="registerPicture"
               type="file"
-              value={values.profileImage}
+              value={values.profileImage || ""}
               onChange={onProfileImageChange}
             />
 
@@ -384,7 +386,7 @@ export default function RegisterCard() {
               id="form-register-citizen-id"
               label="Citizen ID"
               value={values.citizenId}
-              onChange={handleChange("citizenId")}
+              onChange={handleChange("citizenId") || ""}
               onInput={(e) => {
                 e.target.value = e.target.value
                   ? Math.max(0, parseInt(e.target.value))
