@@ -1,19 +1,18 @@
 import React, { useState } from "react";
 import "./tutorFeed.css";
 import {
-  // AutoAwesomeMotionOutlined,
   TaskOutlined,
   ForumOutlined,
   AddCircle,
   CloseOutlined,
 } from "@mui/icons-material";
-// import { MyCourses } from "./tutor-feed-widgets/mycourse/MyCourse";
 import { EnrReq } from "./tutor-feed-widgets/enrreq/EnrReq";
 import { MsgReq } from "./tutor-feed-widgets/msgreq/MsgReq";
 import { apptData, msgData } from "../../../dummyData";
 import { Outlet } from "react-router-dom";
 import CreateCoursePopup from "./tutor-feed-widgets/mycourse/create/CreateCoursePopup";
 import MyCourseListTable from "./tutor-feed-widgets/mycourse/MyCourseListTable";
+import MyEnrollListTable from "./tutor-feed-widgets/enrreq/MyEnrollListTable";
 
 export default function TutorFeed() {
   return (
@@ -44,11 +43,13 @@ export function MyCourseList({ cookie, setCookie, removeCookie }) {
           <MyCourses />
         </div>
       </div> */}
+
       <MyCourseListTable
         cookie={cookie}
         setCookie={setCookie}
         removeCookie={removeCookie}
       />
+
       <div className="tutorFeedAddCourse">
         <button
           className="tutorFeedAddCourseButton"
@@ -57,6 +58,7 @@ export function MyCourseList({ cookie, setCookie, removeCookie }) {
           <AddCircle />
         </button>
       </div>
+
       <ViewCreateCoursePopup
         cookie={cookie}
         setCookie={setCookie}
@@ -64,6 +66,39 @@ export function MyCourseList({ cookie, setCookie, removeCookie }) {
         trigger={displayState}
         setTrigger={setDisplayState}
       />
+    </>
+  );
+}
+
+export function MyCrsComp({ cookie, setCookie, removeCookie }) {
+  // const [displayState, setDisplayState] = useState(false);
+
+  return (
+    <>
+      {/* <div className="tutorFeedCard">
+        <div className="tutorFeedTitle">
+          <div className="tutorFeedTitleLeft">
+            <div className="tutorFeedTitleName">My Courses</div>
+            <div className="tutorFeedTitleBadge">{myCourseData.length}</div>
+          </div>
+
+          <div className="tutorFeedTitleRight">
+            <AutoAwesomeMotionOutlined className="tutorFeedTitleIcon" />
+          </div>
+        </div>
+
+        <div className="tutorFeedWidgetWrapper">
+          <MyCourses />
+        </div>
+      </div> */}
+
+      {/* <ViewCreateCoursePopup
+        cookie={cookie}
+        setCookie={setCookie}
+        removeCookie={removeCookie}
+        trigger={displayState}
+        setTrigger={setDisplayState}
+      /> */}
     </>
   );
 }
@@ -78,6 +113,54 @@ function ViewCreateCoursePopup(props) {
         >
           <CloseOutlined />
         </button>
+
+        <CreateCoursePopup
+          trigger={props.trigger}
+          setTrigger={props.setTrigger}
+          cookie={props.cookie}
+          setCookie={props.setCookie}
+          removeCookie={props.removeCookie}
+        />
+      </div>
+    </div>
+  ) : (
+    ""
+  );
+}
+
+export function MyEnrollList({ cookie, setCookie, removeCookie }) {
+  const [displayState, setDisplayState] = useState(false);
+
+  return (
+    <>
+      <MyEnrollListTable
+        cookie={cookie}
+        setCookie={setCookie}
+        removeCookie={removeCookie}
+      />
+
+      <ViewEnrollPopup
+        cookie={cookie}
+        setCookie={setCookie}
+        removeCookie={removeCookie}
+        trigger={displayState}
+        setTrigger={setDisplayState}
+      />
+    </>
+  );
+}
+
+function ViewEnrollPopup(props) {
+  return props.trigger ? (
+    <div className="viewCreateCoursePopup">
+      <div className="viewCreateCoursePopupContainer">
+        <button
+          className="closeCreateCoursePopup"
+          onClick={() => props.setTrigger(false)}
+        >
+          <CloseOutlined />
+        </button>
+
         <CreateCoursePopup
           trigger={props.trigger}
           setTrigger={props.setTrigger}
