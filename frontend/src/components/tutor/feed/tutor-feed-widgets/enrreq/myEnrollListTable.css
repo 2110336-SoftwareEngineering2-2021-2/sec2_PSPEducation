@@ -1,0 +1,110 @@
+@import url("https://fonts.googleapis.com/css2?family=Festive&family=Poppins:wght@300;400;500;600;700&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap");
+
+:root {
+  --main-theme: rgb(87, 112, 221);
+  --card-theme:rgb(102, 124, 223);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Poppins, sans-serif;
+}
+
+.mainCourse {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: top;
+  background-color: rgba(125, 170, 230, 0.7);
+  font-size: 12px;
+  border-radius: 20px;
+}
+
+.mainCourseTitle {
+  font-size: 100px;
+  font-family: Festive;
+  color: white;
+  text-shadow: -0.2px 0.2px 0 rgb(87, 112, 221), 0.2px 0.2px 0 rgb(87, 112, 221),
+    0.2px -0.2px 0 rgb(87, 112, 221), -0.2px -0.2px 0 rgb(87, 112, 221);
+}
+
+.mainCourseTable {
+  width: 100%;
+  flex-grow: 1;
+  background-color: white;
+}
+
+.mainCourseForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.viewEditCoursePopup {
+  position: fixed;
+  top: 0px;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  overflow: auto;
+}
+
+.viewEditCoursePopupContainer {
+  position: relative;
+  padding: 32px;
+  padding: 20px;
+  height: 100%;
+  width: 100%;
+  max-width: 640px;
+  max-height: 800px;
+  background-color: var(--card-theme);
+  border-radius: 20px;
+  border-radius: 30px;
+  overflow: auto;
+}
+
+.closeEditCoursePopup {
+  color: white;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  transform: scale(1.1);
+}
+
+.closeEditCoursePopup:hover {
+  transform: scale(1.2);
+  transition: all 0.2s ease;
+}
+
+.courseEditButton {
+  border: none;
+  border-radius: 10px;
+  padding: 5px 10px;
+  background-color: #3bb077;
+  color: white;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.coursePublishButton {
+  border: none;
+  border-radius: 10px;
+  padding: 5px 10px;
+  background-color: #3b8bb0;
+  color: white;
+  cursor: pointer;
+  margin-right: 20px;
+}
