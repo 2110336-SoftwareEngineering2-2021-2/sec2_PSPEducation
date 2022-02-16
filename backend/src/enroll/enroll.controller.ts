@@ -25,6 +25,11 @@ export class EnrollController {
   getWaitingEnrollById(@Param("id") id: string, @Session() session: any){
     return this.enrollService.findWaitingByCourseId(id, session.userId);
   }
+
+  @Get("waiting/tutor/:tutorId")
+  getWaitingEnrollByTutorId(@Param("tutorId") tutorId: string){
+    return this.enrollService.findWaitingByTutorId(tutorId);
+  }
   
   @UseGuards(TutorGuard)
   @Patch("/:enrollId")
