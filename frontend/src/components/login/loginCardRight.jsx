@@ -9,6 +9,7 @@ export default function LoginCardRight({ cookie, setCookie, position }) {
   const [email, setEmail] = useState("");
   const [password_1, setPassword_1] = useState("");
   const [state, setState] = useState(false);
+
   useEffect(() => {
     // Update the document title using the browser API
     console.log(state);
@@ -19,11 +20,12 @@ export default function LoginCardRight({ cookie, setCookie, position }) {
     const password = password_1;
 
     const user = { email, password };
-    console.log()
     axios
-      .post(`http://localhost:3000/auth/signin`, user, { withCredentials: true })
+      .post(`http://localhost:3000/auth/signin`, user, {
+        withCredentials: true,
+      })
       .then((response) => {
-        const data = response.data
+        const data = response.data;
         console.log(response);
         setState(true);
         setCookie("user", data.id);
@@ -43,14 +45,17 @@ export default function LoginCardRight({ cookie, setCookie, position }) {
 
   return (
     <>
-      {state && <Navigate to="/student" />}
+      {state && cookie.user_role === "admin" && <Navigate to="/admin" />}
+      {state && cookie.user_role === "tutor" && <Navigate to="/tutor" />}
+      {state && cookie.user_role === "student" && <Navigate to="/student" />}
+
       <div className="right">
         <div className="rightTitle">Welcome {state} !!</div>
         <div className="rightForm">
           <input
             className="rightFormEmail"
             type="text"
-            autocomplete="off"
+            autoComplete="off"
             spellCheck="false"
             placeholder="Email address"
             aria-invalid="false"
@@ -59,7 +64,7 @@ export default function LoginCardRight({ cookie, setCookie, position }) {
           <input
             className="rightFormPassword"
             type="password"
-            autocomplete="off"
+            autoComplete="off"
             spellCheck="false"
             placeholder="Password"
             aria-invalid="false"
