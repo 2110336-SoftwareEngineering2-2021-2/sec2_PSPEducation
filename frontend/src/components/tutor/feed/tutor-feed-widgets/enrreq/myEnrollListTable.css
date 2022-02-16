@@ -45,50 +45,6 @@
   justify-content: center;
 }
 
-.viewEditEnrollPopup {
-  position: fixed;
-  top: 0px;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.2);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 999;
-  overflow: auto;
-}
-
-.viewEditEnrollPopupContainer {
-  position: relative;
-  padding: 32px;
-  padding: 20px;
-  height: 100%;
-  width: 100%;
-  max-width: 640px;
-  max-height: 800px;
-  background-color: var(--card-theme);
-  border-radius: 20px;
-  border-radius: 30px;
-  overflow: auto;
-}
-
-.closeEditEnrollPopup {
-  color: white;
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  cursor: pointer;
-  background: none;
-  border: none;
-  transform: scale(1.1);
-}
-
-.closeEditEnrollPopup:hover {
-  transform: scale(1.2);
-  transition: all 0.2s ease;
-}
-
 .enrollApproveButton, .enrollRejectButton {
   border: none;
   border-radius: 10px;
