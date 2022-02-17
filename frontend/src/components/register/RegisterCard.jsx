@@ -320,6 +320,7 @@ export default function RegisterCard() {
             <TextField
               id="form-register-password"
               required
+              type="password"
               label="Password"
               value={values.password}
               onChange={handleChange("password")}
@@ -328,6 +329,7 @@ export default function RegisterCard() {
             <TextField
               id="form-register-confirm-password"
               required
+              type="password"
               label="Confirm Password"
               value={values.passwordConfirm}
               onChange={handleChange("passwordConfirm")}
