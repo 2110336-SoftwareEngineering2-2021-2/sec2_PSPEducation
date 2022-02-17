@@ -7,11 +7,11 @@ export default function Footer() {
       <div className="footer">
         <div className="footerWrapper">
           <span id="platform-version-text">
-            1.10.2.1{" "}
+            1.10.4.1{" "}
             <a href="privacypolicy-2021.html" className="platform-policy">
               Privacy Policy
             </a>{" "}
-            | updated on Feb 12 <sup>nd</sup>, 2022
+            | updated on Feb 14 <sup>th</sup>, 2022
           </span>
           <span>
             <span className="platform-name">WhereIsMyTutor?</span> is operated
