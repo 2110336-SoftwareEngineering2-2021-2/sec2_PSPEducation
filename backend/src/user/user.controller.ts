@@ -1,6 +1,7 @@
-import { Controller, Get, Post, Body, Param, Session, UseGuards, BadRequestException } from '@nestjs/common';
+import { Controller, Get, Post, Body, Param, Session, UseGuards, BadRequestException, Patch, ForbiddenException } from '@nestjs/common';
 import { CurrentUser } from './decorators/current-user.decorator';
 import { Serialize } from 'src/interceptors/serialize.interceptor';
+import { checkUserIdWithSession } from '../utils';
 // Service
 import { UserService } from './user.service';
 import { AuthService } from './auth.service';
@@ -8,9 +9,12 @@ import { AuthService } from './auth.service';
 import { UserDto } from './dto/user.dto';
 import { CreateRegisterDto } from 'src/register/dto/create-register.dto';
 import { SignInUserDto } from './dto/signin-user.dto';
+import { UpdateUserPasswordDto } from './dto/update-user-password.dto';
 // Guard
 import { AuthGuard } from 'src/guard/auth.guard';
 import { AdminGuard } from 'src/guard/admin.guard';
+// Schema
+import { User } from './user.schema';
 
 @Controller('auth')
 @Serialize(UserDto)
@@ -28,6 +32,20 @@ export class UserController {
     return this.userService.findById(id)
   }
 
+  @Patch("/user/:id")
+  @UseGuards(AuthGuard)
+  updateUser(@Param("id") id: string, @Body() body: Partial<User>, @Session() session: any) {
+    checkUserIdWithSession(id, session.userId);
+    return this.userService.updateUser(id, body);
+  }
+
+  @Patch("user/:id/password")
+  @UseGuards(AuthGuard)
+  updateUserPassword(@Param("id") id: string, @Body() body: UpdateUserPasswordDto, @Session() session: any){
+    checkUserIdWithSession(id, session.userId);
+    return this.userService.updateUserPassword(id, body)
+  }
+  
   @Get("/student")
   getAllStudent(){
     return this.userService.findByType("student")

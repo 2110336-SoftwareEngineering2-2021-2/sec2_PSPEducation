@@ -99,12 +99,11 @@ export class CourseService {
       throw new BadRequestException("This course ID is not yours");
     }
 
-    const filter = { id: course.id };
-    const answer = await this.courseModel.findOneAndUpdate(filter, attrs, { new: true })
-    answer.dateTimeUpdated = Date.now()
-    return await answer.save().catch(function(error) {
+    const filter = { _id: course.id };
+    const answer = await this.courseModel.findOneAndUpdate(filter, attrs, { new: true }).catch(function(error) {
       throw new BadRequestException({...error, message: "duplicate columns"});
     })
+    answer.dateTimeUpdated = Date.now()
+    return await answer.save()
   }
-
 }

@@ -5,6 +5,7 @@ import { AdminRegisterController } from './adminregister.controller';
 import { RegisterController } from './register.controller';
 import { RegisterService } from './register.service';
 import { UserModule } from 'src/user/user.module';
+import { UserSchema } from 'src/user/user.schema';
 
 @Module({
   imports: [
