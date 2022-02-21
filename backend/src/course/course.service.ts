@@ -24,9 +24,9 @@ export class CourseService {
     @InjectModel('users') private readonly userModel: Model<any>,
   ) {}
 
-  async createCourse(body: CreateCourseDto){ 
-    const tutor = await this.userModel.findById(body.tutorId)
-    if(!tutor){
+  async createCourse(body: CreateCourseDto) {
+    const tutor = await this.userModel.findById(body.tutorId);
+    if (!tutor) {
       throw new NotFoundException("This tutor ID doesn't exist");
     }
     if (tutor.type !== 'tutor') {
@@ -113,13 +113,16 @@ export class CourseService {
       throw new BadRequestException('This course ID is not yours');
     }
 
-    const filter = { id: course.id };
-    const answer = await this.courseModel.findOneAndUpdate(filter, attrs, {
-      new: true,
-    });
+    const filter = { _id: course.id };
+    const answer = await this.courseModel
+      .findOneAndUpdate(filter, attrs, { new: true })
+      .catch(function (error) {
+        throw new BadRequestException({
+          ...error,
+          message: 'duplicate columns',
+        });
+      });
     answer.dateTimeUpdated = Date.now();
-    return await answer.save().catch(function (error) {
-      throw new BadRequestException({ ...error, message: 'duplicate columns' });
-    });
+    return await answer.save();
   }
 }
