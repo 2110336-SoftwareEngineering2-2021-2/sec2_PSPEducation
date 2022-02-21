@@ -21,7 +21,7 @@ export default function TutorHome({ cookie, setCookie, removeCookie }) {
 
   return (
     <>
-      {state && <Navigate to="/login" />}
+      {/* {state && <Navigate to="/login" />} */}
       <TutorTopbar
         cookie={cookie}
         setCookie={setCookie}
