@@ -3,7 +3,7 @@ import AdminTopbar from "../../../components/admin/topbar/AdminTopbar";
 import AdminSidebar from "../../../components/admin/sidebar/AdminSidebar";
 import AdminFeed from "../../../components/admin/feed/AdminFeed";
 import { useState, useEffect } from "react";
-// import { Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 export default function AdminHome({ cookie, setCookie, removeCookie }) {
   const [state, setState] = useState(false);
@@ -21,7 +21,7 @@ export default function AdminHome({ cookie, setCookie, removeCookie }) {
 
   return (
     <>
-      {/* {state && <Navigate to="/login/admin" />} */}
+      {/* {state && <Navigate to="/adminlogin" />} */}
       <AdminTopbar
         cookie={cookie}
         setCookie={setCookie}
