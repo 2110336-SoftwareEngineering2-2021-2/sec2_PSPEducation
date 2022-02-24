@@ -1,10 +1,10 @@
 import "./app.css";
 
 import * as React from "react";
-import Navbar from "./components/simple/navbar/Navbar";
+import GuestTopbar from "./components/simple/topbar/GuestTopbar";
 import Footer from "./components/simple/footer/Footer";
 import { NavLink } from "react-router-dom";
-import { withCookies, Cookies, useCookies } from "react-cookie";
+import { useCookies } from "react-cookie";
 import AdminHome from "./pages/admin/home/AdminHome";
 import TutorHome from "./pages/tutor/home/TutorHome";
 import StudentHome from "./pages/student/home/StudentHome";
@@ -12,7 +12,8 @@ import LoginUser from "./pages/login/LoginUser";
 import LoginAdmin from "./pages/login/LoginAdmin";
 import Register from "./pages/register/Register";
 
-import { BrowserRouter, Routes, Route, Redirect } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+
 import {
   MyCourseList,
   MyEnrollList,
@@ -244,7 +245,7 @@ function Layout() {
   // const isLoggedIn = isLoggedIn();
   return (
     <div className="layout">
-      <Navbar />
+      <GuestTopbar />
       <div className="container">
         <h3>Please access via following links:</h3>
         <hr />
