@@ -1,0 +1,45 @@
+.topbar {
+  height: 60px;
+  background-color: rgb(87, 112, 221);
+  display: flex;
+  top: 0;
+  position: sticky;
+  z-index: 999;
+  position: sticky;
+}
+
+.topbarWrapper {
+  width: 100%;
+  padding: 0px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.topLeft {
+  flex: 3;
+  justify-content: center;
+}
+
+.topLeftContainer {
+  top: -10px;
+  position: relative;
+  white-space: nowrap;
+}
+
+.topLeftlogo {
+  font-size: 24px;
+  margin-left: 20px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+}
+
+.topLeftauthor {
+  font-size: 16px;
+  font-weight: 400;
+  color: white;
+  position: absolute;
+  top: 29px;
+  left: 54px;
+}
