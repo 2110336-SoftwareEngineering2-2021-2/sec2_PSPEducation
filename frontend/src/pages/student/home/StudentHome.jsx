@@ -1,5 +1,5 @@
 import "./studentHome.css";
-import StudentTopbar from "../../../components/student/topbar/StudentTopbar";
+import Topbar from "../../../components/simple/topbar/Topbar";
 import StudentSidebar from "../../../components/student/sidebar/StudentSidebar";
 import StudentFeed from "../../../components/student/feed/StudentFeed";
 import * as React from "react";
@@ -23,7 +23,9 @@ export default function StudentHome({ cookie, setCookie, removeCookie }) {
   return (
     <>
       {state && <Navigate to="/login" />}
-      <StudentTopbar
+      <Topbar
+        state={state}
+        setState={setState}
         cookie={cookie}
         setCookie={setCookie}
         removeCookie={removeCookie}

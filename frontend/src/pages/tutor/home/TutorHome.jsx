@@ -1,5 +1,5 @@
 import "./tutorHome.css";
-import TutorTopbar from "../../../components/tutor/topbar/TutorTopbar";
+import Topbar from "../../../components/simple/topbar/Topbar";
 import TutorSidebar from "../../../components/tutor/sidebar/TutorSidebar";
 import TutorFeed from "../../../components/tutor/feed/TutorFeed";
 import React, { useState, useEffect } from "react";
@@ -21,8 +21,10 @@ export default function TutorHome({ cookie, setCookie, removeCookie }) {
 
   return (
     <>
-      {/* {state && <Navigate to="/login" />} */}
-      <TutorTopbar
+      {state && <Navigate to="/login" />}
+      <Topbar
+        state={state}
+        setState={setState}
         cookie={cookie}
         setCookie={setCookie}
         removeCookie={removeCookie}
