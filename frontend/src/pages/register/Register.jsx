@@ -1,6 +1,4 @@
-// import LoginLeftside from "../../components/login/loginLeftside";
-// import LoginRightside from "../../components/login/loginRightside";
-import Navbar from "../../components/simple/navbar/Navbar";
+import GuestTopbar from "../../components/simple/topbar/GuestTopbar";
 import Footer from "../../components/simple/footer/Footer";
 import RegisterCard from "../../components/register/RegisterCard.jsx";
 import "./register.css";
@@ -28,7 +26,7 @@ export default function Register({ cookie, setCookie, removeCookie }) {
       {state && cookie.user_role === "student" && <Navigate to="/student" />}
 
       <div className="register">
-        <Navbar />
+        <GuestTopbar />
         <div className="registerWrapper">
           <div className="registerCard">
             <RegisterCard />
