@@ -10,20 +10,28 @@ export default function LoginCardLeft() {
         <img src={PspImgSrc} alt="" className="leftPSPLogo" />
       </div>
       <div className="leftTeamDevelop">
-        <div className="leftTeamDevelopTitle">Team Developers</div>
-        <div className="leftDeveloperList">
-          {developerCardData.map((data, key) => {
-            return (
-              <DeveloperCard
-                key={key}
-                devName={data.devName}
-                imgAvatarURL={data.imgAvatarURL}
-              />
-            );
-          })}
-        </div>
+        <TeamDevelopersList />
       </div>
     </div>
+  );
+}
+
+function TeamDevelopersList() {
+  return (
+    <>
+      <div className="leftTeamDevelopTitle">Team Developers</div>
+      <div className="leftDeveloperList">
+        {developerCardData.map((data, key) => {
+          return (
+            <DeveloperCard
+              key={key}
+              devName={data.devName}
+              imgAvatarURL={data.imgAvatarURL}
+            />
+          );
+        })}
+      </div>
+    </>
   );
 }
 

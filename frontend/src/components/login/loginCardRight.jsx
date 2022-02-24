@@ -1,91 +1,100 @@
-import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useCookies } from "react-cookie";
+// import { useCookies } from "react-cookie";
 import "./loginCardRight.css";
-import { sha512_256 } from "js-sha512";
-import { Navigate } from "react-router-dom";
 
-export default function LoginCardRight({ cookie, setCookie, position }) {
+var APIHandler = require("../simple/api/APIHandler");
+
+export default function LoginCardRight({
+  position,
+  cookie,
+  setCookie,
+  state,
+  setState,
+}) {
   const [email, setEmail] = useState("");
-  const [password_1, setPassword_1] = useState("");
-  const [state, setState] = useState(false);
+  const [password, setPassword] = useState("");
 
-  useEffect(() => {
-    // Update the document title using the browser API
-    console.log(state);
-  }, [state]);
-
-  const handleSubmit = async () => {
-    // const password = sha512_256(password_1);
-    const password = password_1;
-
-    const user = { email, password };
-    axios
-      .post(`http://localhost:3000/auth/signin`, user, {
-        withCredentials: true,
-      })
-      .then((response) => {
-        const data = response.data;
-        console.log(response);
-        setState(true);
-        setCookie("user", data.id);
-        setCookie("user_role", data.type);
-        if (data.type === "tutor") {
-          return <Navigate to="/tutor" />;
-        } else if (data.type === "student") {
-          return <Navigate to="/student" />;
-        } else if (data.type === "admin") {
-          return <Navigate to="/admin" />;
-        }
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  };
+  // useEffect(() => {
+  //   // Update the document title using the browser API
+  //   console.log("login status Card:", state);
+  // }, [state]);
 
   return (
     <>
-      {state && cookie.user_role === "admin" && <Navigate to="/admin" />}
-      {state && cookie.user_role === "tutor" && <Navigate to="/tutor" />}
-      {state && cookie.user_role === "student" && <Navigate to="/student" />}
-
       <div className="right">
-        <div className="rightTitle">Welcome {state} !!</div>
+        <div className="rightTitle">Welcome !!</div>
+
         <div className="rightForm">
-          <input
-            className="rightFormEmail"
-            type="text"
-            autoComplete="off"
-            spellCheck="false"
-            placeholder="Email address"
-            aria-invalid="false"
-            onChange={(e) => setEmail(e.target.value)}
+          <LoginFormPane
+            email={email}
+            setEmail={setEmail}
+            password={password}
+            setPassword={setPassword}
+            cookie={cookie}
+            setCookie={setCookie}
+            state={state}
+            setState={setState}
           />
-          <input
-            className="rightFormPassword"
-            type="password"
-            autoComplete="off"
-            spellCheck="false"
-            placeholder="Password"
-            aria-invalid="false"
-            value={password_1}
-            onChange={(e) => setPassword_1(e.target.value)}
-          />
-          <button className="rightFormSubmit" onClick={() => handleSubmit()}>
-            Login
-          </button>
         </div>
 
-        <div className="rightRegister">
-          <p className="rightRegisterText">
-            New to WhereIsMyTutor?
-            <a className="rightRegisterLink" href="/register">
-              Sign up
-            </a>
-          </p>
-        </div>
-        {/* <div>{get("user") && <h1>Hello {get("user")}!</h1>}</div> */}
+        <TextHelperRegister />
       </div>
     </>
+  );
+}
+
+function LoginFormPane(props) {
+  return (
+    <>
+      <input
+        className="rightFormEmail"
+        type="text"
+        autoComplete="off"
+        spellCheck="false"
+        placeholder="Email address"
+        aria-invalid="false"
+        onChange={(e) => props.setEmail(e.target.value)}
+      />
+
+      <input
+        className="rightFormPassword"
+        type="password"
+        autoComplete="off"
+        spellCheck="false"
+        placeholder="Password"
+        aria-invalid="false"
+        value={props.password}
+        onChange={(e) => props.setPassword(e.target.value)}
+      />
+
+      <button
+        className="rightFormLogin"
+        onClick={() =>
+          APIHandler.handleLogin(
+            props.email,
+            props.password,
+            props.state,
+            props.setState,
+            props.cookie,
+            props.setCookie
+          )
+        }
+      >
+        Login
+      </button>
+    </>
+  );
+}
+
+function TextHelperRegister() {
+  return (
+    <div className="rightRegister">
+      <p className="rightRegisterText">
+        New to WhereIsMyTutor?
+        <a className="rightRegisterLink" href="/register">
+          Sign up
+        </a>
+      </p>
+    </div>
   );
 }
