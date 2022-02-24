@@ -22,6 +22,7 @@ export default function LoginUser({ cookie, setCookie, removeCookie }) {
       removeCookie("user_role");
     }
     // console.log("login state:", state);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state]);
 
   return (
