@@ -1,8 +1,8 @@
 import "./studentHome.css";
 import Topbar from "../../../components/simple/topbar/Topbar";
-import StudentSidebar from "../../../components/student/sidebar/StudentSidebar";
+import Sidebar from "../../../components/simple/sidebar/Sidebar";
 import StudentFeed from "../../../components/student/feed/StudentFeed";
-import * as React from "react";
+import React from "react";
 import { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 
@@ -32,9 +32,8 @@ export default function StudentHome({ cookie, setCookie, removeCookie }) {
       />
       <div className="pageContent">
         <div className="sidebarContainer">
-          <StudentSidebar />
+          <Sidebar cookie={cookie} />
         </div>
-        <div></div>
         <div className="homeContainer">
           <div className="homeWrapper">
             <StudentFeed />

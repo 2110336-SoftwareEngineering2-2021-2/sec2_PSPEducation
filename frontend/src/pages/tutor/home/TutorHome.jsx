@@ -1,6 +1,6 @@
 import "./tutorHome.css";
 import Topbar from "../../../components/simple/topbar/Topbar";
-import TutorSidebar from "../../../components/tutor/sidebar/TutorSidebar";
+import Sidebar from "../../../components/simple/sidebar/Sidebar";
 import TutorFeed from "../../../components/tutor/feed/TutorFeed";
 import React, { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
@@ -31,7 +31,7 @@ export default function TutorHome({ cookie, setCookie, removeCookie }) {
       />
       <div className="pageContent">
         <div className="sidebarContainer">
-          <TutorSidebar />
+          <Sidebar cookie={cookie} />
         </div>
         <div className="homeContainer">
           <div className="homeWrapper">

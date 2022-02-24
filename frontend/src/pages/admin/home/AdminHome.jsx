@@ -1,6 +1,6 @@
 import "./adminHome.css";
-import AdminTopbar from "../../../components/admin/topbar/AdminTopbar";
-import AdminSidebar from "../../../components/admin/sidebar/AdminSidebar";
+import Topbar from "../../../components/simple/topbar/Topbar";
+import Sidebar from "../../../components/simple/sidebar/Sidebar";
 import AdminFeed from "../../../components/admin/feed/AdminFeed";
 import { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
@@ -21,15 +21,17 @@ export default function AdminHome({ cookie, setCookie, removeCookie }) {
 
   return (
     <>
-      {/* {state && <Navigate to="/adminlogin" />} */}
-      <AdminTopbar
+      {state && <Navigate to="/adminlogin" />}
+      <Topbar
+        state={state}
+        setState={setState}
         cookie={cookie}
         setCookie={setCookie}
         removeCookie={removeCookie}
       />
       <div className="pageContent">
         <div className="sidebarContainer">
-          <AdminSidebar />
+          <Sidebar cookie={cookie} />
         </div>
         <div className="homeContainer">
           <div className="homeWrapper">
