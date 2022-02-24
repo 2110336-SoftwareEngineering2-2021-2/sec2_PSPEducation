@@ -1,0 +1,190 @@
+:root {
+  --main-theme :rgb(87, 112, 221);
+  --main-white :#f0f8ff;
+  --main-border :rgb(116, 135, 219);
+}
+
+.topbar {
+  height: 60px;
+  background-color: var(--main-theme);
+  display: flex;
+  top: 0;
+  z-index: 999;
+}
+
+.topbarWrapper {
+  width: 100%;
+  padding: 0px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.topLeft {
+  flex: 3;
+  justify-content: center;
+}
+
+.topLeftContainer {
+  top: -10px;
+  position: relative;
+  white-space: nowrap;
+}
+
+.topLeftlogo {
+  font-size: 24px;
+  margin-left: 20px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+}
+
+.topLeftlogoLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.topLeftauthor {
+  font-size: 16px;
+  font-weight: 400;
+  color: white;
+  position: absolute;
+  top: 29px;
+  left: 54px;
+}
+
+.topCenter {
+  flex: 3;
+}
+
+.searchbar {
+  height: 30px;
+  background-color: var(--main-white);
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.searchIcon {
+  font-size: 20px !important;
+  margin-left: 10px;
+}
+
+.searchInput {
+  font-size: 14px;
+  border: none;
+  width: 70%;
+  height: 100%;
+  background-color: var(--main-white);
+  margin: 1px;
+}
+
+.searchInput:focus {
+  outline: none;
+}
+
+.topRight {
+  flex: 2;
+  display: flex;
+  align-items: center;
+  margin-right: 20px;
+  justify-content: flex-end;
+}
+
+.topRightContainer {
+  display: flex;
+}
+
+.topbarIconContainer {
+  position: relative;
+  margin-right: 20px;
+  color: white;
+}
+
+.topbarIcon{
+  padding-left: 3px;
+  padding-top: 3px;
+  width: 30px;
+  height: 30px;
+  background-color: var(--main-theme);
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+.topbarIcon:hover{
+  filter: brightness(1.2);
+}
+
+.topIconBadge {
+  width: 14px;
+  height: 14px;
+  position: absolute;
+  bottom: 0px;
+  right: -5px;
+  background-color: red;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+.topbarProfileButton {
+  display: flex;
+  flex-direction: row;
+  cursor: pointer;
+  background-color: var(--main-theme);
+  border: none;
+}
+
+.topbarProfileButton:hover .topbarAvatar {
+  filter: brightness(1.1);
+  filter: contrast(1.2);
+}
+
+.topbarAvatarContainer {
+  position: relative;
+  display: flex;
+  background-color: var(--main-theme);
+}
+
+.topbarAvatarContainer::after {
+  position: absolute;
+  padding:0;
+  margin:0;
+  content: "";
+  height: 100%;
+  left: 50%;
+  right: 0;
+  background-color: var(--main-white);
+  border-top: var(--main-border) 2px solid;
+  border-bottom: var(--main-border) 2px solid;
+  z-index: 998;
+}
+
+.topbarAvatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+  object-position: 50% 0%;
+  border: var(--main-border) 2px solid;
+  z-index: 999;
+}
+
+.topbarCreditContainer {
+  padding: 5px;
+  max-height: 32px;
+  border-radius: 0px 10px 10px 0;
+  background-color: var(--main-white);
+  border: var(--main-border) 2px solid;
+  border-left: none;
+}
+
+.topbarCredit {
+  height: 100%;
+  font-size: 14px;
+  white-space: nowrap;
+  text-align: center;
+}
+
