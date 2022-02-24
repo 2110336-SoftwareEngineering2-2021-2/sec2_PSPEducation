@@ -1,0 +1,49 @@
+:root {
+    --main-theme :rgb(87, 112, 221);
+    --main-white :#f0f8ff;
+    --main-border :rgb(116, 135, 219);
+  }
+
+.dropProfileMenu {
+  position: absolute;
+  top: 63px;
+  transform: translateX(40%);
+  background-color: var(--main-white);
+  border-radius: 20px;
+  border: var(--main-border) 3px solid;
+  font-size: 16px;
+  height: auto;
+  width: 180px;
+  padding: 10px;
+  z-index: 999;
+  overflow: auto;
+}
+
+.dropProfileList {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: black !important;
+}
+
+.dropProfileItem {
+  width: 100%;
+  padding: 10px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.dropProfileItem button{
+  font-size: 16px;
+  border: none;
+  background: none;
+  outline: none;
+  cursor: pointer;
+}
+
+.dropProfileItem:hover {
+  border-radius: 10px;
+  border: var(--main-theme) 1.5px solid;
+} 
