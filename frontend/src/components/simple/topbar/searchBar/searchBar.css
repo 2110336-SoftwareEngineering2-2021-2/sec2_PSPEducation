@@ -1,0 +1,31 @@
+:root {
+    --main-theme :rgb(87, 112, 221);
+    --main-white :#f0f8ff;
+    --main-border :rgb(116, 135, 219);
+}
+
+.searchbar {
+    height: 30px;
+    background-color: var(--main-white);
+    border-radius: 30px;
+    display: flex;
+    align-items: center;
+}
+  
+.searchIcon {
+    font-size: 20px !important;
+    margin-left: 10px;
+}
+  
+.searchInput {
+    font-size: 14px;
+    border: none;
+    width: 70%;
+    height: 100%;
+    background-color: var(--main-white);
+    margin: 1px;
+}
+  
+.searchInput:focus {
+    outline: none;
+}
