@@ -1,0 +1,33 @@
+:root {
+    --main-theme :rgb(87, 112, 221);
+    --main-white :#f0f8ff;
+    --main-border :rgb(116, 135, 219);
+}
+
+.topLeftContainer {
+    top: -10px;
+    position: relative;
+    white-space: nowrap;
+}
+  
+.topLeftlogo {
+    font-size: 24px;
+    margin-left: 20px;
+    font-weight: bold;
+    color: white;
+    cursor: pointer;
+}
+  
+.topLeftlogoLink {
+    text-decoration: none;
+    color: inherit;
+}
+  
+.topLeftauthor {
+    font-size: 16px;
+    font-weight: 400;
+    color: white;
+    position: absolute;
+    top: 29px;
+    left: 54px;
+}
