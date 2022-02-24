@@ -1,12 +1,12 @@
-import LoginLeftside from "../../components/login/loginCardLeft";
-import LoginRightside from "../../components/login/loginCardRight";
-import Navbar from "../../components/simple/navbar/Navbar";
+import LoginCardLeft from "../../components/login/LoginCardLeft";
+import LoginCardRight from "../../components/login/LoginCardRight";
+import GuestTopbar from "../../components/simple/topbar/GuestTopbar";
 import Footer from "../../components/simple/footer/Footer";
 import "./loginAdmin.css";
 import { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 
-export default function LoginAdmin({ cookie, setCookie }) {
+export default function LoginAdmin({ cookie, setCookie, removeCookie }) {
   const [state, setState] = useState(false);
 
   useEffect(() => {
@@ -27,11 +27,11 @@ export default function LoginAdmin({ cookie, setCookie }) {
       {state && cookie.user_role === "student" && <Navigate to="/student" />}
 
       <div className="adminLogin">
-        <Navbar />
+        <GuestTopbar />
         <div className="adminLoginWrapper">
           <div className="adminLoginCard">
-            <LoginLeftside />
-            <LoginRightside
+            <LoginCardLeft />
+            <LoginCardRight
               position="admin"
               cookie={cookie}
               setCookie={setCookie}
