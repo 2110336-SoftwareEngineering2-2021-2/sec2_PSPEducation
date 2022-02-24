@@ -1,97 +1,39 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React from "react";
 import "./topbar.css";
-import {
-  AppsOutlined,
-  EmailOutlined,
-  NotificationsNoneOutlined,
-  SearchOutlined,
-} from "@mui/icons-material";
-import { userData } from "../../../dummyData";
-import DropProfileMenu from "./dropProfileMenu/DropProfileMenu";
 
-export default function TutorTopbar({
+import TopLeftLogo from "./topLeftLogo/TopLeftLogo";
+import SearchBar from "./searchBar/SearchBar";
+import TopRightMenu from "./topRightMenu/TopRightMenu";
+import { userData } from "../../../dummyData";
+
+export default function Topbar({
   state,
   setState,
   cookie,
   setCookie,
   removeCookie,
 }) {
-  const [dropProfileState, setDropProfileState] = useState(false);
-  const imgSrc = userData.imgURL;
-
   return (
     <>
       <div className="topbar">
         <div className="topbarWrapper">
           <div className="topLeft">
-            <div className="topLeftContainer">
-              <span className="topLeftlogo">
-                <Link className="topLeftlogoLink" to="/">
-                  WhereIsMyTutor?
-                </Link>
-              </span>
-              <span className="topLeftauthor">Powered by PSPEducaion</span>
-            </div>
+            <TopLeftLogo />
           </div>
+
           <div className="topCenter">
-            <div className="searchbar">
-              <SearchOutlined className="searchIcon" />
-              <input
-                type="search"
-                autoComplete="off"
-                spellCheck="false"
-                placeholder="Search for course, tutor or subject"
-                className="searchInput"
-                aria-invalid="false"
-              />
-            </div>
+            <SearchBar />
           </div>
+
           <div className="topRight">
-            <div className="topRightContainer">
-              <div className="topbarIconContainer">
-                <div className="topbarIcon">
-                  <AppsOutlined />
-                </div>
-              </div>
-              <div className="topbarIconContainer">
-                <div className="topbarIcon">
-                  <EmailOutlined />
-                </div>
-                <span className="topIconBadge">3</span>
-              </div>
-              <div className="topbarIconContainer">
-                <div className="topbarIcon">
-                  <NotificationsNoneOutlined />
-                </div>
-                <span className="topIconBadge">8</span>
-              </div>
-
-              <button
-                onClick={() => setDropProfileState(!dropProfileState)}
-                className="topbarProfileButton"
-              >
-                <div className="topbarAvatarContainer">
-                  <img src={imgSrc} alt="" className="topbarAvatar" />
-                </div>
-
-                <div className="topbarCreditContainer">
-                  <span className="topbarCredit">
-                    credit: {userData.credit_balance}
-                  </span>
-                </div>
-              </button>
-
-              <DropProfileMenu
-                trigger={dropProfileState}
-                setTrigger={setDropProfileState}
-                state={state}
-                setState={setState}
-                cookie={cookie}
-                setCookie={setCookie}
-                removeCookie={removeCookie}
-              />
-            </div>
+            <TopRightMenu
+              userData={userData}
+              state={state}
+              setState={setState}
+              cookie={cookie}
+              setCookie={setCookie}
+              removeCookie={removeCookie}
+            />
           </div>
         </div>
       </div>
