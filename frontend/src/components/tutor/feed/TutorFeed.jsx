@@ -27,37 +27,11 @@ export function MyCourseList({ cookie, setCookie, removeCookie }) {
 
   return (
     <>
-      {/* <div className="tutorFeedCard">
-        <div className="tutorFeedTitle">
-          <div className="tutorFeedTitleLeft">
-            <div className="tutorFeedTitleName">My Courses</div>
-            <div className="tutorFeedTitleBadge">{myCourseData.length}</div>
-          </div>
-
-          <div className="tutorFeedTitleRight">
-            <AutoAwesomeMotionOutlined className="tutorFeedTitleIcon" />
-          </div>
-        </div>
-
-        <div className="tutorFeedWidgetWrapper">
-          <MyCourses />
-        </div>
-      </div> */}
-
       <MyCourseListTable
         cookie={cookie}
         setCookie={setCookie}
         removeCookie={removeCookie}
       />
-
-      <div className="tutorFeedAddCourse">
-        <button
-          className="tutorFeedAddCourseButton"
-          onClick={() => setDisplayState(true)}
-        >
-          <AddCircle />
-        </button>
-      </div>
 
       <ViewCreateCoursePopup
         cookie={cookie}
@@ -66,39 +40,6 @@ export function MyCourseList({ cookie, setCookie, removeCookie }) {
         trigger={displayState}
         setTrigger={setDisplayState}
       />
-    </>
-  );
-}
-
-export function MyCrsComp({ cookie, setCookie, removeCookie }) {
-  // const [displayState, setDisplayState] = useState(false);
-
-  return (
-    <>
-      {/* <div className="tutorFeedCard">
-        <div className="tutorFeedTitle">
-          <div className="tutorFeedTitleLeft">
-            <div className="tutorFeedTitleName">My Courses</div>
-            <div className="tutorFeedTitleBadge">{myCourseData.length}</div>
-          </div>
-
-          <div className="tutorFeedTitleRight">
-            <AutoAwesomeMotionOutlined className="tutorFeedTitleIcon" />
-          </div>
-        </div>
-
-        <div className="tutorFeedWidgetWrapper">
-          <MyCourses />
-        </div>
-      </div> */}
-
-      {/* <ViewCreateCoursePopup
-        cookie={cookie}
-        setCookie={setCookie}
-        removeCookie={removeCookie}
-        trigger={displayState}
-        setTrigger={setDisplayState}
-      /> */}
     </>
   );
 }

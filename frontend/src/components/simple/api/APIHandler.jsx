@@ -59,4 +59,57 @@ const handleLogout = async (
     });
 };
 
-export { handleLogin, handleLogout };
+const handleEditCourse = (id, setDataCourse, setCourseID) => {
+  // console.log()
+  axios
+    .get(`http://localhost:3000/course/${id}`, { withCredentials: true })
+    .then((response) => {
+      setDataCourse(response.data);
+      setCourseID(id);
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+};
+
+const handlePublishCourse = (isPublished, id, push, setPush) => {
+  console.log(id);
+  if (isPublished) {
+    axios.patch(
+      `http://localhost:3000/course/update/status/${id}`,
+      { status: "unpublished" },
+      { withCredentials: true }
+    );
+    setPush(!push);
+  } else {
+    axios.patch(
+      `http://localhost:3000/course/update/status/${id}`,
+      { status: "published" },
+      { withCredentials: true }
+    );
+    setPush(!push);
+  }
+};
+
+const handleUpdateTutorCourse = (cookie, setCourse) => {
+  axios
+    .get(`http://localhost:3000/course/tutor/${cookie.user}`, {
+      withCredentials: true,
+    })
+    .then((response) => {
+      // const data = response.data
+      setCourse(response.data);
+      // console.log(response);
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+};
+
+export {
+  handleLogin,
+  handleLogout,
+  handleEditCourse,
+  handlePublishCourse,
+  handleUpdateTutorCourse,
+};

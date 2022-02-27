@@ -4,6 +4,8 @@ import Dropdown from "react-dropdown";
 import { FormControl, Select, Box, InputLabel, MenuItem } from "@mui/material";
 import axios from "axios";
 
+// var APIHandler = require("../../../simple/api/APIHandler");
+
 export default function UpdateCourseCard(props) {
   // console.log(props)
   // const [selectedLt, setSelectedLt] = useState(null);

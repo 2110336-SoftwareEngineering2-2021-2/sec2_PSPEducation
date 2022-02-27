@@ -1,27 +1,16 @@
 import React, { useState, useEffect } from "react";
 import "./myCourseListTable.css";
-import { CloseOutlined } from "@mui/icons-material";
+import { CloseOutlined, AddCircle } from "@mui/icons-material";
 import UpdateCourseCard from "./update/UpdateCourseCard";
 import { DataGrid } from "@mui/x-data-grid";
 import axios from "axios";
 
+import CreateCoursePopup from "../../tutor-feed-widgets/mycourse/create/CreateCoursePopup";
+
+var APIHandler = require("../../../../simple/api/APIHandler");
+
 export default function MyCourseListTable({ cookie, setCookie, removeCookie }) {
   const [push, setPush] = useState(false);
-
-  useEffect(() => {
-    axios
-      .get(`http://localhost:3000/course/tutor/${cookie.user}`, {
-        withCredentials: true,
-      })
-      .then((response) => {
-        // const data = response.data
-        setCourse(response.data);
-        // console.log(response);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  }, [push]);
 
   const [course, setCourse] = useState(null);
 
@@ -41,48 +30,9 @@ export default function MyCourseListTable({ cookie, setCookie, removeCookie }) {
     learningType: "",
   });
 
-  // const handleChange = (prop) => (event) => {
-  //   setDataCourse({
-  //     ...dataCourse,
-  //     [event.target.name]: event.target.value,
-  //   });
-  // };
-
-  const handleEdit = (id) => {
-    // console.log()
-    axios
-      .get(`http://localhost:3000/course/${id}`, { withCredentials: true })
-      .then((response) => {
-        setDataCourse(response.data);
-        setCourseID(id);
-      })
-      .catch((e) => {
-        console.log(e);
-      });
-  };
-
-  // const handleDelete = (id) => {
-  //   setDataCourse(dataCourse.filter((item) => item.id !== id));
-  // };
-
-  const handlePublish = (isPublished, id) => {
-    console.log(id);
-    if (isPublished) {
-      axios.patch(
-        `http://localhost:3000/course/update/status/${id}`,
-        { status: "unpublished" },
-        { withCredentials: true }
-      );
-      setPush(!push);
-    } else {
-      axios.patch(
-        `http://localhost:3000/course/update/status/${id}`,
-        { status: "published" },
-        { withCredentials: true }
-      );
-      setPush(!push);
-    }
-  };
+  useEffect(() => {
+    APIHandler.handleUpdateTutorCourse(cookie, setCourse);
+  }, [push]);
 
   const columns = [
     // { field: "_id", headerName: "ID", width: 80 },
@@ -111,7 +61,11 @@ export default function MyCourseListTable({ cookie, setCookie, removeCookie }) {
               onClick={() => {
                 setDisplayState(true);
                 setDataCourse({ id: params.id });
-                handleEdit(params.id);
+                APIHandler.handleEditCourse(
+                  params.id,
+                  setDataCourse,
+                  setCourseID
+                );
                 // console.log(params.id);
               }}
             >
@@ -120,7 +74,14 @@ export default function MyCourseListTable({ cookie, setCookie, removeCookie }) {
             {params.row.status === "unpublished" && (
               <button
                 className="coursePublishButton"
-                onClick={() => handlePublish(false, params.id)}
+                onClick={() =>
+                  APIHandler.handlePublishCourse(
+                    false,
+                    params.id,
+                    push,
+                    setPush
+                  )
+                }
               >
                 Publish
               </button>
@@ -128,7 +89,9 @@ export default function MyCourseListTable({ cookie, setCookie, removeCookie }) {
             {params.row.status === "published" && (
               <button
                 className="coursePublishButton"
-                onClick={() => handlePublish(true, params.id)}
+                onClick={() =>
+                  APIHandler.handlePublishCourse(true, params.id, push, setPush)
+                }
               >
                 Unpublish
               </button>
@@ -141,7 +104,23 @@ export default function MyCourseListTable({ cookie, setCookie, removeCookie }) {
 
   return (
     <div className="mainCourse">
-      <div className="mainCourseTitle">List Course</div>
+      <div className="mainCourseTopper">
+        <div className="mainCourseTitle">List Course</div>
+
+        <div className="mainCourseAddCourse">
+          <button
+            className="mainCourseAddCourseButton"
+            onClick={() => setDisplayState(true)}
+          >
+            <div>
+              <span className="">Add Course</span>
+              <AddCircle className="mainCourseAddCourseButtonIcon" />
+            </div>
+          </button>
+        </div>
+
+      </div>
+
       <div className="mainCourseTable">
         <DataGrid
           rows={course}
@@ -152,6 +131,7 @@ export default function MyCourseListTable({ cookie, setCookie, removeCookie }) {
           setTrigger={setDisplayState}
         />
       </div>
+
       <EditCoursePopup
         className=""
         trigger={displayState}
