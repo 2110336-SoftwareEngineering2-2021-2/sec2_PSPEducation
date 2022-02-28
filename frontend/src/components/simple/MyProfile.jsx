@@ -101,6 +101,7 @@ export default function MyProfile({ cookie, setCookie, removeCookie }) {
           backgroundColor: "primary.dark",
           "& .MuiTextField-root": { m: 1, width: "500px", minWidth: 120 },
         }}
+        autoComplete="on"
       >
         <TextField
           className="profileDiaplayName"
@@ -109,6 +110,7 @@ export default function MyProfile({ cookie, setCookie, removeCookie }) {
           label="Display Name"
           disabled="Disabled"
           fullWidth
+          InputLabelProps={{ shrink: true }}
         />
         <TextField
           className="profileUsername"
@@ -117,6 +119,7 @@ export default function MyProfile({ cookie, setCookie, removeCookie }) {
           label="Username"
           disabled="Disabled"
           fullWidth
+          InputLabelProps={{ shrink: true }}
         />
         <TextField
           className="profileFirstname"
@@ -125,6 +128,7 @@ export default function MyProfile({ cookie, setCookie, removeCookie }) {
           label="Firstname"
           disabled="Disabled"
           fullWidth
+          InputLabelProps={{ shrink: true }}
         />
         <TextField
           className="profileLastname"
@@ -133,6 +137,7 @@ export default function MyProfile({ cookie, setCookie, removeCookie }) {
           label="Lastname"
           disabled="Disabled"
           fullWidth
+          InputLabelProps={{ shrink: true }}
         />
         <TextField
           className="profileGender"
@@ -141,6 +146,7 @@ export default function MyProfile({ cookie, setCookie, removeCookie }) {
           label="Gender"
           disabled="Disabled"
           fullWidth
+          InputLabelProps={{ shrink: true }}
         />
         <TextField
           className="profileCitizenId"
@@ -149,6 +155,7 @@ export default function MyProfile({ cookie, setCookie, removeCookie }) {
           label="Citizen ID"
           disabled="Disabled"
           fullWidth
+          InputLabelProps={{ shrink: true }}
         />
         <TextField
           className="profileBirthdate"
@@ -157,6 +164,7 @@ export default function MyProfile({ cookie, setCookie, removeCookie }) {
           label="Birthdate"
           disabled="Disabled"
           fullWidth
+          InputLabelProps={{ shrink: true }}
         />
         <TextField
           className="profileEmail"
@@ -165,6 +173,7 @@ export default function MyProfile({ cookie, setCookie, removeCookie }) {
           label="Email"
           disabled="Disabled"
           fullWidth
+          InputLabelProps={{ shrink: true }}
         />
         <TextField
           className="profilePhoneNumber"
@@ -173,6 +182,7 @@ export default function MyProfile({ cookie, setCookie, removeCookie }) {
           label="Phone Number"
           disabled="Disabled"
           fullWidth
+          InputLabelProps={{ shrink: true }}
         />
         <TextField
           className="profileEducationLevel"
@@ -181,6 +191,7 @@ export default function MyProfile({ cookie, setCookie, removeCookie }) {
           label="Education Level"
           disabled="Disabled"
           fullWidth
+          InputLabelProps={{ shrink: true }}
         />
 
         <EditPopup
@@ -200,22 +211,22 @@ export default function MyProfile({ cookie, setCookie, removeCookie }) {
         />
       </Box>
       <button
-          className="editButton"
-          onClick={() => {
-            setDisplayStateEdit(true);
-          }} 
+        className="editButton"
+        onClick={() => {
+          setDisplayStateEdit(true);
+        }}
       >
-          edit
-        </button>
+        edit
+      </button>
 
-        <button
-          className="changePasswordButton"
-          onClick={() => {
-            setDisplayStatePassword(true);
-          }}
-        >
-          Change Password
-        </button>
+      <button
+        className="changePasswordButton"
+        onClick={() => {
+          setDisplayStatePassword(true);
+        }}
+      >
+        Change Password
+      </button>
     </div>
   );
 }
