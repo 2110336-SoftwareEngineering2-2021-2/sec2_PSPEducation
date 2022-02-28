@@ -46,7 +46,7 @@ function App() {
               removeCookie={removeCookie}
             />
           }
-        />{" "}
+        />
         <Route
           path="admin"
           element={
@@ -67,7 +67,7 @@ function App() {
                 removeCookie={removeCookie}
               />
             }
-          />{" "}
+          />
           <Route
             path="all"
             element={
@@ -77,7 +77,7 @@ function App() {
                 removeCookie={removeCookie}
               />
             }
-          />{" "}
+          />
           <Route
             path="tutorvalid"
             element={
@@ -87,7 +87,7 @@ function App() {
                 removeCookie={removeCookie}
               />
             }
-          />{" "}
+          />
           <Route
             path="userrpt"
             element={
@@ -97,8 +97,8 @@ function App() {
                 removeCookie={removeCookie}
               />
             }
-          />{" "}
-        </Route>{" "}
+          />
+        </Route>
         <Route
           path="tutor"
           element={
@@ -119,7 +119,7 @@ function App() {
                 removeCookie={removeCookie}
               />
             }
-          />{" "}
+          />
           <Route
             path="mycourse"
             element={
@@ -129,7 +129,7 @@ function App() {
                 removeCookie={removeCookie}
               />
             }
-          />{" "}
+          />
           <Route
             path="enrollreq"
             element={
@@ -139,7 +139,7 @@ function App() {
                 removeCookie={removeCookie}
               />
             }
-          />{" "}
+          />
           <Route
             path="msgreq"
             element={
@@ -149,8 +149,8 @@ function App() {
                 removeCookie={removeCookie}
               />
             }
-          />{" "}
-        </Route>{" "}
+          />
+        </Route>
         <Route
           path="student"
           element={
@@ -171,7 +171,7 @@ function App() {
                 removeCookie={removeCookie}
               />
             }
-          />{" "}
+          />
           <Route
             path="mycourse"
             element={
@@ -181,7 +181,7 @@ function App() {
                 removeCookie={removeCookie}
               />
             }
-          />{" "}
+          />
           <Route
             path="enrollreq"
             element={
@@ -191,8 +191,8 @@ function App() {
                 removeCookie={removeCookie}
               />
             }
-          />{" "}
-        </Route>{" "}
+          />
+        </Route>
         <Route
           path="login"
           element={
@@ -202,7 +202,7 @@ function App() {
               removeCookie={removeCookie}
             />
           }
-        />{" "}
+        />
         <Route
           path="adminlogin"
           element={
@@ -212,7 +212,7 @@ function App() {
               removeCookie={removeCookie}
             />
           }
-        />{" "}
+        />
         <Route
           path="register"
           element={
@@ -222,7 +222,7 @@ function App() {
               removeCookie={removeCookie}
             />
           }
-        />{" "}
+        />
         <Route
           path="report"
           element={
@@ -232,7 +232,7 @@ function App() {
               removeCookie={removeCookie}
             />
           }
-        />{" "}
+        />
         <Route
           path="myprofile"
           element={
@@ -242,8 +242,8 @@ function App() {
               removeCookie={removeCookie}
             />
           }
-        />{" "}
-      </Routes>{" "}
+        />
+      </Routes>
     </>
   );
 }
@@ -259,28 +259,28 @@ function Layout() {
         <h3> Please access via following links: </h3> <hr />
         <ul>
           <li>
-            <NavLink to="/admin"> AdminHome </NavLink>{" "}
-          </li>{" "}
+            <NavLink to="/admin"> AdminHome </NavLink>
+          </li>
           <li>
-            <NavLink to="/tutor"> TutorHome </NavLink>{" "}
-          </li>{" "}
+            <NavLink to="/tutor"> TutorHome </NavLink>
+          </li>
           <li>
-            <NavLink to="/student"> StudentHome </NavLink>{" "}
-          </li>{" "}
+            <NavLink to="/student"> StudentHome </NavLink>
+          </li>
           <li>
-            <NavLink to="/login"> Login user </NavLink>{" "}
-          </li>{" "}
+            <NavLink to="/login"> Login user </NavLink>
+          </li>
           <li>
-            <NavLink to="/adminlogin"> Login admin </NavLink>{" "}
-          </li>{" "}
+            <NavLink to="/adminlogin"> Login admin </NavLink>
+          </li>
           <li>
-            <NavLink to="/register"> Register </NavLink>{" "}
-          </li>{" "}
-        </ul>{" "}
+            <NavLink to="/register"> Register </NavLink>
+          </li>
+        </ul>
         <div className="appFooter">
           <Footer />
-        </div>{" "}
-      </div>{" "}
+        </div>
+      </div>
     </div>
   );
 }
