@@ -35,7 +35,11 @@ const handleLogin = async (
       setState(true);
     })
     .catch((e) => {
-      console.log(e);
+      if (e.response.status === 400) {
+        alert("Login Failed: Incorrect Username or Password")
+      } else {
+        alert("Internal Server Error")
+      }
     });
 };
 
