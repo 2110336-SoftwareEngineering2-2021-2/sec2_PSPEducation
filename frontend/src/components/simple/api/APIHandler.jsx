@@ -1,6 +1,7 @@
 import axios from "axios";
 import { Navigate } from "react-router-dom";
 import { sha512_256 } from "js-sha512";
+import { CompressOutlined } from "@mui/icons-material";
 
 const handleLogin = async (
   position,
@@ -29,13 +30,6 @@ const handleLogin = async (
       setCookie("user", data.id);
       setCookie("user_role", data.type);
       setState(true);
-      if (data.type === "tutor") {
-        return <Navigate to="/tutor" />;
-      } else if (data.type === "student") {
-        return <Navigate to="/student" />;
-      } else if (data.type === "admin") {
-        return <Navigate to="/admin" />;
-      }
     })
     .catch((e) => {
       console.log(e);
@@ -113,10 +107,48 @@ const handleUpdateTutorCourse = (cookie, setCourse) => {
     });
 };
 
+const handleGetTutorValidCard = async (tutorData, setTutorData) => {
+  axios
+    .get(`http://localhost:3000/admin/register/waiting`, {
+      withCredentials: true,
+    })
+    .then((response) => {
+      setTutorData(response.data);
+      // console.log(response.data);
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+};
+
+const handleGetReportCard = async (reportData, setReportData) => {
+  var tmpList = [];
+  axios
+    .get(`http://localhost:3000/admin/report/waiting`, {
+      withCredentials: true,
+    })
+    .then((response) => {
+      response.data.map((item) => {
+        axios
+          .get(`http://localhost:3000/auth/user/${item.userId}`, {
+            withCredentials: true,
+          })
+          .then((response) => {
+            tmpList.push({ ...item, username: response.data.username });
+          });
+      });
+    })
+    .then(() => {
+      setReportData(tmpList);
+    });
+};
+
 export {
   handleLogin,
   handleLogout,
   handleEditCourse,
   handlePublishCourse,
   handleUpdateTutorCourse,
+  handleGetTutorValidCard,
+  handleGetReportCard,
 };
