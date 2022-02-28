@@ -7,28 +7,23 @@ import axios from "axios";
 // var APIHandler = require("../../../simple/api/APIHandler");
 
 export default function UpdateCourseCard(props) {
-  // console.log(props)
-  // const [selectedLt, setSelectedLt] = useState(null);
-  // const [selectedStatus, setSelectedStatus] = useState(null);
-  const [dataCourse, setDataCourse] = useState({
-    tutorId: props.data.tutorId,
-    courseName: props.data.courseName,
-    subject: props.data.subject,
-    lesson: props.data.lesson,
-    price: props.data.price,
-    courseStartDate: props.data.courseStartDate,
-    courseFinishDate: props.data.courseFinishDate,
-    timeSlots: props.data.timeSlots,
-    capacity: props.data.capacity,
-    status: props.data.status,
-    learningType: props.data.learningType,
-    description: props.data.description,
-    hour: props.data.hour,
-    location: props.data.location,
-  });
+  const { data, firstname, setTrigger, setData} = props;
+
+  // console.log(data)
+
+  const [dataCourse, setDataCourse] = useState({});
 
   const [updateSuccess, setUpdateSuccess] = useState(false);
+  const [firstFetch, setFirstFetch] = useState(true);
 
+
+  useEffect(() => { 
+    // if (firstFetch)
+    setDataCourse(data)
+    console.log(dataCourse)
+    setFirstFetch(false)
+  }, [data] )
+  
   useEffect(() => {
     // Update the document title using the browser API
     console.log(updateSuccess);
@@ -47,11 +42,15 @@ export default function UpdateCourseCard(props) {
       ...dataCourse,
       [prop]: event.target.value,
     });
+    console.log(props);
     console.log(dataCourse);
   };
 
   return (
-    <div className="updateCourse">
+  <>
+      {/* <div className="updateCourseTitle">{dataCourse}</div> */}
+
+    {dataCourse &&(<div className="updateCourse">
       <div className="updateCourseTitle">Update Course</div>
       <Box
         component="form"
@@ -82,7 +81,7 @@ export default function UpdateCourseCard(props) {
             type="text"
             label="lesson"
             value={dataCourse.lesson}
-            onChange={handleChange("courseName")}
+            onChange={handleChange("lesson")}
           />
           <input
             className="updateCourseFormPrice"
@@ -102,7 +101,7 @@ export default function UpdateCourseCard(props) {
             max="5000"
             label="Capacity"
             value={dataCourse.capacity}
-            onChange={handleChange("courseName")}
+            onChange={handleChange("capacity")}
           />
           <input
             className="updateCourseFormHour"
@@ -222,6 +221,6 @@ export default function UpdateCourseCard(props) {
           </button>
         </div>
       </Box>
-    </div>
-  );
+    </div>)}
+  </>);
 }
