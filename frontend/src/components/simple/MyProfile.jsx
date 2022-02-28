@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./myProfile.css";
 import { CloseOutlined, AddCircle } from "@mui/icons-material";
 import ManageProfile from "./ManageProfile";
+import ChangePasswordCard from "./ChangePasswordCard";
 import axios from "axios";
 import { TextField } from "@mui/material";
 import { Box } from "@mui/system";

@@ -78,8 +78,7 @@ export default function ManageProfile(props) {
        ...profile,
        [prop]: event.target.value,
      });
-     console.log(props);
-     console.log(profile);
+    //  console.log(profile);
     };
   
    return (
@@ -152,6 +151,8 @@ export default function ManageProfile(props) {
               className="manageProfileFormBirthdate"
               id="Birthdate"
               type="date"
+              value={profile.birthdate}
+              onChange={handleChange("birthdate")}
             />
             <InputLabel id="gender-select-label">
               gender
