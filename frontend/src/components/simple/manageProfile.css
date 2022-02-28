@@ -1,113 +1,107 @@
 @import url("https://fonts.googleapis.com/css2?family=Festive&family=Poppins:wght@300;400;500;600;700&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap");
 
-.profilePage {
-  /* flex: 1; */
-  height: 100%;
+:root {
+  --main-theme :rgb(87, 112, 221);
+  --main-white :#f0f8ff;
+  --main-border :rgb(116, 135, 219);
+  --body-bgcolor: rgb(221, 231, 250);
+}
+
+.manageProfile {
+  height: auto;
   width: 100%;
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
+  align-items: center;
   justify-content: space-evenly;
-  background-color: rgba(125, 170, 230, 0.7);
-  border-radius: 0px 20px 20px 0px;
+  background-color: rgb(125, 170, 230);
+  border-radius: 100px;
+  overflow: auto;
 }
 
-.profileTitle {
+.manageProfileTitle {
   font-size: 100px;
   font-family: Festive;
   color: white;
-  text-shadow: -0.2px 0.2px 0 rgb(87, 112, 221), 0.2px 0.2px 0 rgb(87, 112, 221),
-    0.2px -0.2px 0 rgb(87, 112, 221), -0.2px -0.2px 0 rgb(87, 112, 221);
+  text-shadow: -0.2px 0.2px 0 var(--main-theme), 0.2px 0.2px 0 var(--main-theme),
+    0.2px -0.2px 0 var(--main-theme), -0.2px -0.2px 0 var(--main-theme);
 }
 
-.profileForm {
+.manageProfileForm {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
 
-/* .profileType,
-.profileFirstname,
-.profileLastname,
-.profileUsername,
-.profilePassword,
-.profileConfirmPassword,
-.profileEmail,
-.profilePhoneNumber,
-.profileDisplayNumber,
-.profileBirthdate,
-.profileGender,
-.profileEducationLevel,
-.profilePicture,
-.profileCitizenId,
-.profileCitizenImage {
+.manageTitleForm {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+}
+
+.manageProfileFormCourseName,
+.manageProfileFormUsername,
+.manageProfileFormEmail,
+.manageProfileFormLesson,
+.manageProfileFormSubject,
+.manageProfileFormPrice,
+.manageProfileFormBirthdate,
+.manageProfileFormCapacity,
+.manageProfileFormHour,
+.manageProfileFormLocation,
+.manageProfileFormGender,
+.manageProfileFormDisplayName,
+.manageProfileFormTimeslot{
   font-size: 16px;
-  width: 280px;
+  width: 500px;
   height: 15px;
   border: none;
   padding: 15px 20px;
   margin-bottom: 15px;
   border-radius: 30px;
   background-color: white;
-  border: none;
 }
 
-.profileType:focus,
-.profileFirstname:focus,
-.profileLastname:focus,
-.profileUsername:focus,
-.profilePassword:focus,
-.profileConfirmPassword:focus,
-.profileEmail:focus,
-.profilePhoneNumber:focus,
-.profileDisplayNumber:focus,
-.profileBirthdate:focus,
-.profileGender:focus,
-.profileEducationLevel:focus,
-.profilePicture:focus,
-.profileCitizenId:focus,
-.profileCitizenImage:focus {
-  outline: none;
-} */
+.manageProfileFormlearningType {
+  font-size: 16px;
+  width: 500px;
+  height: 50px;
+  border: none;
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  border-radius: 30px;
+  background-color: white;
+}
 
-.profileSubmit {
+.manageProfileFormDescription {
+  font-size: 16px;
+  width: 500px;
+  height: 200px;
+  border: none;
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  border-radius: 30px;
+  resize: none;
+}
+
+.manageProfileFormSubmit {
   width: 250px;
-  background-color: rgb(87, 112, 221);
-  color: white;
   font-size: 16px;
   font-weight: 500;
+  color: white;
   border: none;
-  padding: 5px;
+  padding: 8px 20px;
   margin-top: 10px;
+  margin-bottom: 20px;
   border-radius: 14px;
+  padding: 8px 10px;
+  background-color: rgb(87, 112, 221);
+  transition: all 0.3s ease;
   cursor: pointer;
-
 }
 
-.profileSubmit:hover {
+.manageProfileFormSubmit:hover {
   background-color: rgb(93, 122, 250);
-}
-
-.LoginText {
-  /* border: 1px solid rgb(87, 112, 221); */
-  color: rgba(51, 51, 51, 0.712);
-  padding: 15px 30px;
-  border-radius: 20px;
-}
-
-.LoginLink {
-  font-size: 15px;
-  font-weight: 500;
-  text-decoration: none;
-  color: rgb(255, 255, 255);
-  background-color: rgb(82, 175, 64);
-  border-radius: 15px;
-  padding: 3px 10px;
-  margin: auto;
-  margin-left: 10px;
-}
-
-.LoginLink:hover {
-  background-color: rgb(81, 196, 70);
 }
