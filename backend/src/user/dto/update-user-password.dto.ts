@@ -8,5 +8,5 @@ export class UpdateUserPasswordDto {
   newPassword: string;
 
   @IsString()
-  comfirmNewPassword: string;
+  confirmNewPassword: string;
 }

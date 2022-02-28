@@ -84,10 +84,11 @@ export class UserService {
       throw new BadRequestException("Incorrect Password");
     }
 
-    if (body.newPassword !== body.comfirmNewPassword) {
+    if (body.newPassword !== body.confirmNewPassword) {
       throw new BadRequestException("Password confirmation doesn't match");
     }
 
+    
     user.password = body.newPassword
     user.dateTimeUpdated = Date.now()
     return await user.save()

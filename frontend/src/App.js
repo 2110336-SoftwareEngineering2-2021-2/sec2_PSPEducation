@@ -12,6 +12,8 @@ import LoginUser from "./pages/login/LoginUser";
 import LoginAdmin from "./pages/login/LoginAdmin";
 import Register from "./pages/register/Register";
 import Report from "./pages/report/Report";
+import ProfileHome from "./pages/profile/ProfileHome";
+
 import { Routes, Route } from "react-router-dom";
 
 import {
@@ -32,220 +34,196 @@ import {
 function App() {
   const [cookie, setCookie, removeCookie] = useCookies(["user", "user_role"]);
 
-  return (
-    <>
-      <Routes>
-        <Route
-          path=""
-          element={
-            <Layout
-              cookie={cookie}
-              setCookie={setCookie}
-              removeCookie={removeCookie}
-            />
-          }
-        />
-        <Route
-          path="admin"
-          element={
-            <AdminHome
-              cookie={cookie}
-              setCookie={setCookie}
-              removeCookie={removeCookie}
-            />
-          }
-        >
-          <Route
-            exact
-            path=""
-            element={
-              <AllCards
-                cookie={cookie}
-                setCookie={setCookie}
-                removeCookie={removeCookie}
-              />
-            }
-          />
-
-          <Route
-            path="all"
-            element={
-              <AllCards
-                cookie={cookie}
-                setCookie={setCookie}
-                removeCookie={removeCookie}
-              />
-            }
-          />
-
-          <Route
-            path="tutorvalid"
-            element={
-              <TutorValidationCards
-                cookie={cookie}
-                setCookie={setCookie}
-                removeCookie={removeCookie}
-              />
-            }
-          />
-
-          <Route
-            path="userrpt"
-            element={
-              <UserReportCards
-                cookie={cookie}
-                setCookie={setCookie}
-                removeCookie={removeCookie}
-              />
-            }
-          />
-        </Route>
-
-        <Route
-          path="tutor"
-          element={
-            <TutorHome
-              cookie={cookie}
-              setCookie={setCookie}
-              removeCookie={removeCookie}
-            />
-          }
-        >
-          <Route
-            exact
-            path=""
-            element={
-              <MyCourseList
-                cookie={cookie}
-                setCookie={setCookie}
-                removeCookie={removeCookie}
-              />
-            }
-          />
-
-          <Route
-            path="mycourse"
-            element={
-              <MyCourseList
-                cookie={cookie}
-                setCookie={setCookie}
-                removeCookie={removeCookie}
-              />
-            }
-          />
-
-          <Route
-            path="enrollreq"
-            element={
-              <MyEnrollList
-                cookie={cookie}
-                setCookie={setCookie}
-                removeCookie={removeCookie}
-              />
-            }
-          />
-
-          <Route
-            path="msgreq"
-            element={
-              <MsgReqComp
-                cookie={cookie}
-                setCookie={setCookie}
-                removeCookie={removeCookie}
-              />
-            }
-          />
-        </Route>
-
-        <Route
-          path="student"
-          element={
-            <StudentHome
-              cookie={cookie}
-              setCookie={setCookie}
-              removeCookie={removeCookie}
-            />
-          }
-        >
-          <Route
-            exact
-            path=""
-            element={
-              <MyCrsCompSt
-                cookie={cookie}
-                setCookie={setCookie}
-                removeCookie={removeCookie}
-              />
-            }
-          />
-
-          <Route
-            path="mycourse"
-            element={
-              <MyCrsCompSt
-                cookie={cookie}
-                setCookie={setCookie}
-                removeCookie={removeCookie}
-              />
-            }
-          />
-
-          <Route
-            path="enrollreq"
-            element={
-              <EnrollReqCompSt
-                cookie={cookie}
-                setCookie={setCookie}
-                removeCookie={removeCookie}
-              />
-            }
-          />
-        </Route>
-
-        <Route
-          path="login"
-          element={
-            <LoginUser
-              cookie={cookie}
-              setCookie={setCookie}
-              removeCookie={removeCookie}
-            />
-          }
-        />
-
-        <Route
-          path="adminlogin"
-          element={
-            <LoginAdmin
-              cookie={cookie}
-              setCookie={setCookie}
-              removeCookie={removeCookie}
-            />
-          }
-        />
-
-        <Route
-          path="register"
-          element={
-            <Register
-              cookie={cookie}
-              setCookie={setCookie}
-              removeCookie={removeCookie}
-            />
-          }
-        />
-        <Route
-          path="report"
-          element={
-            <Report
-              cookie={cookie}
-              setCookie={setCookie}
-              removeCookie={removeCookie}
-            />
-          }
-        />
-      </Routes>
-    </>
+  return ( <
+    >
+    <
+    Routes >
+    <
+    Route path = ""
+    element = { <
+      Layout
+      cookie = { cookie }
+      setCookie = { setCookie }
+      removeCookie = { removeCookie }
+      />
+    }
+    />{" "} <
+    Route path = "admin"
+    element = { <
+      AdminHome
+      cookie = { cookie }
+      setCookie = { setCookie }
+      removeCookie = { removeCookie }
+      />
+    } >
+    <
+    Route exact path = ""
+    element = { <
+      AllCards
+      cookie = { cookie }
+      setCookie = { setCookie }
+      removeCookie = { removeCookie }
+      />
+    }
+    /> <
+    Route path = "all"
+    element = { <
+      AllCards
+      cookie = { cookie }
+      setCookie = { setCookie }
+      removeCookie = { removeCookie }
+      />
+    }
+    /> <
+    Route path = "tutorvalid"
+    element = { <
+      TutorValidationCards
+      cookie = { cookie }
+      setCookie = { setCookie }
+      removeCookie = { removeCookie }
+      />
+    }
+    /> <
+    Route path = "userrpt"
+    element = { <
+      UserReportCards
+      cookie = { cookie }
+      setCookie = { setCookie }
+      removeCookie = { removeCookie }
+      />
+    }
+    />{" "} <
+    /Route> <
+    Route path = "tutor"
+    element = { <
+      TutorHome
+      cookie = { cookie }
+      setCookie = { setCookie }
+      removeCookie = { removeCookie }
+      />
+    } >
+    <
+    Route exact path = ""
+    element = { <
+      MyCourseList
+      cookie = { cookie }
+      setCookie = { setCookie }
+      removeCookie = { removeCookie }
+      />
+    }
+    /> <
+    Route path = "mycourse"
+    element = { <
+      MyCourseList
+      cookie = { cookie }
+      setCookie = { setCookie }
+      removeCookie = { removeCookie }
+      />
+    }
+    /> <
+    Route path = "enrollreq"
+    element = { <
+      MyEnrollList
+      cookie = { cookie }
+      setCookie = { setCookie }
+      removeCookie = { removeCookie }
+      />
+    }
+    /> <
+    Route path = "msgreq"
+    element = { <
+      MsgReqComp
+      cookie = { cookie }
+      setCookie = { setCookie }
+      removeCookie = { removeCookie }
+      />
+    }
+    />{" "} <
+    /Route> <
+    Route path = "student"
+    element = { <
+      StudentHome
+      cookie = { cookie }
+      setCookie = { setCookie }
+      removeCookie = { removeCookie }
+      />
+    } >
+    <
+    Route exact path = ""
+    element = { <
+      MyCrsCompSt
+      cookie = { cookie }
+      setCookie = { setCookie }
+      removeCookie = { removeCookie }
+      />
+    }
+    /> <
+    Route path = "mycourse"
+    element = { <
+      MyCrsCompSt
+      cookie = { cookie }
+      setCookie = { setCookie }
+      removeCookie = { removeCookie }
+      />
+    }
+    /> <
+    Route path = "enrollreq"
+    element = { <
+      EnrollReqCompSt
+      cookie = { cookie }
+      setCookie = { setCookie }
+      removeCookie = { removeCookie }
+      />
+    }
+    />{" "} <
+    /Route> <
+    Route path = "login"
+    element = { <
+      LoginUser
+      cookie = { cookie }
+      setCookie = { setCookie }
+      removeCookie = { removeCookie }
+      />
+    }
+    /> <
+    Route path = "adminlogin"
+    element = { <
+      LoginAdmin
+      cookie = { cookie }
+      setCookie = { setCookie }
+      removeCookie = { removeCookie }
+      />
+    }
+    /> <
+    Route path = "register"
+    element = { <
+      Register
+      cookie = { cookie }
+      setCookie = { setCookie }
+      removeCookie = { removeCookie }
+      />
+    }
+    />{" "} <
+    Route path = "report"
+    element = { <
+      Report
+      cookie = { cookie }
+      setCookie = { setCookie }
+      removeCookie = { removeCookie }
+      />
+    }
+    />{" "} <
+    Route path = "myprofile"
+    element = { <
+      ProfileHome
+      cookie = { cookie }
+      setCookie = { setCookie }
+      removeCookie = { removeCookie }
+      />
+    }
+    />{" "} <
+    /Routes>{" "} <
+    />
   );
 }
 
@@ -253,36 +231,48 @@ export default App;
 
 function Layout() {
   // const isLoggedIn = isLoggedIn();
-  return (
-    <div className="layout">
-      <GuestTopbar />
-      <div className="container">
-        <h3>Please access via following links:</h3>
-        <hr />
-        <ul>
-          <li>
-            <NavLink to="/admin">AdminHome</NavLink>
-          </li>
-          <li>
-            <NavLink to="/tutor">TutorHome</NavLink>
-          </li>
-          <li>
-            <NavLink to="/student">StudentHome</NavLink>
-          </li>
-          <li>
-            <NavLink to="/login">Login user</NavLink>
-          </li>
-          <li>
-            <NavLink to="/adminlogin">Login admin</NavLink>
-          </li>
-          <li>
-            <NavLink to="/register">Register</NavLink>
-          </li>
-        </ul>
-        <div className="appFooter">
-          <Footer />
-        </div>
-      </div>
-    </div>
+  return ( <
+    div className = "layout" >
+    <
+    GuestTopbar / >
+    <
+    div className = "container" >
+    <
+    h3 > Please access via following links: < /h3> <hr / >
+    <
+    ul >
+    <
+    li >
+    <
+    NavLink to = "/admin" > AdminHome < /NavLink>{" "} <
+    /li>{" "} <
+    li >
+    <
+    NavLink to = "/tutor" > TutorHome < /NavLink>{" "} <
+    /li>{" "} <
+    li >
+    <
+    NavLink to = "/student" > StudentHome < /NavLink>{" "} <
+    /li>{" "} <
+    li >
+    <
+    NavLink to = "/login" > Login user < /NavLink>{" "} <
+    /li>{" "} <
+    li >
+    <
+    NavLink to = "/adminlogin" > Login admin < /NavLink>{" "} <
+    /li>{" "} <
+    li >
+    <
+    NavLink to = "/register" > Register < /NavLink>{" "} <
+    /li>{" "} <
+    /ul>{" "} <
+    div className = "appFooter" >
+    <
+    Footer / >
+    <
+    /div>{" "} <
+    /div>{" "} <
+    /div>
   );
 }
