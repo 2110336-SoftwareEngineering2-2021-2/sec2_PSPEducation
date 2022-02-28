@@ -17,7 +17,11 @@ export default function LoginAdmin({ cookie, setCookie, removeCookie }) {
       cookie.user !== ""
     ) {
       setState(true);
+    } else {
+      removeCookie("user");
+      removeCookie("user_role");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state]);
 
   return (
@@ -35,6 +39,8 @@ export default function LoginAdmin({ cookie, setCookie, removeCookie }) {
               position="admin"
               cookie={cookie}
               setCookie={setCookie}
+              state={state}
+              setState={setState}
             />
           </div>
           <Footer />

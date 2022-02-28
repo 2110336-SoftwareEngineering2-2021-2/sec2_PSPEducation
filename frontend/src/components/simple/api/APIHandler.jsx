@@ -3,6 +3,7 @@ import { Navigate } from "react-router-dom";
 import { sha512_256 } from "js-sha512";
 
 const handleLogin = async (
+  position,
   email,
   password,
   state,
@@ -11,9 +12,15 @@ const handleLogin = async (
   setCookie
 ) => {
   // var passwordHash = sha512_256(password);
+
   const user = { email, password };
+  const userURL = `http://localhost:3000/auth/signin`;
+  const adminURL = `http://localhost:3000/auth/admin/signin`;
+
+  var requestURL = position === "admin" ? adminURL : userURL;
+
   axios
-    .post(`http://localhost:3000/auth/signin`, user, {
+    .post(requestURL, user, {
       withCredentials: true,
     })
     .then((response) => {

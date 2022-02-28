@@ -26,6 +26,7 @@ export default function LoginCardRight({
 
         <div className="rightForm">
           <LoginFormPane
+            position={position}
             email={email}
             setEmail={setEmail}
             password={password}
@@ -71,6 +72,7 @@ function LoginFormPane(props) {
         className="rightFormLogin"
         onClick={() =>
           APIHandler.handleLogin(
+            props.position,
             props.email,
             props.password,
             props.state,
