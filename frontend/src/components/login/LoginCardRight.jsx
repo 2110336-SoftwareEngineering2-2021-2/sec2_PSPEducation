@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import sha512_256 from "js-sha512";
 // import { useCookies } from "react-cookie";
 import "./loginCardRight.css";
 
@@ -74,6 +75,7 @@ function LoginFormPane(props) {
           APIHandler.handleLogin(
             props.position,
             props.email,
+            // sha512_256(props.password),
             props.password,
             props.state,
             props.setState,

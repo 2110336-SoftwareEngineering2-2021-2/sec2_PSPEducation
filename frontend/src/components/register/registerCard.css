@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Festive&family=Poppins:wght@300;400;500;600;700&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap");
-
 .registerPage {
   /* flex: 1; */
   height: 100%;
@@ -9,15 +8,14 @@
   /* align-items: center; */
   justify-content: space-evenly;
   background-color: rgba(125, 170, 230, 0.7);
-  border-radius: 0px 20px 20px 0px;
+  border-radius: 20px;
 }
 
 .registerTitle {
   font-size: 100px;
   font-family: Festive;
   color: white;
-  text-shadow: -0.2px 0.2px 0 rgb(87, 112, 221), 0.2px 0.2px 0 rgb(87, 112, 221),
-    0.2px -0.2px 0 rgb(87, 112, 221), -0.2px -0.2px 0 rgb(87, 112, 221);
+  text-shadow: -0.2px 0.2px 0 rgb(87, 112, 221), 0.2px 0.2px 0 rgb(87, 112, 221), 0.2px -0.2px 0 rgb(87, 112, 221), -0.2px -0.2px 0 rgb(87, 112, 221);
 }
 
 .registerForm {
@@ -26,6 +24,7 @@
   align-items: center;
   justify-content: center;
 }
+
 
 /* .registerType,
 .registerFirstname,
@@ -82,7 +81,6 @@
   margin-top: 10px;
   border-radius: 14px;
   cursor: pointer;
-
 }
 
 .registerSubmit:hover {
@@ -110,4 +108,9 @@
 
 .LoginLink:hover {
   background-color: rgb(81, 196, 70);
+}
+
+.errorText {
+  color: rgb(176, 23, 23);
+  font-size: 0.9rem;
 }

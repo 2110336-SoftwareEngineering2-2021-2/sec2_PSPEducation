@@ -7,6 +7,7 @@ import axios from "axios";
 import sha512_256 from "js-sha512";
 import { Navigate } from "react-router-dom";
 import { format } from "date-fns";
+import { FormHelperText } from '@mui/material';
 
 const userTypeOption = [
   {
@@ -89,25 +90,144 @@ export default function RegisterCard() {
     citizenId: "",
   });
 
+  const [errorDetails, setErrorDetails] = useState({
+    userType: {errorText: "", error: false},
+    firstname: {errorText: "", error: false},
+    lastname: {errorText: "", error: false},
+    username: {errorText: "", error: false},
+    email: {errorText: "", error: false},
+    phoneNumber: {errorText: "", error: false},
+    displayName: {errorText: "", error: false},
+    password: {errorText: "", error: false},
+    passwordConfirm: {errorText: "", error: false},
+    gender: {errorText: "", error: false},
+    educationalLevel: {errorText: "", error: false},
+    citizenId: {errorText: "", error: false}
+  })
+
+  const [firstNameError, setFirstNameError] = useState(false)
+
   const [birthdate, setBirthdate] = useState(new Date());
+  
+  const [isOnceSubmit, setOnceSummit] = useState(false);
 
   const [isError, setIsError] = useState("");
-
   const [registerSuccess, setRegisterSuccess] = useState(false);
 
+  useEffect(() => {
+    let newErrorDetails = {
+      userType: {errorText: "", error: false},
+      firstname: {errorText: "", error: false},
+      lastname: {errorText: "", error: false},
+      username: {errorText: "", error: false},
+      email: {errorText: "", error: false},
+      phoneNumber: {errorText: "", error: false},
+      displayName: {errorText: "", error: false},
+      password: {errorText: "", error: false},
+      passwordConfirm: {errorText: "", error: false},
+      gender: {errorText: "", error: false},
+      educationalLevel: {errorText: "", error: false},
+      citizenId: {errorText: "", error: false}
+    }
+    // USERTYPE
+    if (!!!values.userType) {
+      newErrorDetails.userType = {errorText: "Please choose your user type", error: true}
+    }
+
+    // FIRSTNAME
+    if (values.firstname.length === 0) {
+      newErrorDetails.firstname = {errorText: "Please fill your firstname", error: true}
+    } else if (values.firstname.length > 45){
+      newErrorDetails.firstname = {errorText: "Firstname length must between 1-45 characters", error: true}
+    }
+
+    // LASTNAME
+    if (values.lastname.length === 0) {
+      newErrorDetails.lastname = {errorText: "Please fill your lastname", error: true}
+    } else if (values.lastname.length > 45){
+      newErrorDetails.lastname = {errorText: "Lastname length must between 1-45 characters", error: true}
+    }
+
+    // USERNAME
+    if (values.username.length === 0) {
+      newErrorDetails.username = {errorText: "Please fill your username", error: true}
+    } else if (values.username.length < 8 || values.username.length > 16) {
+      newErrorDetails.username = {errorText: "Username length must between 8-16 characters", error: true}
+    }
+
+    // PASSWORD
+    if (values.password.length === 0) {
+      newErrorDetails.password = {errorText: "Please fill your password", error: true}
+    } else if (!!values.password && values.password.length < 8) {
+      newErrorDetails.password = {errorText: "Your password need at least 8 characters", error: true}
+    }
+
+    // CONFIRM PASSWORD
+    if (values.password !== values.passwordConfirm) {
+      newErrorDetails.passwordConfirm = {errorText: "Your password doesn't match", error: true}
+    }
+
+    // EMAIL
+    if (values.email.length === 0) {
+      newErrorDetails.email = {errorText: "Please fill your email", error: true}
+    } else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(values.email)) {
+      newErrorDetails.email = {errorText: "Invalid email", error: true}
+    }
+    
+    // Phone Number
+    if (values.phoneNumber.length === 0) {
+      newErrorDetails.phoneNumber = {errorText: "Please fill your phone number", error: true}
+    } else if (values.phoneNumber.length !== 10){
+      newErrorDetails.phoneNumber = {errorText: "Invalid phone number", error: true}
+    } else if (!values.phoneNumber.startsWith("08") && !values.phoneNumber.startsWith("09") && !values.phoneNumber.startsWith("06")){
+      newErrorDetails.phoneNumber = {errorText: "Invalid phone number", error: true}
+    }
+
+    // Display Name
+    if (values.displayName.length === 0) {
+      newErrorDetails.displayName = {errorText: "Please fill your display name", error: true}
+    } else if (values.displayName.length > 45){
+      newErrorDetails.displayName = {errorText: "Display name length must between 1-45 characters", error: true}
+    }
+
+    // Gender
+    if (!!!values.gender) { 
+      newErrorDetails.gender =  {errorText: "Please choose your gender", error: true}
+    }
+    
+    // Educational level
+    if (!!!values.educationalLevel) { 
+      newErrorDetails.educationalLevel =  {errorText: "Please fill your educational level", error: true}
+    }
+    // Citizen ID
+    if (values.citizenId.length === 0) {
+      newErrorDetails.citizenId = {errorText: "Please fill your citizenId", error: true}
+    } 
+    if (!/^[0-9]{13}$/g.test(values.citizenId)) {
+      newErrorDetails.citizenId = {errorText: "Invalid Citizen ID", error: true}
+    }
+    let i; 
+    let sum = 0
+    for ((i = 0), (sum = 0); i < 12; i++) {
+      sum += Number.parseInt(values.citizenId.charAt(i)) * (13 - i)
+    }
+    const checkSum = (11 - sum % 11) % 10
+    if (checkSum !== Number.parseInt(values.citizenId.charAt(12))) {
+      newErrorDetails.citizenId = {errorText: "Invalid Citizen ID", error: true}
+    }
+
+    setErrorDetails(newErrorDetails); 
+  },[values])
+
+  
   const handleChange = (prop) => (event) => {
+    let valueUpdated = event.target.value
     setValues({
       ...values,
-      [prop]: event.target.value,
+      [prop]: valueUpdated,
     });
-    // console.log(values);
-    if (values.password !== event.target.value) {
-      setIsError("The password doesn't match.");
-    } else {
-      setIsError("");
-    }
   };
-
+  
   const [profileImage, setProfileImage] = useState("");
 
   const onProfileImageChange = (event) => {
@@ -126,144 +246,66 @@ export default function RegisterCard() {
 
   const [imageURL, setImageURL] = useState("");
 
-  function checkEmpty() {
-    return (
-      values.userType !== "" &&
-      values.firstname !== "" &&
-      values.username !== "" &&
-      values.password !== "" &&
-      values.passwordConfirm !== "" &&
-      values.email !== "" &&
-      values.phoneNumber !== "" &&
-      values.displayName !== "" &&
-      birthdate !== "" &&
-      values.gender !== "" &&
-      values.educationalLevel !== ""
-    );
-  }
-
-  function checkMinLength() {
-    return (
-      values.userType.length >= 1 &&
-      values.lastname.length >= 1 &&
-      values.username.length >= 8 &&
-      values.password.length >= 1 &&
-      values.passwordConfirm.length >= 1 &&
-      values.displayName.length >= 1
-    );
-  }
-
-  function checkMaxLength() {
-    return (
-      values.userType.length <= 45 &&
-      values.lastname.length <= 45 &&
-      values.username.length <= 16 &&
-      values.displayName.length <= 45
-    );
-  }
-
-  function checkOtherConstraint() {
-    return (
-      values.password === values.passwordConfirm &&
-      values.phoneNumber.length === 10 &&
-      values.phoneNumber[0] === "0" &&
-      (values.phoneNumber[1] === "6" ||
-        values.phoneNumber[1] === "8" ||
-        values.phoneNumber[1] === "9")
-    );
-  }
-
   useEffect(() => {
     // Update the document title using the browser API
     console.log("register :", registerSuccess);
   }, [registerSuccess]);
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
     console.log(values);
-    console.log("-----------------start-------------");
+    console.log(errorDetails)
     console.log(birthdate);
     console.log(format(birthdate, "yyyy-MM-dd"));
-    console.log("------------finish-----------");
-    if (!checkEmpty()) console.log("checkEmpty Error!");
-    if (!checkMinLength()) console.log("checkMinLength Error!");
-    if (!checkMaxLength()) console.log("checkMaxLength Error!");
-    if (!checkOtherConstraint()) console.log("checkOtherConstraint Error!");
 
-    if (
-      true
-      // checkEmpty() &&
-      // checkMinLength() &&
-      // checkMaxLength() &&
-      // checkOtherConstraint()
-    ) {
-      const user = {
-        type: values.userType,
-        firstname: values.firstname,
-        lastname: values.lastname,
-        username: values.username,
-        password: sha512_256(values.password),
-        email: values.email,
-        phoneNumber: values.phoneNumber,
-        displayName: values.displayName,
-        birthdate: format(birthdate, "yyyy-MM-dd"),
-        gender: values.gender,
-        educationalLevel: parseInt(values.educationalLevel),
-        picture: "",
-        citizenId: values.citizenId,
-        citizenImage: "",
-      };
+    setOnceSummit(true);
 
-      console.log(`type ${user.type}`);
-      console.log(`firstname ${user.firstname}`);
-      console.log(`lastname ${user.lastname}`);
-      console.log(`password ${user.password}`);
-      console.log(`email ${user.email}`);
-      console.log(`phoneNumber is ${user.phoneNumber}`);
-      console.log(`displayName${user.displayName}`);
-      console.log(`birthdate ${user.birthdate}`);
-      console.log(`gender ${user.gender}`);
-      console.log(`educationalLevel ${user.educationalLevel}`);
-      console.log(`picture ${user.picture}`);
-      console.log(`citizenId ${user.citizenId}`);
-      console.log(`citizenImage ${user.citizenImage}`);
+    const user = {
+            type: values.userType,
+            firstname: values.firstname,
+            lastname: values.lastname,
+            username: values.username,
+            password: sha512_256(values.password),
+            email: values.email,
+            phoneNumber: values.phoneNumber,
+            displayName: values.displayName,
+            birthdate: format(birthdate, "yyyy-MM-dd"),
+            gender: values.gender,
+            educationalLevel: parseInt(values.educationalLevel),
+            picture: "",
+            citizenId: values.citizenId,
+            citizenImage: ""};
+  
+    console.log(user)
 
-      //   const user = {
-      //     type: "tutor",
-      //     firstname: "aongaong",
-      //     lastname: "aongaong",
-      //     username: "aongaong",
-      //     email: "aongaong@gmail.com",
-      //     phoneNumber: "0999999999",
-      //     displayName: "aongaongaongaongaongaong",
-      //     password: "aongaong",
-      //     birthdate: "2022-02-02",
-      //     gender: "male",
-      //     educationalLevel: 5,
-      //     picture: "",
-      //     citizenId: "5404956171291",
-      //     citizenImage: ""
-      // }
+    let isInputValid = true
+    for (const field in errorDetails) {
+      if (errorDetails[field].error) {
+        isInputValid = false
+      }
+    }
 
-      console.log(user);
-
+    if (isInputValid) {
       axios
         .post(`http://localhost:3000/register`, user, { withCredentials: true })
         .then((response) => {
           const data = response.data;
           console.log(data);
           setRegisterSuccess(true);
+          alert("Registration Completed!")
         })
         .catch((e) => {
+          alert(`Register Failed ${e}`)
           console.log(e);
         });
-    } else {
-      console.log("Registration failed");
     }
-  };
+  }
 
   return (
     <>
-      {/* {registerSuccess && <Navigate to="/login" />} */}
+      {registerSuccess && <Navigate to="/login" />}
+      
       <div className="registerPage">
         <div className="registerTitle">Register</div>
         <Box
@@ -274,11 +316,14 @@ export default function RegisterCard() {
           noValidate
           autoComplete="off"
         >
+          
           <div className="registerForm">
+
             <TextField
               id="form-register-user-type"
               select
               required
+              error={isOnceSubmit && errorDetails.userType.error}
               label="User Type"
               value={values.userType}
               onChange={handleChange("userType")}
@@ -290,81 +335,118 @@ export default function RegisterCard() {
               ))}
             </TextField>
 
+            {(isOnceSubmit && errorDetails.userType.error) && <div className="errorText">
+              {errorDetails.userType.errorText}
+            </div>}
+
             <TextField
               id="form-register-firstname"
               required
+              error={isOnceSubmit && errorDetails.firstname.error}
               label="Firstname"
               value={values.firstname}
               inputProps={{ maxLength: 45 }}
               onChange={handleChange("firstname")}
+              placeholder="1-45 characters"
             />
+            {(isOnceSubmit && errorDetails.firstname.error) && <div className="errorText">
+              {errorDetails.firstname.errorText}
+            </div>}
 
             <TextField
               id="form-register-lastname"
               required
+              error={isOnceSubmit && errorDetails.lastname.error}
               label="Lastname"
               value={values.lastname}
               inputProps={{ maxLength: 45 }}
               onChange={handleChange("lastname")}
+              placeholder="1-45 characters"
             />
+            {(isOnceSubmit && errorDetails.lastname.error) && <div className="errorText">
+              {errorDetails.lastname.errorText}
+            </div>}
 
             <TextField
               id="form-register-username"
               required
+              error={isOnceSubmit && errorDetails.username.error}
               label="Username"
               value={values.username}
               inputProps={{ minLength: 8, maxLength: 16 }}
               onChange={handleChange("username")}
+              placeholder="8-16 characters"
             />
+            {(isOnceSubmit && errorDetails.username.error) && <div className="errorText">
+              {errorDetails.username.errorText}
+            </div>}
 
             <TextField
               id="form-register-password"
               required
+              error={isOnceSubmit && errorDetails.password.error}
               type="password"
               label="Password"
               value={values.password}
               onChange={handleChange("password")}
+              placeholder="At least 8 characters"
             />
+            {(isOnceSubmit && errorDetails.password.error) && <div className="errorText">
+              {errorDetails.password.errorText}
+            </div>}
 
             <TextField
               id="form-register-confirm-password"
               required
+              error={errorDetails.passwordConfirm.error}
               type="password"
               label="Confirm Password"
               value={values.passwordConfirm}
               onChange={handleChange("passwordConfirm")}
             />
+            {(errorDetails.passwordConfirm.error) && <div className="errorText">
+              {errorDetails.passwordConfirm.errorText}
+            </div>}
 
             <TextField
               id="form-register-email"
               required
+              error={isOnceSubmit && errorDetails.email.error}
               label="Email"
               value={values.email}
               onChange={handleChange("email")}
             />
+            {(isOnceSubmit && errorDetails.email.error) && <div className="errorText">
+              {errorDetails.email.errorText}
+            </div>}
 
             <TextField
               id="form-register-phone-number"
               required
+              error={isOnceSubmit && errorDetails.phoneNumber.error}
               label="Phone Number"
               value={values.phoneNumber}
-              // onInput={(e) => {
-              //   e.target.value = e.target.value
-              //     ? Math.max(0, parseInt(e.target.value))
-              //         .toString()
-              //         .slice(0, 10)
-              //     : "";
-              // }}
+              inputProps={{ maxLength: 10 }}
               onChange={handleChange("phoneNumber")}
+              placeholder="10 digits"
             />
+            {(isOnceSubmit && errorDetails.phoneNumber.error) && <div className="errorText">
+              {errorDetails.phoneNumber.errorText}
+            </div>}
+
             <TextField
               id="form-register-display-name"
               required
+              error={isOnceSubmit && errorDetails.displayName.error}
               label="Display Name"
               value={values.displayName}
               inputProps={{ minLength: 5, maxLength: 45 }}
               onChange={handleChange("displayName")}
+              placeholder="1-45 characters"
             />
+            {(isOnceSubmit && errorDetails.displayName.error) && <div className="errorText">
+              {errorDetails.displayName.errorText}
+            </div>}
 
             <LocalizationProvider dateAdapter={DateAdapter}>
               <DatePicker
@@ -378,11 +460,15 @@ export default function RegisterCard() {
                 renderInput={(params) => <TextField {...params} />}
               />
             </LocalizationProvider>
+            {(isOnceSubmit && !!!birthdate) && <div className="errorText">
+              Please fill your birthdate.
+            </div>}
 
             <TextField
               id="form-register-gender"
               select
               required
+              error={isOnceSubmit && errorDetails.gender.error}
               value={values.gender}
               label="Gender"
               onChange={handleChange("gender")}
@@ -393,11 +479,15 @@ export default function RegisterCard() {
                 </MenuItem>
               ))}
             </TextField>
+            {(isOnceSubmit && errorDetails.gender.error) && <div className="errorText">
+              {errorDetails.gender.errorText}
+            </div>}
 
             <TextField
               id="form-register-education"
               select
               required
+              error={isOnceSubmit && errorDetails.educationalLevel.error}
               value={values.educationalLevel}
               label="Education Level"
               onChange={handleChange("educationalLevel")}
@@ -408,6 +498,9 @@ export default function RegisterCard() {
                 </MenuItem>
               ))}
             </TextField>
+            {(isOnceSubmit && errorDetails.educationalLevel.error) && <div className="errorText">
+              {errorDetails.educationalLevel.errorText}
+            </div>}
 
             <InputLabel>Profile Picture</InputLabel>
 
@@ -425,6 +518,7 @@ export default function RegisterCard() {
               id="form-register-citizen-id"
               label="Citizen ID"
               value={values.citizenId}
+              error={isOnceSubmit && errorDetails.citizenId.error}
               onChange={handleChange("citizenId")}
               onInput={(e) => {
                 e.target.value = e.target.value
@@ -434,6 +528,9 @@ export default function RegisterCard() {
                   : "";
               }}
             />
+            {(isOnceSubmit && errorDetails.citizenId.error) && <div className="errorText">
+              {errorDetails.citizenId.errorText}
+            </div>}
 
             <InputLabel>Citizen Image</InputLabel>
 
@@ -447,7 +544,7 @@ export default function RegisterCard() {
             <img className="citizenImage" src={citizenImage} alt="" />
           </div>
 
-          <button className="registerSubmit" onClick={handleSubmit}>
+          <button type="submit" className="registerSubmit" onClick={handleSubmit}>
             Register
           </button>
         </Box>

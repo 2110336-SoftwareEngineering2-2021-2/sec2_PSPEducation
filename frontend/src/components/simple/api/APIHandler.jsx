@@ -29,16 +29,13 @@ const handleLogin = async (
       setCookie("user", data.id);
       setCookie("user_role", data.type);
       setState(true);
-      if (data.type === "tutor") {
-        return <Navigate to="/tutor" />;
-      } else if (data.type === "student") {
-        return <Navigate to="/student" />;
-      } else if (data.type === "admin") {
-        return <Navigate to="/admin" />;
-      }
     })
     .catch((e) => {
-      console.log(e);
+      if (e.response.status === 400) {
+        alert("Login Failed: Incorrect Username or Password")
+      } else {
+        alert("Internal Server Error")
+      }
     });
 };
 
