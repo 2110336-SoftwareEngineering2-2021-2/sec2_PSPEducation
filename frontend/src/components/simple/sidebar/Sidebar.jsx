@@ -130,58 +130,58 @@ function StudentSidebarList({ cookie }) {
 function AdminSidebarList({ cookie }) {
   return cookie.user_role === "admin" ? (
     <>
-      <li className="adminSidebarListItem">
-        <ViewListRounded className="adminSidebarIcon" />
+      <li className="sidebarListItem">
+        <ViewListRounded className="sidebarIcon" />
 
-        <Link className="adminSidebarListItemText" to="/admin/all">
+        <Link className="sidebarListItemText" to="/admin/all">
           All Categories
         </Link>
       </li>
 
-      <li className="adminSidebarListItem">
-        <HowToRegRounded className="adminSidebarIcon" />
+      <li className="sidebarListItem">
+        <HowToRegRounded className="sidebarIcon" />
 
-        <Link className="adminSidebarListItemText" to="/admin/tutorvalid">
+        <Link className="sidebarListItemText" to="/admin/tutorvalid">
           Tutor Validation
         </Link>
       </li>
 
-      <li className="adminSidebarListItem">
-        <SchoolRounded className="adminSidebarIcon" />
+      <li className="sidebarListItem">
+        <SchoolRounded className="sidebarIcon" />
 
-        <span className="adminSidebarListItemText" to="/admin">
+        <span className="sidebarListItemText" to="/admin">
           Courses
         </span>
       </li>
 
-      <li className="adminSidebarListItem">
-        <SummarizeRounded className="adminSidebarIcon" />
+      <li className="sidebarListItem">
+        <SummarizeRounded className="sidebarIcon" />
 
-        <Link className="adminSidebarListItemText" to="/admin/userrpt">
+        <Link className="sidebarListItemText" to="/admin/userrpt">
           User Reports
         </Link>
       </li>
 
-      <li className="adminSidebarListItem">
-        <FormatListBulletedRounded className="adminSidebarIcon" />
+      <li className="sidebarListItem">
+        <FormatListBulletedRounded className="sidebarIcon" />
 
-        <span className="adminSidebarListItemText" to="/admin">
+        <span className="sidebarListItemText" to="/admin">
           Agenda
         </span>
       </li>
 
-      <li className="adminSidebarListItem">
-        <HelpOutline className="adminSidebarIcon" />
+      <li className="sidebarListItem">
+        <HelpOutline className="sidebarIcon" />
 
-        <span className="adminSidebarListItemText" to="/admin">
+        <span className="sidebarListItemText" to="/admin">
           FAQ
         </span>
       </li>
 
-      <li className="adminSidebarListItem">
-        <Event className="adminSidebarIcon" />
+      <li className="sidebarListItem">
+        <Event className="sidebarIcon" />
 
-        <span className="adminSidebarListItemText" to="/admin">
+        <span className="sidebarListItemText" to="/admin">
           Events
         </span>
       </li>
