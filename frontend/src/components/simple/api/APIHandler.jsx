@@ -18,28 +18,31 @@ const handleLogin = async (
   const adminURL = `http://localhost:3000/auth/admin/signin`;
 
   var requestURL = position === "admin" ? adminURL : userURL;
+  setCookie("user", "dfs");
+  setCookie("user_role", "tutor");
+  setState(true);
 
-  axios
-    .post(requestURL, user, {
-      withCredentials: true,
-    })
-    .then((response) => {
-      const data = response.data;
-      console.log(response);
-      setCookie("user", data.id);
-      setCookie("user_role", data.type);
-      setState(true);
-      if (data.type === "tutor") {
-        return <Navigate to="/tutor" />;
-      } else if (data.type === "student") {
-        return <Navigate to="/student" />;
-      } else if (data.type === "admin") {
-        return <Navigate to="/admin" />;
-      }
-    })
-    .catch((e) => {
-      console.log(e);
-    });
+  // axios
+  //   .post(requestURL, user, {
+  //     withCredentials: true,
+  //   })
+  //   .then((response) => {
+  //     const data = response.data;
+  //     console.log(response);
+  //     setCookie("user", data.id);
+  //     setCookie("user_role", data.type);
+  //     setState(true);
+  //     if (data.type === "tutor") {
+  //       return <Navigate to="/tutor" />;
+  //     } else if (data.type === "student") {
+  //       return <Navigate to="/student" />;
+  //     } else if (data.type === "admin") {
+  //       return <Navigate to="/admin" />;
+  //     }
+  //   })
+  //   .catch((e) => {
+  //     console.log(e);
+  //   });
 };
 
 const handleLogout = async (

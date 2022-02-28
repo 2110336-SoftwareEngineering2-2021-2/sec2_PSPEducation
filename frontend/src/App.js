@@ -11,7 +11,7 @@ import StudentHome from "./pages/student/home/StudentHome";
 import LoginUser from "./pages/login/LoginUser";
 import LoginAdmin from "./pages/login/LoginAdmin";
 import Register from "./pages/register/Register";
-
+import Report from "./pages/report/Report";
 import { Routes, Route } from "react-router-dom";
 
 import {
@@ -228,6 +228,16 @@ function App() {
           path="register"
           element={
             <Register
+              cookie={cookie}
+              setCookie={setCookie}
+              removeCookie={removeCookie}
+            />
+          }
+        />
+        <Route
+          path="report"
+          element={
+            <Report
               cookie={cookie}
               setCookie={setCookie}
               removeCookie={removeCookie}
