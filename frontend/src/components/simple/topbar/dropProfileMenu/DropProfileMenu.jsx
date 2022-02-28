@@ -10,6 +10,13 @@ export default function DropProfileMenu(props) {
         <div className="dropProfileItem">My Profile</div>
         <div className="dropProfileItem">Setting</div>
         <div className="dropProfileItem">
+          <button>
+            <a className="dropProfileItemLink" href="/report">
+              Report problem
+            </a>
+          </button>
+        </div>
+        <div className="dropProfileItem">
           <button
             onClick={() =>
               APIHandler.handleLogout(
@@ -17,7 +24,7 @@ export default function DropProfileMenu(props) {
                 props.setState,
                 props.cookie,
                 props.setCookie,
-                props.removeCookie,
+                props.removeCookie
               )
             }
           >

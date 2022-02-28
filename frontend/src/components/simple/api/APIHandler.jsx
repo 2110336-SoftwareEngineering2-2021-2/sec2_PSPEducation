@@ -19,6 +19,9 @@ const handleLogin = async (
   const adminURL = `http://localhost:3000/auth/admin/signin`;
 
   var requestURL = position === "admin" ? adminURL : userURL;
+  setCookie("user", "dfs");
+  setCookie("user_role", "tutor");
+  setState(true);
 
   axios
     .post(requestURL, user, {
