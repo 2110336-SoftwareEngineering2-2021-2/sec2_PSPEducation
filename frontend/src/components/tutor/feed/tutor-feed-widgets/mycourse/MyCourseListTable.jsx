@@ -3,9 +3,6 @@ import "./myCourseListTable.css";
 import { CloseOutlined, AddCircle } from "@mui/icons-material";
 import UpdateCourseCard from "./update/UpdateCourseCard";
 import { DataGrid } from "@mui/x-data-grid";
-import axios from "axios";
-
-import CreateCoursePopup from "../../tutor-feed-widgets/mycourse/create/CreateCoursePopup";
 
 var APIHandler = require("../../../../simple/api/APIHandler");
 
@@ -118,7 +115,6 @@ export default function MyCourseListTable({ cookie, setCookie, removeCookie }) {
             </div>
           </button>
         </div>
-
       </div>
 
       <div className="mainCourseTable">
