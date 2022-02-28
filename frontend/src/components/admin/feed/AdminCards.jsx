@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./adminCards.css";
 import TutorValidationCard from "./admin-card-components/TutorValidationCard";
 import UserReportCard from "./admin-card-components/UserReportCard";
@@ -6,6 +6,8 @@ import TutorCardPopup from "./admin-card-components/TutorCardPopup";
 import { tutorValidationCardData, reportCardData } from "../../../dummyData";
 import { CloseOutlined } from "@mui/icons-material";
 import { Outlet } from "react-router-dom";
+
+var APIHandler = require("../../simple/api/APIHandler");
 
 export default function AdminCards() {
   return (
@@ -15,7 +17,99 @@ export default function AdminCards() {
   );
 }
 
-export function AllCards() {
+export function AllCards({ cookie, setCookie, removeCookie }) {
+  const [displayState, setDisplayState] = useState(false);
+
+  const [tutorValidData, setTutorValidData] = useState([
+    {
+      firstname: "",
+      lastname: "",
+      username: "",
+      email: "",
+      phoneNumber: "",
+      displayNumber: "",
+      birthdate: "",
+      gender: "",
+      educationLevel: "",
+      citizenId: "",
+      citizenImage: "",
+      profession: "",
+      imgAvatarURL: "",
+      imgBgURL: "",
+    },
+  ]);
+
+  const [reportData, setReportData] = useState([
+    {
+      title: "",
+      type: 0,
+      status: "",
+      username: "",
+      userId: "",
+      detail: "",
+      picture: "",
+      imgTopicURL: "",
+      imgBgURL: "",
+    },
+  ]);
+
+  useEffect(() => {
+    APIHandler.handleGetTutorValidCard(tutorValidData, setTutorValidData);
+    APIHandler.handleGetReportCard(reportData, setReportData);
+    console.log("tutorValidData", tutorValidData);
+    console.log("reportData", reportData);
+  }, []);
+
+  return (
+    <>
+      {tutorValidData.map((data, key) => {
+        return (
+          <TutorValidationCard
+            key={key}
+            firstname={data.firstname}
+            lastname={data.lastname}
+            username={data.username}
+            email={data.email}
+            phoneNumber={data.phoneNumber}
+            displayNumber={data.displayNumber}
+            birthdate={data.birthdate}
+            gender={data.gender}
+            educationLevel={data.educationLevel}
+            citizenId={data.citizenId}
+            citizenImage={data.citizenImage}
+            profession={data.profession}
+            imgAvatarURL={data.imgAvatarURL}
+            imgBgURL={data.imgBgURL}
+            setTriggerView={setDisplayState}
+            setTriggerData={setTutorValidData}
+          />
+        );
+      })}
+      {reportData.map((data, key) => {
+        return (
+          <UserReportCard
+            key={key}
+            title={data.title}
+            username={data.username}
+            userId={data.userId}
+            detail={data.detail}
+            imgTopicURL={data.picture[0]}
+            imgBgURL={data.picture[1]}
+          />
+        );
+      })}
+      <ViewPopup
+        className=""
+        data={tutorValidData}
+        trigger={displayState}
+        setTrigger={setDisplayState}
+      />
+    </>
+  );
+}
+
+export function TutorValidationCards({ cookie, setCookie, removeCookie }) {
+  const [push, setPush] = useState(false);
   const [displayState, setDisplayState] = useState(false);
   const [dataValidation, setDataValidation] = useState({
     firstname: "",
@@ -33,6 +127,27 @@ export function AllCards() {
     imgAvatarURL: "",
     imgBgURL: "",
   });
+  const [tutorValidData, setTutorValidData] = useState([
+    {
+      firstname: "",
+      lastname: "",
+      username: "",
+      email: "",
+      phoneNumber: "",
+      displayNumber: "",
+      birthdate: "",
+      gender: "",
+      educationLevel: "",
+      citizenId: "",
+      citizenImage: "",
+      profession: "",
+      imgAvatarURL: "",
+      imgBgURL: "",
+    },
+  ]);
+
+  useEffect(() => {}, []);
+
   return (
     <>
       {tutorValidationCardData.map((data, key) => {
@@ -58,11 +173,63 @@ export function AllCards() {
           />
         );
       })}
+      {tutorValidData.map((data, key) => {
+        return (
+          <TutorValidationCard
+            key={key}
+            firstname={data.firstname}
+            lastname={data.lastname}
+            username={data.username}
+            email={data.email}
+            phoneNumber={data.phoneNumber}
+            displayNumber={data.displayNumber}
+            birthdate={data.birthdate}
+            gender={data.gender}
+            educationLevel={data.educationLevel}
+            citizenId={data.citizenId}
+            citizenImage={data.citizenImage}
+            profession={data.profession}
+            imgAvatarURL={data.imgAvatarURL}
+            imgBgURL={data.imgBgURL}
+            setTriggerView={setDisplayState}
+            setTriggerData={setTutorValidData}
+          />
+        );
+      })}
+
+      <ViewPopup
+        data={dataValidation}
+        trigger={displayState}
+        setTrigger={setDisplayState}
+      />
+    </>
+  );
+}
+
+export function UserReportCards({ cookie, setCookie, removeCookie }) {
+  const [push, setPush] = useState(false);
+  const [displayState, setDisplayState] = useState(false);
+  const [reportData, setReportData] = useState([
+    {
+      title: "",
+      type: 0,
+      status: "",
+      username: "",
+      userId: "",
+      detail: "",
+      picture: "",
+      imgTopicURL: "",
+      imgBgURL: "",
+    },
+  ]);
+
+  return (
+    <>
       {reportCardData.map((data, key) => {
         return (
           <UserReportCard
             key={key}
-            header={data.header}
+            title={data.title}
             username={data.username}
             detail={data.detail}
             imgTopicURL={data.imgTopicURL}
@@ -70,12 +237,6 @@ export function AllCards() {
           />
         );
       })}
-      <ViewPopup
-        className=""
-        data={dataValidation}
-        trigger={displayState}
-        setTrigger={setDisplayState}
-      />
     </>
   );
 }
@@ -87,7 +248,6 @@ function ViewPopup(props) {
         <button className="closePopup" onClick={() => props.setTrigger(false)}>
           <CloseOutlined />
         </button>
-        {/* <div className="viewPopupContent"> */}
         <TutorCardPopup
           firstname={props.data.firstname}
           lastname={props.data.lastname}
@@ -110,78 +270,5 @@ function ViewPopup(props) {
     </div>
   ) : (
     ""
-  );
-}
-
-export function TutorValidationCards() {
-  const [displayState, setDisplayState] = useState(false);
-  const [dataValidation, setDataValidation] = useState({
-    firstname: "",
-    lastname: "",
-    username: "",
-    email: "",
-    phoneNumber: "",
-    displayNumber: "",
-    birthdate: "",
-    gender: "",
-    educationLevel: "",
-    citizenId: "",
-    citizenImage: "",
-    profession: "",
-    imgAvatarURL: "",
-    imgBgURL: "",
-  });
-
-  return (
-    <>
-      {tutorValidationCardData.map((data, key) => {
-        return (
-          <TutorValidationCard
-            key={key}
-            firstname={data.firstname}
-            lastname={data.lastname}
-            username={data.username}
-            email={data.email}
-            phoneNumber={data.phoneNumber}
-            displayNumber={data.displayNumber}
-            birthdate={data.birthdate}
-            gender={data.gender}
-            educationLevel={data.educationLevel}
-            citizenId={data.citizenId}
-            citizenImage={data.citizenImage}
-            profession={data.profession}
-            imgAvatarURL={data.imgAvatarURL}
-            imgBgURL={data.imgBgURL}
-            setTriggerView={setDisplayState}
-            setTriggerData={setDataValidation}
-          />
-        );
-      })}
-
-      <ViewPopup
-        data={dataValidation}
-        trigger={displayState}
-        setTrigger={setDisplayState}
-      />
-    </>
-  );
-}
-
-export function UserReportCards() {
-  return (
-    <>
-      {reportCardData.map((data, key) => {
-        return (
-          <UserReportCard
-            key={key}
-            header={data.header}
-            username={data.username}
-            detail={data.detail}
-            imgTopicURL={data.imgTopicURL}
-            imgBgURL={data.imgBgURL}
-          />
-        );
-      })}
-    </>
   );
 }
