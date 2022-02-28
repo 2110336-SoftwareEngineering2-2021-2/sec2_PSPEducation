@@ -5,13 +5,7 @@
 .userReportCard {
   margin: 10px;
   position: relative;
-  background: linear-gradient(
-      rgb(133, 133, 133),
-      transparent,
-      rgb(102, 101, 101),
-      rgb(47, 47, 47)
-    ),
-    var(--imgBgReport);
+  background: linear-gradient( rgb(133, 133, 133), transparent, rgb(102, 101, 101), rgb(47, 47, 47)), var(--imgBgReport);
   background-size: cover;
   border-radius: 20px;
 }
@@ -47,9 +41,15 @@
   color: rgb(255, 255, 255);
 }
 
-.userReportCardHeader {
+.userReportCardTitle {
+  max-width: 180px;
   font-size: 20px;
   font-weight: 600;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .userReportCardDetail {

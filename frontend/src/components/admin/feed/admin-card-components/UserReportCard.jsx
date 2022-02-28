@@ -1,11 +1,17 @@
 import React from "react";
 import "./userReportCard.css";
 
-export default function UserReportCard(props) {
-  if (!props.header) return <div />;
+export default function UserReportCard({
+  title,
+  username,
+  detail,
+  imgTopicURL,
+  imgBgURL,
+}) {
+  if (!title) return <div />;
 
-  const imgTopicSrc = props.imgTopicURL;
-  const imgBgReportSrc = props.imgBgURL;
+  const imgTopicSrc = imgTopicURL;
+  const imgBgSrc = imgBgURL;
 
   const imgBgStyle = {
     margin: "5px",
@@ -21,7 +27,7 @@ export default function UserReportCard(props) {
       "47, 47, 47" +
       "))," +
       "url(" +
-      imgBgReportSrc +
+      imgBgSrc +
       ")",
     backgroundSize: "cover",
     borderRadius: "20px",
@@ -38,9 +44,9 @@ export default function UserReportCard(props) {
           />
         </div>
         <div className="userReportCardReportInfo">
-          <span className="userReportCardHeader">{props.header}</span>
-          <span className="userReportCardUserName">{props.username}</span>
-          <span className="userReportCardDetail">{props.detail}</span>
+          <span className="userReportCardTitle">{title}</span>
+          <span className="userReportCardUserName">{username}</span>
+          <span className="userReportCardDetail">{detail}</span>
         </div>
 
         <div className="userReportCardButton">
