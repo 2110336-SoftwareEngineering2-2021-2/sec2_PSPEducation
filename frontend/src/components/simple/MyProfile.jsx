@@ -95,7 +95,7 @@ export default function MyProfile({ cookie, setCookie, removeCookie }) {
       <div className="profileTitle"> My Profile </div>
       <Box
         className="profileBox"
-        // component="span"
+        component="span"
         sx={{
           width: 500,
           backgroundColor: "primary.dark",
@@ -182,23 +182,6 @@ export default function MyProfile({ cookie, setCookie, removeCookie }) {
           disabled="Disabled"
           fullWidth
         />
-        <button
-          className="editButton"
-          onClick={() => {
-            setDisplayStateEdit(true);
-          }}
-        >
-          Edit
-        </button>
-
-        <button
-          className="changePasswordButton"
-          onClick={() => {
-            setDisplayStatePassword(true);
-          }}
-        >
-          Change Password
-        </button>
 
         <EditPopup
           className=""
@@ -216,6 +199,23 @@ export default function MyProfile({ cookie, setCookie, removeCookie }) {
           id={cookie.user}
         />
       </Box>
+      <button
+          className="editButton"
+          onClick={() => {
+            setDisplayStateEdit(true);
+          }} 
+      >
+          edit
+        </button>
+
+        <button
+          className="changePasswordButton"
+          onClick={() => {
+            setDisplayStatePassword(true);
+          }}
+        >
+          Change Password
+        </button>
     </div>
   );
 }
