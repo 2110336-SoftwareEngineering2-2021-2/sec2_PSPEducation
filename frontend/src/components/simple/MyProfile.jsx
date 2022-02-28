@@ -9,48 +9,21 @@ import { Box } from "@mui/system";
 export default function MyProfile({ cookie, setCookie, removeCookie }) {
   // const [profile, setProfile] = useState({});
   // const [state, setState] = useState(false);
-  const [displayState, setDisplayState] = useState(false);
-
+  const [displayStateEdit, setDisplayStateEdit] = useState(false);
+  const [displayStatePassword, setDisplayStatePassword] = useState(false);
   const [data, setData] = useState({});
 
-  const educationOption = [
-    {
-      value: 0,
-      label: "Not Defined",
-    },
-    {
-      value: 1,
-      label: "Pre-school",
-    },
-    {
-      value: 2,
-      label: "Primary1-3",
-    },
-    {
-      value: 3,
-      label: "Primary4-6",
-    },
-    {
-      value: 4,
-      label: "Secondary1-3",
-    },
-    {
-      value: 5,
-      label: "Secondary4-6",
-    },
-    {
-      value: 6,
-      label: "Bachelor's Degree",
-    },
-    {
-      value: 7,
-      label: "Master's Degree",
-    },
-    {
-      value: 8,
-      label: "PhD",
-    },
-  ];
+  function educationalLevelToText(educationalLevel) {
+    if (educationalLevel === 0) return "Not Defined";
+    else if (educationalLevel === 1) return "Pre-school";
+    else if (educationalLevel === 2) return "Primary1-3";
+    else if (educationalLevel === 3) return "Primary4-6";
+    else if (educationalLevel === 4) return "Secondary1-3";
+    else if (educationalLevel === 5) return "Secondary4-6";
+    else if (educationalLevel === 6) return "Bachelor's Degree";
+    else if (educationalLevel === 7) return "Master's Degree";
+    else if (educationalLevel === 8) return "PhD";
+  }
 
   function EditPopup(props) {
     // console.log(props)
@@ -74,6 +47,29 @@ export default function MyProfile({ cookie, setCookie, removeCookie }) {
       ""
     );
   }
+  function ChangePasswordPopup(props) {
+    // console.log(props)
+    return props.trigger ? (
+      <div className="viewEditPopup">
+        <div className="viewEditPopupContainerPassword">
+          <button
+            className="closeEditPopup"
+            onClick={() => props.setTrigger(false)}
+          >
+            <CloseOutlined />
+          </button>
+          <ChangePasswordCard
+            id={props.id}
+            data={props.data}
+            setTrigger={props.setTrigger}
+          />
+        </div>
+      </div>
+    ) : (
+      ""
+    );
+  }
+
   function fetch() {
     axios
       .get(`http://localhost:3000/auth/user/${cookie.user}`, {
@@ -87,23 +83,6 @@ export default function MyProfile({ cookie, setCookie, removeCookie }) {
         console.log(e);
       });
   }
-  // const fetch = async () => {
-  //     try {
-  //         axios
-  //         .get(`http://localhost:3000/auth/user/${cookie.user}`, {
-  //           withCredentials: true,
-  //         })
-  //         .then((response) => {
-  //           setData(response.data)
-  //           console.log(data)
-  //         })
-  //         .catch((e) => {
-  //           console.log(e);
-  //         });
-  //     } catch(err) {
-  //       // error handling code
-  //     }
-  //   }
 
   useEffect(() => {
     fetch();
@@ -115,6 +94,7 @@ export default function MyProfile({ cookie, setCookie, removeCookie }) {
       <div className="profileTitle"> My Profile </div>
       <Box
         className="profileBox"
+        // component="span"
         sx={{
           width: 500,
           backgroundColor: "primary.dark",
@@ -196,25 +176,41 @@ export default function MyProfile({ cookie, setCookie, removeCookie }) {
         <TextField
           className="profileEducationLevel"
           type="text"
-          value={data.educationalLevel}
+          value={educationalLevelToText(data.educationalLevel)}
           label="Education Level"
           disabled="Disabled"
           fullWidth
         />
-
         <button
           className="editButton"
           onClick={() => {
-            setDisplayState(true);
+            setDisplayStateEdit(true);
           }}
         >
           Edit
         </button>
 
+        <button
+          className="changePasswordButton"
+          onClick={() => {
+            setDisplayStatePassword(true);
+          }}
+        >
+          Change Password
+        </button>
+
         <EditPopup
           className=""
-          trigger={displayState}
-          setTrigger={setDisplayState}
+          trigger={displayStateEdit}
+          setTrigger={setDisplayStateEdit}
+          data={data}
+          id={cookie.user}
+        />
+
+        <ChangePasswordPopup
+          className=""
+          trigger={displayStatePassword}
+          setTrigger={setDisplayStatePassword}
           data={data}
           id={cookie.user}
         />

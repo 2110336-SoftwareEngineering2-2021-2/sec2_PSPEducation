@@ -162,3 +162,27 @@
   cursor: pointer;
   margin-right: 20px;
 }
+.editButton,
+.changePasswordButton {
+  border: none;
+  border-radius: 10px;
+  padding: 5px 10px;
+  background-color: #3bb077;
+  color: white;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.viewEditPopupContainerPassword {
+  position: relative;
+  padding: 32px;
+  padding: 20px;
+  height: 100%;
+  width: 100%;
+  max-width: 640px;
+  max-height: 485px;
+  background-color: var(--card-theme);
+  border-radius: 20px;
+  border-radius: 30px;
+  overflow: auto;
+}
