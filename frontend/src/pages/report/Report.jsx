@@ -21,17 +21,11 @@ export default function Report({ cookie, setCookie, removeCookie }) {
 
   return (
     <>
-      {/* {state && <Navigate to="/login" />} */}
-
-
-        
-            <ReportCard
-              cookie={cookie}
-              setCookie={setCookie}
-              removeCookie={removeCookie}
-            />
-      
-     
+      <ReportCard
+        cookie={cookie}
+        setCookie={setCookie}
+        removeCookie={removeCookie}
+      />
     </>
   );
 }
