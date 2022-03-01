@@ -40,19 +40,19 @@ export function AllCards({ cookie, setCookie, removeCookie }) {
     },
   ]);
 
-  const [reportData, setReportData] = useState([
-    {
-      title: "",
-      type: 0,
-      status: "",
-      username: "",
-      userId: "",
-      detail: "",
-      picture: "",
-      imgTopicURL: "",
-      imgBgURL: "",
-    },
-  ]);
+  // const [reportData, setReportData] = useState([
+  //   {
+  //     title: "",
+  //     type: 0,
+  //     status: "",
+  //     username: "",
+  //     userId: "",
+  //     detail: "",
+  //     picture: "",
+  //     imgTopicURL: "",
+  //     imgBgURL: "",
+  //   },
+  // ]);
 
   const [tutorValid, setTutorValid] = useState(null);
   const [report, setReport] = useState(null);
@@ -131,55 +131,72 @@ export function AllCards({ cookie, setCookie, removeCookie }) {
 }
 
 export function TutorValidationCards({ cookie, setCookie, removeCookie }) {
-  const [push, setPush] = useState(false);
   const [displayState, setDisplayState] = useState(false);
-  const [dataValidation, setDataValidation] = useState({
-    firstname: "",
-    lastname: "",
-    username: "",
-    email: "",
-    phoneNumber: "",
-    displayNumber: "",
-    birthdate: "",
-    gender: "",
-    educationLevel: "",
-    citizenId: "",
-    citizenImage: "",
-    profession: "",
-    imgAvatarURL: "",
-    imgBgURL: "",
-  });
+
+  const [tutorValidData, setTutorValidData] = useState([
+    {
+      firstname: "",
+      lastname: "",
+      username: "",
+      email: "",
+      phoneNumber: "",
+      displayNumber: "",
+      birthdate: "",
+      gender: "",
+      educationLevel: "",
+      citizenId: "",
+      citizenImage: "",
+      profession: "",
+      imgAvatarURL: "",
+      imgBgURL: "",
+    },
+  ]);
+
+  const [tutorValid, setTutorValid] = useState(null);
+
+  const [push, setPush] = useState(false);
+
+  useEffect(() => {
+    console.log("tutorValid:", tutorValid);
+  }, [tutorValid]);
+
+  useEffect(() => {
+    APIHandler.handleGetTutorValidCard(tutorValid, setTutorValid);
+  }, [push]);
 
   return (
     <>
-      {tutorValidationCardData.map((data, key) => {
-        return (
-          <TutorValidationCard
-            key={key}
-            firstname={data.firstname}
-            lastname={data.lastname}
-            username={data.username}
-            email={data.email}
-            phoneNumber={data.phoneNumber}
-            displayNumber={data.displayNumber}
-            birthdate={data.birthdate}
-            gender={data.gender}
-            educationLevel={data.educationLevel}
-            citizenId={data.citizenId}
-            citizenImage={data.citizenImage}
-            profession={data.profession}
-            imgAvatarURL={data.imgAvatarURL}
-            imgBgURL={data.imgBgURL}
-            setTriggerView={setDisplayState}
-            setTriggerData={setDataValidation}
-            push={push}
-            setPush={setPush}
-          />
-        );
-      })}
+      {tutorValid &&
+        tutorValid.map((data, key) => {
+          return (
+            <TutorValidationCard
+              key={key}
+              cookie={cookie}
+              firstname={data.firstname}
+              lastname={data.lastname}
+              username={data.username}
+              email={data.email}
+              phoneNumber={data.phoneNumber}
+              displayNumber={data.displayNumber}
+              birthdate={data.birthdate}
+              gender={data.gender}
+              educationLevel={data.educationLevel}
+              citizenId={data.citizenId}
+              citizenImage={data.citizenImage}
+              profession={data.profession}
+              imgAvatarURL={data.picture[0]}
+              imgBgURL={data.picture[1]}
+              userId={data._id}
+              setTriggerView={setDisplayState}
+              setTriggerData={setTutorValidData}
+              push={push}
+              setPush={setPush}
+            />
+          );
+        })}
 
       <ViewPopup
-        data={dataValidation}
+        data={tutorValidData}
         trigger={displayState}
         setTrigger={setDisplayState}
         push={push}
@@ -190,37 +207,36 @@ export function TutorValidationCards({ cookie, setCookie, removeCookie }) {
 }
 
 export function UserReportCards({ cookie, setCookie, removeCookie }) {
+  const [report, setReport] = useState(null);
+
   const [push, setPush] = useState(false);
-  const [reportData, setReportData] = useState([
-    {
-      title: "",
-      type: 0,
-      status: "",
-      username: "",
-      userId: "",
-      detail: "",
-      picture: "",
-      imgTopicURL: "",
-      imgBgURL: "",
-    },
-  ]);
+
+  useEffect(() => {
+    console.log("report:", report);
+  }, [report]);
+
+  useEffect(() => {
+    APIHandler.handleGetReportCard(report, setReport);
+  }, [push]);
 
   return (
     <>
-      {reportCardData.map((data, key) => {
-        return (
-          <UserReportCard
-            key={key}
-            title={data.title}
-            username={data.username}
-            detail={data.detail}
-            imgTopicURL={data.imgTopicURL}
-            imgBgURL={data.imgBgURL}
-            push={push}
-            setPush={setPush}
-          />
-        );
-      })}
+      {report &&
+        report.map((data, key) => {
+          return (
+            <UserReportCard
+              key={key}
+              title={data.title}
+              username={data.username}
+              detail={data.detail}
+              imgTopicURL={data.picture[0]}
+              imgBgURL={data.picture[1]}
+              reportID={data._id}
+              push={push}
+              setPush={setPush}
+            />
+          );
+        })}
     </>
   );
 }
