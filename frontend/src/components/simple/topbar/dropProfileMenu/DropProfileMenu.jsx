@@ -7,7 +7,13 @@ export default function DropProfileMenu(props) {
   return props.trigger ? (
     <div className="dropProfileMenu">
       <div className="dropProfileList">
-        <div className="dropProfileItem">My Profile</div>
+        <div className="dropProfileItem">
+          <button>
+            <a className="dropProfileItemLink" href="/myprofile">
+              My Profile
+            </a>
+          </button>
+        </div>
         <div className="dropProfileItem">Setting</div>
         <div className="dropProfileItem">
           <button>
