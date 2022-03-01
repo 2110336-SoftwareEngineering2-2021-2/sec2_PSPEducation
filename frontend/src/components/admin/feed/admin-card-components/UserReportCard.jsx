@@ -1,12 +1,17 @@
 import React from "react";
 import "./userReportCard.css";
 
+var APIHandler = require("../../../simple/api/APIHandler");
+
 export default function UserReportCard({
   title,
   username,
   detail,
   imgTopicURL,
   imgBgURL,
+  reportID,
+  push,
+  setPush,
 }) {
   if (!title) return <div />;
 
@@ -50,8 +55,32 @@ export default function UserReportCard({
         </div>
 
         <div className="userReportCardButton">
-          <button className="userReportCardButtonView">add</button>
-          <button className="userReportCardButtonRemove">dismiss</button>
+          <button
+            className="userReportCardButtonDone"
+            onClick={() => {
+              APIHandler.handleSetReportStatus(
+                reportID,
+                "solved",
+                push,
+                setPush
+              );
+            }}
+          >
+            done
+          </button>
+          <button
+            className="userReportCardButtonRemove"
+            onClick={() => {
+              APIHandler.handleSetReportStatus(
+                reportID,
+                "dismissed",
+                push,
+                setPush
+              );
+            }}
+          >
+            dismiss
+          </button>
         </div>
       </div>
     </div>

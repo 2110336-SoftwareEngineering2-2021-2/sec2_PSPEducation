@@ -19,9 +19,6 @@ const handleLogin = async (
   const adminURL = `http://localhost:3000/auth/admin/signin`;
 
   var requestURL = position === "admin" ? adminURL : userURL;
-  setCookie("user", "dfs");
-  setCookie("user_role", "tutor");
-  setState(true);
 
   axios
     .post(requestURL, user, {
@@ -36,9 +33,9 @@ const handleLogin = async (
     })
     .catch((e) => {
       if (e.response.status === 400) {
-        alert("Login Failed: Incorrect Username or Password")
+        alert("Login Failed: Incorrect Username or Password");
       } else {
-        alert("Internal Server Error")
+        alert("Internal Server Error");
       }
     });
 };
@@ -68,7 +65,6 @@ const handleLogout = async (
 };
 
 const handleEditCourse = (id, setDataCourse, setCourseID) => {
-  // console.log()
   axios
     .get(`http://localhost:3000/course/${id}`, { withCredentials: true })
     .then((response) => {
@@ -105,49 +101,85 @@ const handleUpdateTutorCourse = (cookie, setCourse) => {
       withCredentials: true,
     })
     .then((response) => {
-      // const data = response.data
       setCourse(response.data);
-      // console.log(response);
     })
     .catch((e) => {
       console.log(e);
     });
 };
 
-const handleGetTutorValidCard = async (tutorData, setTutorData) => {
+const handleGetTutorValidCard = async (tutorValid, setTutorValid) => {
   axios
     .get(`http://localhost:3000/admin/register/waiting`, {
       withCredentials: true,
     })
     .then((response) => {
-      setTutorData(response.data);
       // console.log(response.data);
+      setTutorValid(response.data);
     })
     .catch((e) => {
       console.log(e);
     });
 };
 
-const handleGetReportCard = async (reportData, setReportData) => {
-  var tmpList = [];
+const handleGetReportCard = async (report, setReport) => {
   axios
     .get(`http://localhost:3000/admin/report/waiting`, {
       withCredentials: true,
     })
     .then((response) => {
-      response.data.map((item) => {
+      let tmpList = response.data;
+      tmpList.map((item) => {
         axios
           .get(`http://localhost:3000/auth/user/${item.userId}`, {
             withCredentials: true,
           })
           .then((response) => {
-            tmpList.push({ ...item, username: response.data.username });
+            tmpList.push({ ...item, username: tmpList.username });
           });
       });
+      return tmpList;
     })
-    .then(() => {
-      setReportData(tmpList);
+    .then((tmpList) => {
+      setReport(tmpList);
     });
+};
+
+const handleSetTutorValidStatus = async (
+  tutorID,
+  validStatus,
+  push,
+  setPush
+) => {
+  console.log(tutorID);
+  axios
+    .patch(
+      `http://localhost:3000/admin/register/${tutorID}`,
+      { status: validStatus },
+      {
+        withCredentials: true,
+      }
+    )
+    .catch((e) => {
+      console.log(e);
+    });
+  setPush(!push);
+};
+
+const handleSetReportStatus = async (reportID, reportStatus, push, setPush) => {
+  console.log(reportID);
+  axios
+    .patch(
+      `http://localhost:3000/admin/report/${reportID}`,
+      { status: reportStatus },
+      {
+        withCredentials: true,
+      }
+    )
+    .catch((e) => {
+      console.log(e);
+    });
+  setPush(!push);
 };
 
 export {
@@ -158,4 +190,6 @@ export {
   handleUpdateTutorCourse,
   handleGetTutorValidCard,
   handleGetReportCard,
+  handleSetTutorValidStatus,
+  handleSetReportStatus,
 };

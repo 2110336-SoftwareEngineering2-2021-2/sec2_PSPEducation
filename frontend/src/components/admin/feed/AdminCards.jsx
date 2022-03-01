@@ -6,6 +6,7 @@ import TutorCardPopup from "./admin-card-components/TutorCardPopup";
 import { tutorValidationCardData, reportCardData } from "../../../dummyData";
 import { CloseOutlined } from "@mui/icons-material";
 import { Outlet } from "react-router-dom";
+import axios from "axios";
 
 var APIHandler = require("../../simple/api/APIHandler");
 
@@ -53,56 +54,77 @@ export function AllCards({ cookie, setCookie, removeCookie }) {
     },
   ]);
 
+  const [tutorValid, setTutorValid] = useState(null);
+  const [report, setReport] = useState(null);
+
+  const [push, setPush] = useState(false);
+
   useEffect(() => {
-    APIHandler.handleGetTutorValidCard(tutorValidData, setTutorValidData);
-    APIHandler.handleGetReportCard(reportData, setReportData);
-    console.log("tutorValidData", tutorValidData);
-    console.log("reportData", reportData);
-  }, []);
+    console.log("report:", report);
+  }, [report]);
+
+  useEffect(() => {
+    console.log("tutorValid:", tutorValid);
+  }, [tutorValid]);
+
+  useEffect(() => {
+    APIHandler.handleGetTutorValidCard(tutorValid, setTutorValid);
+    APIHandler.handleGetReportCard(report, setReport);
+  }, [push]);
 
   return (
     <>
-      {tutorValidData.map((data, key) => {
-        return (
-          <TutorValidationCard
-            key={key}
-            firstname={data.firstname}
-            lastname={data.lastname}
-            username={data.username}
-            email={data.email}
-            phoneNumber={data.phoneNumber}
-            displayNumber={data.displayNumber}
-            birthdate={data.birthdate}
-            gender={data.gender}
-            educationLevel={data.educationLevel}
-            citizenId={data.citizenId}
-            citizenImage={data.citizenImage}
-            profession={data.profession}
-            imgAvatarURL={data.imgAvatarURL}
-            imgBgURL={data.imgBgURL}
-            setTriggerView={setDisplayState}
-            setTriggerData={setTutorValidData}
-          />
-        );
-      })}
-      {reportData.map((data, key) => {
-        return (
-          <UserReportCard
-            key={key}
-            title={data.title}
-            username={data.username}
-            userId={data.userId}
-            detail={data.detail}
-            imgTopicURL={data.picture[0]}
-            imgBgURL={data.picture[1]}
-          />
-        );
-      })}
+      {tutorValid &&
+        tutorValid.map((data, key) => {
+          return (
+            <TutorValidationCard
+              key={key}
+              cookie={cookie}
+              firstname={data.firstname}
+              lastname={data.lastname}
+              username={data.username}
+              email={data.email}
+              phoneNumber={data.phoneNumber}
+              displayNumber={data.displayNumber}
+              birthdate={data.birthdate}
+              gender={data.gender}
+              educationLevel={data.educationLevel}
+              citizenId={data.citizenId}
+              citizenImage={data.citizenImage}
+              profession={data.profession}
+              imgAvatarURL={data.picture[0]}
+              imgBgURL={data.picture[1]}
+              userId={data._id}
+              setTriggerView={setDisplayState}
+              setTriggerData={setTutorValidData}
+              push={push}
+              setPush={setPush}
+            />
+          );
+        })}
+      {report &&
+        report.map((data, key) => {
+          return (
+            <UserReportCard
+              key={key}
+              title={data.title}
+              username={data.username}
+              detail={data.detail}
+              imgTopicURL={data.picture[0]}
+              imgBgURL={data.picture[1]}
+              reportID={data._id}
+              push={push}
+              setPush={setPush}
+            />
+          );
+        })}
+
       <ViewPopup
-        className=""
         data={tutorValidData}
         trigger={displayState}
         setTrigger={setDisplayState}
+        push={push}
+        setPush={setPush}
       />
     </>
   );
@@ -127,26 +149,6 @@ export function TutorValidationCards({ cookie, setCookie, removeCookie }) {
     imgAvatarURL: "",
     imgBgURL: "",
   });
-  const [tutorValidData, setTutorValidData] = useState([
-    {
-      firstname: "",
-      lastname: "",
-      username: "",
-      email: "",
-      phoneNumber: "",
-      displayNumber: "",
-      birthdate: "",
-      gender: "",
-      educationLevel: "",
-      citizenId: "",
-      citizenImage: "",
-      profession: "",
-      imgAvatarURL: "",
-      imgBgURL: "",
-    },
-  ]);
-
-  useEffect(() => {}, []);
 
   return (
     <>
@@ -170,29 +172,8 @@ export function TutorValidationCards({ cookie, setCookie, removeCookie }) {
             imgBgURL={data.imgBgURL}
             setTriggerView={setDisplayState}
             setTriggerData={setDataValidation}
-          />
-        );
-      })}
-      {tutorValidData.map((data, key) => {
-        return (
-          <TutorValidationCard
-            key={key}
-            firstname={data.firstname}
-            lastname={data.lastname}
-            username={data.username}
-            email={data.email}
-            phoneNumber={data.phoneNumber}
-            displayNumber={data.displayNumber}
-            birthdate={data.birthdate}
-            gender={data.gender}
-            educationLevel={data.educationLevel}
-            citizenId={data.citizenId}
-            citizenImage={data.citizenImage}
-            profession={data.profession}
-            imgAvatarURL={data.imgAvatarURL}
-            imgBgURL={data.imgBgURL}
-            setTriggerView={setDisplayState}
-            setTriggerData={setTutorValidData}
+            push={push}
+            setPush={setPush}
           />
         );
       })}
@@ -201,6 +182,8 @@ export function TutorValidationCards({ cookie, setCookie, removeCookie }) {
         data={dataValidation}
         trigger={displayState}
         setTrigger={setDisplayState}
+        push={push}
+        setPush={setPush}
       />
     </>
   );
@@ -208,7 +191,6 @@ export function TutorValidationCards({ cookie, setCookie, removeCookie }) {
 
 export function UserReportCards({ cookie, setCookie, removeCookie }) {
   const [push, setPush] = useState(false);
-  const [displayState, setDisplayState] = useState(false);
   const [reportData, setReportData] = useState([
     {
       title: "",
@@ -234,6 +216,8 @@ export function UserReportCards({ cookie, setCookie, removeCookie }) {
             detail={data.detail}
             imgTopicURL={data.imgTopicURL}
             imgBgURL={data.imgBgURL}
+            push={push}
+            setPush={setPush}
           />
         );
       })}
@@ -265,6 +249,8 @@ function ViewPopup(props) {
           imgBgURL={props.data.imgBgURL}
           setTriggerView={props.setDisplayState}
           setTriggerData={props.setDataValidation}
+          push={props.push}
+          setPush={props.setPush}
         />
       </div>
     </div>

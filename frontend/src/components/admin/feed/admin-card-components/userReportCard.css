@@ -88,13 +88,13 @@
   cursor: pointer;
 }
 
-.userReportCardButtonView {
+.userReportCardButtonDone {
   background-color: rgb(60, 151, 121);
   padding: 8px 20px;
   transition: all 0.3s ease;
 }
 
-.userReportCardButtonView:hover {
+.userReportCardButtonDone:hover {
   background-color: rgb(7, 107, 74);
 }
 
