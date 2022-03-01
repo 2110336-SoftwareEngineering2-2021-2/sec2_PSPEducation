@@ -3,7 +3,7 @@ import sha512_256 from "js-sha512";
 // import { useCookies } from "react-cookie";
 import "./loginCardRight.css";
 
-var APIHandler = require("../simple/api/APIHandler");
+const APIHandler = require("../simple/api/APIHandler");
 
 export default function LoginCardRight({
   position,

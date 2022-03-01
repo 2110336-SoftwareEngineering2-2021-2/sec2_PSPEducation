@@ -30,6 +30,8 @@ export function MyCourseList({ cookie, setCookie, removeCookie }) {
         cookie={cookie}
         setCookie={setCookie}
         removeCookie={removeCookie}
+        trigger={displayState}
+        setTrigger={setDisplayState}
       />
 
       <ViewCreateCoursePopup

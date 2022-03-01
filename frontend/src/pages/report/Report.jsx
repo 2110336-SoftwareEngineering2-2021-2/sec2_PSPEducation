@@ -21,23 +21,17 @@ export default function Report({ cookie, setCookie, removeCookie }) {
 
   return (
     <>
-      {state && <Navigate to="/login" />}
+      {/* {state && <Navigate to="/login" />} */}
 
-      <div className="report">
-        <GuestTopbar />
-        <div className="reportWrapper">
-          <div className="reportCard">
+
+        
             <ReportCard
               cookie={cookie}
               setCookie={setCookie}
               removeCookie={removeCookie}
             />
-          </div>
-          <div className="reportFooter">
-            <Footer />
-          </div>
-        </div>
-      </div>
+      
+     
     </>
   );
 }

@@ -7,9 +7,7 @@ import "./myEnrollListTable.css";
 
 export default function MyEnrollListTable({ cookie, setCookie, removeCookie }) {
   const [push, setPush] = useState(false);
-
   const [course, setCourse] = useState({});
-
   const [enroll, setEnroll] = useState([]);
 
   useEffect(() => {

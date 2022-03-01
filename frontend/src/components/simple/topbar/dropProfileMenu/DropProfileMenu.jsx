@@ -1,12 +1,27 @@
 import React from "react";
 import "./dropProfileMenu.css";
 
-export default function DropProfileMenu(props) {
+export default function DropProfileMenu({
+  trigger,
+  setTrigger,
+  state,
+  setState,
+  cookie,
+  setCookie,
+  removeCookie,
+}) {
   var APIHandler = require("../../api/APIHandler");
 
-  return props.trigger ? (
+  return trigger ? (
     <div className="dropProfileMenu">
       <div className="dropProfileList">
+        <div className="dropProfileItem">
+          <button>
+            <a className="dropProfileItemLink" href="/myprofile">
+              My Profile
+            </a>
+          </button>
+        </div>
         <div className="dropProfileItem">
           <button>
             <a className="dropProfileItemLink" href="/myprofile">
@@ -17,7 +32,10 @@ export default function DropProfileMenu(props) {
         <div className="dropProfileItem">Setting</div>
         <div className="dropProfileItem">
           <button>
-            <a className="dropProfileItemLink" href="/report">
+            <a
+              className="dropProfileItemLink"
+              href={`/${cookie.user_role}/report`}
+            >
               Report problem
             </a>
           </button>
@@ -26,11 +44,11 @@ export default function DropProfileMenu(props) {
           <button
             onClick={() =>
               APIHandler.handleLogout(
-                props.state,
-                props.setState,
-                props.cookie,
-                props.setCookie,
-                props.removeCookie
+                state,
+                setState,
+                cookie,
+                setCookie,
+                removeCookie
               )
             }
           >

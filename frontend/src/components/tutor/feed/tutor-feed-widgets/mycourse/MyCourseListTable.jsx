@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import "./myCourseListTable.css";
 import { CloseOutlined, AddCircle } from "@mui/icons-material";
+import CreateCoursePopup from "./create/CreateCoursePopup";
 import UpdateCourseCard from "./update/UpdateCourseCard";
 import { DataGrid } from "@mui/x-data-grid";
 
 var APIHandler = require("../../../../simple/api/APIHandler");
 
-export default function MyCourseListTable({ cookie, setCookie, removeCookie }) {
+export default function MyCourseListTable({ cookie, setCookie, removeCookie, trigger, setTrigger }) {
   const [push, setPush] = useState(false);
 
   const [course, setCourse] = useState(null);
@@ -107,7 +108,7 @@ export default function MyCourseListTable({ cookie, setCookie, removeCookie }) {
         <div className="mainCourseAddCourse">
           <button
             className="mainCourseAddCourseButton"
-            onClick={() => setDisplayState(true)}
+            onClick={() => setTrigger(true)}
           >
             <div>
               <span className="">Add Course</span>
@@ -136,6 +137,7 @@ export default function MyCourseListTable({ cookie, setCookie, removeCookie }) {
         setData={setDataCourse}
         id={courseId}
       />
+
     </div>
   );
 }
