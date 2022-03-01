@@ -1,5 +1,7 @@
 import "./tutorValidationCard.css";
 
+var APIHandler = require("../../../simple/api/APIHandler");
+
 export default function TutorValidationCard(props) {
   if (!props.firstname) return <div />;
 
@@ -70,7 +72,19 @@ export default function TutorValidationCard(props) {
             view
           </button>
 
-          <button className="tutorValidCardButtonRemove">remove</button>
+          <button
+            className="tutorValidCardButtonRemove"
+            onClick={() => {
+              APIHandler.handleSetTutorValidStatus(
+                props.userId,
+                "rejected",
+                props.push,
+                props.setPush
+              );
+            }}
+          >
+            remove
+          </button>
         </div>
       </div>
     </div>

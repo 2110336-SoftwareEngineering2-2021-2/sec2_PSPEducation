@@ -2,6 +2,8 @@ import React from "react";
 import "./tutorCardPopup.css";
 import { educationTable } from "../../../../dummyData";
 
+var APIHandler = require("../../../simple/api/APIHandler");
+
 export default function TutorCardPopup(props) {
   if (!props.firstname) return <div />;
 
@@ -71,14 +73,30 @@ export default function TutorCardPopup(props) {
             <button
               className="tutorValidPopupCardButtonApprove"
               onClick={() => {
-                props.setTriggerView(true);
-                // props.setTriggerData({});
+                APIHandler.handleSetTutorValidStatus(
+                  props.id,
+                  "approved",
+                  props.push,
+                  props.setPush
+                );
               }}
             >
               approve
             </button>
 
-            <button className="tutorValidPopupCardButtonRemove">remove</button>
+            <button
+              className="tutorValidPopupCardButtonRemove"
+              onClick={() => {
+                APIHandler.handleSetTutorValidStatus(
+                  props.id,
+                  "rejected",
+                  props.push,
+                  props.setPush
+                );
+              }}
+            >
+              remove
+            </button>
           </div>
         </div>
       </div>
