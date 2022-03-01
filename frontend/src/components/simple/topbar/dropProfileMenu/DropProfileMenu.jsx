@@ -22,24 +22,20 @@ export default function DropProfileMenu({
             </a>
           </button>
         </div>
-        <div className="dropProfileItem">
-          <button>
-            <a className="dropProfileItemLink" href="/myprofile">
-              My Profile
-            </a>
-          </button>
-        </div>
         <div className="dropProfileItem">Setting</div>
-        <div className="dropProfileItem">
-          <button>
-            <a
-              className="dropProfileItemLink"
-              href={`/${cookie.user_role}/report`}
-            >
-              Report problem
-            </a>
-          </button>
-        </div>
+        {cookie.user_role !== "admin" && (
+          <div className="dropProfileItem">
+            <button>
+              <a
+                className="dropProfileItemLink"
+                href={`/${cookie.user_role}/report`}
+              >
+                Report problem
+              </a>
+            </button>
+          </div>
+        )}
+
         <div className="dropProfileItem">
           <button
             onClick={() =>
