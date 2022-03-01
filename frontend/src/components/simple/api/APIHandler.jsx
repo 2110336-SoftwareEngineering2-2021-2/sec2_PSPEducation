@@ -47,11 +47,9 @@ const handleLogout = async (
   setCookie,
   removeCookie
 ) => {
-  // console.log("Logging Out");
   axios
     .post(`http://localhost:3000/auth/signout`, {}, { withCredentials: true })
     .then((response) => {
-      // console.log("Signout request was sent to the server.");
       removeCookie("user");
       removeCookie("user_role");
       setState(true);
@@ -114,7 +112,6 @@ const handleGetTutorValidCard = async (tutorValid, setTutorValid) => {
       withCredentials: true,
     })
     .then((response) => {
-      // console.log(response.data);
       setTutorValid(response.data);
     })
     .catch((e) => {
@@ -182,7 +179,13 @@ const handleSetReportStatus = async (reportID, reportStatus, push, setPush) => {
   setPush(!push);
 };
 
-const handleSubmitReport = async (cookieUserId, title, type, detail, picture) => {
+const handleSubmitReport = async (
+  cookieUserId,
+  title,
+  type,
+  detail,
+  picture
+) => {
   const user = {
     userId: cookieUserId,
     title: title,
@@ -215,5 +218,5 @@ export {
   handleGetReportCard,
   handleSetTutorValidStatus,
   handleSetReportStatus,
-  handleSubmitReport
+  handleSubmitReport,
 };
