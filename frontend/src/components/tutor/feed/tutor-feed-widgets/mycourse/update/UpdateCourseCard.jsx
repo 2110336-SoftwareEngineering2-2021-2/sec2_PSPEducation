@@ -6,24 +6,24 @@ import axios from "axios";
 
 // var APIHandler = require("../../../simple/api/APIHandler");
 
-export default function UpdateCourseCard(props) {
-  const { data, firstname, setTrigger, setData} = props;
-
-  // console.log(data)
-
+export default function UpdateCourseCard({
+  id,
+  data,
+  firstname,
+  setTrigger,
+  setData,
+}) {
   const [dataCourse, setDataCourse] = useState({});
-
   const [updateSuccess, setUpdateSuccess] = useState(false);
   const [firstFetch, setFirstFetch] = useState(true);
 
-
-  useEffect(() => { 
+  useEffect(() => {
     // if (firstFetch)
-    setDataCourse(data)
-    console.log(dataCourse)
-    setFirstFetch(false)
-  }, [data] )
-  
+    setDataCourse(data);
+    console.log(dataCourse);
+    setFirstFetch(false);
+  }, [data]);
+
   useEffect(() => {
     // Update the document title using the browser API
     console.log(updateSuccess);
@@ -31,196 +31,219 @@ export default function UpdateCourseCard(props) {
 
   const handleUpdate = (event) => {
     console.log(dataCourse);
-    axios.patch(`http://localhost:3000/course/update/${props.id}`, dataCourse, {
+    axios.patch(`http://localhost:3000/course/update/${id}`, dataCourse, {
       withCredentials: true,
     });
     setUpdateSuccess(true);
   };
 
-  const handleChange = (prop) => (event) => {
+  const handleChange = (e) => (event) => {
     setDataCourse({
       ...dataCourse,
-      [prop]: event.target.value,
+      [e]: event.target.value,
     });
-    console.log(props);
+    console.log(data);
     console.log(dataCourse);
   };
 
   return (
-  <>
+    <>
       {/* <div className="updateCourseTitle">{dataCourse}</div> */}
 
-    {dataCourse &&(<div className="updateCourse">
-      <div className="updateCourseTitle">Update Course</div>
-      <Box
-        component="form"
-        sx={{
-          "& .MuiTextField-root": { m: 1, width: "500px" },
-        }}
-        noValidate
-        autoComplete="off"
-        spellCheck="false"
-      >
-        <div className="updateCourseForm">
-          <input
-            className="updateCourseFormCourseName"
-            type="text"
-            label="Course name"
-            value={dataCourse.courseName}
-            onChange={handleChange("courseName")}
-          />
-          <input
-            className="updateCourseFormSubject"
-            type="text"
-            label="Subject"
-            value={dataCourse.subject}
-            onChange={handleChange("subject")}
-          />
-          <input
-            className="updateCourseFormLesson"
-            type="text"
-            label="lesson"
-            value={dataCourse.lesson}
-            onChange={handleChange("lesson")}
-          />
-          <input
-            className="updateCourseFormPrice"
-            type="number"
-            step="50"
-            min="0"
-            max="5000"
-            label="Price"
-            value={dataCourse.price}
-            onChange={handleChange("courseName")}
-          />
-          <input
-            className="updateCourseFormCapacity"
-            type="number"
-            step="50"
-            min="0"
-            max="5000"
-            label="Capacity"
-            value={dataCourse.capacity}
-            onChange={handleChange("capacity")}
-          />
-          <input
-            className="updateCourseFormHour"
-            type="number"
-            step="50"
-            min="0"
-            max="5000"
-            label="Hour"
-            value={dataCourse.hour}
-            onChange={handleChange("hour")}
-          />
-          <Box sx={{ minWidth: 120 }}>
-            <InputLabel id="Description">Description</InputLabel>
-            <textarea
-              className="updateCourseFormDescription"
-              id="Description"
-              label="Description"
-              rows="10"
-              cols="50"
-            />
-            <InputLabel id="Start date">Start date</InputLabel>
-            <input
-              className="updateCourseFormStartDate"
-              id="Start date"
-              type="date"
-            />
-            <InputLabel id="Finish date">Finish date</InputLabel>
-            <input
-              className="updateCourseFormFinishDate"
-              id="Finish date"
-              type="date"
-            />
-            <InputLabel id="Start time">Start time</InputLabel>
-            <input
-              className="updateCourseFormTimeslot"
-              type="time"
-              id="Start time"
-              name="Start time"
-            />
-            <InputLabel id="End time">End time</InputLabel>
-            <input
-              className="updateCourseFormTimeslot"
-              type="time"
-              id="End time"
-              name="End time"
-            />
-            <div>
-              <input type="checkbox" id="Monday" name="<Monday" value="Mon" />
-              <label for="Monday"> Monday </label>
-              <input type="checkbox" id="Tuesday" name="<Tuesday" value="Tue" />
-              <label for="Tuesday"> Tuesday </label>
+      {dataCourse && (
+        <div className="updateCourse">
+          <div className="updateCourseTitle">Update Course</div>
+          <Box
+            component="form"
+            sx={{
+              "& .MuiTextField-root": { m: 1, width: "500px" },
+            }}
+            noValidate
+            autoComplete="off"
+            spellCheck="false"
+          >
+            <div className="updateCourseForm">
               <input
-                type="checkbox"
-                id="Wednesday"
-                name="<Wednesday"
-                value="Wed"
+                className="updateCourseFormCourseName"
+                type="text"
+                label="Course name"
+                value={dataCourse.courseName}
+                onChange={handleChange("courseName")}
               />
-              <label for="Wednesday"> Wednesday </label>
               <input
-                type="checkbox"
-                id="Thursday"
-                name="<Thursday"
-                value="Thu"
+                className="updateCourseFormSubject"
+                type="text"
+                label="Subject"
+                value={dataCourse.subject}
+                onChange={handleChange("subject")}
               />
-              <label for="Thursday"> Thursday </label>
-              <br />
-              <input type="checkbox" id="Friday" name="<Friday" value="Fri" />
-              <label for="Friday"> Friday </label>
               <input
-                type="checkbox"
-                id="Saturday"
-                name="<Saturday"
-                value="Sat"
+                className="updateCourseFormLesson"
+                type="text"
+                label="lesson"
+                value={dataCourse.lesson}
+                onChange={handleChange("lesson")}
               />
-              <label for="Saturday"> Saturday </label>
-              <input type="checkbox" id="Sunday" name="<Sunday" value="Sun" />
-              <label for="Sunday"> Sunday </label>
+              <input
+                className="updateCourseFormPrice"
+                type="number"
+                step="50"
+                min="0"
+                max="5000"
+                label="Price"
+                value={dataCourse.price}
+                onChange={handleChange("courseName")}
+              />
+              <input
+                className="updateCourseFormCapacity"
+                type="number"
+                step="50"
+                min="0"
+                max="5000"
+                label="Capacity"
+                value={dataCourse.capacity}
+                onChange={handleChange("capacity")}
+              />
+              <input
+                className="updateCourseFormHour"
+                type="number"
+                step="50"
+                min="0"
+                max="5000"
+                label="Hour"
+                value={dataCourse.hour}
+                onChange={handleChange("hour")}
+              />
+              <Box sx={{ minWidth: 120 }}>
+                <InputLabel id="Description">Description</InputLabel>
+                <textarea
+                  className="updateCourseFormDescription"
+                  id="Description"
+                  label="Description"
+                  rows="10"
+                  cols="50"
+                />
+                <InputLabel id="Start date">Start date</InputLabel>
+                <input
+                  className="updateCourseFormStartDate"
+                  id="Start date"
+                  type="date"
+                />
+                <InputLabel id="Finish date">Finish date</InputLabel>
+                <input
+                  className="updateCourseFormFinishDate"
+                  id="Finish date"
+                  type="date"
+                />
+                <InputLabel id="Start time">Start time</InputLabel>
+                <input
+                  className="updateCourseFormTimeslot"
+                  type="time"
+                  id="Start time"
+                  name="Start time"
+                />
+                <InputLabel id="End time">End time</InputLabel>
+                <input
+                  className="updateCourseFormTimeslot"
+                  type="time"
+                  id="End time"
+                  name="End time"
+                />
+                <div>
+                  <input
+                    type="checkbox"
+                    id="Monday"
+                    name="<Monday"
+                    value="Mon"
+                  />
+                  <label for="Monday"> Monday </label>
+                  <input
+                    type="checkbox"
+                    id="Tuesday"
+                    name="<Tuesday"
+                    value="Tue"
+                  />
+                  <label for="Tuesday"> Tuesday </label>
+                  <input
+                    type="checkbox"
+                    id="Wednesday"
+                    name="<Wednesday"
+                    value="Wed"
+                  />
+                  <label for="Wednesday"> Wednesday </label>
+                  <input
+                    type="checkbox"
+                    id="Thursday"
+                    name="<Thursday"
+                    value="Thu"
+                  />
+                  <label for="Thursday"> Thursday </label>
+                  <br />
+                  <input
+                    type="checkbox"
+                    id="Friday"
+                    name="<Friday"
+                    value="Fri"
+                  />
+                  <label for="Friday"> Friday </label>
+                  <input
+                    type="checkbox"
+                    id="Saturday"
+                    name="<Saturday"
+                    value="Sat"
+                  />
+                  <label for="Saturday"> Saturday </label>
+                  <input
+                    type="checkbox"
+                    id="Sunday"
+                    name="<Sunday"
+                    value="Sun"
+                  />
+                  <label for="Sunday"> Sunday </label>
+                </div>
+              </Box>
+              <input
+                className="updateCourseFormLocation"
+                type="text"
+                label="Location"
+              />
+
+              <Box sx={{ minWidth: 120 }}>
+                <InputLabel id="learningType-select-label">
+                  Learning type
+                </InputLabel>
+                <Select
+                  labelId="learningType-simple-select-label"
+                  id="learningType-select-label"
+                  className="createCourseFormlearningType"
+                  // value={selectedLt}
+                  label="Learning type"
+                  // onChange={}
+                >
+                  <MenuItem value="onsite">Onsite</MenuItem>
+                  <MenuItem value="online">Online</MenuItem>
+                  <MenuItem value="mixed">Mixed</MenuItem>
+                </Select>
+                <InputLabel id="status-select-label">Status</InputLabel>
+                <Select
+                  labelId="status-simple-select-label"
+                  id="status-select-label"
+                  className="createCourseFormlearningType"
+                  // value={selectedStatus}
+                  label="Status"
+                  // onChange={handleChangeStatus}
+                >
+                  <MenuItem value="unpublished">unpublished</MenuItem>
+                  <MenuItem value="publish">publish</MenuItem>
+                </Select>
+              </Box>
+              <button className="updateCourseFormSubmit" onClick={handleUpdate}>
+                update
+              </button>
             </div>
           </Box>
-          <input
-            className="updateCourseFormLocation"
-            type="text"
-            label="Location"
-          />
-
-          <Box sx={{ minWidth: 120 }}>
-            <InputLabel id="learningType-select-label">
-              Learning type
-            </InputLabel>
-            <Select
-              labelId="learningType-simple-select-label"
-              id="learningType-select-label"
-              className="createCourseFormlearningType"
-              // value={selectedLt}
-              label="Learning type"
-              // onChange={}
-            >
-              <MenuItem value="onsite">Onsite</MenuItem>
-              <MenuItem value="online">Online</MenuItem>
-              <MenuItem value="mixed">Mixed</MenuItem>
-            </Select>
-            <InputLabel id="status-select-label">Status</InputLabel>
-            <Select
-              labelId="status-simple-select-label"
-              id="status-select-label"
-              className="createCourseFormlearningType"
-              // value={selectedStatus}
-              label="Status"
-              // onChange={handleChangeStatus}
-            >
-              <MenuItem value="unpublished">unpublished</MenuItem>
-              <MenuItem value="publish">publish</MenuItem>
-            </Select>
-          </Box>
-          <button className="updateCourseFormSubmit" onClick={handleUpdate}>
-            update
-          </button>
         </div>
-      </Box>
-    </div>)}
-  </>);
+      )}
+    </>
+  );
 }
