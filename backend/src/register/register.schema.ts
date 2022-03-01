@@ -5,56 +5,55 @@ export type RegisterDocument = Register & Document;
 
 @Schema()
 export class Register {
-
-  @Prop({required: true})
+  @Prop({ required: true })
   type: string;
 
-  @Prop({required: true})
+  @Prop({ required: true })
   firstname: string;
 
-  @Prop({required: true})
+  @Prop({ required: true })
   lastname: string;
 
-  @Prop({required: true, unique: true})
+  @Prop({ required: true, unique: true })
   username: string;
 
-  @Prop({required: true})
+  @Prop({ required: true })
   password: string;
 
-  @Prop({unique: true})
+  @Prop({ unique: true })
   email: string;
 
-  @Prop({required: true})
+  @Prop({ required: true })
   phoneNumber: string;
 
-  @Prop({required: true})
+  @Prop({ required: true })
   displayName: string;
 
-  @Prop({required: true})
+  @Prop({ required: true })
   birthdate: string;
 
-  @Prop({required: true})
+  @Prop({ required: true })
   gender: string;
 
   @Prop()
-  status: string
+  status: string;
 
-  @Prop({required: true})
+  @Prop({ required: true })
   educationalLevel: number;
 
   @Prop()
-  picture: string; 
+  picture: Array<string>; //!!!EDITED
 
-  @Prop({unique: true})
+  @Prop({ unique: true })
   citizenId: string;
 
   @Prop()
   citizenImage: string;
 
-  @Prop({required: true, default: Date.now})
+  @Prop({ required: true, default: Date.now })
   dateTimeCreated: Date;
 
-  @Prop({required: true, default: Date.now})
+  @Prop({ required: true, default: Date.now })
   dateTimeUpdated: Date;
 }
 
