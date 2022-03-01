@@ -151,16 +151,15 @@ function App() {
             }
           />
           <Route
-          path="report"
-          element={
-            <Report
-              cookie={cookie}
-              setCookie={setCookie}
-              removeCookie={removeCookie}
-            />
-          }
-        />
-          
+            path="report"
+            element={
+              <Report
+                cookie={cookie}
+                setCookie={setCookie}
+                removeCookie={removeCookie}
+              />
+            }
+          />
         </Route>
         <Route
           path="student"
@@ -204,15 +203,15 @@ function App() {
             }
           />
           <Route
-          path="report"
-          element={
-            <Report
-              cookie={cookie}
-              setCookie={setCookie}
-              removeCookie={removeCookie}
-            />
-          }
-        />
+            path="report"
+            element={
+              <Report
+                cookie={cookie}
+                setCookie={setCookie}
+                removeCookie={removeCookie}
+              />
+            }
+          />
         </Route>
         <Route
           path="login"
