@@ -25,51 +25,6 @@
   justify-content: center;
 }
 
-
-/* .registerType,
-.registerFirstname,
-.registerLastname,
-.registerUsername,
-.registerPassword,
-.registerConfirmPassword,
-.registerEmail,
-.registerPhoneNumber,
-.registerDisplayNumber,
-.registerBirthdate,
-.registerGender,
-.registerEducationLevel,
-.registerPicture,
-.registerCitizenId,
-.registerCitizenImage {
-  font-size: 16px;
-  width: 280px;
-  height: 15px;
-  border: none;
-  padding: 15px 20px;
-  margin-bottom: 15px;
-  border-radius: 30px;
-  background-color: white;
-  border: none;
-}
-
-.registerType:focus,
-.registerFirstname:focus,
-.registerLastname:focus,
-.registerUsername:focus,
-.registerPassword:focus,
-.registerConfirmPassword:focus,
-.registerEmail:focus,
-.registerPhoneNumber:focus,
-.registerDisplayNumber:focus,
-.registerBirthdate:focus,
-.registerGender:focus,
-.registerEducationLevel:focus,
-.registerPicture:focus,
-.registerCitizenId:focus,
-.registerCitizenImage:focus {
-  outline: none;
-} */
-
 .registerSubmit {
   width: 250px;
   background-color: rgb(87, 112, 221);
