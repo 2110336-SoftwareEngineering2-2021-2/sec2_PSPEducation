@@ -7,7 +7,7 @@ import axios from "axios";
 import sha512_256 from "js-sha512";
 import { Navigate } from "react-router-dom";
 import { format } from "date-fns";
-import { FormHelperText } from '@mui/material';
+import { FormHelperText } from "@mui/material";
 
 const userTypeOption = [
   {
@@ -91,24 +91,24 @@ export default function RegisterCard() {
   });
 
   const [errorDetails, setErrorDetails] = useState({
-    userType: {errorText: "", error: false},
-    firstname: {errorText: "", error: false},
-    lastname: {errorText: "", error: false},
-    username: {errorText: "", error: false},
-    email: {errorText: "", error: false},
-    phoneNumber: {errorText: "", error: false},
-    displayName: {errorText: "", error: false},
-    password: {errorText: "", error: false},
-    passwordConfirm: {errorText: "", error: false},
-    gender: {errorText: "", error: false},
-    educationalLevel: {errorText: "", error: false},
-    citizenId: {errorText: "", error: false}
-  })
+    userType: { errorText: "", error: false },
+    firstname: { errorText: "", error: false },
+    lastname: { errorText: "", error: false },
+    username: { errorText: "", error: false },
+    email: { errorText: "", error: false },
+    phoneNumber: { errorText: "", error: false },
+    displayName: { errorText: "", error: false },
+    password: { errorText: "", error: false },
+    passwordConfirm: { errorText: "", error: false },
+    gender: { errorText: "", error: false },
+    educationalLevel: { errorText: "", error: false },
+    citizenId: { errorText: "", error: false },
+  });
 
-  const [firstNameError, setFirstNameError] = useState(false)
+  const [firstNameError, setFirstNameError] = useState(false);
 
   const [birthdate, setBirthdate] = useState(new Date());
-  
+
   const [isOnceSubmit, setOnceSummit] = useState(false);
 
   const [isError, setIsError] = useState("");
@@ -116,118 +116,186 @@ export default function RegisterCard() {
 
   useEffect(() => {
     let newErrorDetails = {
-      userType: {errorText: "", error: false},
-      firstname: {errorText: "", error: false},
-      lastname: {errorText: "", error: false},
-      username: {errorText: "", error: false},
-      email: {errorText: "", error: false},
-      phoneNumber: {errorText: "", error: false},
-      displayName: {errorText: "", error: false},
-      password: {errorText: "", error: false},
-      passwordConfirm: {errorText: "", error: false},
-      gender: {errorText: "", error: false},
-      educationalLevel: {errorText: "", error: false},
-      citizenId: {errorText: "", error: false}
-    }
+      userType: { errorText: "", error: false },
+      firstname: { errorText: "", error: false },
+      lastname: { errorText: "", error: false },
+      username: { errorText: "", error: false },
+      email: { errorText: "", error: false },
+      phoneNumber: { errorText: "", error: false },
+      displayName: { errorText: "", error: false },
+      password: { errorText: "", error: false },
+      passwordConfirm: { errorText: "", error: false },
+      gender: { errorText: "", error: false },
+      educationalLevel: { errorText: "", error: false },
+      citizenId: { errorText: "", error: false },
+    };
     // USERTYPE
     if (!!!values.userType) {
-      newErrorDetails.userType = {errorText: "Please choose your user type", error: true}
+      newErrorDetails.userType = {
+        errorText: "Please choose your user type",
+        error: true,
+      };
     }
 
     // FIRSTNAME
     if (values.firstname.length === 0) {
-      newErrorDetails.firstname = {errorText: "Please fill your firstname", error: true}
-    } else if (values.firstname.length > 45){
-      newErrorDetails.firstname = {errorText: "Firstname length must between 1-45 characters", error: true}
+      newErrorDetails.firstname = {
+        errorText: "Please fill your firstname",
+        error: true,
+      };
+    } else if (values.firstname.length > 45) {
+      newErrorDetails.firstname = {
+        errorText: "Firstname length must between 1-45 characters",
+        error: true,
+      };
     }
 
     // LASTNAME
     if (values.lastname.length === 0) {
-      newErrorDetails.lastname = {errorText: "Please fill your lastname", error: true}
-    } else if (values.lastname.length > 45){
-      newErrorDetails.lastname = {errorText: "Lastname length must between 1-45 characters", error: true}
+      newErrorDetails.lastname = {
+        errorText: "Please fill your lastname",
+        error: true,
+      };
+    } else if (values.lastname.length > 45) {
+      newErrorDetails.lastname = {
+        errorText: "Lastname length must between 1-45 characters",
+        error: true,
+      };
     }
 
     // USERNAME
     if (values.username.length === 0) {
-      newErrorDetails.username = {errorText: "Please fill your username", error: true}
+      newErrorDetails.username = {
+        errorText: "Please fill your username",
+        error: true,
+      };
     } else if (values.username.length < 8 || values.username.length > 16) {
-      newErrorDetails.username = {errorText: "Username length must between 8-16 characters", error: true}
+      newErrorDetails.username = {
+        errorText: "Username length must between 8-16 characters",
+        error: true,
+      };
     }
 
     // PASSWORD
     if (values.password.length === 0) {
-      newErrorDetails.password = {errorText: "Please fill your password", error: true}
+      newErrorDetails.password = {
+        errorText: "Please fill your password",
+        error: true,
+      };
     } else if (!!values.password && values.password.length < 8) {
-      newErrorDetails.password = {errorText: "Your password need at least 8 characters", error: true}
+      newErrorDetails.password = {
+        errorText: "Your password need at least 8 characters",
+        error: true,
+      };
     }
 
     // CONFIRM PASSWORD
     if (values.password !== values.passwordConfirm) {
-      newErrorDetails.passwordConfirm = {errorText: "Your password doesn't match", error: true}
+      newErrorDetails.passwordConfirm = {
+        errorText: "Your password doesn't match",
+        error: true,
+      };
     }
 
     // EMAIL
     if (values.email.length === 0) {
-      newErrorDetails.email = {errorText: "Please fill your email", error: true}
-    } else if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(values.email)) {
-      newErrorDetails.email = {errorText: "Invalid email", error: true}
+      newErrorDetails.email = {
+        errorText: "Please fill your email",
+        error: true,
+      };
+    } else if (
+      !/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(values.email)
+    ) {
+      newErrorDetails.email = { errorText: "Invalid email", error: true };
     }
-    
+
     // Phone Number
     if (values.phoneNumber.length === 0) {
-      newErrorDetails.phoneNumber = {errorText: "Please fill your phone number", error: true}
-    } else if (values.phoneNumber.length !== 10){
-      newErrorDetails.phoneNumber = {errorText: "Invalid phone number", error: true}
-    } else if (!values.phoneNumber.startsWith("08") && !values.phoneNumber.startsWith("09") && !values.phoneNumber.startsWith("06")){
-      newErrorDetails.phoneNumber = {errorText: "Invalid phone number", error: true}
+      newErrorDetails.phoneNumber = {
+        errorText: "Please fill your phone number",
+        error: true,
+      };
+    } else if (values.phoneNumber.length !== 10) {
+      newErrorDetails.phoneNumber = {
+        errorText: "Invalid phone number",
+        error: true,
+      };
+    } else if (
+      !values.phoneNumber.startsWith("08") &&
+      !values.phoneNumber.startsWith("09") &&
+      !values.phoneNumber.startsWith("06")
+    ) {
+      newErrorDetails.phoneNumber = {
+        errorText: "Invalid phone number",
+        error: true,
+      };
     }
 
     // Display Name
     if (values.displayName.length === 0) {
-      newErrorDetails.displayName = {errorText: "Please fill your display name", error: true}
-    } else if (values.displayName.length > 45){
-      newErrorDetails.displayName = {errorText: "Display name length must between 1-45 characters", error: true}
+      newErrorDetails.displayName = {
+        errorText: "Please fill your display name",
+        error: true,
+      };
+    } else if (values.displayName.length > 45) {
+      newErrorDetails.displayName = {
+        errorText: "Display name length must between 1-45 characters",
+        error: true,
+      };
     }
 
     // Gender
-    if (!!!values.gender) { 
-      newErrorDetails.gender =  {errorText: "Please choose your gender", error: true}
+    if (!!!values.gender) {
+      newErrorDetails.gender = {
+        errorText: "Please choose your gender",
+        error: true,
+      };
     }
-    
+
     // Educational level
-    if (!!!values.educationalLevel) { 
-      newErrorDetails.educationalLevel =  {errorText: "Please fill your educational level", error: true}
+    if (!!!values.educationalLevel) {
+      newErrorDetails.educationalLevel = {
+        errorText: "Please fill your educational level",
+        error: true,
+      };
     }
     // Citizen ID
     if (values.citizenId.length === 0) {
-      newErrorDetails.citizenId = {errorText: "Please fill your citizenId", error: true}
-    } 
+      newErrorDetails.citizenId = {
+        errorText: "Please fill your citizenId",
+        error: true,
+      };
+    }
     if (!/^[0-9]{13}$/g.test(values.citizenId)) {
-      newErrorDetails.citizenId = {errorText: "Invalid Citizen ID", error: true}
+      newErrorDetails.citizenId = {
+        errorText: "Invalid Citizen ID",
+        error: true,
+      };
     }
-    let i; 
-    let sum = 0
-    for ((i = 0), (sum = 0); i < 12; i++) {
-      sum += Number.parseInt(values.citizenId.charAt(i)) * (13 - i)
+    let i;
+    let sum = 0;
+    for (i = 0, sum = 0; i < 12; i++) {
+      sum += Number.parseInt(values.citizenId.charAt(i)) * (13 - i);
     }
-    const checkSum = (11 - sum % 11) % 10
+    const checkSum = (11 - (sum % 11)) % 10;
     if (checkSum !== Number.parseInt(values.citizenId.charAt(12))) {
-      newErrorDetails.citizenId = {errorText: "Invalid Citizen ID", error: true}
+      newErrorDetails.citizenId = {
+        errorText: "Invalid Citizen ID",
+        error: true,
+      };
     }
 
-    setErrorDetails(newErrorDetails); 
-  },[values])
+    setErrorDetails(newErrorDetails);
+  }, [values]);
 
-  
   const handleChange = (prop) => (event) => {
-    let valueUpdated = event.target.value
+    let valueUpdated = event.target.value;
     setValues({
       ...values,
       [prop]: valueUpdated,
     });
   };
-  
+
   const [profileImage, setProfileImage] = useState("");
 
   const onProfileImageChange = (event) => {
@@ -255,34 +323,35 @@ export default function RegisterCard() {
     event.preventDefault();
 
     console.log(values);
-    console.log(errorDetails)
+    console.log(errorDetails);
     console.log(birthdate);
     console.log(format(birthdate, "yyyy-MM-dd"));
 
     setOnceSummit(true);
 
     const user = {
-            type: values.userType,
-            firstname: values.firstname,
-            lastname: values.lastname,
-            username: values.username,
-            password: sha512_256(values.password),
-            email: values.email,
-            phoneNumber: values.phoneNumber,
-            displayName: values.displayName,
-            birthdate: format(birthdate, "yyyy-MM-dd"),
-            gender: values.gender,
-            educationalLevel: parseInt(values.educationalLevel),
-            picture: "",
-            citizenId: values.citizenId,
-            citizenImage: ""};
-  
-    console.log(user)
+      type: values.userType,
+      firstname: values.firstname,
+      lastname: values.lastname,
+      username: values.username,
+      password: sha512_256(values.password),
+      email: values.email,
+      phoneNumber: values.phoneNumber,
+      displayName: values.displayName,
+      birthdate: format(birthdate, "yyyy-MM-dd"),
+      gender: values.gender,
+      educationalLevel: parseInt(values.educationalLevel),
+      picture: "",
+      citizenId: values.citizenId,
+      citizenImage: "",
+    };
 
-    let isInputValid = true
+    console.log(user);
+
+    let isInputValid = true;
     for (const field in errorDetails) {
       if (errorDetails[field].error) {
-        isInputValid = false
+        isInputValid = false;
       }
     }
 
@@ -293,19 +362,19 @@ export default function RegisterCard() {
           const data = response.data;
           console.log(data);
           setRegisterSuccess(true);
-          alert("Registration Completed!")
+          alert("Registration Completed!");
         })
         .catch((e) => {
-          alert(`Register Failed ${e}`)
+          alert(`Register Failed ${e}`);
           console.log(e);
         });
     }
-  }
+  };
 
   return (
     <>
       {registerSuccess && <Navigate to="/login" />}
-      
+
       <div className="registerPage">
         <div className="registerTitle">Register</div>
         <Box
@@ -316,9 +385,7 @@ export default function RegisterCard() {
           noValidate
           autoComplete="off"
         >
-          
           <div className="registerForm">
-
             <TextField
               id="form-register-user-type"
               select
@@ -335,9 +402,9 @@ export default function RegisterCard() {
               ))}
             </TextField>
 
-            {(isOnceSubmit && errorDetails.userType.error) && <div className="errorText">
-              {errorDetails.userType.errorText}
-            </div>}
+            {isOnceSubmit && errorDetails.userType.error && (
+              <div className="errorText">{errorDetails.userType.errorText}</div>
+            )}
 
             <TextField
               id="form-register-firstname"
@@ -349,9 +416,11 @@ export default function RegisterCard() {
               onChange={handleChange("firstname")}
               placeholder="1-45 characters"
             />
-            {(isOnceSubmit && errorDetails.firstname.error) && <div className="errorText">
-              {errorDetails.firstname.errorText}
-            </div>}
+            {isOnceSubmit && errorDetails.firstname.error && (
+              <div className="errorText">
+                {errorDetails.firstname.errorText}
+              </div>
+            )}
 
             <TextField
               id="form-register-lastname"
@@ -363,9 +432,9 @@ export default function RegisterCard() {
               onChange={handleChange("lastname")}
               placeholder="1-45 characters"
             />
-            {(isOnceSubmit && errorDetails.lastname.error) && <div className="errorText">
-              {errorDetails.lastname.errorText}
-            </div>}
+            {isOnceSubmit && errorDetails.lastname.error && (
+              <div className="errorText">{errorDetails.lastname.errorText}</div>
+            )}
 
             <TextField
               id="form-register-username"
@@ -377,9 +446,9 @@ export default function RegisterCard() {
               onChange={handleChange("username")}
               placeholder="8-16 characters"
             />
-            {(isOnceSubmit && errorDetails.username.error) && <div className="errorText">
-              {errorDetails.username.errorText}
-            </div>}
+            {isOnceSubmit && errorDetails.username.error && (
+              <div className="errorText">{errorDetails.username.errorText}</div>
+            )}
 
             <TextField
               id="form-register-password"
@@ -391,9 +460,9 @@ export default function RegisterCard() {
               onChange={handleChange("password")}
               placeholder="At least 8 characters"
             />
-            {(isOnceSubmit && errorDetails.password.error) && <div className="errorText">
-              {errorDetails.password.errorText}
-            </div>}
+            {isOnceSubmit && errorDetails.password.error && (
+              <div className="errorText">{errorDetails.password.errorText}</div>
+            )}
 
             <TextField
               id="form-register-confirm-password"
@@ -404,9 +473,11 @@ export default function RegisterCard() {
               value={values.passwordConfirm}
               onChange={handleChange("passwordConfirm")}
             />
-            {(errorDetails.passwordConfirm.error) && <div className="errorText">
-              {errorDetails.passwordConfirm.errorText}
-            </div>}
+            {errorDetails.passwordConfirm.error && (
+              <div className="errorText">
+                {errorDetails.passwordConfirm.errorText}
+              </div>
+            )}
 
             <TextField
               id="form-register-email"
@@ -416,9 +487,9 @@ export default function RegisterCard() {
               value={values.email}
               onChange={handleChange("email")}
             />
-            {(isOnceSubmit && errorDetails.email.error) && <div className="errorText">
-              {errorDetails.email.errorText}
-            </div>}
+            {isOnceSubmit && errorDetails.email.error && (
+              <div className="errorText">{errorDetails.email.errorText}</div>
+            )}
 
             <TextField
               id="form-register-phone-number"
@@ -429,10 +500,22 @@ export default function RegisterCard() {
               inputProps={{ maxLength: 10 }}
               onChange={handleChange("phoneNumber")}
               placeholder="10 digits"
+              onInput={(e) => {
+                var tmpPhoneNum = Math.max(0, parseInt(e.target.value))
+                  .toString()
+                  .slice(0, 10);
+                e.target.value = isNaN(tmpPhoneNum)
+                  ? ""
+                  : tmpPhoneNum === "0"
+                  ? "0"
+                  : "0" + tmpPhoneNum;
+              }}
             />
-            {(isOnceSubmit && errorDetails.phoneNumber.error) && <div className="errorText">
-              {errorDetails.phoneNumber.errorText}
-            </div>}
+            {isOnceSubmit && errorDetails.phoneNumber.error && (
+              <div className="errorText">
+                {errorDetails.phoneNumber.errorText}
+              </div>
+            )}
 
             <TextField
               id="form-register-display-name"
@@ -444,9 +527,11 @@ export default function RegisterCard() {
               onChange={handleChange("displayName")}
               placeholder="1-45 characters"
             />
-            {(isOnceSubmit && errorDetails.displayName.error) && <div className="errorText">
-              {errorDetails.displayName.errorText}
-            </div>}
+            {isOnceSubmit && errorDetails.displayName.error && (
+              <div className="errorText">
+                {errorDetails.displayName.errorText}
+              </div>
+            )}
 
             <LocalizationProvider dateAdapter={DateAdapter}>
               <DatePicker
@@ -460,9 +545,9 @@ export default function RegisterCard() {
                 renderInput={(params) => <TextField {...params} />}
               />
             </LocalizationProvider>
-            {(isOnceSubmit && !!!birthdate) && <div className="errorText">
-              Please fill your birthdate.
-            </div>}
+            {isOnceSubmit && !!!birthdate && (
+              <div className="errorText">Please fill your birthdate.</div>
+            )}
 
             <TextField
               id="form-register-gender"
@@ -479,9 +564,9 @@ export default function RegisterCard() {
                 </MenuItem>
               ))}
             </TextField>
-            {(isOnceSubmit && errorDetails.gender.error) && <div className="errorText">
-              {errorDetails.gender.errorText}
-            </div>}
+            {isOnceSubmit && errorDetails.gender.error && (
+              <div className="errorText">{errorDetails.gender.errorText}</div>
+            )}
 
             <TextField
               id="form-register-education"
@@ -498,9 +583,11 @@ export default function RegisterCard() {
                 </MenuItem>
               ))}
             </TextField>
-            {(isOnceSubmit && errorDetails.educationalLevel.error) && <div className="errorText">
-              {errorDetails.educationalLevel.errorText}
-            </div>}
+            {isOnceSubmit && errorDetails.educationalLevel.error && (
+              <div className="errorText">
+                {errorDetails.educationalLevel.errorText}
+              </div>
+            )}
 
             <InputLabel>Profile Picture</InputLabel>
 
@@ -521,16 +608,18 @@ export default function RegisterCard() {
               error={isOnceSubmit && errorDetails.citizenId.error}
               onChange={handleChange("citizenId")}
               onInput={(e) => {
-                e.target.value = e.target.value
-                  ? Math.max(0, parseInt(e.target.value))
+                e.target.value = isNaN(parseInt(e.target.value))
+                  ? ""
+                  : Math.max(0, parseInt(e.target.value))
                       .toString()
-                      .slice(0, 13)
-                  : "";
+                      .slice(0, 13);
               }}
             />
-            {(isOnceSubmit && errorDetails.citizenId.error) && <div className="errorText">
-              {errorDetails.citizenId.errorText}
-            </div>}
+            {isOnceSubmit && errorDetails.citizenId.error && (
+              <div className="errorText">
+                {errorDetails.citizenId.errorText}
+              </div>
+            )}
 
             <InputLabel>Citizen Image</InputLabel>
 
@@ -544,7 +633,11 @@ export default function RegisterCard() {
             <img className="citizenImage" src={citizenImage} alt="" />
           </div>
 
-          <button type="submit" className="registerSubmit" onClick={handleSubmit}>
+          <button
+            type="submit"
+            className="registerSubmit"
+            onClick={handleSubmit}
+          >
             Register
           </button>
         </Box>
