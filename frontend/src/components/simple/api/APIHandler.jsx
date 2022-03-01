@@ -19,9 +19,6 @@ const handleLogin = async (
   const adminURL = `http://localhost:3000/auth/admin/signin`;
 
   var requestURL = position === "admin" ? adminURL : userURL;
-  setCookie("user", "dfs");
-  setCookie("user_role", "tutor");
-  setState(true);
 
   axios
     .post(requestURL, user, {
@@ -150,6 +147,29 @@ const handleGetReportCard = async (reportData, setReportData) => {
     });
 };
 
+const handleSubmitReport = async (cookieUserId, title, type, detail, picture) => {
+  const user = {
+    userId: cookieUserId,
+    title: title,
+    type: type,
+    detail: detail,
+    picture: picture,
+  };
+  console.log(user);
+  axios
+    .post(`http://localhost:3000/report`, user, { withCredentials: true })
+    .then((response) => {
+      const data = response.data;
+      console.log(data);
+      alert(
+        "Thank you for informing the problems. We, admins, will solve the problem as soon as possible."
+      );
+    })
+    .catch((e) => {
+      alert("Error occuring in the process. Please fill in the form again.");
+    });
+};
+
 export {
   handleLogin,
   handleLogout,
@@ -158,4 +178,5 @@ export {
   handleUpdateTutorCourse,
   handleGetTutorValidCard,
   handleGetReportCard,
+  handleSubmitReport
 };

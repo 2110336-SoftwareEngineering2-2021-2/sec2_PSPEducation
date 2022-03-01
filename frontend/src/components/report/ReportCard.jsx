@@ -3,6 +3,8 @@ import "./ReportCard.css";
 import { Box, InputLabel, TextField, MenuItem } from "@mui/material";
 import axios from "axios";
 
+const APIHandler = require("../simple/api/APIHandler");
+
 const problemTypeOption = [
   {
     value: 0,
@@ -36,19 +38,13 @@ export default function ReportCard({ cookie, setCookie, removeCookie }) {
       ...values,
       [prop]: event.target.value,
     });
-    // console.log(values);
-    if (values.password !== event.target.value) {
-      setIsError("The password doesn't match.");
-    } else {
-      setIsError("");
-    }
   };
 
-  const [picture, setPicture] = useState("");
+  const [picture, setPicture] = useState([]);
 
   const onPictureChange = (event) => {
     if (event.target.files && event.target.files[0]) {
-      setPicture(URL.createObjectURL(event.target.files[0]));
+      setPicture([URL.createObjectURL(event.target.files[0])]);
     }
   };
 
@@ -124,16 +120,25 @@ export default function ReportCard({ cookie, setCookie, removeCookie }) {
             <input
               className="reportPicture"
               type="file"
-              value={picture || ""}
+              value={picture || []}
               onChange={onPictureChange}
             />
 
             <img className="profileImage" src={picture} alt="" />
           </div>
 
-          <button className="reportSubmit" onClick={handleSubmit}>
-            REPORT PROBLEM
-          </button>
+          <div className="reportSubmit">
+            <button className="" onClick={() =>
+          APIHandler.handleSubmitReport(
+            cookie.user,
+            values.title,
+            values.type,
+            values.detail,
+            picture,
+          )}>
+            Report Problem
+          </button></div>
+          
         </Box>
       </div>
     </>
