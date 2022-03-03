@@ -3,10 +3,9 @@ import "./adminCards.css";
 import TutorValidationCard from "./admin-card-components/TutorValidationCard";
 import UserReportCard from "./admin-card-components/UserReportCard";
 import TutorCardPopup from "./admin-card-components/TutorCardPopup";
-import { tutorValidationCardData, reportCardData } from "../../../dummyData";
+// import { tutorValidationCardData, reportCardData } from "../../../dummyData";
 import { CloseOutlined } from "@mui/icons-material";
 import { Outlet } from "react-router-dom";
-import axios from "axios";
 
 var APIHandler = require("../../simple/api/APIHandler");
 
@@ -60,12 +59,12 @@ export function AllCards({ cookie, setCookie, removeCookie }) {
   const [push, setPush] = useState(false);
 
   useEffect(() => {
-    console.log("report:", report);
-  }, [report]);
-
-  useEffect(() => {
     console.log("tutorValid:", tutorValid);
   }, [tutorValid]);
+
+  useEffect(() => {
+    console.log("report:", report);
+  }, [report]);
 
   useEffect(() => {
     APIHandler.handleGetTutorValidCard(tutorValid, setTutorValid);
