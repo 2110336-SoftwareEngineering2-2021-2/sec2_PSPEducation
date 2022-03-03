@@ -5,6 +5,7 @@ import TopLeftLogo from "./topLeftLogo/TopLeftLogo";
 import SearchBar from "./searchBar/SearchBar";
 import TopRightMenu from "./topRightMenu/TopRightMenu";
 import { userData } from "../../../dummyData";
+import { Navigate } from "react-router-dom";
 
 export default function Topbar({
   state,
@@ -15,6 +16,7 @@ export default function Topbar({
 }) {
   return (
     <>
+      {state && <Navigate to="/login" />}
       <div className="topbar">
         <div className="topbarWrapper">
           <div className="topLeft">
