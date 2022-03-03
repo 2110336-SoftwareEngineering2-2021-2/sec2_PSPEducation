@@ -53,12 +53,14 @@ const handleLogout = async (
       removeCookie("user");
       removeCookie("user_role");
       setState(true);
+      sessionStorage.clear();
     })
     .catch((e) => {
       console.log(e);
       removeCookie("user");
       removeCookie("user_role");
       setState(true);
+      sessionStorage.clear();
     });
 };
 
@@ -120,25 +122,29 @@ const handleGetTutorValidCard = async (tutorValid, setTutorValid) => {
 };
 
 const handleGetReportCard = async (report, setReport) => {
-  axios
+  await axios
     .get(`http://localhost:3000/admin/report/waiting`, {
       withCredentials: true,
     })
     .then((response) => {
       let tmpList = response.data;
-      tmpList.map((item) => {
-        axios
+      response.data.map((item) => {
+        return axios
           .get(`http://localhost:3000/auth/user/${item.userId}`, {
             withCredentials: true,
           })
           .then((response) => {
-            tmpList.push({ ...item, username: tmpList.username });
+            tmpList.push({ ...item, username: response.data.username });
+            // return { ...item, username: response.data.username };
           });
       });
       return tmpList;
     })
     .then((tmpList) => {
       setReport(tmpList);
+    })
+    .catch((e) => {
+      console.log(e);
     });
 };
 
