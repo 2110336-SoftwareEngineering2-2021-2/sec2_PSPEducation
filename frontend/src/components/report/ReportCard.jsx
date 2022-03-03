@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./ReportCard.css";
 import { Box, InputLabel, TextField, MenuItem } from "@mui/material";
-import axios from "axios";
 
 const APIHandler = require("../simple/api/APIHandler");
 
@@ -21,17 +20,11 @@ const problemTypeOption = [
 ];
 
 export default function ReportCard({ cookie, setCookie, removeCookie }) {
-  // useEffect(() => {
-  //   // Update the document title using the browser API
-  // });
-
   const [values, setValues] = useState({
     title: "",
     type: "",
     detail: "",
   });
-
-  const [isError, setIsError] = useState("");
 
   const handleChange = (prop) => (event) => {
     setValues({
@@ -46,29 +39,6 @@ export default function ReportCard({ cookie, setCookie, removeCookie }) {
     if (event.target.files && event.target.files[0]) {
       setPicture([URL.createObjectURL(event.target.files[0])]);
     }
-  };
-
-  const handleSubmit = async () => {
-    const user = {
-      userId: cookie.user,
-      title: values.title,
-      type: values.type,
-      detail: values.detail,
-      picture: picture,
-    };
-    console.log(user);
-    axios
-      .post(`http://localhost:3000/report`, user, { withCredentials: true })
-      .then((response) => {
-        const data = response.data;
-        console.log(data);
-        alert(
-          "Thank you for informing the problems. We, admins, will solve the problem as soon as possible."
-        );
-      })
-      .catch((e) => {
-        alert("Error occuring in the process. Please fill in the form again.");
-      });
   };
 
   return (
@@ -128,17 +98,21 @@ export default function ReportCard({ cookie, setCookie, removeCookie }) {
           </div>
 
           <div className="reportSubmit">
-            <button className="" onClick={() =>
-          APIHandler.handleSubmitReport(
-            cookie.user,
-            values.title,
-            values.type,
-            values.detail,
-            picture,
-          )}>
-            Report Problem
-          </button></div>
-          
+            <button
+              className=""
+              onClick={() =>
+                APIHandler.handleSubmitReport(
+                  cookie.user,
+                  values.title,
+                  values.type,
+                  values.detail,
+                  picture
+                )
+              }
+            >
+              Report Problem
+            </button>
+          </div>
         </Box>
       </div>
     </>
