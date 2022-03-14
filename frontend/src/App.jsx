@@ -150,16 +150,6 @@ function App() {
               />
             }
           />
-          <Route
-            path="report"
-            element={
-              <Report
-                cookie={cookie}
-                setCookie={setCookie}
-                removeCookie={removeCookie}
-              />
-            }
-          />
         </Route>
         <Route
           path="student"
@@ -196,16 +186,6 @@ function App() {
             path="enrollreq"
             element={
               <EnrollReqCompSt
-                cookie={cookie}
-                setCookie={setCookie}
-                removeCookie={removeCookie}
-              />
-            }
-          />
-          <Route
-            path="report"
-            element={
-              <Report
                 cookie={cookie}
                 setCookie={setCookie}
                 removeCookie={removeCookie}

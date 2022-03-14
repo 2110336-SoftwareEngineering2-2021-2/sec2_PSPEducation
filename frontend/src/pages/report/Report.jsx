@@ -1,6 +1,8 @@
-import ReportCard from "../../components/report/ReportCard";
 import "./Report.css";
-import { useEffect, useState } from "react";
+import Topbar from "../../components/simple/topbar/Topbar";
+import Sidebar from "../../components/simple/sidebar/Sidebar";
+import ReportCard from "../../components/report/ReportCard";
+import { React, useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 
 export default function Report({ cookie, setCookie, removeCookie }) {
@@ -19,11 +21,28 @@ export default function Report({ cookie, setCookie, removeCookie }) {
 
   return (
     <>
-      <ReportCard
+      {state && <Navigate to="/login" />}
+      <Topbar
+        state={state}
+        setState={setState}
         cookie={cookie}
         setCookie={setCookie}
         removeCookie={removeCookie}
       />
+      <div className="pageContent">
+        <div className="sidebarContainer">
+          <Sidebar cookie={cookie} />
+        </div>
+        <div className="homeContainer">
+          <div className="homeWrapper">
+            <ReportCard
+              cookie={cookie}
+              setCookie={setCookie}
+              removeCookie={removeCookie}
+            />
+          </div>
+        </div>
+      </div>
     </>
   );
 }
