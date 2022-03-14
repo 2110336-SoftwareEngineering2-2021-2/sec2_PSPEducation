@@ -1,24 +1,27 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
-import { Document } from 'mongoose';
 import { ObjectId } from 'mongodb';
+import { Document } from 'mongoose';
 
-export type EnrollDocument = Enroll & Document;
+export type CreditHistoryDocument = CreditHistory & Document;
 
 @Schema()
-export class Enroll {
+export class CreditHistory {
 
   @Prop({required: true})
-  studentId: ObjectId;
+  userId: ObjectId;
 
   @Prop({required: true})
-  courseId: ObjectId;
+  type: number;
 
   @Prop({required: true})
   status: string;
-
+  
   @Prop()
-  paymentHistoryId: string;
-
+  courseId: ObjectId;
+  
+  @Prop({required: true})
+  amount: number;
+  
   @Prop({required: true, default: Date.now})
   dateTimeCreated: Date;
 
@@ -26,4 +29,4 @@ export class Enroll {
   dateTimeUpdated: Date;
 }
 
-export const EnrollSchema = SchemaFactory.createForClass(Enroll);
+export const CreditHistorySchema = SchemaFactory.createForClass(CreditHistory);

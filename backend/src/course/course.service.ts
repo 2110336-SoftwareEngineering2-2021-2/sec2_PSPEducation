@@ -106,4 +106,12 @@ export class CourseService {
     answer.dateTimeUpdated = Date.now()
     return await answer.save()
   }
+
+  async checkIsCourseAvailableToEnroll(courseId: string) {
+    const course = await this.courseModel.findById(courseId)
+    if (!course){
+      throw new NotFoundException("This course ID doesn't exist");
+    }
+    return (course.students.length < course.capacity) && (course.status === "published");
+  }
 }

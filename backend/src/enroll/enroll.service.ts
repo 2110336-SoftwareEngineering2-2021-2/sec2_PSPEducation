@@ -10,6 +10,9 @@ import * as mongoose from 'mongoose';
 import { CreateEnrollDto } from './dto/create-enroll.dto';
 import { UpdateEnrollStatusDto } from './dto/update-enroll-status.dto';
 import { EnrollDto } from './dto/enroll.dto';
+import { CreditService } from 'src/credit/credit.service';
+import { CreateCreditHistoryDto } from 'src/credit/dto/create-credit-history.dto';
+import { TransactionType } from 'src/constant'
 
 const STATUS_WAITING = 'waiting';
 @Injectable()
@@ -18,6 +21,7 @@ export class EnrollService {
     @InjectModel('enrolls') private readonly enrollModel: Model<any>,
     @InjectModel('courses') private readonly courseModel: Model<any>,
     @InjectModel('users') private readonly userModel: Model<any>,
+    private creditService: CreditService
   ) {}
 
   async createEnroll(body: CreateEnrollDto) {
@@ -26,9 +30,13 @@ export class EnrollService {
       throw new BadRequestException('This course is not published yet.');
     }
     const enroll = new this.enrollModel({ ...body, status: STATUS_WAITING });
-    return await enroll.save().catch(function (error) {
+    // await enroll.save()
+    const credit = await this.creditService.changeBalanceByUserId(body.studentId, {amountToChange: -course.price, type: TransactionType.STUDENT_ENROLL_COURSE, courseId: course.id})
+    enroll.paymentHistoryId = credit.creditHistoryId
+    await enroll.save().catch(function (error) {
       throw new BadRequestException({ ...error, message: 'duplicate columns' });
-    });
+    })
+    return enroll
   }
 
   async findByCourseId(id: string) {
@@ -97,9 +105,12 @@ export class EnrollService {
       const course = await this.courseModel.findById(response[i].courseId);
       response[i] = {
         ...response[i]._doc,
-        studentFirstName: student.firstname,
-        studentLastName: student.lastname,
+        studentName: student.firstname + " " + student.lastname,
         courseName: course.courseName,
+        subject: course.subject,
+        lesson: course.lesson,
+        studentCount: course.students.length,
+        capacity: course.capacity,
       };
     }
     return response
@@ -130,21 +141,25 @@ export class EnrollService {
 
     if (body.status === 'approved') {
       course.students.push(enroll.studentId);
-      await course.save();
-
       const student = await this.userModel.findById(enroll.studentId);
       if (!student) {
         throw new NotFoundException("Can't find student ID");
       }
 
-      if (student.coursesLearned.find(enroll.courseId)) {
+      if (student.coursesLearned.find(e => e === enroll.courseId)) {
         throw new BadRequestException(
           'You have already enrolled in this course.',
         );
       }
 
+      await course.save();
       student.coursesLearned.push(enroll.courseId);
+
+      await this.creditService.changeBalanceByUserId(tutorId, {amountToChange: -await this.creditService.getAmountByPaymentHistoryId(enroll.paymentHistoryId), type: TransactionType.TUTOR_ACCEPT_STUDENT, courseId: enroll.courseId});
       await student.save();
+
+    } else if (body.status === 'rejected') {
+      await this.creditService.changeCreditHistoryStatusById(enroll.paymentHistoryId, {status: 'canceled'});
     }
 
     enroll.dateTimeUpdated = Date.now();

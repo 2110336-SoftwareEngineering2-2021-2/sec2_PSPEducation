@@ -53,7 +53,19 @@ export class ReportService {
     if (!report){
       throw new NotFoundException("No waiting report");
     }
-    return report
+
+    const response = []
+    for (let i=0; i<report.length; i++){
+      const user = await this.userModel.findById(report[i]['userId'])
+      let e2 = {
+        ...report[i]._doc,
+        'firstname': user['firstname'],
+        'lastname': user['lastname']
+      }
+      response.push(e2)
+    }
+
+    return response
   }
 
   async getReportByUserId(id: string) { // user id

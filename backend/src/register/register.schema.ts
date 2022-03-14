@@ -15,7 +15,7 @@ export class Register {
   @Prop({required: true})
   lastname: string;
 
-  @Prop({required: true, unique: true})
+  @Prop({required: true})
   username: string;
 
   @Prop({required: true})
@@ -45,7 +45,7 @@ export class Register {
   @Prop()
   picture: string; 
 
-  @Prop({unique: true})
+  @Prop()
   citizenId: string;
 
   @Prop()
