@@ -287,6 +287,9 @@ function Layout() {
           <li>
             <NavLink to="/register"> Register </NavLink>
           </li>
+          <li>
+            <NavLink to="/search"> Search </NavLink>
+          </li>
         </ul>
         <div className="appFooter">
           <Footer />
