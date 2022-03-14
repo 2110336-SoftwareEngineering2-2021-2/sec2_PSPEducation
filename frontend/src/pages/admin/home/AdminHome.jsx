@@ -22,6 +22,7 @@ export default function AdminHome({ cookie, setCookie, removeCookie }) {
   return (
     <>
       {state && <Navigate to="/adminlogin" />}
+
       <Topbar
         state={state}
         setState={setState}

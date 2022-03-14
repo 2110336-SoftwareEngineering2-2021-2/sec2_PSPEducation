@@ -64,7 +64,7 @@ const handleLogout = async (
     });
 };
 
-const handleEditCourse = (id, setDataCourse, setCourseID) => {
+const handleGetCourseByID = (id, setDataCourse, setCourseID) => {
   axios
     .get(`http://localhost:3000/course/${id}`, { withCredentials: true })
     .then((response) => {
@@ -95,7 +95,7 @@ const handlePublishCourse = (isPublished, id, push, setPush) => {
   }
 };
 
-const handleUpdateTutorCourse = (cookie, setCourse) => {
+const handleFetchCourse = async (cookie, setCourse) => {
   axios
     .get(`http://localhost:3000/course/tutor/${cookie.user}`, {
       withCredentials: true,
@@ -108,7 +108,29 @@ const handleUpdateTutorCourse = (cookie, setCourse) => {
     });
 };
 
-const handleGetTutorValidCard = async (tutorValid, setTutorValid) => {
+const handleCreateNewCourse = async (course, setCreateSuccess) => {
+  axios
+    .post(`http://localhost:3000/course`, course, { withCredentials: true })
+    .then((response) => {
+      const data = response.data;
+      console.log(data);
+      setCreateSuccess(true);
+    })
+    .catch((e) => {
+      console.log(e);
+      console.log("Fail to create a course!");
+    });
+};
+
+const handleUpdateCourse = async (values, courseId, setUpdateSuccess) => {
+  console.log(values);
+  axios.patch(`http://localhost:3000/course/update/${courseId}`, values, {
+    withCredentials: true,
+  });
+  setUpdateSuccess(true);
+};
+
+const handleFetchTutorValidCard = async (tutorValid, setTutorValid) => {
   axios
     .get(`http://localhost:3000/admin/register/waiting`, {
       withCredentials: true,
@@ -121,27 +143,13 @@ const handleGetTutorValidCard = async (tutorValid, setTutorValid) => {
     });
 };
 
-const handleGetReportCard = async (report, setReport) => {
+const handleFetchReportCard = async (report, setReport) => {
   await axios
     .get(`http://localhost:3000/admin/report/waiting`, {
       withCredentials: true,
     })
     .then((response) => {
-      let tmpList = response.data;
-      response.data.map((item) => {
-        return axios
-          .get(`http://localhost:3000/auth/user/${item.userId}`, {
-            withCredentials: true,
-          })
-          .then((response) => {
-            tmpList.push({ ...item, username: response.data.username });
-            // return { ...item, username: response.data.username };
-          });
-      });
-      return tmpList;
-    })
-    .then((tmpList) => {
-      setReport(tmpList);
+      setReport(response.data);
     })
     .catch((e) => {
       console.log(e);
@@ -214,15 +222,72 @@ const handleSubmitReport = async (
     });
 };
 
+const handleFetchEnroll = async (cookie, setCourse, setEnroll, enroll) => {
+  axios
+    .get(`http://localhost:3000/enroll/waiting/tutor/${cookie.user}`, {
+      withCredentials: true,
+    })
+    .then((response) => {
+      setCourse(response.data);
+
+      const getRowAddInfo = async (eachRow, i) => {
+        axios
+          .get(`http://localhost:3000/course/${eachRow.courseId}`, {
+            withCredentials: true,
+          })
+          .then((response2) => {
+            return Object.assign({}, eachRow, {
+              studentName:
+                eachRow.studentFirstName + " " + eachRow.studentLastName,
+              ...response2.data,
+              studentCount: response2.data.students.length,
+            });
+          })
+          .then((tmp) => {
+            // setEnroll(prevEnroll => [...prevEnroll, { [i]: tmp } ]);
+            setEnroll(Object.assign([], enroll, { [i]: tmp }));
+            // console.log(Object.assign([], enroll, [{ [i]: tmp }]));
+          });
+      };
+
+      for (let i = 0; i < 1; i++) {
+        getRowAddInfo(response.data[i], i.toString());
+      }
+      console.log(enroll);
+    });
+};
+
+const handleApproveEnroll = async (isApproved, enrollId, push, setPush) => {
+  if (isApproved) {
+    axios.patch(
+      `http://localhost:3000/enroll/${enrollId}`,
+      { status: "approved" },
+      { withCredentials: true }
+    );
+    setPush(!push);
+  } else {
+    axios.patch(
+      `http://localhost:3000/enroll/${enrollId}`,
+      { status: "rejected" },
+      { withCredentials: true }
+    );
+    setPush(!push);
+  }
+};
+
 export {
   handleLogin,
   handleLogout,
-  handleEditCourse,
+  handleGetCourseByID,
   handlePublishCourse,
-  handleUpdateTutorCourse,
-  handleGetTutorValidCard,
-  handleGetReportCard,
+  handleFetchCourse,
+  handleCreateNewCourse,
+  handleUpdateCourse,
+  handleFetchTutorValidCard,
+  handleFetchReportCard,
   handleSetTutorValidStatus,
   handleSetReportStatus,
   handleSubmitReport,
+  handleFetchEnroll,
+  handleApproveEnroll,
 };

@@ -22,14 +22,11 @@ export default function DropProfileMenu({
             </a>
           </button>
         </div>
-        <div className="dropProfileItem">Setting</div>
+        {/* <div className="dropProfileItem">Setting</div> */}
         {cookie.user_role !== "admin" && (
           <div className="dropProfileItem">
             <button>
-              <a
-                className="dropProfileItemLink"
-                href={`/${cookie.user_role}/report`}
-              >
+              <a className="dropProfileItemLink" href={"/report"}>
                 Report problem
               </a>
             </button>

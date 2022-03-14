@@ -1,6 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { CloseOutlined, SettingsPhoneRounded } from "@mui/icons-material";
-import UpdateCourseCard from "./update/UpdateCourseCard";
 import { DataGrid } from "@mui/x-data-grid";
 import axios from "axios";
 import "./myEnrollListTable.css";
@@ -19,31 +17,6 @@ export default function MyEnrollListTable({ cookie, setCookie, removeCookie }) {
           })
           .then((response) => {
             setCourse(response.data);
-
-            const getRowAddInfo = async (eachRow, i) => {
-              axios
-                .get(`http://localhost:3000/course/${eachRow.courseId}`, {
-                  withCredentials: true,
-                })
-                .then((response2) => {
-                  return Object.assign({}, eachRow, {
-                    studentName:
-                      eachRow.studentFirstName + " " + eachRow.studentLastName,
-                    ...response2.data,
-                    studentCount: response2.data.students.length,
-                  });
-                })
-                .then((tmp) => {
-                  // setEnroll(prevEnroll => [...prevEnroll, { [i]: tmp } ]);
-                  setEnroll(Object.assign([], enroll, { [i]: tmp }));
-                  // console.log(Object.assign([], enroll, [{ [i]: tmp }]));
-                });
-            };
-
-            for (let i = 0; i < 1; i++) {
-              getRowAddInfo(response.data[i], i.toString());
-            }
-            console.log(enroll);
           });
       } catch (e) {
         console.log(e);
@@ -53,18 +26,18 @@ export default function MyEnrollListTable({ cookie, setCookie, removeCookie }) {
     FetchAPI();
   }, [push]);
 
-  const handleApprove = (isApproved, id) => {
-    console.log(id);
+  const handleApprove = (isApproved, enrollId) => {
+    console.log(enrollId);
     if (isApproved) {
       axios.patch(
-        `http://localhost:3000/enroll/${id}`,
+        `http://localhost:3000/enroll/${enrollId}`,
         { status: "approved" },
         { withCredentials: true }
       );
       setPush(!push);
     } else {
       axios.patch(
-        `http://localhost:3000/enroll/${id}`,
+        `http://localhost:3000/enroll/${enrollId}`,
         { status: "rejected" },
         { withCredentials: true }
       );

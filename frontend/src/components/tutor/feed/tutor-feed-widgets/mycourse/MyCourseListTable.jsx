@@ -1,13 +1,18 @@
 import React, { useState, useEffect } from "react";
 import "./myCourseListTable.css";
 import { CloseOutlined, AddCircle } from "@mui/icons-material";
-import CreateCoursePopup from "./create/CreateCoursePopup";
 import UpdateCourseCard from "./update/UpdateCourseCard";
 import { DataGrid } from "@mui/x-data-grid";
 
 var APIHandler = require("../../../../simple/api/APIHandler");
 
-export default function MyCourseListTable({ cookie, setCookie, removeCookie, trigger, setTrigger }) {
+export default function MyCourseListTable({
+  cookie,
+  setCookie,
+  removeCookie,
+  trigger,
+  setTrigger,
+}) {
   const [push, setPush] = useState(false);
 
   const [course, setCourse] = useState(null);
@@ -29,14 +34,14 @@ export default function MyCourseListTable({ cookie, setCookie, removeCookie, tri
   });
 
   useEffect(() => {
-    APIHandler.handleUpdateTutorCourse(cookie, setCourse);
+    APIHandler.handleFetchCourse(cookie, setCourse);
   }, [push]);
 
   const columns = [
     // { field: "_id", headerName: "ID", width: 80 },
-    { field: "courseName", headerName: "Course name", width: 280 },
+    { field: "courseName", headerName: "Course name", width: 250 },
     { field: "subject", headerName: "Subject", width: 200 },
-    { field: "lesson", headerName: "Lesson", width: 220 },
+    { field: "lesson", headerName: "Lesson", width: 280 },
     {
       field: "price",
       headerName: "Price ฿",
@@ -59,7 +64,7 @@ export default function MyCourseListTable({ cookie, setCookie, removeCookie, tri
               onClick={() => {
                 setDisplayState(true);
                 setDataCourse({ id: params.id });
-                APIHandler.handleEditCourse(
+                APIHandler.handleGetCourseByID(
                   params.id,
                   setDataCourse,
                   setCourseID
@@ -137,7 +142,6 @@ export default function MyCourseListTable({ cookie, setCookie, removeCookie, tri
         setData={setDataCourse}
         id={courseId}
       />
-
     </div>
   );
 }
@@ -154,9 +158,8 @@ function EditCoursePopup(props) {
           <CloseOutlined />
         </button>
         <UpdateCourseCard
-          id={props.id}
+          courseId={props.id}
           data={props.data}
-          firstname={props.firstname}
           setTrigger={props.setTrigger}
           setData={props.setData}
         />

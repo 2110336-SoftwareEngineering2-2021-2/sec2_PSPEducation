@@ -82,7 +82,6 @@ export class EnrollService {
       throw new HttpException("This tutor ID isn't valid", 404);
     }
     const courses = await this.courseModel.find({ tutorId: tutorId }); // courses array
-
     let response = []; // every response
     for (let i = 0; i < courses.length; i++) {
       const enrolls = await this.enrollModel.find({
@@ -97,9 +96,12 @@ export class EnrollService {
       const course = await this.courseModel.findById(response[i].courseId);
       response[i] = {
         ...response[i]._doc,
-        studentFirstName: student.firstname,
-        studentLastName: student.lastname,
+        studentName: student.firstname + " " + student.lastname,
         courseName: course.courseName,
+        subject: course.subject,
+        lesson: course.lesson,
+        studentCount: course.students.length,
+        capacity: course.capacity,
       };
     }
     return response;

@@ -39,20 +39,6 @@ export function AllCards({ cookie, setCookie, removeCookie }) {
     },
   ]);
 
-  // const [reportData, setReportData] = useState([
-  //   {
-  //     title: "",
-  //     type: 0,
-  //     status: "",
-  //     username: "",
-  //     userId: "",
-  //     detail: "",
-  //     picture: "",
-  //     imgTopicURL: "",
-  //     imgBgURL: "",
-  //   },
-  // ]);
-
   const [tutorValid, setTutorValid] = useState(null);
   const [report, setReport] = useState(null);
 
@@ -62,13 +48,17 @@ export function AllCards({ cookie, setCookie, removeCookie }) {
     console.log("tutorValid:", tutorValid);
   }, [tutorValid]);
 
-  useEffect(() => {
-    console.log("report:", report);
-  }, [report]);
+  // useEffect(() => {
+  //   console.log("report:", report);
+  // }, [report]);
 
   useEffect(() => {
-    APIHandler.handleGetTutorValidCard(tutorValid, setTutorValid);
-    APIHandler.handleGetReportCard(report, setReport);
+    setTutorValid(null);
+    setReport(null);
+    setTimeout(() => {
+      APIHandler.handleFetchTutorValidCard(tutorValid, setTutorValid);
+      APIHandler.handleFetchReportCard(report, setReport);
+    }, 500);
   }, [push]);
 
   return (
@@ -160,7 +150,10 @@ export function TutorValidationCards({ cookie, setCookie, removeCookie }) {
   }, [tutorValid]);
 
   useEffect(() => {
-    APIHandler.handleGetTutorValidCard(tutorValid, setTutorValid);
+    setTutorValid(null);
+    setTimeout(() => {
+      APIHandler.handleFetchTutorValidCard(tutorValid, setTutorValid);
+    }, 500);
   }, [push]);
 
   return (
@@ -215,7 +208,10 @@ export function UserReportCards({ cookie, setCookie, removeCookie }) {
   }, [report]);
 
   useEffect(() => {
-    APIHandler.handleGetReportCard(report, setReport);
+    setReport(null);
+    setTimeout(() => {
+      APIHandler.handleFetchReportCard(report, setReport);
+    }, 500);
   }, [push]);
 
   return (
@@ -262,6 +258,7 @@ function ViewPopup(props) {
           profession={props.data.profession}
           imgAvatarURL={props.data.imgAvatarURL}
           imgBgURL={props.data.imgBgURL}
+          userId={props.data.userId}
           setTriggerView={props.setDisplayState}
           setTriggerData={props.setDataValidation}
           push={props.push}

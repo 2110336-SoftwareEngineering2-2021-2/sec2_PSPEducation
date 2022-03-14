@@ -20,7 +20,8 @@
   font-size: 100px;
   font-family: Festive;
   color: rgb(125, 170, 230);
-  text-shadow: -0.2px 0.2px 0 var(--main-theme), 0.2px 0.2px 0 var(--main-theme), 0.2px -0.2px 0 var(--main-theme), -0.2px -0.2px 0 var(--main-theme);
+  text-shadow: -0.2px 0.2px 0 var(--main-theme), 0.2px 0.2px 0 var(--main-theme),
+    0.2px -0.2px 0 var(--main-theme), -0.2px -0.2px 0 var(--main-theme);
 }
 
 .createCourseForm {
@@ -29,57 +30,6 @@
   align-items: center;
   justify-content: center;
 }
-
-
-/* .createCourseFormCourseName,
-.createCourseFormSubject,
-.createCourseFormLesson,
-.createCourseFormPrice,
-.createCourseFormStartDate,
-.createCourseFormFinishDate,
-.createCourseFormCapacity,
-.createCourseFormHour,
-.createCourseFormLocation,
-.createCourseFormStatus{
-  font-size: 16px;
-  width: 500px;
-  max-height: 15px;
-  border: none;
-  padding: 15px 20px;
-  margin-bottom: 15px;
-  border-radius: 30px;
-  background-color: white;
-} */
-
-
-/* .createCourseFormlearningTypeContainer{
-  font-size: 16px;
-  width: 500px;
-  height: 50px;
-  border: none;
-  padding: 15px 10px;
-  border-radius: 30px;
-  display: flex;
-} */
-
-
-/* .createCourseFormlearningType {
-  font-size: 16px;
-  width: 100%;
-  font-family: Poppins;
-}  */
-
-
-/* .createCourseFormDescription {
-  font-size: 16px;
-  width: 500px;
-  height: 200px;
-  border: none;
-  padding: 15px 20px;
-  margin-bottom: 15px;
-  border-radius: 30px;
-  resize: none;
-} */
 
 .createCoursePopupButton {
   display: flex;

@@ -5,7 +5,13 @@
 .userReportCard {
   margin: 10px;
   position: relative;
-  background: linear-gradient( rgb(133, 133, 133), transparent, rgb(102, 101, 101), rgb(47, 47, 47)), var(--imgBgReport);
+  background: linear-gradient(
+      rgb(133, 133, 133),
+      transparent,
+      rgb(102, 101, 101),
+      rgb(47, 47, 47)
+    ),
+    var(--imgBgReport);
   background-size: cover;
   border-radius: 20px;
 }
@@ -66,9 +72,10 @@
 }
 
 .userReportCardUserName {
-  font-size: 14px;
-  font-weight: 300;
+  font-size: 15px;
+
   color: rgb(214, 214, 214);
+  font-weight: 400;
 }
 
 .userReportCardButton {

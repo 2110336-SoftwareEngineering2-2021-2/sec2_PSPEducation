@@ -2,8 +2,7 @@ import "./profileHome.css";
 import Topbar from "../../components/simple/topbar/Topbar";
 import Sidebar from "../../components/simple/sidebar/Sidebar";
 import MyProfile from "../../components/simple/MyProfile";
-import React from "react";
-import { useState, useEffect } from "react";
+import { React, useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 
 export default function ProfileHome({ cookie, setCookie, removeCookie }) {
@@ -36,10 +35,11 @@ export default function ProfileHome({ cookie, setCookie, removeCookie }) {
         </div>
         <div className="homeContainer">
           <div className="homeWrapper">
-            <MyProfile 
+            <MyProfile
               cookie={cookie}
               setCookie={setCookie}
-              removeCookie={removeCookie}/>
+              removeCookie={removeCookie}
+            />
           </div>
         </div>
       </div>

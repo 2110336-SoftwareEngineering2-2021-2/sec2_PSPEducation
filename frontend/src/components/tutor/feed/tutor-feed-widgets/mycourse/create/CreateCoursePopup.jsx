@@ -1,17 +1,11 @@
 import React, { useState, useEffect } from "react";
 import "./createCoursePopup.css";
-import {
-  FormControl,
-  Select,
-  Box,
-  TextField,
-  InputLabel,
-  MenuItem,
-} from "@mui/material";
+import { FormControl, Box, TextField, MenuItem } from "@mui/material";
 import DateAdapter from "@mui/lab/AdapterDateFns";
 import { LocalizationProvider, DesktopDatePicker } from "@mui/lab";
-import axios from "axios";
 import { format } from "date-fns";
+
+var APIHandler = require("../../../../../simple/api/APIHandler");
 
 const learningTypeOption = [
   {
@@ -28,7 +22,13 @@ const learningTypeOption = [
   },
 ];
 
-export default function CreateCoursePopup(props) {
+export default function CreateCoursePopup({
+  trigger,
+  setTrigger,
+  cookie,
+  setCookie,
+  removeCookie,
+}) {
   const [values, setValues] = useState({
     courseName: "",
     subject: "",
@@ -42,15 +42,14 @@ export default function CreateCoursePopup(props) {
   });
 
   const [startDate, setStartDate] = useState(null);
-
   const [endDate, setEndDate] = useState(null);
 
   const [createSuccess, setCreateSuccess] = useState(false);
 
-  const handleChange = (prop) => (event) => {
+  const handleChange = (e) => (event) => {
     setValues({
       ...values,
-      [prop]: event.target.value,
+      [e]: event.target.value,
     });
   };
 
@@ -92,11 +91,9 @@ export default function CreateCoursePopup(props) {
   }, [createSuccess]);
 
   const handleSubmit = async () => {
-    console.log("handleSubmit");
-
     if (checkEmpty() && checkMinLength() && checkMaxLength()) {
       const course = {
-        tutorId: props.cookie.user,
+        tutorId: cookie.user,
         courseName: values.courseName,
         subject: values.subject,
         lesson: values.lesson,
@@ -112,7 +109,7 @@ export default function CreateCoursePopup(props) {
         ],
         price: parseInt(values.price),
         capacity: parseInt(values.capacity),
-        description: values.description,
+        description: values.description || "",
         hour: parseInt(values.hour),
         status: "unpublished",
         learningType: values.learningType,
@@ -120,19 +117,9 @@ export default function CreateCoursePopup(props) {
       };
 
       console.log(course);
-
-      axios
-        .post(`http://localhost:3000/course`, course, { withCredentials: true })
-        .then((response) => {
-          const data = response.data;
-          console.log(data);
-          setCreateSuccess(true);
-        })
-        .catch((e) => {
-          console.log(e);
-        });
+      APIHandler.handleCreateNewCourse(course, setCreateSuccess);
     } else {
-      console.log("Create failed");
+      console.log("Wrong Inputs!");
     }
   };
 
@@ -147,6 +134,7 @@ export default function CreateCoursePopup(props) {
           }}
           noValidate
           autoComplete="off"
+          spellCheck="false"
         >
           <div className="createCourseForm">
             <TextField
@@ -166,7 +154,7 @@ export default function CreateCoursePopup(props) {
             />
 
             <TextField
-              id="form-Lesson"
+              id="form-lesson"
               label="Lesson"
               value={values.lesson}
               onChange={handleChange("lesson")}
@@ -187,6 +175,7 @@ export default function CreateCoursePopup(props) {
                   : "";
               }}
             />
+
             <LocalizationProvider dateAdapter={DateAdapter}>
               <DesktopDatePicker
                 required
@@ -242,6 +231,7 @@ export default function CreateCoursePopup(props) {
             />
 
             <TextField
+              required
               id="form-description"
               label="Description"
               multiline

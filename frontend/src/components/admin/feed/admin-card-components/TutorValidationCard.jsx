@@ -50,7 +50,6 @@ export default function TutorValidationCard(props) {
           <button
             className="tutorValidCardButtonView"
             onClick={() => {
-              props.setTriggerView(true);
               props.setTriggerData({
                 firstname: props.firstname,
                 lastname: props.lastname,
@@ -66,7 +65,9 @@ export default function TutorValidationCard(props) {
                 profession: props.profession,
                 imgAvatarURL: props.imgAvatarURL,
                 imgBgURL: props.imgBgURL,
+                userId: props.userId,
               });
+              props.setTriggerView(true);
             }}
           >
             view

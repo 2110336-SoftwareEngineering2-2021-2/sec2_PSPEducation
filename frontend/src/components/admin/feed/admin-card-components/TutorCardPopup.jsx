@@ -74,7 +74,7 @@ export default function TutorCardPopup(props) {
               className="tutorValidPopupCardButtonApprove"
               onClick={() => {
                 APIHandler.handleSetTutorValidStatus(
-                  props.id,
+                  props.userId,
                   "approved",
                   props.push,
                   props.setPush
@@ -88,7 +88,7 @@ export default function TutorCardPopup(props) {
               className="tutorValidPopupCardButtonRemove"
               onClick={() => {
                 APIHandler.handleSetTutorValidStatus(
-                  props.id,
+                  props.userId,
                   "rejected",
                   props.push,
                   props.setPush
