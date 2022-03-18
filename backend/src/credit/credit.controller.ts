@@ -22,9 +22,4 @@ export class CreditController {
   changeBalanceByUserId(@Param('userId') userId: string, @Body() body: ChangeCreditByUserIdDto){
     return this.creditService.changeBalanceByUserId(userId, body)
   }
-
-  @Patch('/history/:id')
-  changeCreditHistoryStatusById(@Param('id') id: string, @Body() body: ChangeCreditHistoryStatusByIdDto){
-    return this.creditService.changeCreditHistoryStatusById(id, body)
-  }
 }

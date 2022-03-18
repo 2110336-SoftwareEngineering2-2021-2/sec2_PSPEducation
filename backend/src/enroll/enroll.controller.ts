@@ -26,14 +26,33 @@ export class EnrollController {
     return this.enrollService.findWaitingByCourseId(id, session.userId);
   }
 
+  @UseGuards(TutorGuard)
   @Get("waiting/tutor/:tutorId")
   getWaitingEnrollByTutorId(@Param("tutorId") tutorId: string){
     return this.enrollService.findWaitingByTutorId(tutorId);
   }
-  
+
+  @UseGuards(StudentGuard)
+  @Get("waiting/student/:studentId")
+  getWaitingEnrollByStudentId(@Param("studentId") studentId: string){
+    return this.enrollService.findWaitingByStudentId(studentId);
+  }
+
+  @UseGuards(StudentGuard)
+  @Get("/student/:studentId")
+  getEnrollByStudentId(@Param("studentId") studentId: string){
+    return this.enrollService.getEnrollByStudentID(studentId);
+  }
+
   @UseGuards(TutorGuard)
   @Patch("/:enrollId")
   updateEnrollStatusById(@Param("enrollId") id: string, @Body() body: UpdateEnrollStatusDto, @Session() session: any){
     return this.enrollService.updateEnrollStatus(id, body, session.userId);
+  }
+
+  @UseGuards(StudentGuard)
+  @Patch("/cancel/:enrollId")
+  cancelEnrollmentById(@Param("enrollId") enrollId: string, @Session() session: any) {
+    return this.enrollService.cancelEnrollmentById(enrollId, session.userId);
   }
 }

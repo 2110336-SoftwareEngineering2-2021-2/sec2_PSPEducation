@@ -28,7 +28,6 @@ export class CourseController {
     return this.courseService.findAll()
   }
   
-  @UseGuards(AuthGuard)
   @Get("/:id")
   getCourseById(@Param("id") id: string){
     return this.courseService.findById(id)

@@ -45,7 +45,7 @@ export class CreditService {
       throw new BadRequestException("This user ID isn't valid");
     }
 
-    return await this.creditHistoryModel.find({userId: userId})
+    return await this.creditHistoryModel.find({userId: userId}).sort({dateTimeCreated: -1})
   }
 
   async changeBalanceByUserId(userId: string, body: ChangeCreditByUserIdDto){
