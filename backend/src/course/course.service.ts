@@ -9,6 +9,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import * as mongoose from 'mongoose';
 import { CreateCourseDto } from './dto/create-course.dto';
+import { CourseDto } from './dto/course.dto';
 import { UpdateCourseStatusDto } from './dto/update-course-status.dto';
 import { Course } from './course.schema';
 
@@ -38,8 +39,28 @@ export class CourseService {
     });
   }
 
-  async findAll() {
-    return await this.courseModel.find();
+  async findAll() : Promise<CourseDto[]>{
+    const courses = await this.courseModel.find();
+    if (!courses) {
+      throw new NotFoundException("Can't find courses");
+    }
+    
+    const response = [];
+    for (let i = 0; i < courses.length; i++) {
+      let c = courses[i];
+      let c2: CourseDto;
+      const tutor = await this.userModel.findById(c.tutorId);
+      c2 = {
+        ...c._doc,
+        // tutorFirstName: `${tutor.firstname} ${tutor.lastname}`,
+        tutorFirstName: tutor.firstname,
+        tutorLastName: tutor.lastname,
+      };
+      response.push(c2);
+    }
+
+    console.log(response);
+    return response;
   }
 
   async findById(id: string) {

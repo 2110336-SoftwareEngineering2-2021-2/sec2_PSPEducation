@@ -105,7 +105,7 @@ export class EnrollService {
       const course = await this.courseModel.findById(response[i].courseId);
       response[i] = {
         ...response[i]._doc,
-        studentName: student.firstname + " " + student.lastname,
+        studentName: `${student.firstname} ${student.lastname}`,
         courseName: course.courseName,
         subject: course.subject,
         lesson: course.lesson,
