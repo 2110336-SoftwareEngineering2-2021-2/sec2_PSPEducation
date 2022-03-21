@@ -1,0 +1,22 @@
+.searchCategoryWrapper {
+  min-height: 300px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: rgb(183, 203, 247);
+  border: 2px solid rgb(105, 151, 252);
+  border-radius: 10px;
+  margin: 5px;
+  padding: 15px;
+}
+
+.searchCatergoryHeader {
+  position: relative;
+  top: 0px;
+}
+
+.searchCategoryContent {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+}

@@ -99,6 +99,16 @@ function App() {
               />
             }
           />
+          <Route
+          path="search"
+          element={
+            <SearchResult
+              cookie={cookie}
+              setCookie={setCookie}
+              removeCookie={removeCookie}
+            />
+          }
+        />
         </Route>
         <Route
           path="tutor"
@@ -151,6 +161,16 @@ function App() {
               />
             }
           />
+          <Route
+          path="search"
+          element={
+            <SearchResult
+              cookie={cookie}
+              setCookie={setCookie}
+              removeCookie={removeCookie}
+            />
+          }
+        />
         </Route>
         <Route
           path="student"
@@ -193,6 +213,16 @@ function App() {
               />
             }
           />
+          <Route
+          path="search"
+          element={
+            <SearchResult
+              cookie={cookie}
+              setCookie={setCookie}
+              removeCookie={removeCookie}
+            />
+          }
+        />
         </Route>
         <Route
           path="login"

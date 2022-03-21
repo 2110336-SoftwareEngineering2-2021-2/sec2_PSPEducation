@@ -1,6 +1,11 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import "./searchResult.css";
+import SearchCategory from "./SearchCategory";
 
 export default function SearchResult({ cookie, setCookie, removeCookie }) {
-  return <div>searchResult</div>;
+  return (
+    <div className="searchResultPage">
+      <SearchCategory />
+    </div>
+  );
 }
