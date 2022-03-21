@@ -1,0 +1,185 @@
+:root {
+  --main-theme: rgb(87, 112, 221);
+  --main-white: #f0f8ff;
+  --main-border: rgb(116, 135, 219);
+}
+
+.searchCourseCard {
+  margin: 5px;
+  height: 320px;
+  position: relative;
+  background: var(--main-white);
+  background-size: cover;
+  border-radius: 20px;
+}
+
+.searchCourseCardImageContainer {
+  /* width: 259px; */
+  height: 146px;
+}
+
+.searchCourseCardImageAttached {
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 20px 20px 0 0;
+}
+
+.searchCourseCardContent {
+  max-width: 250px;
+  position: initial;
+  display: flex;
+  flex-direction: column;
+  padding: 10px 25px 10px 25px;
+  color: rgb(68, 61, 99);
+  z-index: 100;
+}
+
+.searchCourseCardContent span {
+  padding: 2px 0;
+}
+
+/* .searchCourseCardInfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 5px;
+} */
+
+.searchCourseCardCourseName {
+  text-align: center;
+  font-size: 16px;
+  font-weight: 600;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.searchCourseCardSubject {
+  font-size: 14px;
+  text-align: center;
+  color: rgb(133, 133, 136);
+  font-weight: 400;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.searchCourseCardDescriptionWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.searchCourseCardDescription {
+  font-size: 12px;
+  font-weight: 500;
+  width: 180px;
+  height: 45px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  border: 2px solid rgb(107, 107, 107);
+}
+
+.searchCourseCardContentSubLine {
+  display: flex;
+  /* flex-wrap: wrap; */
+  justify-content: space-around;
+  margin: 10px;
+}
+
+.searchCourseCardPrice {
+  flex: 2;
+  text-align: center;
+  font-size: 16px;
+  color: rgb(112, 112, 236);
+  font-weight: 500;
+}
+
+.searchCourseCardCapacity {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  font-size: 13px;
+  color: rgb(133, 133, 136);
+  font-weight: 400;
+}
+
+.searchCourseCardCapacityText {
+}
+
+.searchCourseCardPeopleIcon {
+}
+
+.searchCourseCardLocation {
+  position: absolute;
+  bottom: 0;
+  left: 20px;
+  max-width: 100px;
+  font-size: 12px;
+  color: rgb(190, 190, 214);
+  font-weight: 400;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.searchCourseCardTutorName {
+  position: absolute;
+  bottom: 0;
+  right: 20px;
+  max-width: 100px;
+  font-size: 12px;
+  color: rgb(190, 190, 214);
+  font-weight: 400;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* .searchCourseCardButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.searchCourseCardButton button {
+  margin: 5px;
+  color: #fff;
+  outline: none;
+  border: none;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.searchCourseCardButtonDone {
+  background-color: rgb(60, 151, 121);
+  padding: 8px 20px;
+  transition: all 0.3s ease;
+}
+
+.searchCourseCardButtonDone:hover {
+  background-color: rgb(7, 107, 74);
+}
+
+.searchCourseCardButtonRemove {
+  background-color: rgb(155, 154, 154);
+  padding: 8px 10px;
+  transition: all 0.3s ease;
+}
+
+.searchCourseCardButtonRemove:hover {
+  background-color: rgb(102, 102, 102);
+} */

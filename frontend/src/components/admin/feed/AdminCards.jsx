@@ -20,7 +20,7 @@ export default function AdminCards() {
 export function AllCards({ cookie, setCookie, removeCookie }) {
   const [displayState, setDisplayState] = useState(false);
 
-  const [tutorValidData, setTutorValidData] = useState([
+  const [tutorValidData, selectTutorValid] = useState([
     {
       firstname: "",
       lastname: "",
@@ -85,7 +85,7 @@ export function AllCards({ cookie, setCookie, removeCookie }) {
               imgBgURL={data.picture[1]}
               userId={data._id}
               setTriggerView={setDisplayState}
-              setTriggerData={setTutorValidData}
+              setTriggerData={selectTutorValid}
               push={push}
               setPush={setPush}
             />
@@ -122,7 +122,7 @@ export function AllCards({ cookie, setCookie, removeCookie }) {
 export function TutorValidationCards({ cookie, setCookie, removeCookie }) {
   const [displayState, setDisplayState] = useState(false);
 
-  const [tutorValidData, setTutorValidData] = useState([
+  const [tutorValidData, selectTutorValid] = useState([
     {
       firstname: "",
       lastname: "",
@@ -180,7 +180,7 @@ export function TutorValidationCards({ cookie, setCookie, removeCookie }) {
               imgBgURL={data.picture[1]}
               userId={data._id}
               setTriggerView={setDisplayState}
-              setTriggerData={setTutorValidData}
+              setTriggerData={selectTutorValid}
               push={push}
               setPush={setPush}
             />

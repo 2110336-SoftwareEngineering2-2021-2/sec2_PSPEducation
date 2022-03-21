@@ -108,6 +108,20 @@ const handleFetchCourse = async (cookie, setCourse) => {
     });
 };
 
+const handleSearchCourse = async (cookie, setCourse) => {
+  axios
+    .get(`http://localhost:3000/course`, {
+      withCredentials: true,
+    })
+    .then((response) => {
+      setCourse(response.data);
+      console.log(response.data);
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+};
+
 const handleCreateNewCourse = async (course, setCreateSuccess) => {
   axios
     .post(`http://localhost:3000/course`, course, { withCredentials: true })
@@ -281,6 +295,7 @@ export {
   handleGetCourseByID,
   handlePublishCourse,
   handleFetchCourse,
+  handleSearchCourse,
   handleCreateNewCourse,
   handleUpdateCourse,
   handleFetchTutorValidCard,

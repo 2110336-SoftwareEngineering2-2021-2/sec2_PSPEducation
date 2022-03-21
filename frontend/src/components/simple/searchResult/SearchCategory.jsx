@@ -9,11 +9,9 @@ import { Box } from "@mui/system";
 var APIHandler = require("../api/APIHandler");
 
 export default function SearchCategory({ cookie, setCookie, removeCookie }) {
-  const [push, setPush] = useState(false);
+  const [displayState, setDisplayState] = useState(false);
 
   const [course, setCourse] = useState(null);
-
-  const [displayState, setDisplayState] = useState(false);
 
   const [courseId, setCourseID] = useState(null);
 
@@ -21,6 +19,7 @@ export default function SearchCategory({ cookie, setCookie, removeCookie }) {
     id: "",
     courseName: "",
     subject: "",
+    description: "",
     lesson: "",
     price: "",
     timeSlots: "",
@@ -29,30 +28,61 @@ export default function SearchCategory({ cookie, setCookie, removeCookie }) {
     learningType: "",
   });
 
+  const [push, setPush] = useState(false);
+
   useEffect(() => {
     APIHandler.handleSearchCourse(cookie, setCourse);
   }, [push]);
 
   return (
     <>
-      <div className="searchCategoryWrapper">
-        <div className="searchCatergoryHeader"> : Search Result Course </div>
-        <div className="searchCategoryContent">
-          <SearchResultCard />
-        </div>
-      </div>
-      <div className="searchCategoryWrapper">
-        <div className="searchCatergoryHeader"> : Search Result Tutor </div>
-        <div className="searchCategoryContent">
-          <SearchResultCard />
-        </div>
-      </div>
-      <div className="searchCategoryWrapper">
-        <div className="searchCatergoryHeader"> : Search Result Subject </div>
-        <div className="searchCategoryContent">
-          <SearchResultCard />
-        </div>
-      </div>
+      <SearchByPane
+        searchTitle="Course"
+        course={course}
+        push={push}
+        setPush={setPush}
+      />
+      <SearchByPane
+        searchTitle="Tutor"
+        course={course}
+        push={push}
+        setPush={setPush}
+      />
+      <SearchByPane
+        searchTitle="Subject"
+        course={course}
+        push={push}
+        setPush={setPush}
+      />
     </>
+  );
+}
+
+function SearchByPane({ searchTitle, course, push, setPush }) {
+  return (
+    <div className="searchCategoryWrapper">
+      <div className="searchCatergoryHeader"> : Search by {searchTitle} </div>
+      <div className="searchCategoryContent">
+        {course &&
+          course.map((data, key) => {
+            return (
+              <SearchResultCard
+                key={key}
+                courseName={data.courseName}
+                subject={data.subject}
+                description={data.description}
+                tutorName={data.tutorName}
+                location={data.location}
+                price={data.price}
+                studentN={data.students.length}
+                capacity={data.capacity}
+                courseID={data.courseID}
+                push={push}
+                setPush={setPush}
+              />
+            );
+          })}
+      </div>
+    </div>
   );
 }
