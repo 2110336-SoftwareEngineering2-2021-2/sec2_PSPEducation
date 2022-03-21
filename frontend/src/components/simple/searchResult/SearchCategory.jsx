@@ -6,7 +6,33 @@ import axios from "axios";
 import { TextField } from "@mui/material";
 import { Box } from "@mui/system";
 
+var APIHandler = require("../api/APIHandler");
+
 export default function SearchCategory({ cookie, setCookie, removeCookie }) {
+  const [push, setPush] = useState(false);
+
+  const [course, setCourse] = useState(null);
+
+  const [displayState, setDisplayState] = useState(false);
+
+  const [courseId, setCourseID] = useState(null);
+
+  const [dataCourse, setDataCourse] = useState({
+    id: "",
+    courseName: "",
+    subject: "",
+    lesson: "",
+    price: "",
+    timeSlots: "",
+    capacity: "",
+    status: "",
+    learningType: "",
+  });
+
+  useEffect(() => {
+    APIHandler.handleSearchCourse(cookie, setCourse);
+  }, [push]);
+
   return (
     <>
       <div className="searchCategoryWrapper">
