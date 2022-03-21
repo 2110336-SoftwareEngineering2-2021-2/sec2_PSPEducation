@@ -4,15 +4,10 @@ import { CourseModule } from './course/course.module';
 import { MongooseModule } from '@nestjs/mongoose';
 import { EnrollModule } from './enroll/enroll.module';
 import { ReportModule } from './report/report.module';
+import { CreditModule } from './credit/credit.module';
 
 @Module({
-  imports: [
-    RegisterModule,
-    CourseModule,
-    MongooseModule.forRoot('mongodb://localhost:27017/whereismytutor2'),
-    EnrollModule,
-    ReportModule,
-  ],
+  imports: [RegisterModule, CourseModule, MongooseModule.forRoot('mongodb://localhost:27017/whereismytutor'), EnrollModule, ReportModule, CreditModule],
   controllers: [],
   providers: [],
 })

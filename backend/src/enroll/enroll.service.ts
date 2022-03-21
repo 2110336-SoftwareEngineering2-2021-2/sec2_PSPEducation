@@ -10,6 +10,10 @@ import * as mongoose from 'mongoose';
 import { CreateEnrollDto } from './dto/create-enroll.dto';
 import { UpdateEnrollStatusDto } from './dto/update-enroll-status.dto';
 import { EnrollDto } from './dto/enroll.dto';
+import { CreditService } from 'src/credit/credit.service';
+import { CreateCreditHistoryDto } from 'src/credit/dto/create-credit-history.dto';
+import { TransactionType } from 'src/constant'
+import { UserService } from 'src/user/user.service';
 
 const STATUS_WAITING = 'waiting';
 @Injectable()
@@ -17,7 +21,8 @@ export class EnrollService {
   constructor(
     @InjectModel('enrolls') private readonly enrollModel: Model<any>,
     @InjectModel('courses') private readonly courseModel: Model<any>,
-    @InjectModel('users') private readonly userModel: Model<any>,
+    private creditService: CreditService,
+    private userService: UserService
   ) {}
 
   async createEnroll(body: CreateEnrollDto) {
@@ -26,9 +31,13 @@ export class EnrollService {
       throw new BadRequestException('This course is not published yet.');
     }
     const enroll = new this.enrollModel({ ...body, status: STATUS_WAITING });
-    return await enroll.save().catch(function (error) {
+    // await enroll.save()
+    const credit = await this.creditService.changeBalanceByUserId(body.studentId, {amountToChange: -course.price, type: TransactionType.STUDENT_ENROLL_COURSE, courseId: course.id})
+    enroll.paymentHistoryId = credit.creditHistoryId
+    await enroll.save().catch(function (error) {
       throw new BadRequestException({ ...error, message: 'duplicate columns' });
-    });
+    })
+    return enroll
   }
 
   async findByCourseId(id: string) {
@@ -65,7 +74,7 @@ export class EnrollService {
     for (let i = 0; i < enroll.length; i++) {
       let e = enroll[i];
       let e2: EnrollDto;
-      const student = await this.userModel.findById(e.studentId);
+      const student = await this.userService.findById(e.studentId);
       e2 = {
         ...e._doc,
         studentFirstName: student.firstname,
@@ -92,7 +101,7 @@ export class EnrollService {
     }
 
     for (let i = 0; i < response.length; i++) {
-      const student = await this.userModel.findById(response[i].studentId);
+      const student = await this.userService.findById(response[i].studentId);
       const course = await this.courseModel.findById(response[i].courseId);
       response[i] = {
         ...response[i]._doc,
@@ -113,7 +122,7 @@ export class EnrollService {
     tutorId: string,
   ) {
     if (!mongoose.isValidObjectId(enrollId)) {
-      throw new HttpException("This course ID isn't valid", 404);
+      throw new HttpException("This enrollment ID isn't valid", 404);
     }
     const enroll = await this.enrollModel.findById(enrollId);
     if (!enroll) {
@@ -132,26 +141,75 @@ export class EnrollService {
 
     if (body.status === 'approved') {
       course.students.push(enroll.studentId);
-      await course.save();
+      const student = await this.userService.findById(enroll.studentId)
 
-      const student = await this.userModel.findById(enroll.studentId);
-      if (!student) {
-        throw new NotFoundException("Can't find student ID");
-      }
-
-      if (student.coursesLearned.find(enroll.courseId)) {
+      if (student.coursesLearned.find(e => e === enroll.courseId)) {
         throw new BadRequestException(
           'You have already enrolled in this course.',
         );
       }
 
+      await course.save();
       student.coursesLearned.push(enroll.courseId);
+
+      await this.creditService.changeBalanceByUserId(tutorId, {amountToChange: -await this.creditService.getAmountByPaymentHistoryId(enroll.paymentHistoryId), type: TransactionType.TUTOR_ACCEPT_STUDENT, courseId: enroll.courseId});
       await student.save();
+
+    } else if (body.status === 'rejected') {
+      await this.creditService.changeCreditHistoryStatusById(enroll.paymentHistoryId, {status: 'rejected by tutor'});
     }
 
     enroll.dateTimeUpdated = Date.now();
     return await enroll.save().catch(function (error) {
       throw new BadRequestException({ ...error, message: 'duplicate columns' });
     });
+  }
+
+  async cancelEnrollmentById(enrollId: string, userId: string){
+    if (!mongoose.isValidObjectId(enrollId)) {
+      throw new HttpException("This enrollment ID isn't valid", 404);
+    }
+
+    const enroll = await this.enrollModel.findById(enrollId);
+    if (!enroll) {
+      throw new NotFoundException("This enroll ID doesn't exist");
+    }
+
+    if (enroll.studentId !== userId) {
+      throw new BadRequestException('This enrollment is not yours');
+    }
+
+    if (enroll.status === 'canceled') {
+      throw new BadRequestException('This enrollment is already canceled');
+    }
+
+    if (enroll.status !== 'waiting') {
+      throw new BadRequestException('You can only cancel enroll that is waiting!');
+    }
+
+    enroll.status = 'canceled';
+    enroll.dateTimeUpdated = Date.now();
+    await this.creditService.changeCreditHistoryStatusById(enroll.paymentHistoryId, {status: 'canceled'});
+    return await enroll.save();
+  }
+
+  async findWaitingByStudentId(studentId: string): Promise<EnrollDto[]> {
+    if (!mongoose.isValidObjectId(studentId)) {
+      throw new HttpException("This student ID isn't valid", 404);
+    }
+    const enrolls = await this.enrollModel.find({
+      studentId: studentId,
+      status: STATUS_WAITING,
+    }).sort({dateTimeCreated: -1});
+
+    return enrolls
+  }
+
+  async getEnrollByStudentID(studentId: string): Promise<EnrollDto[]> {
+    if (!mongoose.isValidObjectId(studentId)) {
+      throw new HttpException("This student ID isn't valid", 404);
+    }
+    const enrolls = await this.enrollModel.find({studentId: studentId}).sort({dateTimeCreated: -1});
+    return enrolls
   }
 }

@@ -44,7 +44,7 @@ export class Register {
   @Prop()
   picture: Array<string>; //!!!EDITED
 
-  @Prop({ unique: true })
+  @Prop()
   citizenId: string;
 
   @Prop()

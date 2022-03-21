@@ -5,6 +5,7 @@ import * as mongoose from 'mongoose'
 import { CreateRegisterDto } from 'src/register/dto/create-register.dto';
 import { User } from './user.schema';
 import { UpdateUserPasswordDto } from './dto/update-user-password.dto';
+import { CreditService } from 'src/credit/credit.service';
 
 process.on('unhandledRejection', (reason, p) => {
   // console.log('Unhandled Rejection at: Promise', p, 'reason:', reason);
@@ -14,14 +15,17 @@ process.on('unhandledRejection', (reason, p) => {
 @Injectable()
 export class UserService {
   constructor(
-    @InjectModel('users') private readonly userModel: Model<any>
+    @InjectModel('users') private readonly userModel: Model<any>,
+    private creditService: CreditService
   ) {}
 
   async createUser(body: CreateRegisterDto){
     const user = new this.userModel(body)
-    return await user.save().catch(function(error) {
+    await user.save().catch(function(error) {
       throw new BadRequestException({...error, message: "duplicate columns"});
     })
+    const credit = this.creditService.createCredit(user.id)
+    return user
   }
 
   async findAll(){
