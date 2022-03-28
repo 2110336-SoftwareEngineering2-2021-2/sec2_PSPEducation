@@ -20,7 +20,7 @@ export default function TopRightMenu({
   removeCookie,
 }) {
   const [dropProfileState, setDropProfileState] = useState(false);
-  // const [newBalance, setNewBalance] = useState(userData.balance);
+  const [newBalance, setNewBalance] = useState(userData.balance);
   return (
     <>
       <div className="topRightContainer">
@@ -30,8 +30,10 @@ export default function TopRightMenu({
           userData={userData}
           dropProfileState={dropProfileState}
           setDropProfileState={setDropProfileState}
-          // newBalance={newBalance}
-          // setNewBalance={setNewBalance}
+          newBalance={newBalance}
+          setNewBalance={setNewBalance}
+          cookie ={cookie}
+          setCookie = {setCookie}
         />
 
         <DropProfileMenu
@@ -52,20 +54,15 @@ function UserProfileBar({
   userData,
   dropProfileState,
   setDropProfileState,
-  // newBalance,
-  // setNewBalance,
+  newBalance,
+  setNewBalance,
+  cookie
 }) {
-  // useEffect(() => {}, [userData.balance]);
+  useEffect(() => {}, [newBalance]);
   return (
     <>
-      {/* <button
-          onClick={() => setDropProfileState(!dropProfileState)}
-          className="topbarProfileButton"
-        ></button> */}
       <div
-        className="topbarAvatarContainer"
-        onClick={() => setDropProfileState(!dropProfileState)}
-      >
+        className="topbarAvatarContainer">
         <button
           onClick={() => setDropProfileState(!dropProfileState)}
           className="topbarProfileButton"
@@ -75,15 +72,14 @@ function UserProfileBar({
       </div>
 
       <div className="topbarCreditContainer">
-        <span className="topbarCredit">credit: {userData.balance}</span>
+        <span className="topbarCredit">credit: {newBalance}</span>
         <button
           className="topBarAddMoneyButton"
           onClick={() =>
             APIHandler.handleUpdateBalance(
-              userData.userId,
-              userData.balance,
-              0
-              // setNewBalance
+              cookie.user,
+              0,
+              setNewBalance
             )
           }
         >
