@@ -37,7 +37,10 @@ export default function CourseProfile({ cookie, setCookie, removeCookie }) {
         </div>
         <div className="homeContainer">
           <div className="homeWrapper">
-            <CourseProfileCard />
+            <CourseProfileCard 
+              cookie={cookie}
+              setCookie={setCookie}
+              removeCookie={removeCookie}/>
           </div>
         </div>
       </div>

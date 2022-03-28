@@ -12,6 +12,7 @@ import { FormControl, Select, Box, InputLabel, MenuItem } from "@mui/material";
 export default function CourseProfileCard(props) {
   let { id } = useParams();
   const { cookie, setCookie, removeCookie } = props
+  console.log(cookie)
   // console.log(data)
   // const imgAvatarSrc = props.imgAvatarURL;
   // const imgBgTutorSrc = props.imgBgURL;
@@ -30,7 +31,7 @@ export default function CourseProfileCard(props) {
     })
     .then((response) => {
         setDesc(response.data);
-        console.log(desc);
+        // console.log(desc);
       })
       .catch((e) => {
         console.log(e);
@@ -39,10 +40,10 @@ export default function CourseProfileCard(props) {
 
   useEffect(() => {
     fetch();
-    console.log(desc);
+    // console.log(desc);
   }, []);
   useEffect(() => {
-    console.log(desc);
+    // console.log(desc);
   }, [desc]);
   // useEffect(() => {
   //   // Update the document title using the browser API
@@ -73,7 +74,10 @@ export default function CourseProfileCard(props) {
     <div className="row">
         <div className="leftColumn">
           <DescriptProfile
-            data={desc}/>
+            data={desc}
+            cookie={cookie}
+            setCookie={setCookie}
+            removeCookie={removeCookie}/>
         </div>
         <div className="rightColumn">
           <NormalProfile

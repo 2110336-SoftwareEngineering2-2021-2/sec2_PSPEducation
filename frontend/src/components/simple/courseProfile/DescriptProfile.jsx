@@ -8,6 +8,8 @@ import { FormControl, Select, Box, InputLabel, MenuItem } from "@mui/material";
   
 export default function DescriptProfile(props) {
   console.log(props.data)
+  const { cookie, setCookie, removeCookie } = props
+  console.log(cookie)
   // const { data } = courseData;
   // console.log(data)
   // const imgAvatarSrc = props.imgAvatarURL;
@@ -55,6 +57,12 @@ export default function DescriptProfile(props) {
         <label> Description:
          <div className="courseDescription">{props.data.description}</div>
         </label>
+        {cookie.user_role=="student" && (<div>
+        <button className="courseButton">
+            Enroll
+          </button>
+        </div>
+        )}
   </>);
 }
   
