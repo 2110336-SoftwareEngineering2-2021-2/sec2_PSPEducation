@@ -3,6 +3,7 @@ import "./myCourseListTable.css";
 import { CloseOutlined, AddCircle } from "@mui/icons-material";
 import UpdateCourseCard from "./update/UpdateCourseCard";
 import { DataGrid } from "@mui/x-data-grid";
+import { Link } from "react-router-dom";
 
 var APIHandler = require("../../../../simple/api/APIHandler");
 
@@ -74,6 +75,11 @@ export default function MyCourseListTable({
             >
               Edit
             </button>
+            <Link to={`/course/${params.id}`}>
+              <button className="courseEditButton">
+                view
+              </button>
+            </Link>
             {params.row.status === "unpublished" && (
               <button
                 className="coursePublishButton"

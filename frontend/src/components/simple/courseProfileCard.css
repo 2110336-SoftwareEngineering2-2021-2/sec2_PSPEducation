@@ -1,0 +1,98 @@
+@import url("https://fonts.googleapis.com/css2?family=Festive&family=Poppins:wght@300;400;500;600;700&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap");
+
+:root {
+  --main-theme :rgb(87, 112, 221);
+  --main-white :#f0f8ff;
+  --main-border :rgb(116, 135, 219);
+  --body-bgcolor: rgb(221, 231, 250);
+}
+
+.courseProfile {
+  height: auto;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+  background-color: rgb(125, 170, 230);
+  border-radius: 100px;
+  overflow: auto;
+}
+
+.courseProfileTitle {
+  font-size: 150px;
+  font-family: Festive;
+  color: white;
+  text-shadow: -0.2px 0.2px 0 var(--main-theme), 0.2px 0.2px 0 var(--main-theme),
+    0.2px -0.2px 0 var(--main-theme), -0.2px -0.2px 0 var(--main-theme);
+}
+
+.CourseImageContainer {
+  height: 400px;
+  width: 400px;
+  border-radius: 50%;
+}
+
+.courseProfileForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.courseTitleForm {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+}
+
+.courseDescription{
+  font-size: 16px;
+  width: 400px;
+  height: 100%;
+  border: none;
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  border-radius: 30px;
+  background-color: white;
+}
+
+
+.courseProfileFormSubmit {
+  width: 250px;
+  font-size: 16px;
+  font-weight: 500;
+  color: white;
+  border: none;
+  padding: 8px 20px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+  border-radius: 14px;
+  padding: 8px 10px;
+  background-color: rgb(87, 112, 221);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.courseProfileFormSubmit:hover {
+  background-color: rgb(93, 122, 250);
+}
+
+.leftColumn {
+  float: left;
+  width: 60%;
+}
+
+/* Right column */
+.rightColumn {
+  float: left;
+  width: 40%;
+  padding-left: 20px;
+}
+
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
