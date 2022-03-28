@@ -13,7 +13,7 @@ import { CourseDto } from './dto/course.dto';
 import { Serialize } from 'src/interceptors/serialize.interceptor';
 
 @Controller('course')
-@Serialize(CourseDto)
+// @Serialize(CourseDto)
 export class CourseController {
   constructor(private courseService: CourseService){}
 

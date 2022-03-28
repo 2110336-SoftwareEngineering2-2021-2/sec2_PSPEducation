@@ -12,6 +12,7 @@ import { CreateCourseDto } from './dto/create-course.dto';
 import { CourseDto } from './dto/course.dto';
 import { UpdateCourseStatusDto } from './dto/update-course-status.dto';
 import { Course } from './course.schema';
+import { CourseResponseDto } from './dto/course-response.dto';
 
 process.on('unhandledRejection', (reason, p) => {
   // console.log('Unhandled Rejection at: Promise', p, 'reason:', reason);
@@ -39,28 +40,23 @@ export class CourseService {
     });
   }
 
-  async findAll() : Promise<CourseDto[]>{
+  async findAll() : Promise<CourseResponseDto[]>{
     const courses = await this.courseModel.find();
-    if (!courses) {
-      throw new NotFoundException("Can't find courses");
-    }
-    
+
     const response = [];
-    for (let i = 0; i < courses.length; i++) {
-      let c = courses[i];
-      let c2: CourseDto;
+    for (let i=0; i<courses.length; i++){
+      let c = courses[i]
+      let c2: CourseResponseDto;
       const tutor = await this.userModel.findById(c.tutorId);
       c2 = {
         ...c._doc,
-        // tutorFirstName: `${tutor.firstname} ${tutor.lastname}`,
-        tutorFirstName: tutor.firstname,
-        tutorLastName: tutor.lastname,
+        tutorFirstname: tutor.firstname,
+        tutorLastname: tutor.lastname
       };
       response.push(c2);
     }
-
-    console.log(response);
-    return response;
+    console.log(response)
+    return response
   }
 
   async findById(id: string) {

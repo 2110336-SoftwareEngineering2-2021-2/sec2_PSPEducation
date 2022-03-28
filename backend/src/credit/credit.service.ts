@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException, BadRequestException, HttpException, ForbiddenException } from '@nestjs/common';
+import { Injectable, NotFoundException, BadRequestException, HttpException, ForbiddenException, Inject, forwardRef } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { ChangeCreditHistoryStatusByIdDto } from './dto/change-credit-history-status-by-id.dto';
@@ -6,6 +6,7 @@ import * as mongoose from 'mongoose'
 import { ChangeCreditByUserIdDto } from './dto/change-credit-by-userId.dto';
 import { CreateCreditHistoryDto } from './dto/create-credit-history.dto';
 import { CourseService } from 'src/course/course.service';
+import { UserService } from 'src/user/user.service';
 import { TransactionType } from 'src/constant'
 import { ChangeBalanceReponseDto } from './dto/change-balance-reponse.dto';
 
@@ -14,7 +15,9 @@ export class CreditService {
   constructor(
     @InjectModel('credits') private readonly creditModel: Model<any>,
     @InjectModel('creditHistories') private readonly creditHistoryModel: Model<any>,
-    private courseService: CourseService
+    private courseService: CourseService,
+    @Inject(forwardRef(() => UserService))
+    private userService: UserService
   ) {}
 
   async createCredit(userId: string) {
@@ -32,12 +35,15 @@ export class CreditService {
   }
 
   async getBalanceByUserId(userId: string) {
-    if (!mongoose.isValidObjectId(userId)){
-      throw new BadRequestException("This user ID isn't valid");
-    }
-
+    const user = await this.userService.findById(userId)
     const credit = await this.creditModel.findOne({userId: userId});
-    return credit.balance;
+    const response = {
+      balance: credit.balance,
+      firstname: user.firstname,
+      lastname: user.lastname,
+      imgURL: user.picture
+    }
+    return response;
   }
 
   async getCreditHistoryByUserId(userId: string){
