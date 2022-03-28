@@ -1,4 +1,4 @@
-import { HttpException, Injectable, NotFoundException, BadRequestException } from '@nestjs/common';
+import { HttpException, Injectable, NotFoundException, BadRequestException, Inject, forwardRef } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import * as mongoose from 'mongoose'
@@ -16,6 +16,7 @@ process.on('unhandledRejection', (reason, p) => {
 export class UserService {
   constructor(
     @InjectModel('users') private readonly userModel: Model<any>,
+    @Inject(forwardRef(() => CreditService))
     private creditService: CreditService
   ) {}
 

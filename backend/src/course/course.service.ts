@@ -5,6 +5,7 @@ import * as mongoose from 'mongoose'
 import { CreateCourseDto } from './dto/create-course.dto';
 import { UpdateCourseStatusDto } from './dto/update-course-status.dto';
 import { Course } from './course.schema';
+import { CourseResponseDto } from './dto/course-response.dto';
 
 process.on('unhandledRejection', (reason, p) => {
   // console.log('Unhandled Rejection at: Promise', p, 'reason:', reason);
@@ -32,8 +33,23 @@ export class CourseService {
     })
   }
 
-  async findAll(){
-    return await this.courseModel.find()
+  async findAll() : Promise<CourseResponseDto[]>{
+    const courses = await this.courseModel.find();
+
+    const response = [];
+    for (let i=0; i<courses.length; i++){
+      let c = courses[i]
+      let c2: CourseResponseDto;
+      const tutor = await this.userModel.findById(c.tutorId);
+      c2 = {
+        ...c._doc,
+        tutorFirstname: tutor.firstname,
+        tutorLastname: tutor.lastname
+      };
+      response.push(c2);
+    }
+    console.log(response)
+    return response
   }
 
   async findById(id: string) { // course_id

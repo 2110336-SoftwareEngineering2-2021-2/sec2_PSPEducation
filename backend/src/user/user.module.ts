@@ -1,4 +1,4 @@
-import { Module, MiddlewareConsumer } from '@nestjs/common';
+import { Module, MiddlewareConsumer, forwardRef } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { UserController } from './user.controller';
 import { UserSchema } from './user.schema';
@@ -10,7 +10,7 @@ import { CreditModule } from 'src/credit/credit.module';
 @Module({
   imports: [
     MongooseModule.forFeature([{ name: 'users', schema: UserSchema }]), 
-    CreditModule
+    forwardRef(() => CreditModule)
 ],
   controllers: [UserController],
   providers: [UserService, AuthService],
