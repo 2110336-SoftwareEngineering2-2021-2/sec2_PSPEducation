@@ -51,11 +51,12 @@ export class CourseService {
       c2 = {
         ...c._doc,
         tutorFirstname: tutor.firstname,
-        tutorLastname: tutor.lastname
+        tutorLastname: tutor.lastname,
+        tutorName: tutor.firstname + " " + tutor.lastname
       };
       response.push(c2);
     }
-    console.log(response)
+    // console.log(response)
     return response
   }
 

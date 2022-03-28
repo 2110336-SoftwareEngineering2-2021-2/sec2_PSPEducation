@@ -5,6 +5,7 @@ export class CourseResponseDto {
   tutorId: string;
   tutorFirstname: string;
   tutorLastname: string;
+  tutorName: string;
   courseName: string;
   subject: string;
   lesson: string; // Not sure
