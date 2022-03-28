@@ -13,6 +13,7 @@ import LoginAdmin from "./pages/login/LoginAdmin";
 import Register from "./pages/register/Register";
 import Report from "./pages/report/Report";
 import ProfileHome from "./pages/profile/ProfileHome";
+import CourseProfile from "./pages/course/CourseProfile";
 import SearchResult from "./components/simple/searchResult/SearchResult";
 
 import { Routes, Route } from "react-router-dom";
@@ -276,6 +277,16 @@ function App() {
           path="myprofile"
           element={
             <ProfileHome
+              cookie={cookie}
+              setCookie={setCookie}
+              removeCookie={removeCookie}
+            />
+          }
+        />
+        <Route
+          path="course/:id"
+          element={
+            <CourseProfile
               cookie={cookie}
               setCookie={setCookie}
               removeCookie={removeCookie}

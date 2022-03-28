@@ -225,3 +225,22 @@ export const listCourseRows = [{
     capacity: 50,
   },
 ];
+
+
+export const courseData = {
+  imgURL: "https://source.unsplash.com/random/800×300/?currency",
+  location: "asdfasdfgon",
+  learningType: "online",
+  status: "unpublished",
+  hour: 30,
+  description: "Mame is the best teacher in the world.",
+  capacity: 20,
+  price: 150,
+//   courseFinishDate: 2020-02-02T00:00:00.000+00:00
+// courseStartDate
+// :
+// 2020-02-02T00:00:00.000+00:00
+  lesson: "Physics",
+  subject: "dsdfafdd",
+  courseName:"mmmmmmmmmmmmmmmm"
+}
