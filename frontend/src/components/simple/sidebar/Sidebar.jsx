@@ -55,7 +55,7 @@ function TutorSidebarList({ cookie }) {
 
       <li className="sidebarListItem">
         <PaymentsRounded className="sidebarIcon" />
-        <span className="sidebarListItemText" to="/tutor">
+        <span className="sidebarListItemText" to="/tutor/payment">
           Payment
         </span>
       </li>
@@ -101,7 +101,7 @@ function StudentSidebarList({ cookie }) {
       <li className="sidebarListItem">
         <PaymentsRounded className="sidebarIcon" />
 
-        <span className="sidebarListItemText" to="/student">
+        <span className="sidebarListItemText" to="/student/payment">
           Payment
         </span>
       </li>

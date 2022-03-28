@@ -275,6 +275,19 @@ const handleApproveEnroll = async (isApproved, enrollId, push, setPush) => {
   }
 };
 
+const handleFetchPayment = async (cookie, setPyment) => {
+  await axios
+    .get(`http://localhost:3000/credit/user/history/${cookie.user}`, {
+      withCredentials: true,
+    })
+    .then((response) => {
+      setPyment(response.data);
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+};
+
 export {
   handleLogin,
   handleLogout,
@@ -290,4 +303,5 @@ export {
   handleSubmitReport,
   handleFetchEnroll,
   handleApproveEnroll,
+  handleFetchPayment,
 };

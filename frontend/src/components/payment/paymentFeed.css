@@ -1,0 +1,132 @@
+@import url("https://fonts.googleapis.com/css2?family=Festive&family=Poppins:wght@300;400;500;600;700&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap");
+:root {
+  --main-theme: rgb(87, 112, 221);
+  --main-white: #f0f8ff;
+  --main-border: rgb(116, 135, 219);
+  --body-bgcolor: rgb(221, 231, 250);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Poppins, sans-serif;
+}
+
+.tutorFeed {
+  flex: 4;
+  height: calc(100vh - 60px);
+  top: 60px;
+  width: 100%;
+  padding: 5px;
+  background-color: var(--body-bgcolor);
+  position: sticky;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: rgb(179, 179, 179);
+}
+
+.tutorFeedWrapper {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tutorFeedCourseList {
+}
+
+.tutorFeedCard {
+  margin: 20px;
+  padding: 10px;
+  color: rgb(80, 83, 83);
+  background-color: white !important;
+  box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  -webkit-box-shadow: 0px 0px 15px -10px rgba(0, 0, 0, 0.75);
+  border-radius: 10px;
+}
+
+.tutorFeedTitle {
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.tutorFeedTitleLeft {
+  display: flex;
+  align-items: center;
+}
+
+.tutorFeedTitleName {
+  font-weight: 600;
+  margin: 0px 10px;
+  font-size: 17px;
+}
+
+.tutorFeedTitleBadge {
+  width: 15px;
+  height: 15px;
+  background-color: rgb(80, 83, 83);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+}
+
+.tutorFeedTitleIcon {
+  cursor: pointer;
+}
+
+.viewCreateCoursePopup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+  overflow: auto;
+}
+
+.viewCreateCoursePopupContainer {
+  position: relative;
+  padding: 20px;
+  height: 100%;
+  width: 100%;
+  max-width: 800px;
+  max-height: 800px;
+  background-color: var(--card-theme);
+  border-radius: 30px;
+  overflow: auto;
+}
+
+.closeCreateCoursePopup {
+  color: white;
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  transform: scale(1.1);
+}
+
+.closeCreateCoursePopup:hover {
+  transform: scale(1.2);
+  transition: all 0.2s ease;
+}

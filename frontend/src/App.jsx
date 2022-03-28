@@ -14,6 +14,7 @@ import Register from "./pages/register/Register";
 import Report from "./pages/report/Report";
 import ProfileHome from "./pages/profile/ProfileHome";
 import SearchResult from "./components/simple/searchResult/SearchResult";
+import PaymentHistory from "./pages/payment/PaymentHistory";
 
 import { Routes, Route } from "react-router-dom";
 
@@ -151,6 +152,16 @@ function App() {
               />
             }
           />
+          <Route
+            path="payment"
+            element={
+              <PaymentHistory
+                cookie={cookie}
+                setCookie={setCookie}
+                removeCookie={removeCookie}
+              />
+            }
+          />
         </Route>
         <Route
           path="student"
@@ -187,6 +198,16 @@ function App() {
             path="enrollreq"
             element={
               <EnrollReqCompSt
+                cookie={cookie}
+                setCookie={setCookie}
+                removeCookie={removeCookie}
+              />
+            }
+          />
+          <Route
+            path="payment"
+            element={
+              <PaymentHistory
                 cookie={cookie}
                 setCookie={setCookie}
                 removeCookie={removeCookie}
