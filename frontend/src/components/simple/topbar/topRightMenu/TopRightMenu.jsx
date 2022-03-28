@@ -9,7 +9,7 @@ import {
 
 import DropProfileMenu from "../dropProfileMenu/DropProfileMenu";
 
-const APIHandler = require("../../../../simple/api/APIHandler");
+const APIHandler = require("../../api/APIHandler");
 
 export default function TopRightMenu({
   userData,
@@ -20,8 +20,7 @@ export default function TopRightMenu({
   removeCookie,
 }) {
   const [dropProfileState, setDropProfileState] = useState(false);
-  const [balance, setBalance] = useState(0)
-  setBalance(userData.credit_balance)
+  // const [newBalance, setNewBalance] = useState(userData.balance);
   return (
     <>
       <div className="topRightContainer">
@@ -30,9 +29,9 @@ export default function TopRightMenu({
         <UserProfileBar
           userData={userData}
           dropProfileState={dropProfileState}
-          setDropProfileState={setDropProfileState},
-          balance = {balance}
-          setBalance = {setBalance}
+          setDropProfileState={setDropProfileState}
+          // newBalance={newBalance}
+          // setNewBalance={setNewBalance}
         />
 
         <DropProfileMenu
@@ -49,9 +48,14 @@ export default function TopRightMenu({
   );
 }
 
-function UserProfileBar({ userData, dropProfileState, setDropProfileState, balance, setBalance}) {
-  useEffect(() => {
-  }, [balance]);
+function UserProfileBar({
+  userData,
+  dropProfileState,
+  setDropProfileState,
+  // newBalance,
+  // setNewBalance,
+}) {
+  // useEffect(() => {}, [userData.balance]);
   return (
     <>
       {/* <button
@@ -71,8 +75,18 @@ function UserProfileBar({ userData, dropProfileState, setDropProfileState, balan
       </div>
 
       <div className="topbarCreditContainer">
-        <span className="topbarCredit">credit: {userData.credit_balance}</span>
-        <button className="topBarAddMoneyButton" onClick={() => APIHandler.handleUpdateBalance(userData.userId, userData.credit_balance, 0, setBalance)}>
+        <span className="topbarCredit">credit: {userData.balance}</span>
+        <button
+          className="topBarAddMoneyButton"
+          onClick={() =>
+            APIHandler.handleUpdateBalance(
+              userData.userId,
+              userData.balance,
+              0
+              // setNewBalance
+            )
+          }
+        >
           <AddCircle className="topBarAddMoneyButtonIcon" />
         </button>
       </div>

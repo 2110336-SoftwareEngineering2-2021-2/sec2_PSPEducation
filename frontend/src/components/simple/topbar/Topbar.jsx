@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./topbar.css";
 
 import TopLeftLogo from "./topLeftLogo/TopLeftLogo";
@@ -20,26 +20,29 @@ export default function Topbar({
   const [userData, setUserData] = useState({
     fullname: "",
     username: "",
-    credit_balance: 0,
+    balance: 0,
     imgURL: "",
   });
-  // useEffect(){}
-  axios
-    .get(`http://localhost:3000/credit/user/balance/${cookie.user}`, {
-      withCredentials: true,
-    })
-    .then((response) => {
-      console.log(response);
-      setUserData({
-        fullname: response.fullname,
-        username: response.username,
-        credit_balance: response.credit_balance,
-        imgURL: response.imgURL,
+  const [push, setPush] = useState(false);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:3000/credit/user/balance/${cookie.user}`, {
+        withCredentials: true,
+      })
+      .then((response) => {
+        console.log(response.data);
+        setUserData({
+          fullname: response.data.fullname,
+          username: response.data.username,
+          balance: response.data.balance,
+          imgURL: response.data.imgURL,
+        });
+      })
+      .catch((err) => {
+        console.log(err);
       });
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  }, [push]);
 
   return (
     <>

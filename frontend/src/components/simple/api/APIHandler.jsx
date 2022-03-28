@@ -289,15 +289,21 @@ const handleApproveEnroll = async (isApproved, enrollId, push, setPush) => {
   }
 };
 
-const handleUpdateBalance = async (userId, money, type, setBalance) =>{
-  if (type === 0){
-    let amountToChange = money + 1000
-    axios.patch(`http://localhost:3000//credit/user/balance/${userId}`, {amountToChange: amountToChange, type:type}, {withCredentials: true}).then((response)=>{
-      setBalance(amountToChange)
-    })
-
+const handleUpdateBalance = async (userId, balance, type) => {
+  if (type === 0) {
+    let amountToChange = balance + 1000;
+    axios
+      .patch(
+        `http://localhost:3000/credit/user/balance/${userId}`,
+        { amountToChange: amountToChange, type: type },
+        { withCredentials: true }
+      )
+      .then((response) => {
+        console.log(response.data);
+        // setBalance(amountToChange);
+      });
   }
-}
+};
 
 export {
   handleLogin,
