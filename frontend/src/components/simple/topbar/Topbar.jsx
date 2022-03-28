@@ -10,6 +10,7 @@ import { Navigate } from "react-router-dom";
 export default function Topbar({
   state,
   setState,
+  setQuery,
   cookie,
   setCookie,
   removeCookie,
@@ -24,7 +25,7 @@ export default function Topbar({
           </div>
 
           <div className="topCenter">
-            <SearchBar />
+            <SearchBar setQuery={setQuery} />
           </div>
 
           <div className="topRight">

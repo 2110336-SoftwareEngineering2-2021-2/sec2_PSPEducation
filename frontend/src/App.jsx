@@ -31,9 +31,11 @@ import {
   TutorValidationCards,
   UserReportCards,
 } from "./components/admin/feed/AdminCards";
+import { useState } from "react";
 
 function App() {
   const [cookie, setCookie, removeCookie] = useCookies(["user", "user_role"]);
+  const [query, setQuery] = useState("");
 
   return (
     <>
@@ -55,6 +57,7 @@ function App() {
               cookie={cookie}
               setCookie={setCookie}
               removeCookie={removeCookie}
+              setQuery={setQuery}
             />
           }
         >
@@ -100,15 +103,16 @@ function App() {
             }
           />
           <Route
-          path="search"
-          element={
-            <SearchResult
-              cookie={cookie}
-              setCookie={setCookie}
-              removeCookie={removeCookie}
-            />
-          }
-        />
+            path="search"
+            element={
+              <SearchResult
+                cookie={cookie}
+                setCookie={setCookie}
+                removeCookie={removeCookie}
+                query={query}
+              />
+            }
+          />
         </Route>
         <Route
           path="tutor"
@@ -117,6 +121,7 @@ function App() {
               cookie={cookie}
               setCookie={setCookie}
               removeCookie={removeCookie}
+              setQuery={setQuery}
             />
           }
         >
@@ -162,15 +167,16 @@ function App() {
             }
           />
           <Route
-          path="search"
-          element={
-            <SearchResult
-              cookie={cookie}
-              setCookie={setCookie}
-              removeCookie={removeCookie}
-            />
-          }
-        />
+            path="search"
+            element={
+              <SearchResult
+                cookie={cookie}
+                setCookie={setCookie}
+                removeCookie={removeCookie}
+                query={query}
+              />
+            }
+          />
         </Route>
         <Route
           path="student"
@@ -179,6 +185,7 @@ function App() {
               cookie={cookie}
               setCookie={setCookie}
               removeCookie={removeCookie}
+              setQuery={setQuery}
             />
           }
         >
@@ -214,15 +221,16 @@ function App() {
             }
           />
           <Route
-          path="search"
-          element={
-            <SearchResult
-              cookie={cookie}
-              setCookie={setCookie}
-              removeCookie={removeCookie}
-            />
-          }
-        />
+            path="search"
+            element={
+              <SearchResult
+                cookie={cookie}
+                setCookie={setCookie}
+                removeCookie={removeCookie}
+                query={query}
+              />
+            }
+          />
         </Route>
         <Route
           path="login"
@@ -268,16 +276,6 @@ function App() {
           path="myprofile"
           element={
             <ProfileHome
-              cookie={cookie}
-              setCookie={setCookie}
-              removeCookie={removeCookie}
-            />
-          }
-        />
-        <Route
-          path="search"
-          element={
-            <SearchResult
               cookie={cookie}
               setCookie={setCookie}
               removeCookie={removeCookie}

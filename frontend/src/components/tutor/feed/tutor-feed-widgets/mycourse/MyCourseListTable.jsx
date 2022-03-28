@@ -127,7 +127,7 @@ export default function MyCourseListTable({
         <DataGrid
           rows={course}
           columns={columns}
-          getRowId={(r) => r.id}
+          getRowId={(r) => r._id}
           disableSelectionOnClick
           checkboxSelection
           setTrigger={setDisplayState}

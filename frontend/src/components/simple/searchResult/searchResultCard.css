@@ -11,6 +11,7 @@
   background: var(--main-white);
   background-size: cover;
   border-radius: 20px;
+  cursor: pointer;
 }
 
 .searchCourseCardImageContainer {

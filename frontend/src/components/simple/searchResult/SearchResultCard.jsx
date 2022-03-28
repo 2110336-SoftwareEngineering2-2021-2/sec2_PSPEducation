@@ -23,7 +23,7 @@ export default function SearchResultCard({
   //   if (!title) return <div />;
 
   const imgBgSrc =
-    "https://shoponline.ondemand.in.th/media/catalog/product/cache/1c118d590e69f34df60e9e8a662b5ef7/8/3/8309_upskill__2_1.jpg";
+    "https://t3.ftcdn.net/jpg/03/35/13/14/360_F_335131435_DrHIQjlOKlu3GCXtpFkIG1v0cGgM9vJC.webp";
 
   return (
     <div className="searchCourseCard">
@@ -45,15 +45,13 @@ export default function SearchResultCard({
             &nbsp;
             <PeopleAltSharp
               sx={{ fontSize: 20 }}
-              classname="searchCourseCardPeopleIcon"
+              className="searchCourseCardPeopleIcon"
             />
           </div>
         </div>
         <div className="searchCourseCardContentSubLine">
           <span className="searchCourseCardLocation">@{location}</span>
-          <span className="searchCourseCardTutorName">
-            -tutorName-{tutorName}
-          </span>
+          <span className="searchCourseCardTutorName">{tutorName}</span>
         </div>
       </div>
     </div>

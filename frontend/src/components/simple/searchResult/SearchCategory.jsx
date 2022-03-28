@@ -8,7 +8,12 @@ import { Box } from "@mui/system";
 
 var APIHandler = require("../api/APIHandler");
 
-export default function SearchCategory({ cookie, setCookie, removeCookie }) {
+export default function SearchCategory({
+  cookie,
+  setCookie,
+  removeCookie,
+  keyword,
+}) {
   const [displayState, setDisplayState] = useState(false);
 
   const [course, setCourse] = useState(null);
@@ -37,19 +42,22 @@ export default function SearchCategory({ cookie, setCookie, removeCookie }) {
   return (
     <>
       <SearchByPane
-        searchTitle="Course"
+        searchType="Course"
+        keyword={keyword.toLowerCase()}
         course={course}
         push={push}
         setPush={setPush}
       />
       <SearchByPane
-        searchTitle="Tutor"
+        searchType="Tutor"
+        keyword={keyword.toLowerCase()}
         course={course}
         push={push}
         setPush={setPush}
       />
       <SearchByPane
-        searchTitle="Subject"
+        searchType="Subject"
+        keyword={keyword.toLowerCase()}
         course={course}
         push={push}
         setPush={setPush}
@@ -58,13 +66,32 @@ export default function SearchCategory({ cookie, setCookie, removeCookie }) {
   );
 }
 
-function SearchByPane({ searchTitle, course, push, setPush }) {
+function SearchByPane({ searchType, keyword, course, push, setPush }) {
   return (
     <div className="searchCategoryWrapper">
-      <div className="searchCatergoryHeader"> : Search by {searchTitle} </div>
+      <div className="searchCatergoryHeader"> : Search by {searchType} </div>
       <div className="searchCategoryContent">
         {course &&
           course.map((data, key) => {
+            if (
+              searchType === "Course" &&
+              (data.courseName === undefined ||
+                data.courseName.toLowerCase().search(keyword) === -1)
+            ) {
+              return <div></div>;
+            } else if (
+              searchType === "Tutor" &&
+              (data.tutorName === undefined ||
+                data.tutorName.toLowerCase().search(keyword) === -1)
+            )
+              return <div></div>;
+            else if (
+              searchType === "Subject" &&
+              (data.subject === undefined ||
+                data.subject.toLowerCase().search(keyword) === -1)
+            )
+              return <div></div>;
+
             return (
               <SearchResultCard
                 key={key}

@@ -5,7 +5,12 @@ import AdminFeed from "../../../components/admin/feed/AdminFeed";
 import { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 
-export default function AdminHome({ cookie, setCookie, removeCookie }) {
+export default function AdminHome({
+  cookie,
+  setCookie,
+  removeCookie,
+  setQuery,
+}) {
   const [state, setState] = useState(false);
 
   useEffect(() => {
@@ -26,6 +31,7 @@ export default function AdminHome({ cookie, setCookie, removeCookie }) {
       <Topbar
         state={state}
         setState={setState}
+        setQuery={setQuery}
         cookie={cookie}
         setCookie={setCookie}
         removeCookie={removeCookie}
