@@ -23,3 +23,19 @@
   border-radius: 30px;
   background-color: white;
 }
+
+.courseButton {
+  width: 400px;
+  font-size: 25px;
+  font-weight: 500;
+  color: white;
+  border: none;
+  padding: 15px 20px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  border-radius: 30px;
+  padding: 8px 10px;
+  background-color: #3bb077;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}

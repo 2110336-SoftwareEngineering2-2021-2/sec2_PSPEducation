@@ -74,7 +74,12 @@ export default function CourseProfileCard(props) {
         <div className="courseProfileTitle">Course Profile</div>
         <div className="row">
           <div className="leftColumn">
-            <DescriptProfile data={desc} />
+            <DescriptProfile
+              data={desc}
+              cookie={cookie}
+              setCookie={setCookie}
+              removeCookie={removeCookie}
+            />
           </div>
           <div className="rightColumn">
             <NormalProfile data={desc} />
