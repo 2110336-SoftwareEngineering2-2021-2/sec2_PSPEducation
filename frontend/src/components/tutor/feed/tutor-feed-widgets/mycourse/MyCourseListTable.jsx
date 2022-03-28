@@ -75,7 +75,7 @@ export default function MyCourseListTable({
             >
               Edit
             </button>
-            
+
             <Link to={`/course/${params.id}`}>
               <button className="courseViewButton">view</button>
             </Link>
@@ -164,7 +164,7 @@ function EditCoursePopup(props) {
           <CloseOutlined />
         </button>
         <UpdateCourseCard
-          courseId={props.id}
+          courseId={props._id}
           data={props.data}
           setTrigger={props.setTrigger}
           setData={props.setData}

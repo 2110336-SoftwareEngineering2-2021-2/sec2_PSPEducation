@@ -30,8 +30,6 @@ export default function TopRightMenu({
           userData={userData}
           dropProfileState={dropProfileState}
           setDropProfileState={setDropProfileState}
-          // newBalance={newBalance}
-          // setNewBalance={setNewBalance}
         />
 
         <DropProfileMenu
