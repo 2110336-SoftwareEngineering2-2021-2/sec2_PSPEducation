@@ -20,7 +20,6 @@ export default function TopRightMenu({
   removeCookie,
 }) {
   const [dropProfileState, setDropProfileState] = useState(false);
-  // const [newBalance, setNewBalance] = useState(userData.balance);
   return (
     <>
       <div className="topRightContainer">
@@ -46,20 +45,9 @@ export default function TopRightMenu({
   );
 }
 
-function UserProfileBar({
-  userData,
-  dropProfileState,
-  setDropProfileState,
-  // newBalance,
-  // setNewBalance,
-}) {
-  // useEffect(() => {}, [userData.balance]);
+function UserProfileBar({ userData, dropProfileState, setDropProfileState }) {
   return (
     <>
-      {/* <button
-          onClick={() => setDropProfileState(!dropProfileState)}
-          className="topbarProfileButton"
-        ></button> */}
       <div
         className="topbarAvatarContainer"
         onClick={() => setDropProfileState(!dropProfileState)}
