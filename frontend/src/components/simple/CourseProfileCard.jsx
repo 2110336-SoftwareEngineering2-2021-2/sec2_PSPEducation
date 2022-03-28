@@ -1,17 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom"
+import { useParams } from "react-router-dom";
 import "./courseProfileCard.css";
 import axios from "axios";
 import { courseData } from "../../dummyData";
 import DescriptProfile from "./courseProfile/DescriptProfile";
 import NormalProfile from "./courseProfile/NormalProfile";
 import { FormControl, Select, Box, InputLabel, MenuItem } from "@mui/material";
-  
-  // var APIHandler = require("../../../simple/api/APIHandler");
-  
+
+// var APIHandler = require("../../../simple/api/APIHandler");
+
 export default function CourseProfileCard(props) {
   let { id } = useParams();
-  const { cookie, setCookie, removeCookie } = props
+  const { cookie, setCookie, removeCookie } = props;
   // console.log(data)
   // const imgAvatarSrc = props.imgAvatarURL;
   // const imgBgTutorSrc = props.imgBgURL;
@@ -25,12 +25,12 @@ export default function CourseProfileCard(props) {
 
   function fetch() {
     axios
-    .get(`http://localhost:3000/course/${id}`, {
-      withCredentials: true,
-    })
-    .then((response) => {
+      .get(`http://localhost:3000/course/${id}`, {
+        withCredentials: true,
+      })
+      .then((response) => {
         setDesc(response.data);
-        console.log(desc);
+        // console.log(desc);
       })
       .catch((e) => {
         console.log(e);
@@ -39,16 +39,18 @@ export default function CourseProfileCard(props) {
 
   useEffect(() => {
     fetch();
-    console.log(desc);
+    // console.log(desc);
   }, []);
+
   useEffect(() => {
-    console.log(desc);
+    // console.log(desc);
   }, [desc]);
+
   // useEffect(() => {
   //   // Update the document title using the browser API
   //   console.log(updateSuccess);
   // }, [updateSuccess]);
-  
+
   // const handleUpdate = (event) => {
   //    console.log(profile);
   //   axios.patch(`http://localhost:3000/auth/user/${props.id}`, profile, {
@@ -56,7 +58,7 @@ export default function CourseProfileCard(props) {
   //   });
   //   setUpdateSuccess(true);
   // };
-  
+
   // const handleChange = (prop) => (event) => {
   //   setProfile({
   //      ...profile,
@@ -64,23 +66,21 @@ export default function CourseProfileCard(props) {
   //    });
   //   //  console.log(profile);
   //   };
-  
-   return (
-   <>
+
+  return (
+    <>
       {/* <div className="manageProfileTitle">{profile}</div> */}
-    <div className="courseProfile">
-    <div className="courseProfileTitle">Course Profile</div>
-    <div className="row">
-        <div className="leftColumn">
-          <DescriptProfile
-            data={desc}/>
+      <div className="courseProfile">
+        <div className="courseProfileTitle">Course Profile</div>
+        <div className="row">
+          <div className="leftColumn">
+            <DescriptProfile data={desc} />
+          </div>
+          <div className="rightColumn">
+            <NormalProfile data={desc} />
+          </div>
         </div>
-        <div className="rightColumn">
-          <NormalProfile
-            data={desc}/>
-        </div>
-    </div>
-    </div>
-  </>);
+      </div>
+    </>
+  );
 }
-  

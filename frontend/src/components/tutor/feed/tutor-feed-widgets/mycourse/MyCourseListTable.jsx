@@ -56,7 +56,7 @@ export default function MyCourseListTable({
     {
       field: "action",
       headerName: "Action",
-      width: 200,
+      width: 250,
       renderCell: (params) => {
         return (
           <>
@@ -75,11 +75,11 @@ export default function MyCourseListTable({
             >
               Edit
             </button>
+            
             <Link to={`/course/${params.id}`}>
-              <button className="courseEditButton">
-                view
-              </button>
+              <button className="courseViewButton">view</button>
             </Link>
+
             {params.row.status === "unpublished" && (
               <button
                 className="coursePublishButton"
@@ -155,8 +155,8 @@ export default function MyCourseListTable({
 function EditCoursePopup(props) {
   // console.log(props)
   return props.trigger ? (
-    <div className="viewEditCoursePopup">
-      <div className="viewEditCoursePopupContainer">
+    <div className="showEditCoursePopup">
+      <div className="showEditCoursePopupContainer">
         <button
           className="closeEditCoursePopup"
           onClick={() => props.setTrigger(false)}

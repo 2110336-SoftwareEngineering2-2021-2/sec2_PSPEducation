@@ -103,7 +103,7 @@ function SearchByPane({ searchType, keyword, course, push, setPush }) {
                 price={data.price}
                 studentN={data.students.length}
                 capacity={data.capacity}
-                courseID={data.courseID}
+                courseID={data._id}
                 push={push}
                 setPush={setPush}
               />

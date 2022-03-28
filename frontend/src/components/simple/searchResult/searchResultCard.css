@@ -4,6 +4,11 @@
   --main-border: rgb(116, 135, 219);
 }
 
+.CardLink {
+  text-decoration: none;
+  cursor: pointer;
+}
+
 .searchCourseCard {
   margin: 5px;
   height: 320px;
@@ -11,7 +16,6 @@
   background: var(--main-white);
   background-size: cover;
   border-radius: 20px;
-  cursor: pointer;
 }
 
 .searchCourseCardImageContainer {

@@ -93,7 +93,7 @@
   justify-content: center;
 }
 
-.viewEditCoursePopup {
+.showEditCoursePopup {
   position: fixed;
   top: 0px;
   left: 0;
@@ -107,7 +107,7 @@
   overflow: auto;
 }
 
-.viewEditCoursePopupContainer {
+.showEditCoursePopupContainer {
   position: relative;
   padding: 32px;
   padding: 20px;
@@ -142,6 +142,16 @@
   border-radius: 10px;
   padding: 5px 10px;
   background-color: #3bb077;
+  color: white;
+  cursor: pointer;
+  margin-right: 20px;
+}
+
+.courseViewButton {
+  border: none;
+  border-radius: 10px;
+  padding: 5px 10px;
+  background-color: #c0ad42;
   color: white;
   cursor: pointer;
   margin-right: 20px;
