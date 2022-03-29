@@ -3,47 +3,15 @@ import { DataGrid } from "@mui/x-data-grid";
 import axios from "axios";
 import "./myEnrollListTable.css";
 
+var APIHandler = require("../../../../simple/api/APIHandler");
+
 export default function MyEnrollListTable({ cookie, setCookie, removeCookie }) {
   const [push, setPush] = useState(false);
-  const [course, setCourse] = useState({});
-  const [enroll, setEnroll] = useState([]);
+  const [enroll, setEnroll] = useState({});
 
   useEffect(() => {
-    const FetchAPI = async () => {
-      try {
-        axios
-          .get(`http://localhost:3000/enroll/waiting/tutor/${cookie.user}`, {
-            withCredentials: true,
-          })
-          .then((response) => {
-            setCourse(response.data);
-          });
-      } catch (e) {
-        console.log(e);
-      }
-    };
-
-    FetchAPI();
+    APIHandler.handleFetchEnroll(cookie, setEnroll);
   }, [push]);
-
-  const handleApprove = (isApproved, enrollId) => {
-    console.log(enrollId);
-    if (isApproved) {
-      axios.patch(
-        `http://localhost:3000/enroll/${enrollId}`,
-        { status: "approved" },
-        { withCredentials: true }
-      );
-      setPush(!push);
-    } else {
-      axios.patch(
-        `http://localhost:3000/enroll/${enrollId}`,
-        { status: "rejected" },
-        { withCredentials: true }
-      );
-      setPush(!push);
-    }
-  };
 
   const columns = [
     { field: "studentName", headerName: "Student Name", width: 200 },
@@ -70,7 +38,8 @@ export default function MyEnrollListTable({ cookie, setCookie, removeCookie }) {
             <button
               className="enrollApproveButton"
               onClick={() => {
-                handleApprove(true, params.id);
+                APIHandler.handleApproveEnroll(true, params.id, push, setPush);
+                // handleApprove(true, params.id);
               }}
             >
               Approved
@@ -79,7 +48,8 @@ export default function MyEnrollListTable({ cookie, setCookie, removeCookie }) {
             <button
               className="enrollRejectButton"
               onClick={() => {
-                handleApprove(false, params.id);
+                APIHandler.handleApproveEnroll(false, params.id, push, setPush);
+                // handleApprove(false, params.id);
               }}
             >
               Rejected
@@ -95,7 +65,7 @@ export default function MyEnrollListTable({ cookie, setCookie, removeCookie }) {
       <div className="mainEnrollTitle">Enrollment Request</div>
       <div className="mainEnrollTable">
         <DataGrid
-          rows={course}
+          rows={enroll}
           columns={columns}
           getRowId={(row) => row._id}
           disableSelectionOnClick

@@ -14,24 +14,7 @@ export default function SearchCategory({
   removeCookie,
   keyword,
 }) {
-  const [displayState, setDisplayState] = useState(false);
-
   const [course, setCourse] = useState(null);
-
-  const [courseId, setCourseID] = useState(null);
-
-  const [dataCourse, setDataCourse] = useState({
-    id: "",
-    courseName: "",
-    subject: "",
-    description: "",
-    lesson: "",
-    price: "",
-    timeSlots: "",
-    capacity: "",
-    status: "",
-    learningType: "",
-  });
 
   const [push, setPush] = useState(false);
 

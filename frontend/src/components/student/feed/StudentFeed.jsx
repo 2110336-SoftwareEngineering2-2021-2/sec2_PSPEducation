@@ -3,10 +3,11 @@ import "./studentFeed.css";
 import { AutoAwesomeMotionOutlined, TaskOutlined } from "@mui/icons-material";
 import { MyCourses } from "./student-feed-widgets/MyCourse";
 import { Appts } from "./student-feed-widgets/ApptReq";
+import MyEnrollCourseTable from "./student-feed-widgets/MyEnrollCourseTable";
 import { myCourseData, apptData } from "../../../dummyData";
 import { Outlet } from "react-router-dom";
 
-export default function StudentFeed() {
+export default function StudentFeed({ cookie, setCookie, removeCookie }) {
   return (
     <div className="feed">
       <div className="feedWrapper">
@@ -16,12 +17,24 @@ export default function StudentFeed() {
   );
 }
 
+export function MyEnrollCourseList({ cookie, setCookie, removeCookie }) {
+  return (
+    <>
+      <MyEnrollCourseTable
+        cookie={cookie}
+        setCookie={setCookie}
+        removeCookie={removeCookie}
+      />
+    </>
+  );
+}
+
 export function MyCrsCompSt() {
   return (
     <div className="feedMenu">
       <div className="feedTitle">
         <div className="feedTitleLeft">
-          <div className="feedTitleName">My Courses</div>
+          <div className="feedTitleName">My Courses </div>
           <div className="feedTitleBadge">{myCourseData.length}</div>
         </div>
         <div className="feedTitleRight">

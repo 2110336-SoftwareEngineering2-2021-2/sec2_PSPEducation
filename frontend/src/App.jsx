@@ -24,10 +24,7 @@ import {
   MyEnrollList,
   MsgReqComp,
 } from "./components/tutor/feed/TutorFeed";
-import {
-  MyCrsCompSt,
-  EnrollReqCompSt,
-} from "./components/student/feed/StudentFeed";
+import { MyEnrollCourseList } from "./components/student/feed/StudentFeed";
 import {
   AllCards,
   TutorValidationCards,
@@ -206,7 +203,7 @@ function App() {
             exact
             path=""
             element={
-              <MyCrsCompSt
+              <MyEnrollCourseList
                 cookie={cookie}
                 setCookie={setCookie}
                 removeCookie={removeCookie}
@@ -216,17 +213,7 @@ function App() {
           <Route
             path="mycourse"
             element={
-              <MyCrsCompSt
-                cookie={cookie}
-                setCookie={setCookie}
-                removeCookie={removeCookie}
-              />
-            }
-          />
-          <Route
-            path="enrollreq"
-            element={
-              <EnrollReqCompSt
+              <MyEnrollCourseList
                 cookie={cookie}
                 setCookie={setCookie}
                 removeCookie={removeCookie}

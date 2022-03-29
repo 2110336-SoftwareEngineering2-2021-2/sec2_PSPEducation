@@ -115,7 +115,7 @@ const handleSearchCourse = async (cookie, setCourse) => {
     })
     .then((response) => {
       setCourse(response.data);
-      console.log(response.data);
+      // console.log(response.data);
     })
     .catch((e) => {
       console.log(e);
@@ -126,8 +126,7 @@ const handleCreateNewCourse = async (course, setCreateSuccess) => {
   axios
     .post(`http://localhost:3000/course`, course, { withCredentials: true })
     .then((response) => {
-      const data = response.data;
-      console.log(data);
+      console.log(response.data);
       setCreateSuccess(true);
     })
     .catch((e) => {
@@ -236,38 +235,21 @@ const handleSubmitReport = async (
     });
 };
 
-const handleFetchEnroll = async (cookie, setCourse, setEnroll, enroll) => {
+const handleFetchEnroll = async (cookie, setEnroll) => {
+  let path;
+  if (cookie.user_role === "student")
+    path = `http://localhost:3000/enroll/student/${cookie.user}`;
+  else path = `http://localhost:3000/enroll/waiting/tutor/${cookie.user}`;
+
   axios
-    .get(`http://localhost:3000/enroll/waiting/tutor/${cookie.user}`, {
+    .get(path, {
       withCredentials: true,
     })
     .then((response) => {
-      setCourse(response.data);
-
-      const getRowAddInfo = async (eachRow, i) => {
-        axios
-          .get(`http://localhost:3000/course/${eachRow.courseId}`, {
-            withCredentials: true,
-          })
-          .then((response2) => {
-            return Object.assign({}, eachRow, {
-              studentName:
-                eachRow.studentFirstName + " " + eachRow.studentLastName,
-              ...response2.data,
-              studentCount: response2.data.students.length,
-            });
-          })
-          .then((tmp) => {
-            // setEnroll(prevEnroll => [...prevEnroll, { [i]: tmp } ]);
-            setEnroll(Object.assign([], enroll, { [i]: tmp }));
-            // console.log(Object.assign([], enroll, [{ [i]: tmp }]));
-          });
-      };
-
-      for (let i = 0; i < 1; i++) {
-        getRowAddInfo(response.data[i], i.toString());
-      }
-      console.log(enroll);
+      setEnroll(response.data);
+    })
+    .catch((e) => {
+      console.log(e);
     });
 };
 
@@ -305,13 +287,13 @@ const handleUpdateBalance = async (userId, balance, type) => {
   }
 };
 
-const handleFetchPayment = async (cookie, setPyment) => {
+const handleFetchPayment = async (cookie, setPayment) => {
   await axios
     .get(`http://localhost:3000/credit/user/history/${cookie.user}`, {
       withCredentials: true,
     })
     .then((response) => {
-      setPyment(response.data);
+      setPayment(response.data);
     })
     .catch((e) => {
       console.log(e);

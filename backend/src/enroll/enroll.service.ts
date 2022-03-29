@@ -10,6 +10,7 @@ import * as mongoose from 'mongoose';
 import { CreateEnrollDto } from './dto/create-enroll.dto';
 import { UpdateEnrollStatusDto } from './dto/update-enroll-status.dto';
 import { EnrollDto } from './dto/enroll.dto';
+import { EnrollResponseDto } from './dto/enroll-response.dto';
 import { CreditService } from 'src/credit/credit.service';
 import { CreateCreditHistoryDto } from 'src/credit/dto/create-credit-history.dto';
 import { TransactionType } from 'src/constant'
@@ -209,7 +210,28 @@ export class EnrollService {
     if (!mongoose.isValidObjectId(studentId)) {
       throw new HttpException("This student ID isn't valid", 404);
     }
+
     const enrolls = await this.enrollModel.find({studentId: studentId}).sort({dateTimeCreated: -1});
-    return enrolls
+    const response = [];
+    for (let i=0; i<enrolls.length; i++){
+      let c = enrolls[i]
+      let c2: EnrollResponseDto;
+      const course = await this.courseModel.findById(c.courseId);
+      c2 = {
+        ...c._doc,
+        courseName: course.courseName,
+        subject: course.subject,
+        lesson: course.lesson,
+        price: course.price,
+        capacity: course.capacity,
+        hour: course.hour,
+        learningType:  course.learningType,
+        location: course.location,
+        studentCount: course.students.length,
+      };
+      response.push(c2);
+    }
+
+    return response
   }
 }

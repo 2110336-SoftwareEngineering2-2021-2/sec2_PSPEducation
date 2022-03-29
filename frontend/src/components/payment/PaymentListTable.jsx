@@ -113,7 +113,7 @@ export default function PaymentListTable({
         <DataGrid
           rows={payment}
           columns={columns}
-          getRowId={(r) => r.id}
+          getRowId={(r) => r._id}
           disableSelectionOnClick
           //   checkboxSelection
           //   setTrigger={setDisplayState}

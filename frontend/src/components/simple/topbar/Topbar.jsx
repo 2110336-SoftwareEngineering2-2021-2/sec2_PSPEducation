@@ -31,7 +31,7 @@ export default function Topbar({
         withCredentials: true,
       })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         setUserData({
           fullname: response.data.fullname,
           username: response.data.username,
