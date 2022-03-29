@@ -22,7 +22,7 @@ export default function PaymentHistory({ cookie, setCookie, removeCookie }) {
 
   return (
     <>
-      <PaymentListTable />
+      <PaymentListTable cookie={cookie} />
     </>
   );
 }

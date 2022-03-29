@@ -305,13 +305,26 @@ const handleUpdateBalance = async (userId, balance, type) => {
   }
 };
 
-const handleFetchPayment = async (cookie, setPyment) => {
+const handleFetchPayment = async (cookie, setPayment) => {
   await axios
     .get(`http://localhost:3000/credit/user/history/${cookie.user}`, {
       withCredentials: true,
     })
     .then((response) => {
-      setPyment(response.data);
+      setPayment(response.data);
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+};
+
+const handleGetUserById = async (cookie, setUser) => {
+  await axios
+    .get(`http://localhost:3000/auth/user/${cookie.user}`, {
+      withCredentials: true,
+    })
+    .then((response) => {
+      setUser(response.data);
     })
     .catch((e) => {
       console.log(e);
@@ -336,4 +349,5 @@ export {
   handleApproveEnroll,
   handleUpdateBalance,
   handleFetchPayment,
+  handleGetUserById,
 };

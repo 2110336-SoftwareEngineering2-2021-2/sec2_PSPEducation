@@ -33,11 +33,10 @@ export default function MyCourseListTable({
     status: "",
     learningType: "",
   });
-
+  console.log(course);
   useEffect(() => {
     APIHandler.handleFetchCourse(cookie, setCourse);
   }, [push]);
-
   const columns = [
     // { field: "_id", headerName: "ID", width: 80 },
     { field: "courseName", headerName: "Course name", width: 250 },
