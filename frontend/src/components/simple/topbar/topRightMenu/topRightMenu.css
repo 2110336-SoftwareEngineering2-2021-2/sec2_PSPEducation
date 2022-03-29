@@ -104,6 +104,8 @@
   text-align: center;
 }
 .topBarAddMoneyButton {
+  cursor: pointer;
+
   font-size: 100px;
   font-family: Festive;
   color: white;
@@ -114,7 +116,7 @@
 .topBarAddMoneyButtonIcon {
   position: absolute;
   right: 10px;
-  bottom: -10px;
+  bottom: 12px;
   margin: 5px;
   display: flex;
   align-items: center;

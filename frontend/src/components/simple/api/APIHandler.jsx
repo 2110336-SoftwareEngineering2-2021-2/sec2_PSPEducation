@@ -289,9 +289,9 @@ const handleApproveEnroll = async (isApproved, enrollId, push, setPush) => {
   }
 };
 
-const handleUpdateBalance = async (userId, balance, type) => {
+const handleUpdateBalance = async (userId, type, setUserData) => {
   if (type === 0) {
-    let amountToChange = balance + 1000;
+    const amountToChange = 1000;
     axios
       .patch(
         `http://localhost:3000/credit/user/balance/${userId}`,
@@ -299,8 +299,7 @@ const handleUpdateBalance = async (userId, balance, type) => {
         { withCredentials: true }
       )
       .then((response) => {
-        console.log(response.data);
-        // setBalance(amountToChange);
+        setUserData({ balance: response.data.balance });
       });
   }
 };
@@ -315,6 +314,24 @@ const handleFetchPayment = async (cookie, setPyment) => {
     })
     .catch((e) => {
       console.log(e);
+    });
+};
+const handleShowBalance = async (setUserData, userId) => {
+  await axios
+    .get(`http://localhost:3000/credit/user/balance/${userId}`, {
+      withCredentials: true,
+    })
+    .then((response) => {
+      console.log(response);
+      setUserData({
+        fullname: response.data.fullname,
+        username: response.data.username,
+        balance: response.data.balance,
+        imgURL: response.data.imgURL,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
     });
 };
 
@@ -336,4 +353,5 @@ export {
   handleApproveEnroll,
   handleUpdateBalance,
   handleFetchPayment,
+  handleShowBalance,
 };
