@@ -27,29 +27,8 @@ export default function Topbar({
   });
   const [push, setPush] = useState(false);
   useEffect(() => {
-    setTimeout(() => {
-      APIHandler.handleShowBalance(setUserData, cookie.user);
-    }, 500);
+    APIHandler.handleShowBalance(setUserData, cookie.user);
   }, []);
-  // useEffect(()=>{
-  //   console.log(userData.balance)
-  // },[])
-  //     .get(`http://localhost:3000/credit/user/balance/${cookie.user}`, {
-  //       withCredentials: true,
-  //     })
-  //     .then((response) => {
-  //       setUserData({
-  //         fullname: response.data.fullname,
-  //         username: response.data.username,
-  //         balance: response.data.balance,
-  //         imgURL: response.data.imgURL,
-  //       });
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }
-
   return (
     <>
       {state && <Navigate to="/login" />}

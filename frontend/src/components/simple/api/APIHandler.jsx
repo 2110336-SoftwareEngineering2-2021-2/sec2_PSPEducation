@@ -274,7 +274,7 @@ const handleApproveEnroll = async (isApproved, enrollId, push, setPush) => {
 const handleUpdateBalance = async (userId, type, setUserData) => {
   if (type === 0) {
     const amountToChange = 1000;
-    axios
+    await axios
       .patch(
         `http://localhost:3000/credit/user/balance/${userId}`,
         { amountToChange: amountToChange, type: type },
@@ -304,7 +304,6 @@ const handleShowBalance = async (setUserData, userId) => {
       withCredentials: true,
     })
     .then((response) => {
-      console.log(response);
       setUserData({
         fullname: response.data.fullname,
         username: response.data.username,
