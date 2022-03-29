@@ -7,7 +7,7 @@ import CourseProfileCard from "../../components/simple/CourseProfileCard";
 import React, { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 
-export default function CourseProfile({ cookie, setCookie, removeCookie }) {
+export default function CourseProfile({ cookie, setCookie, removeCookie, setQuery }) {
   const [state, setState] = useState(false);
 
   useEffect(() => {
@@ -27,6 +27,7 @@ export default function CourseProfile({ cookie, setCookie, removeCookie }) {
       <Topbar
         state={state}
         setState={setState}
+        setQuery={setQuery}
         cookie={cookie}
         setCookie={setCookie}
         removeCookie={removeCookie}

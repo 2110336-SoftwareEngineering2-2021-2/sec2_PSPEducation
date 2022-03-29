@@ -27,7 +27,7 @@ export default function PaymentListTable({ cookie, setCookie, removeCookie }) {
   useEffect(() => {
     APIHandler.handleFetchPayment(cookie, setPayment);
   }, []);
-  console.log(payment);
+
   const columns = [
     {
       field: "dateCreated",
@@ -91,7 +91,6 @@ export default function PaymentListTable({ cookie, setCookie, removeCookie }) {
             },
           }}
           rowsPerPageOptions={[5, 10]}
-          checkboxSelection
         />
       </div>
     </div>

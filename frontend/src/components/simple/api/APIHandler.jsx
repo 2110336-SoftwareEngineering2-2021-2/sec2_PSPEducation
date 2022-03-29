@@ -109,7 +109,7 @@ const handleFetchCourse = async (cookie, setCourse) => {
 };
 
 const handleSearchCourse = async (cookie, setCourse) => {
-  axios
+  await axios
     .get(`http://localhost:3000/course`, {
       withCredentials: true,
     })
@@ -122,7 +122,7 @@ const handleSearchCourse = async (cookie, setCourse) => {
 };
 
 const handleCreateNewCourse = async (course, setCreateSuccess) => {
-  axios
+  await axios
     .post(`http://localhost:3000/course`, course, { withCredentials: true })
     .then((response) => {
       console.log(response.data);
@@ -136,14 +136,14 @@ const handleCreateNewCourse = async (course, setCreateSuccess) => {
 
 const handleUpdateCourse = async (values, courseId, setUpdateSuccess) => {
   console.log(values);
-  axios.patch(`http://localhost:3000/course/update/${courseId}`, values, {
+  await axios.patch(`http://localhost:3000/course/update/${courseId}`, values, {
     withCredentials: true,
   });
   setUpdateSuccess(true);
 };
 
 const handleFetchTutorValidCard = async (tutorValid, setTutorValid) => {
-  axios
+  await axios
     .get(`http://localhost:3000/admin/register/waiting`, {
       withCredentials: true,
     })
@@ -175,7 +175,7 @@ const handleSetTutorValidStatus = async (
   setPush
 ) => {
   console.log(tutorID);
-  axios
+  await axios
     .patch(
       `http://localhost:3000/admin/register/${tutorID}`,
       { status: validStatus },
@@ -191,7 +191,7 @@ const handleSetTutorValidStatus = async (
 
 const handleSetReportStatus = async (reportID, reportStatus, push, setPush) => {
   console.log(reportID);
-  axios
+  await axios
     .patch(
       `http://localhost:3000/admin/report/${reportID}`,
       { status: reportStatus },
@@ -220,7 +220,7 @@ const handleSubmitReport = async (
     picture: picture,
   };
   console.log(user);
-  axios
+  await axios
     .post(`http://localhost:3000/report`, user, { withCredentials: true })
     .then((response) => {
       const data = response.data;
@@ -253,7 +253,7 @@ const handleFetchEnroll = async (cookie, setEnroll) => {
 };
 
 const handleStudentCancelEnroll = async (cookie, enrollId, push, setPush) => {
-  axios
+  await axios
     .patch(
       `http://localhost:3000/enroll/cancel/${enrollId}`,
       {},
