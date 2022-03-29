@@ -58,7 +58,7 @@ export class CreditService {
     for (let i=0; i<creditHistories.length; i++){
       let c = creditHistories[i];
       let c2: CreateCreditHistoryDto;
-      c2 = {...c._doc, userName: user.username, courseName: ''}
+      c2 = {...c._doc, username: user.username, courseName: ''}
       if (c.courseId){
         const course = await this.courseService.findById(c.courseId);
         c2 = {
