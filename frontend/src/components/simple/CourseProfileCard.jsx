@@ -7,14 +7,24 @@ import DescriptProfile from "./courseProfile/DescriptProfile";
 import NormalProfile from "./courseProfile/NormalProfile";
 import { FormControl, Select, Box, InputLabel, MenuItem } from "@mui/material";
 
-// var APIHandler = require("./api/APIHandler");
+var APIHandler = require("./api/APIHandler");
 
 export default function CourseProfileCard(props) {
   let { id } = useParams();
   const { cookie, setCookie, removeCookie } = props;
-  // console.log(data)
-  // const imgAvatarSrc = props.imgAvatarURL;
-  // const imgBgTutorSrc = props.imgBgURL;
+  const [push, setPush] = useState(false);
+  const [change, setChange] = useState(false);
+
+  const [enrolls, setEnroll] = useState(null);
+  const [isWaiting, setIsWaiting] = useState(false);
+  const [isApproved, setIsApproved] = useState(false);
+  const [enrollId, setEnrollId] = useState("");
+
+  // useEffect(() => {
+  //   APIHandler.handleFetchEnroll(cookie, setEnroll);
+  //   setChange(!change)
+
+  // }, [push]);
 
   const [desc, setDesc] = useState({});
 
@@ -39,37 +49,34 @@ export default function CourseProfileCard(props) {
 
   useEffect(() => {
     fetch();
-    // console.log(desc);
-  }, []);
+    APIHandler.handleFetchEnroll(cookie, setEnroll);
+    setChange(!change);
+  }, [push]);
 
   useEffect(() => {
-    // console.log(desc);
-  }, [desc]);
-
-  // useEffect(() => {
-  //   // Update the document title using the browser API
-  //   console.log(updateSuccess);
-  // }, [updateSuccess]);
-
-  // const handleUpdate = (event) => {
-  //    console.log(profile);
-  //   axios.patch(`http://localhost:3000/auth/user/${props.id}`, profile, {
-  //     withCredentials: true,
-  //   });
-  //   setUpdateSuccess(true);
-  // };
-
-  // const handleChange = (prop) => (event) => {
-  //   setProfile({
-  //      ...profile,
-  //      [prop]: event.target.value,
-  //    });
-  //   //  console.log(profile);
-  //   };
+    // console.log(enrolls);
+    if (enrolls) {
+      enrolls
+        .filter(
+          (enroll) =>
+            desc._id === enroll.courseId && enroll.status === "waiting"
+        )
+        .map(
+          (filteredEnroll) => (
+            setIsWaiting(true), setEnrollId(filteredEnroll._id)
+          )
+        );
+      enrolls
+        .filter(
+          (enroll) =>
+            desc._id === enroll.courseId && enroll.status === "approved"
+        )
+        .map((filteredEnroll) => setIsApproved(true));
+    }
+  }, [desc, enrolls, change]);
 
   return (
     <>
-      {/* <div className="manageProfileTitle">{profile}</div> */}
       <div className="courseProfile">
         <div className="courseProfileTitle">Course Profile</div>
         <div className="row">
@@ -79,6 +86,11 @@ export default function CourseProfileCard(props) {
               cookie={cookie}
               setCookie={setCookie}
               removeCookie={removeCookie}
+              isWaiting={isWaiting}
+              isApproved={isApproved}
+              enrollId={enrollId}
+              setPush={setPush}
+              push={push}
             />
           </div>
           <div className="rightColumn">

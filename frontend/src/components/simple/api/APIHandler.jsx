@@ -240,7 +240,7 @@ const handleFetchEnroll = async (cookie, setEnroll) => {
     path = `http://localhost:3000/enroll/student/${cookie.user}`;
   else path = `http://localhost:3000/enroll/waiting/tutor/${cookie.user}`;
 
-  axios
+  await axios
     .get(path, {
       withCredentials: true,
     })
