@@ -72,7 +72,12 @@ function UserProfileBar({
         <button
           className="topBarAddMoneyButton"
           onClick={() =>
-            APIHandler.handleUpdateBalance(cookie.user, 0, setUserData)
+            APIHandler.handleUpdateBalance(
+              cookie.user,
+              0,
+              userData,
+              setUserData
+            )
           }
         >
           <AddCircle className="topBarAddMoneyButtonIcon" />

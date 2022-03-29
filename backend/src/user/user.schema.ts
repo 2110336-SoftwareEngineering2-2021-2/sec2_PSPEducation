@@ -43,8 +43,8 @@ export class User {
   @Prop({required: true})
   educationalLevel: number;
 
-  @Prop()
-  picture: string; 
+  @Prop({default: []})
+  picture: String[]; 
 
   @Prop({unique: true})
   citizenId: string;

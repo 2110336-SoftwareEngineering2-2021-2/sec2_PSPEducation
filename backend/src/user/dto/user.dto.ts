@@ -38,7 +38,7 @@ export class UserDto {
   educationalLevel: number;
 
   @Expose()
-  picture: string;
+  picture: String[];
   
   @Expose()
   citizenId: string;

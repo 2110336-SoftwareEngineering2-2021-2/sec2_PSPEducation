@@ -4,7 +4,6 @@ import "./topbar.css";
 import TopLeftLogo from "./topLeftLogo/TopLeftLogo";
 import SearchBar from "./searchBar/SearchBar";
 import TopRightMenu from "./topRightMenu/TopRightMenu";
-import { userData } from "../../../dummyData";
 import { Navigate } from "react-router-dom";
 
 import axios from "axios";
@@ -29,6 +28,7 @@ export default function Topbar({
   useEffect(() => {
     APIHandler.handleShowBalance(setUserData, cookie.user);
   }, []);
+
   return (
     <>
       {state && <Navigate to="/login" />}
