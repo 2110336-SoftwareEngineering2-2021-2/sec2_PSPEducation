@@ -134,9 +134,9 @@ function AdminSidebarList({ cookie }) {
 
       <li className="sidebarListItem">
         <SchoolRounded className="sidebarIcon" />
-        <span className="sidebarListItemText" to="/admin">
+        <Link className="sidebarListItemText" to="/admin">
           Courses
-        </span>
+        </Link>
       </li>
 
       <li className="sidebarListItem">
@@ -148,23 +148,23 @@ function AdminSidebarList({ cookie }) {
 
       <li className="sidebarListItem">
         <FormatListBulletedRounded className="sidebarIcon" />
-        <span className="sidebarListItemText" to="/admin">
+        <Link className="sidebarListItemText" to="/admin">
           Agenda
-        </span>
+        </Link>
       </li>
 
       <li className="sidebarListItem">
         <HelpOutline className="sidebarIcon" />
-        <span className="sidebarListItemText" to="/admin">
+        <Link className="sidebarListItemText" to="/admin">
           FAQ
-        </span>
+        </Link>
       </li>
 
       <li className="sidebarListItem">
         <Event className="sidebarIcon" />
-        <span className="sidebarListItemText" to="/admin">
+        <Link className="sidebarListItemText" to="/admin">
           Events
-        </span>
+        </Link>
       </li>
     </>
   ) : (

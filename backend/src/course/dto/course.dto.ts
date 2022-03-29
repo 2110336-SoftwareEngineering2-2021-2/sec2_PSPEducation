@@ -48,7 +48,7 @@ export class CourseDto {
   location: string;
 
   @Expose()
-  students: String[]
+  students: String[];
 
   @Expose()
   dateTimeCreated: Date;
