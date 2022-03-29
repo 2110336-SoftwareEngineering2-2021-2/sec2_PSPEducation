@@ -13,6 +13,7 @@ const APIHandler = require("../../api/APIHandler");
 
 export default function TopRightMenu({
   userData,
+  setUserData,
   state,
   setState,
   cookie,
@@ -27,8 +28,11 @@ export default function TopRightMenu({
 
         <UserProfileBar
           userData={userData}
+          setUserData={setUserData}
           dropProfileState={dropProfileState}
           setDropProfileState={setDropProfileState}
+          cookie={cookie}
+          setCookie={setCookie}
         />
 
         <DropProfileMenu
@@ -45,13 +49,16 @@ export default function TopRightMenu({
   );
 }
 
-function UserProfileBar({ userData, dropProfileState, setDropProfileState }) {
+function UserProfileBar({
+  userData,
+  setUserData,
+  dropProfileState,
+  setDropProfileState,
+  cookie,
+}) {
   return (
     <>
-      <div
-        className="topbarAvatarContainer"
-        onClick={() => setDropProfileState(!dropProfileState)}
-      >
+      <div className="topbarAvatarContainer">
         <button
           onClick={() => setDropProfileState(!dropProfileState)}
           className="topbarProfileButton"
@@ -65,12 +72,7 @@ function UserProfileBar({ userData, dropProfileState, setDropProfileState }) {
         <button
           className="topBarAddMoneyButton"
           onClick={() =>
-            APIHandler.handleUpdateBalance(
-              userData.userId,
-              userData.balance,
-              0
-              // setNewBalance
-            )
+            APIHandler.handleUpdateBalance(cookie.user, 0, setUserData)
           }
         >
           <AddCircle className="topBarAddMoneyButtonIcon" />

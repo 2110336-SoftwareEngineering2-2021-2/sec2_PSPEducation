@@ -9,6 +9,8 @@ import { Navigate } from "react-router-dom";
 
 import axios from "axios";
 
+const APIHandler = require("../api/APIHandler");
+
 export default function Topbar({
   state,
   setState,
@@ -24,25 +26,29 @@ export default function Topbar({
     imgURL: "",
   });
   const [push, setPush] = useState(false);
-
   useEffect(() => {
-    axios
-      .get(`http://localhost:3000/credit/user/balance/${cookie.user}`, {
-        withCredentials: true,
-      })
-      .then((response) => {
-        // console.log(response.data);
-        setUserData({
-          fullname: response.data.fullname,
-          username: response.data.username,
-          balance: response.data.balance,
-          imgURL: response.data.imgURL,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, [push]);
+    setTimeout(() => {
+      APIHandler.handleShowBalance(setUserData, cookie.user);
+    }, 500);
+  }, []);
+  // useEffect(()=>{
+  //   console.log(userData.balance)
+  // },[])
+  //     .get(`http://localhost:3000/credit/user/balance/${cookie.user}`, {
+  //       withCredentials: true,
+  //     })
+  //     .then((response) => {
+  //       setUserData({
+  //         fullname: response.data.fullname,
+  //         username: response.data.username,
+  //         balance: response.data.balance,
+  //         imgURL: response.data.imgURL,
+  //       });
+  //     })
+  //     .catch((err) => {
+  //       console.log(err);
+  //     });
+  // }
 
   return (
     <>
@@ -60,6 +66,7 @@ export default function Topbar({
           <div className="topRight">
             <TopRightMenu
               userData={userData}
+              setUserData={setUserData}
               state={state}
               setState={setState}
               cookie={cookie}
