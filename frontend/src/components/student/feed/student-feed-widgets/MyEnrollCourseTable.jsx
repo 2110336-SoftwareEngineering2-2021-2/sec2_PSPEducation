@@ -36,14 +36,9 @@ export default function MyEnrollCourseTable({
       width: 150,
     },
     {
-      field: "studentCount",
-      headerName: "#Student",
-      width: 150,
-    },
-    {
-      field: "capacity",
-      headerName: "MaxCapacity",
-      width: 150,
+      field: "price",
+      headerName: "Price",
+      width: 100,
     },
     {
       field: "action",
@@ -52,16 +47,26 @@ export default function MyEnrollCourseTable({
       renderCell: (params) => {
         return (
           <>
-            {/* <button className="coursePublishButton">enroll</button> */}
-
-            <button className="enrollCancelButton">cancel</button>
+            {params.status === "waiting" && (
+              <button
+                className="enrollCancelButton"
+                onClick={() => {
+                  APIHandler.handleStudentCancelEnroll(
+                    cookie,
+                    params.id,
+                    push,
+                    setPush
+                  );
+                }}
+              >
+                cancel
+              </button>
+            )}
           </>
         );
       },
     },
   ];
-
-  console.log(enroll);
 
   return (
     <div className="mainEnroll">

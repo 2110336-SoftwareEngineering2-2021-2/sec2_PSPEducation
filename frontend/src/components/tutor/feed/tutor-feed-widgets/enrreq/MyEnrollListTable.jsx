@@ -38,8 +38,12 @@ export default function MyEnrollListTable({ cookie, setCookie, removeCookie }) {
             <button
               className="enrollApproveButton"
               onClick={() => {
-                APIHandler.handleApproveEnroll(true, params.id, push, setPush);
-                // handleApprove(true, params.id);
+                APIHandler.handleTutorApproveEnroll(
+                  true,
+                  params.id,
+                  push,
+                  setPush
+                );
               }}
             >
               Approved
@@ -48,8 +52,12 @@ export default function MyEnrollListTable({ cookie, setCookie, removeCookie }) {
             <button
               className="enrollRejectButton"
               onClick={() => {
-                APIHandler.handleApproveEnroll(false, params.id, push, setPush);
-                // handleApprove(false, params.id);
+                APIHandler.handleTutorApproveEnroll(
+                  false,
+                  params.id,
+                  push,
+                  setPush
+                );
               }}
             >
               Rejected

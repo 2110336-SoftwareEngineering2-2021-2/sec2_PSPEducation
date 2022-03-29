@@ -115,7 +115,6 @@ const handleSearchCourse = async (cookie, setCourse) => {
     })
     .then((response) => {
       setCourse(response.data);
-      // console.log(response.data);
     })
     .catch((e) => {
       console.log(e);
@@ -253,25 +252,44 @@ const handleFetchEnroll = async (cookie, setEnroll) => {
     });
 };
 
-const handleApproveEnroll = async (isApproved, enrollId, push, setPush) => {
+const handleStudentCancelEnroll = async (cookie, enrollId, push, setPush) => {
+  axios
+    .patch(
+      `http://localhost:3000/enroll/cancel/${enrollId}`,
+      {},
+      {
+        withCredentials: true,
+      }
+    )
+    .catch((e) => {
+      console.log(e);
+    });
+  setPush(!push);
+};
+
+const handleTutorApproveEnroll = async (
+  isApproved,
+  enrollId,
+  push,
+  setPush
+) => {
   if (isApproved) {
     axios.patch(
       `http://localhost:3000/enroll/${enrollId}`,
       { status: "approved" },
       { withCredentials: true }
     );
-    setPush(!push);
   } else {
     axios.patch(
       `http://localhost:3000/enroll/${enrollId}`,
       { status: "rejected" },
       { withCredentials: true }
     );
-    setPush(!push);
   }
+  setPush(!push);
 };
 
-const handleUpdateBalance = async (userId, type, setUserData) => {
+const handleUpdateBalance = async (userId, type, userData, setUserData) => {
   if (type === 0) {
     const amountToChange = 1000;
     await axios
@@ -281,7 +299,7 @@ const handleUpdateBalance = async (userId, type, setUserData) => {
         { withCredentials: true }
       )
       .then((response) => {
-        setUserData({ balance: response.data.balance });
+        setUserData({ ...userData, balance: response.data.balance });
       });
   }
 };
@@ -298,17 +316,19 @@ const handleFetchPayment = async (cookie, setPayment) => {
       console.log(e);
     });
 };
+
 const handleShowBalance = async (setUserData, userId) => {
   await axios
     .get(`http://localhost:3000/credit/user/balance/${userId}`, {
       withCredentials: true,
     })
     .then((response) => {
+      // console.log(response);
       setUserData({
         fullname: response.data.fullname,
         username: response.data.username,
         balance: response.data.balance,
-        imgURL: response.data.imgURL,
+        imgURL: response.data.imgURL[0],
       });
     })
     .catch((err) => {
@@ -331,7 +351,8 @@ export {
   handleSetReportStatus,
   handleSubmitReport,
   handleFetchEnroll,
-  handleApproveEnroll,
+  handleTutorApproveEnroll,
+  handleStudentCancelEnroll,
   handleUpdateBalance,
   handleFetchPayment,
   handleShowBalance,
