@@ -7,7 +7,7 @@ import DescriptProfile from "./courseProfile/DescriptProfile";
 import NormalProfile from "./courseProfile/NormalProfile";
 import { FormControl, Select, Box, InputLabel, MenuItem } from "@mui/material";
 
-// var APIHandler = require("../../../simple/api/APIHandler");
+// var APIHandler = require("./api/APIHandler");
 
 export default function CourseProfileCard(props) {
   let { id } = useParams();
