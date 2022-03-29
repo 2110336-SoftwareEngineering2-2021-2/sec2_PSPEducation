@@ -47,7 +47,7 @@ export default function MyEnrollCourseTable({
       renderCell: (params) => {
         return (
           <>
-            {params.status === "waiting" && (
+            {params.row.status === "waiting" && (
               <button
                 className="enrollCancelButton"
                 onClick={() => {
@@ -80,6 +80,11 @@ export default function MyEnrollCourseTable({
           rows={enroll}
           columns={columns}
           getRowId={(r) => r._id}
+          initialState={{
+            sorting: {
+              sortModel: [{ field: "status", sort: "desc" }],
+            },
+          }}
           disableSelectionOnClick
           checkboxSelection
         />

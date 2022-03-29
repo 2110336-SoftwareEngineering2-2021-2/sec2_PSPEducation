@@ -55,7 +55,7 @@ export default function DescriptProfile(props) {
         Description:
         <div className="courseDescription">{props.data.description}</div>
       </label>
-      {cookie.user_role == "student" && (
+      {cookie.user_role === "student" && (
         <div>
           <button className="courseButton">Enroll</button>
         </div>

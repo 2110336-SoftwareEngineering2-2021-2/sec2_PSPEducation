@@ -1,12 +1,9 @@
 import React, { useState, useEffect } from "react";
 import "./topbar.css";
-
 import TopLeftLogo from "./topLeftLogo/TopLeftLogo";
 import SearchBar from "./searchBar/SearchBar";
 import TopRightMenu from "./topRightMenu/TopRightMenu";
 import { Navigate } from "react-router-dom";
-
-import axios from "axios";
 
 const APIHandler = require("../api/APIHandler");
 
@@ -24,10 +21,12 @@ export default function Topbar({
     balance: 0,
     imgURL: "",
   });
+
   const [push, setPush] = useState(false);
+
   useEffect(() => {
-    APIHandler.handleShowBalance(setUserData, cookie.user);
-  }, []);
+    APIHandler.handleShowBalance(setUserData, cookie.user, push, setPush);
+  }, [push]);
 
   return (
     <>

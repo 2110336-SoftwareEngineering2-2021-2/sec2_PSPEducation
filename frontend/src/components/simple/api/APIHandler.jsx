@@ -317,7 +317,7 @@ const handleFetchPayment = async (cookie, setPayment) => {
     });
 };
 
-const handleShowBalance = async (setUserData, userId) => {
+const handleShowBalance = async (setUserData, userId, push, setPush) => {
   await axios
     .get(`http://localhost:3000/credit/user/balance/${userId}`, {
       withCredentials: true,
@@ -334,6 +334,7 @@ const handleShowBalance = async (setUserData, userId) => {
     .catch((err) => {
       console.log(err);
     });
+  setPush(!push);
 };
 
 export {
