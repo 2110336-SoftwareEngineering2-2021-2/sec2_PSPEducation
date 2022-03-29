@@ -115,8 +115,14 @@ export default function PaymentListTable({
           columns={columns}
           getRowId={(r) => r._id}
           disableSelectionOnClick
-          //   checkboxSelection
-          //   setTrigger={setDisplayState}
+          autoHeight
+          initialState={{
+            pagination: {
+              pageSize: 10,
+            },
+          }}
+          rowsPerPageOptions={[5, 10]}
+          checkboxSelection
         />
       </div>
     </div>

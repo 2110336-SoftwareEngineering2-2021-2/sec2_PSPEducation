@@ -48,30 +48,30 @@ function TutorSidebarList({ cookie }) {
 
       <li className="sidebarListItem">
         <ReceiptLongRounded className="sidebarIcon" />
-        <span className="sidebarListItemText" to="/tutor">
+        <Link className="sidebarListItemText" to="/tutor">
           Subscription
-        </span>
+        </Link>
       </li>
 
       <li className="sidebarListItem">
         <PaymentsRounded className="sidebarIcon" />
-        <span className="sidebarListItemText" to="/tutor/payment">
+        <Link className="sidebarListItemText" to="/tutor/payment">
           Payment
-        </span>
+        </Link>
       </li>
 
       <li className="sidebarListItem">
         <HelpOutline className="sidebarIcon" />
-        <span className="sidebarListItemText" to="/tutor">
+        <Link className="sidebarListItemText" to="/tutor">
           FAQ
-        </span>
+        </Link>
       </li>
 
       <li className="sidebarListItem">
         <Event className="sidebarIcon" />
-        <span className="sidebarListItemText" to="/tutor">
+        <Link className="sidebarListItemText" to="/tutor">
           Events
-        </span>
+        </Link>
       </li>
     </>
   ) : (
@@ -91,23 +91,23 @@ function StudentSidebarList({ cookie }) {
 
       <li className="sidebarListItem">
         <PaymentsRounded className="sidebarIcon" />
-        <span className="sidebarListItemText" to="/student/payment">
+        <Link className="sidebarListItemText" to="/student/payment">
           Payment
-        </span>
+        </Link>
       </li>
 
       <li className="sidebarListItem">
         <HelpOutline className="sidebarIcon" />
-        <span className="sidebarListItemText" to="/student">
+        <Link className="sidebarListItemText" to="/student">
           FAQ
-        </span>
+        </Link>
       </li>
 
       <li className="sidebarListItem">
         <Event className="sidebarIcon" />
-        <span className="sidebarListItemText" to="/student">
+        <Link className="sidebarListItemText" to="/student">
           Events
-        </span>
+        </Link>
       </li>
     </>
   ) : (

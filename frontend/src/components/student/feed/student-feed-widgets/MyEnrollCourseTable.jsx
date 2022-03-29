@@ -43,7 +43,7 @@ export default function MyEnrollCourseTable({
     {
       field: "action",
       headerName: "Action",
-      width: 250,
+      width: 100,
       renderCell: (params) => {
         return (
           <>
@@ -84,9 +84,13 @@ export default function MyEnrollCourseTable({
             sorting: {
               sortModel: [{ field: "status", sort: "desc" }],
             },
+            pagination: {
+              pageSize: 10,
+            },
           }}
-          disableSelectionOnClick
+          rowsPerPageOptions={[5, 10]}
           checkboxSelection
+          disableSelectionOnClick
         />
       </div>
     </div>

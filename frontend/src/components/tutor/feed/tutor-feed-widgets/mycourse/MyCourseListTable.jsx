@@ -135,6 +135,12 @@ export default function MyCourseListTable({
           columns={columns}
           getRowId={(r) => r._id}
           disableSelectionOnClick
+          initialState={{
+            pagination: {
+              pageSize: 10,
+            },
+          }}
+          rowsPerPageOptions={[5, 10]}
           checkboxSelection
           setTrigger={setDisplayState}
         />
