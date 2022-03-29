@@ -13,6 +13,7 @@ const APIHandler = require("../../api/APIHandler");
 
 export default function TopRightMenu({
   userData,
+  setUserData,
   state,
   setState,
   cookie,
@@ -20,7 +21,8 @@ export default function TopRightMenu({
   removeCookie,
 }) {
   const [dropProfileState, setDropProfileState] = useState(false);
-  const [newBalance, setNewBalance] = useState(userData.balance);
+  // const [newBalance, setNewBalance] = useState(0);
+
   return (
     <>
       <div className="topRightContainer">
@@ -28,12 +30,11 @@ export default function TopRightMenu({
 
         <UserProfileBar
           userData={userData}
+          setUserData={setUserData}
           dropProfileState={dropProfileState}
           setDropProfileState={setDropProfileState}
-          newBalance={newBalance}
-          setNewBalance={setNewBalance}
-          cookie ={cookie}
-          setCookie = {setCookie}
+          cookie={cookie}
+          setCookie={setCookie}
         />
 
         <DropProfileMenu
@@ -52,17 +53,14 @@ export default function TopRightMenu({
 
 function UserProfileBar({
   userData,
+  setUserData,
   dropProfileState,
   setDropProfileState,
-  newBalance,
-  setNewBalance,
-  cookie
+  cookie,
 }) {
-  useEffect(() => {}, [newBalance]);
   return (
     <>
-      <div
-        className="topbarAvatarContainer">
+      <div className="topbarAvatarContainer">
         <button
           onClick={() => setDropProfileState(!dropProfileState)}
           className="topbarProfileButton"
@@ -72,15 +70,11 @@ function UserProfileBar({
       </div>
 
       <div className="topbarCreditContainer">
-        <span className="topbarCredit">credit: {newBalance}</span>
+        <span className="topbarCredit">credit: {userData.balance}</span>
         <button
           className="topBarAddMoneyButton"
           onClick={() =>
-            APIHandler.handleUpdateBalance(
-              cookie.user,
-              0,
-              setNewBalance
-            )
+            APIHandler.handleUpdateBalance(cookie.user, 0, setUserData)
           }
         >
           <AddCircle className="topBarAddMoneyButtonIcon" />

@@ -289,7 +289,7 @@ const handleApproveEnroll = async (isApproved, enrollId, push, setPush) => {
   }
 };
 
-const handleUpdateBalance = async (userId, type, setBalance) => {
+const handleUpdateBalance = async (userId, type, setUserData) => {
   if (type === 0) {
     const amountToChange = 1000;
     axios
@@ -299,28 +299,29 @@ const handleUpdateBalance = async (userId, type, setBalance) => {
         { withCredentials: true }
       )
       .then((response) => {
-        setBalance(response.data.balance);
+        setUserData({ balance: response.data.balance });
       });
   }
 };
 
-const showBalance = async (setUserData, userId) =>{
+const handleShowBalance = async (setUserData, userId) => {
   axios
-      .get(`http://localhost:3000/credit/user/balance/${userId}`, {
-        withCredentials: true,
-      })
-      .then((response) => {
-        setUserData({
-          fullname: response.data.fullname,
-          username: response.data.username,
-          balance: response.data.balance,
-          imgURL: response.data.imgURL,
-        });
-      })
-      .catch((err) => {
-        console.log(err);
+    .get(`http://localhost:3000/credit/user/balance/${userId}`, {
+      withCredentials: true,
+    })
+    .then((response) => {
+      console.log(response);
+      setUserData({
+        fullname: response.data.fullname,
+        username: response.data.username,
+        balance: response.data.balance,
+        imgURL: response.data.imgURL,
       });
-}
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
 
 export {
   handleLogin,
@@ -339,5 +340,5 @@ export {
   handleFetchEnroll,
   handleApproveEnroll,
   handleUpdateBalance,
-  showBalance
+  handleShowBalance,
 };

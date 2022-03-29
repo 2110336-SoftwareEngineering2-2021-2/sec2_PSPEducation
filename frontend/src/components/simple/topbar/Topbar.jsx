@@ -19,21 +19,18 @@ export default function Topbar({
   setCookie,
   removeCookie,
 }) {
-  const [userData, setUserData] = useState(
-    {
+  const [userData, setUserData] = useState({
     fullname: "",
     username: "",
     balance: 0,
     imgURL: "",
   });
   const [push, setPush] = useState(false);
-
-  useEffect(() =>{
+  useEffect(() => {
     setTimeout(() => {
-      APIHandler.showBalance(setUserData ,cookie.user)
+      APIHandler.handleShowBalance(setUserData, cookie.user);
     }, 500);
-    
-  }, [userData]);
+  }, []);
   // useEffect(()=>{
   //   console.log(userData.balance)
   // },[])
@@ -53,8 +50,6 @@ export default function Topbar({
   //     });
   // }
 
-  
-
   return (
     <>
       {state && <Navigate to="/login" />}
@@ -71,6 +66,7 @@ export default function Topbar({
           <div className="topRight">
             <TopRightMenu
               userData={userData}
+              setUserData={setUserData}
               state={state}
               setState={setState}
               cookie={cookie}
