@@ -236,9 +236,14 @@ const handleSubmitReport = async (
     });
 };
 
-const handleFetchEnroll = async (cookie, setCourse, setEnroll, enroll) => {
-  axios
-    .get(`http://localhost:3000/enroll/waiting/tutor/${cookie.user}`, {
+const handleFetchEnroll = async (cookie, setEnroll) => {
+  let path;
+  if (cookie.user_role === "student")
+    path = `http://localhost:3000/enroll/student/${cookie.user}`;
+  else path = `http://localhost:3000/enroll/waiting/tutor/${cookie.user}`;
+
+  await axios
+    .get(path, {
       withCredentials: true,
     })
     .then((response) => {

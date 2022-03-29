@@ -65,6 +65,25 @@ function SearchByPane({ searchTitle, course, push, setPush }) {
       <div className="searchCategoryContent">
         {course &&
           course.map((data, key) => {
+            if (
+              searchType === "Course" &&
+              (data.courseName === undefined ||
+                data.courseName.toLowerCase().search(keyword) === -1 )
+            ) {
+              return <div></div>;
+            } else if (
+              searchType === "Tutor" &&
+              (data.tutorName === undefined ||
+                data.tutorName.toLowerCase().search(keyword) === -1 )
+            )
+              return <div></div>;
+            else if (
+              searchType === "Subject" &&
+              (data.subject === undefined ||
+                data.subject.toLowerCase().search(keyword) === -1 )
+            )
+              return <div></div>;
+
             return (
               <SearchResultCard
                 key={key}

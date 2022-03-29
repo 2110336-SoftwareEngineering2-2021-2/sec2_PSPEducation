@@ -3,66 +3,62 @@ import "./descriptProfile.css";
 import axios from "axios";
 import { courseData } from "../../../dummyData";
 import { FormControl, Select, Box, InputLabel, MenuItem } from "@mui/material";
-  
-  // var APIHandler = require("../../../simple/api/APIHandler");
-  
-export default function DescriptProfile(props) {
-  console.log(props.data)
-  const { cookie, setCookie, removeCookie } = props
-  console.log(cookie)
-  // const { data } = courseData;
-  // console.log(data)
-  // const imgAvatarSrc = props.imgAvatarURL;
-  // const imgBgTutorSrc = props.imgBgURL;
+import { Link } from "react-router-dom";
 
-  // const [desc, setDesc] = useState({});
-  
-  // useEffect(() => { 
-  //   // if (firstFetch)
-  //   setDesc(courseData)
-  //   console.log(desc)
-  // }, [desc] )
+
+// var APIHandler = require("../../../simple/api/APIHandler");
+
+export default function DescriptProfile(props) {
+  // console.log(props.data.status==="unpublished")
+  const { cookie, setCookie, removeCookie, isWaiting, isApproved, enrollId, setPush, push } = props;
+console.log(isWaiting)
+  const handleEnroll = (event) => {
+    axios.post(`http://localhost:3000/enroll`, {
+      studentId: cookie.user,
+      courseId: props.data._id
+    }, {
+      withCredentials: true,
+    });
+    setPush(true);
+  };
+
+  const handleCancel = (event) => {
+    axios.patch(`http://localhost:3000/enroll/cancel/${enrollId}`, {}, {
+      withCredentials: true,
+    });
+    setPush(true);
+  };
+
+  return (
+    <>
     
-  // useEffect(() => {
-  //   // Update the document title using the browser API
-  //   console.log(updateSuccess);
-  // }, [updateSuccess]);
-  
-  // const handleUpdate = (event) => {
-  //    console.log(profile);
-  //   axios.patch(`http://localhost:3000/auth/user/${props.id}`, profile, {
-  //     withCredentials: true,
-  //   });
-  //   setUpdateSuccess(true);
-  // };
-  
-  // const handleChange = (prop) => (event) => {
-  //   setProfile({
-  //      ...profile,
-  //      [prop]: event.target.value,
-  //    });
-  //   //  console.log(profile);
-  //   };
-  
-   return (
-   <>
-      {/* <div className="manageProfileTitle">{profile}</div> */}
-       <div>
-         <img
-            src={courseData.imgURL}
-            alt=""
-            className="CourseImageContainer"
-          />
+      <div>
+        <img src={courseData.imgURL} alt="" className="CourseImageContainer" />
+      </div>
+      <label>
+        {" "}
+        Description:
+        <div className="courseDescription">{props.data.description}</div>
+      </label>
+      <Link to={`/${cookie.user_role}/search`}>
+      {cookie.user_role === "student" && isWaiting && (
+        <div>
+          <button className="courseCancelButton" onClick={handleCancel}>Cancel</button>
         </div>
-        <label> Description:
-         <div className="courseDescription">{props.data.description}</div>
-        </label>
-        {cookie.user_role=="student" && (<div>
-        <button className="courseButton">
-            Enroll
-          </button>
+      )}
+      {cookie.user_role === "student" && isApproved &&(
+        <div>
+          <button className="courseButton" disabled={true} >Approved</button>
         </div>
-        )}
-  </>);
+      )}
+      {cookie.user_role === "student" && !isApproved && !isWaiting && (
+        <div>
+          <button className="courseButton" disabled={props.data.status==="unpublished"} onClick={handleEnroll}>
+            Enroll</button>
+        </div>
+      )}
+      </Link>
+    </>
+  );
 }
   

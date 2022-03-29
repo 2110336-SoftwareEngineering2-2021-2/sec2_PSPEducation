@@ -39,3 +39,25 @@
   transition: all 0.3s ease;
   cursor: pointer;
 }
+.courseButton:disabled,
+.courseButton[disabled]{
+  /* border: 1px solid #999999; */
+  background-color: #5d6185;
+  color: #b9c0cc;
+  cursor: default;
+}
+.courseCancelButton {
+  width: 400px;
+  font-size: 25px;
+  font-weight: 500;
+  color: white;
+  border: none;
+  padding: 15px 20px;
+  margin-top: 10px;
+  margin-bottom: 15px;
+  border-radius: 30px;
+  padding: 8px 10px;
+  background-color: rgb(233, 86, 86);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
