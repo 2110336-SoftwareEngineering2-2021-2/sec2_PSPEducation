@@ -51,7 +51,26 @@ export class CreditService {
       throw new BadRequestException("This user ID isn't valid");
     }
 
-    return await this.creditHistoryModel.find({userId: userId}).sort({dateTimeCreated: -1})
+    const user = await this.userService.findById(userId)
+    const creditHistories = await this.creditHistoryModel.find({userId: userId}).sort({dateTimeCreated: -1})
+
+    const response = [];
+    for (let i=0; i<creditHistories.length; i++){
+      let c = creditHistories[i];
+      let c2: CreateCreditHistoryDto;
+      c2 = {...c._doc, userName: user.username, courseName: ''}
+      if (c.courseId){
+        const course = await this.courseService.findById(c.courseId);
+        c2 = {
+          ...c._doc,
+          username: user.username,
+          courseName: course.courseName,
+        }
+      }
+      response.push(c2);
+    }
+    console.log(response)
+    return response
   }
 
   async changeBalanceByUserId(userId: string, body: ChangeCreditByUserIdDto){

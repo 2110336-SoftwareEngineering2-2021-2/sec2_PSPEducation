@@ -3,5 +3,7 @@ export class CreateCreditHistoryDto {
   type: number;
   status: string;
   courseId: string;
+  courseName: string;
   amount: number;
+  userName: string;
 }
