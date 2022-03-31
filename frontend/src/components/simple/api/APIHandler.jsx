@@ -18,17 +18,16 @@ const handleLogin = async (
   const userURL = `http://localhost:3000/auth/signin`;
   const adminURL = `http://localhost:3000/auth/admin/signin`;
 
-  var requestURL = position === "admin" ? adminURL : userURL;
+  let requestURL = position === "admin" ? adminURL : userURL;
 
   axios
     .post(requestURL, user, {
       withCredentials: true,
     })
     .then((response) => {
-      const data = response.data;
-      console.log(response);
-      setCookie("user", data.id);
-      setCookie("user_role", data.type);
+      console.log(response.data);
+      setCookie("user", response.data.id);
+      setCookie("user_role", response.data.type);
       setState(true);
     })
     .catch((e) => {
@@ -136,10 +135,14 @@ const handleCreateNewCourse = async (course, setCreateSuccess) => {
 
 const handleUpdateCourse = async (values, courseId, setUpdateSuccess) => {
   console.log(values);
-  await axios.patch(`http://localhost:3000/course/update/${courseId}`, values, {
-    withCredentials: true,
-  });
-  setUpdateSuccess(true);
+  await axios
+    .patch(`http://localhost:3000/course/update/${courseId}`, values, {
+      withCredentials: true,
+    })
+    .catch((e) => {
+      console.log(e);
+    });
+  // setUpdateSuccess(true);
 };
 
 const handleFetchTutorValidCard = async (tutorValid, setTutorValid) => {

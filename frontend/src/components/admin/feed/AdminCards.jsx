@@ -3,7 +3,6 @@ import "./adminCards.css";
 import TutorValidationCard from "./admin-card-components/TutorValidationCard";
 import UserReportCard from "./admin-card-components/UserReportCard";
 import TutorCardPopup from "./admin-card-components/TutorCardPopup";
-// import { tutorValidationCardData, reportCardData } from "../../../dummyData";
 import { CloseOutlined } from "@mui/icons-material";
 import { Outlet } from "react-router-dom";
 
@@ -41,12 +40,11 @@ export function AllCards({ cookie, setCookie, removeCookie }) {
 
   const [tutorValid, setTutorValid] = useState(null);
   const [report, setReport] = useState(null);
-
   const [push, setPush] = useState(false);
 
-  useEffect(() => {
-    console.log("tutorValid:", tutorValid);
-  }, [tutorValid]);
+  // useEffect(() => {
+  //   console.log("tutorValid:", tutorValid);
+  // }, [tutorValid]);
 
   // useEffect(() => {
   //   console.log("report:", report);
@@ -145,9 +143,9 @@ export function TutorValidationCards({ cookie, setCookie, removeCookie }) {
 
   const [push, setPush] = useState(false);
 
-  useEffect(() => {
-    console.log("tutorValid:", tutorValid);
-  }, [tutorValid]);
+  // useEffect(() => {
+  //   console.log("tutorValid:", tutorValid);
+  // }, [tutorValid]);
 
   useEffect(() => {
     setTutorValid(null);

@@ -228,7 +228,7 @@ export const listCourseRows = [{
 
 
 export const courseData = {
-  imgURL: "https://source.unsplash.com/random/800×300/?currency",
+  imgURL: "https://source.unsplash.com/random/800×300/?math",
   location: "asdfasdfgon",
   learningType: "online",
   status: "unpublished",

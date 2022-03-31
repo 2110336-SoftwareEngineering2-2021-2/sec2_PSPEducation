@@ -40,7 +40,7 @@ export default function UpdateCourseCard({
     setValues(data);
     setStartDate(data.courseStartDate);
     setEndDate(data.courseFinishDate);
-    console.log(values);
+    console.log(data);
   }, [data]);
 
   useEffect(() => {
@@ -57,7 +57,6 @@ export default function UpdateCourseCard({
       ...values,
       [e]: event.target.value,
     });
-    console.log(data);
     console.log(values);
   };
 

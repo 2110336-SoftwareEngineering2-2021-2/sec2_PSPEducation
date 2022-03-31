@@ -33,7 +33,7 @@ export default function MyCourseListTable({
     status: "",
     learningType: "",
   });
-  console.log(course);
+  // console.log(course);
   useEffect(() => {
     APIHandler.handleFetchCourse(cookie, setCourse);
   }, [push]);
@@ -63,13 +63,13 @@ export default function MyCourseListTable({
               className="courseEditButton"
               onClick={() => {
                 setDisplayState(true);
-                setDataCourse({ id: params.id });
+                setDataCourse(params);
+                setCourseID(params.id);
                 APIHandler.handleGetCourseByID(
                   params.id,
                   setDataCourse,
                   setCourseID
                 );
-                // console.log(params.id);
               }}
             >
               Edit
@@ -158,7 +158,7 @@ export default function MyCourseListTable({
 }
 
 function EditCoursePopup(props) {
-  // console.log(props)
+  console.log(props);
   return props.trigger ? (
     <div className="showEditCoursePopup">
       <div className="showEditCoursePopupContainer">
@@ -169,7 +169,7 @@ function EditCoursePopup(props) {
           <CloseOutlined />
         </button>
         <UpdateCourseCard
-          courseId={props._id}
+          courseId={props.id}
           data={props.data}
           setTrigger={props.setTrigger}
           setData={props.setData}
