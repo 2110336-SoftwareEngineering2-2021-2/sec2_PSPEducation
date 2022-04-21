@@ -14,6 +14,7 @@ import { CreditService } from 'src/credit/credit.service';
 import { CreateCreditHistoryDto } from 'src/credit/dto/create-credit-history.dto';
 import { TransactionType } from 'src/constant'
 import { UserService } from 'src/user/user.service';
+import { CourseService } from 'src/course/course.service';
 
 const STATUS_WAITING = 'waiting';
 @Injectable()
@@ -22,16 +23,16 @@ export class EnrollService {
     @InjectModel('enrolls') private readonly enrollModel: Model<any>,
     @InjectModel('courses') private readonly courseModel: Model<any>,
     private creditService: CreditService,
-    private userService: UserService
+    private userService: UserService,
+    private courseService: CourseService
   ) {}
 
   async createEnroll(body: CreateEnrollDto) {
     const course = await this.courseModel.findById(body.courseId);
-    if (course.status === 'unpublished') {
-      throw new BadRequestException('This course is not published yet.');
+    if (!await this.courseService.checkIsCourseAvailableToEnroll(body.courseId)) {
+      throw new BadRequestException("this course is not available to enroll");
     }
     const enroll = new this.enrollModel({ ...body, status: STATUS_WAITING });
-    // await enroll.save()
     const credit = await this.creditService.changeBalanceByUserId(body.studentId, {amountToChange: -course.price, type: TransactionType.STUDENT_ENROLL_COURSE, courseId: course.id})
     enroll.paymentHistoryId = credit.creditHistoryId
     await enroll.save().catch(function (error) {

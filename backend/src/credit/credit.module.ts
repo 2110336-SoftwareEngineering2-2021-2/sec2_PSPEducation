@@ -1,7 +1,7 @@
 import { forwardRef, Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { CourseModule } from 'src/course/course.module';
-import { UserModule } from 'src/user/user.module';
+import { CourseModule } from '../course/course.module';
+import { UserModule } from '../user/user.module';
 import { CreditController } from './credit.controller';
 import { CreditSchema } from './credit.schema';
 import { CreditService } from './credit.service';

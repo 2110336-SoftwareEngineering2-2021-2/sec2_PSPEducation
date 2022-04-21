@@ -5,9 +5,8 @@ import { ChangeCreditHistoryStatusByIdDto } from './dto/change-credit-history-st
 import * as mongoose from 'mongoose'
 import { ChangeCreditByUserIdDto } from './dto/change-credit-by-userId.dto';
 import { CreateCreditHistoryDto } from './dto/create-credit-history.dto';
-import { CourseService } from 'src/course/course.service';
-import { UserService } from 'src/user/user.service';
-import { TransactionType } from 'src/constant'
+import { UserService } from '../user/user.service';
+import { TransactionType } from '../constant'
 import { ChangeBalanceReponseDto } from './dto/change-balance-reponse.dto';
 
 @Injectable()
@@ -15,7 +14,6 @@ export class CreditService {
   constructor(
     @InjectModel('credits') private readonly creditModel: Model<any>,
     @InjectModel('creditHistories') private readonly creditHistoryModel: Model<any>,
-    private courseService: CourseService,
     @Inject(forwardRef(() => UserService))
     private userService: UserService
   ) {}
@@ -73,9 +71,6 @@ export class CreditService {
       if (body.amountToChange > 0 || !!!body.courseId) {
         throw new BadRequestException("Cannot buy course with positive money change / no course Id given");
       } 
-      if (!await this.courseService.checkIsCourseAvailableToEnroll(body.courseId)) {
-        throw new BadRequestException("this course is not available to enroll");
-      }
     }
     if (body.type === TransactionType.TUTOR_ACCEPT_STUDENT && (body.amountToChange < 0 || !!!body.courseId)) {
       throw new BadRequestException("tutor cannot accept negative money / no cousr Id");
