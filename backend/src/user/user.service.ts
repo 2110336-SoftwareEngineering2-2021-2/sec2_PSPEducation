@@ -89,7 +89,7 @@ export class UserService {
       throw new BadRequestException("Incorrect Password");
     }
 
-    if (body.newPassword !== body.confirmNewPassword) {
+    if (body.confirmNewPassword !== body.newPassword) {
       throw new BadRequestException("Password confirmation doesn't match");
     }
 

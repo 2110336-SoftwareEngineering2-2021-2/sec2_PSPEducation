@@ -11,6 +11,6 @@ export class UpdateUserPasswordDto {
   newPassword: string;
 
   @IsString()
-  @ApiProperty({type: String, description: "comfirmNewPassword"})
-  comfirmNewPassword: string;
+  @ApiProperty({type: String, description: "confirmNewPassword"})
+  confirmNewPassword: string;
 }
