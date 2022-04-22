@@ -1,0 +1,63 @@
+:root {
+    --main-theme: rgb(87, 112, 221);
+    --main-white: #f0f8ff;
+    --main-border: rgb(116, 135, 219);
+}
+  
+.notificationItemWrapper {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--main-white);
+    border-radius: 20px;
+    border: var(--main-border) 3px solid;
+    font-size: 14px;
+    height: auto;
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0px;
+    z-index: 999;
+}
+
+.notificationHeader{
+    font-weight: 400;
+}
+
+.notificationBody{
+    font-weight: 300;
+}
+  
+.dropNotificationList {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: black !important;
+}
+  
+.dropNotificationItem {
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+  
+.dropNotificationItem button {
+    font-size: 16px;
+    border: none;
+    background: none;
+    outline: none;
+    cursor: pointer;
+}
+  
+/* .dropNotificationItem:hover {
+    border-radius: 10px;
+    background-color: #d1d8df;
+    border: var(--main-theme) 1.5px solid;
+} */
+
+.dropNotificationItemLink {
+    text-decoration: none;
+    color: black;
+}
+  

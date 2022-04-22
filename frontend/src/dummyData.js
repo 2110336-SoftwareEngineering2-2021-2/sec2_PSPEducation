@@ -244,3 +244,12 @@ export const courseData = {
   subject: "dsdfafdd",
   courseName:"mmmmmmmmmmmmmmmm"
 }
+
+
+
+export const notificationData = {
+  // id:''
+  header: 'FactHuaKu..',
+  body:'HeIsBadNews',
+  dateTimeCreated: ''
+}

@@ -8,6 +8,7 @@ import {
 } from "@mui/icons-material";
 
 import DropProfileMenu from "../dropProfileMenu/DropProfileMenu";
+import DropNotificationPane from "../dropNotificationPane/DropNotificationPane";
 
 const APIHandler = require("../../api/APIHandler");
 
@@ -21,10 +22,26 @@ export default function TopRightMenu({
   removeCookie,
 }) {
   const [dropProfileState, setDropProfileState] = useState(false);
+  const [dropNotificationState, setDropNotificationState] = useState(false);
   return (
     <>
       <div className="topRightContainer">
-        <IconBar />
+        {/* <IconBar /> */}
+
+        <NotificationIcon
+          trigger={dropNotificationState}
+          setTrigger={setDropNotificationState}
+          cookie={cookie}
+          setCookie={setCookie}
+        />
+
+        <DropNotificationPane
+          trigger={dropNotificationState}
+          setTrigger={setDropNotificationState}
+          cookie={cookie}
+          setCookie={setCookie}
+          removeCookie={removeCookie}
+        />
 
         <UserProfileBar
           userData={userData}
@@ -45,6 +62,24 @@ export default function TopRightMenu({
           removeCookie={removeCookie}
         />
       </div>
+    </>
+  );
+}
+
+function NotificationIcon({ trigger, setTrigger }) {
+  return (
+    <>
+      <button
+        onClick={() => setTrigger(!trigger)}
+        className="topbarProfileButton"
+      >
+        <div className="topbarIconContainer">
+          <div className="topbarIcon">
+            <NotificationsNoneOutlined />
+          </div>
+          <span className="topIconBadge">8</span>
+        </div>
+      </button>
     </>
   );
 }
@@ -90,23 +125,23 @@ function UserProfileBar({
 function IconBar() {
   return (
     <>
-      <div className="topbarIconContainer">
+      {/* <div className="topbarIconContainer">
         <div className="topbarIcon">
           <AppsOutlined />
         </div>
-      </div>
-      <div className="topbarIconContainer">
+      </div> */}
+      {/* <div className="topbarIconContainer">
         <div className="topbarIcon">
           <EmailOutlined />
         </div>
         <span className="topIconBadge">3</span>
-      </div>
-      <div className="topbarIconContainer">
+      </div> */}
+      {/* <div className="topbarIconContainer">
         <div className="topbarIcon">
           <NotificationsNoneOutlined />
         </div>
         <span className="topIconBadge">8</span>
-      </div>
+      </div> */}
     </>
   );
 }

@@ -7,7 +7,8 @@
 .dropProfileMenu {
   position: absolute;
   top: 63px;
-  transform: translateX(40%);
+  /* right: 50px; */
+  transform: translateX(25%);
   background-color: var(--main-white);
   border-radius: 20px;
   border: var(--main-border) 3px solid;

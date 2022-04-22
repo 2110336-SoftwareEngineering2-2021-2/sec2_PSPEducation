@@ -340,6 +340,45 @@ const handleShowBalance = async (setUserData, userId, push, setPush) => {
   setPush(!push);
 };
 
+const handleGetNotification = async (setNotificationData, userId) => {
+  await axios
+    .get(`http://localhost:3000/notification/user/${userId}`, {
+      withCredentials: true,
+    })
+    .then((response) => {
+      // console.log(response);
+      setNotificationData(response.data);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+
+const handleReadNotification = async (
+  setNotificationData,
+  notificationId,
+  push,
+  setPush
+) => {
+  await axios
+    .patch(
+      `http://localhost:3000/notification/${notificationId}`,
+      {
+        withCredentials: true,
+      },
+      {
+        dummy: "",
+      }
+    )
+    .then((response) => {
+      // console.log(response);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+  setPush(!push);
+};
+
 export {
   handleLogin,
   handleLogout,
@@ -360,4 +399,6 @@ export {
   handleUpdateBalance,
   handleFetchPayment,
   handleShowBalance,
+  handleGetNotification,
+  handleReadNotification,
 };
