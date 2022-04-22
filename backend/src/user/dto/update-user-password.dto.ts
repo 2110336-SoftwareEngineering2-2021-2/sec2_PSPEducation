@@ -1,12 +1,16 @@
+import { ApiProperty } from "@nestjs/swagger";
 import { IsString } from "class-validator";
 
 export class UpdateUserPasswordDto {
   @IsString()
+  @ApiProperty({type: String, description: "oldPassword"})
   oldPassword: string;
 
   @IsString()
+  @ApiProperty({type: String, description: "newPassword"})
   newPassword: string;
 
   @IsString()
-  confirmNewPassword: string;
+  @ApiProperty({type: String, description: "comfirmNewPassword"})
+  comfirmNewPassword: string;
 }

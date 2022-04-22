@@ -4,6 +4,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import * as mongoose from 'mongoose'
 import { UpdateReportStatusDto } from './dto/update-report-status.dto'
+import { NotificationService } from 'src/notification/notification.service';
 
 process.on('unhandledRejection', (reason, p) => {
   // console.log('Unhandled Rejection at: Promise', p, 'reason:', reason);
@@ -14,7 +15,8 @@ process.on('unhandledRejection', (reason, p) => {
 export class ReportService {
   constructor(
     @InjectModel('reports') private readonly reportModel: Model<any>,
-    @InjectModel('users') private readonly userModel: Model<any>
+    @InjectModel('users') private readonly userModel: Model<any>,
+    private notificationService: NotificationService
   ) {}
 
   async createReport(body: CreateReportDto){
@@ -70,7 +72,6 @@ export class ReportService {
       }
       response.push(e2)
     }
-
     return response
   }
 
@@ -95,6 +96,14 @@ export class ReportService {
     }
     report.status = body.status
     report.dateTimeUpdated = Date.now()
+    // create notification
+    await this.notificationService.createNotification({
+      userId: report.userId,
+      header: `Report Status Updated`,
+      body: `Your report "${report.title}" has been ${report.status} by admin on ${report.dateTimeUpdated}.`,
+      type: "R1",
+    })
+
     return await report.save()
   }
 }

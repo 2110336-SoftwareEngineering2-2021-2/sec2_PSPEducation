@@ -15,6 +15,8 @@ import { CreditService } from 'src/credit/credit.service';
 import { CreateCreditHistoryDto } from 'src/credit/dto/create-credit-history.dto';
 import { TransactionType } from 'src/constant'
 import { UserService } from 'src/user/user.service';
+import { CourseService } from 'src/course/course.service';
+import { NotificationService } from 'src/notification/notification.service';
 
 const STATUS_WAITING = 'waiting';
 @Injectable()
@@ -23,20 +25,29 @@ export class EnrollService {
     @InjectModel('enrolls') private readonly enrollModel: Model<any>,
     @InjectModel('courses') private readonly courseModel: Model<any>,
     private creditService: CreditService,
-    private userService: UserService
+    private userService: UserService,
+    private courseService: CourseService,
+    private notificationService: NotificationService
   ) {}
 
   async createEnroll(body: CreateEnrollDto) {
     const course = await this.courseModel.findById(body.courseId);
-    if (course.status === 'unpublished') {
-      throw new BadRequestException('This course is not published yet.');
+    const student = await this.userService.findById(body.studentId)
+    if (!await this.courseService.checkIsCourseAvailableToEnroll(body.courseId)) {
+      throw new BadRequestException("this course is not available to enroll");
     }
     const enroll = new this.enrollModel({ ...body, status: STATUS_WAITING });
-    // await enroll.save()
     const credit = await this.creditService.changeBalanceByUserId(body.studentId, {amountToChange: -course.price, type: TransactionType.STUDENT_ENROLL_COURSE, courseId: course.id})
     enroll.paymentHistoryId = credit.creditHistoryId
     await enroll.save().catch(function (error) {
       throw new BadRequestException({ ...error, message: 'duplicate columns' });
+    })
+    // create notification
+    await this.notificationService.createNotification({
+      userId: course.tutorId,
+      header: `New enrollment request incoming`,
+      body: `${student.firstname} ${student.lastname} has requested to enroll in your course: ${course.courseName}.`,
+      type: "E1"
     })
     return enroll
   }
@@ -159,8 +170,16 @@ export class EnrollService {
     } else if (body.status === 'rejected') {
       await this.creditService.changeCreditHistoryStatusById(enroll.paymentHistoryId, {status: 'rejected by tutor'});
     }
-
     enroll.dateTimeUpdated = Date.now();
+    // create notification
+    await this.notificationService.createNotification({
+      userId: enroll.studentId,
+      header: `Your enrollment request is ${body.status}.`,
+      body: `Your enrollment request to "${course.courseName}" has been ${body.status} on ${enroll.dateTimeUpdated}`,
+      type: "E2",
+      description: {courseId: enroll.courseId}
+    })
+
     return await enroll.save().catch(function (error) {
       throw new BadRequestException({ ...error, message: 'duplicate columns' });
     });

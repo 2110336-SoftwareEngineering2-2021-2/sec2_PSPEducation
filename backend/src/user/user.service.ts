@@ -2,10 +2,10 @@ import { HttpException, Injectable, NotFoundException, BadRequestException, Inje
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import * as mongoose from 'mongoose'
-import { CreateRegisterDto } from 'src/register/dto/create-register.dto';
+import { CreateRegisterDto } from '../register/dto/create-register.dto';
 import { User } from './user.schema';
 import { UpdateUserPasswordDto } from './dto/update-user-password.dto';
-import { CreditService } from 'src/credit/credit.service';
+import { CreditService } from '../credit/credit.service';
 
 process.on('unhandledRejection', (reason, p) => {
   // console.log('Unhandled Rejection at: Promise', p, 'reason:', reason);

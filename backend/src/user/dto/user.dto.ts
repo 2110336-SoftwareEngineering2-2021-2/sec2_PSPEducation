@@ -1,7 +1,9 @@
+import { ApiProperty } from "@nestjs/swagger";
 import { Expose } from "class-transformer";
 
 export class UserDto {
   @Expose()
+  @ApiProperty({type: String, description: "id"})
   id: string;
 
   @Expose()

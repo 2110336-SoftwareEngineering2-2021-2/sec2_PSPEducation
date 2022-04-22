@@ -5,7 +5,7 @@ import { UserSchema } from './user.schema';
 import { UserService } from './user.service';
 import { AuthService } from './auth.service';
 import { CurrentUserMiddleware } from './middlewares/current-user.middleware';
-import { CreditModule } from 'src/credit/credit.module';
+import { CreditModule } from '../credit/credit.module';
 
 @Module({
   imports: [
