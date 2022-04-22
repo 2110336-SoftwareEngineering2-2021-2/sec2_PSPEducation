@@ -1,1 +1,1 @@
-{"options":{},"indexes":[{"v":2,"key":{"_id":1},"name":"_id_"}],"uuid":"bdfabb858e9c4663afc7fc250c18a3a5"}
+{"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_"}],"uuid":"f2940cee17f940dcb55f70937e99baad","collectionName":"credits","type":"collection"}
