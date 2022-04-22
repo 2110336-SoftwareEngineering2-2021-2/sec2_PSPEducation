@@ -14,18 +14,7 @@ export default function DropNotificationPane({
   //   const [notification, setNotification] = useState(null);
   const [push, setPush] = useState(false);
 
-  const [notificationData, setNotificationData] = useState([
-    {
-      _id: "",
-      header: "",
-      body: "",
-      type: "",
-      description: null,
-      isRead: true,
-      userId: "",
-      notificationID: "",
-    },
-  ]);
+  const [notificationData, setNotificationData] = useState(null);
 
   let notification = [
     {
@@ -51,7 +40,7 @@ export default function DropNotificationPane({
   ];
 
   useEffect(() => {
-    // APIHandler.handleGetNotification(setNotificationData, cookie.user);
+    APIHandler.handleGetNotification(setNotificationData, cookie.user);
   }, [push]);
 
   return trigger ? (
@@ -59,8 +48,8 @@ export default function DropNotificationPane({
       <span className="paneTitle">Notification</span>
       <div className="notificationList">
         {/* <div className="dropNotificationItem"> */}
-        {notification &&
-          notification.map((data, key) => {
+        {notificationData &&
+          notificationData.map((data, key) => {
             return (
               <NotificationItem
                 key={key}
@@ -76,7 +65,6 @@ export default function DropNotificationPane({
               />
             );
           })}
-        {/* </div> */}
       </div>
     </div>
   ) : (
