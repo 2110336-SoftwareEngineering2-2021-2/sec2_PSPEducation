@@ -57,8 +57,8 @@ export class User {
   educationalLevel: number;
 
   @Prop()
-  @ApiProperty({type: String, description: "picture"})
-  picture: string; 
+  @ApiProperty({type: [String], description: "picture"})
+  picture: string[]; 
 
   @Prop({unique: true})
   @ApiProperty({type: String, description: "citizenId"})
