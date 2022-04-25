@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css2?family=Festive&family=Poppins:wght@300;400;500;600;700&family=Source+Sans+Pro:wght@200;300;400;600;700;900&display=swap");
 :root {
     --main-theme: rgb(87, 112, 221);
     --main-white: #f0f8ff;
@@ -23,7 +24,7 @@
 .paneTitle{
     margin-left: 5px;
     font-size: 16px;
-    font-weight: 500;
+    font-weight: 700;
 }
   
 .notificationList {

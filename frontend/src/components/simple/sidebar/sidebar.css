@@ -50,14 +50,14 @@
     margin-right: 15px;
 }
 
-.sidebarButton {
+/* .sidebarButton {
     width: 150px;
     border: none;
     padding: 10px;
     border-radius: 5px;
     font-weight: 500;
     cursor: pointer;
-}
+} */
 
 .sidebarHr {
     margin: 20px 0;

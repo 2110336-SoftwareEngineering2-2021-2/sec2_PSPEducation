@@ -14,11 +14,7 @@ import MyCourseListTable from "./tutor-feed-widgets/mycourse/MyCourseListTable";
 import MyEnrollListTable from "./tutor-feed-widgets/enrreq/MyEnrollListTable";
 
 export default function TutorFeed() {
-  return (
-    <>
-      <Outlet />
-    </>
-  );
+  return <Outlet />;
 }
 
 export function MyCourseList({ cookie, setCookie, removeCookie }) {
@@ -117,50 +113,50 @@ function ViewEnrollPopup(props) {
   );
 }
 
-export function EnrollReqComp() {
-  return (
-    <div className="tutorFeedWrapper">
-      <div className="tutorFeedCard">
-        <div className="tutorFeedTitle">
-          <div className="tutorFeedTitleLeft">
-            <div className="tutorFeedTitleName">Enrollment Requests</div>
-            <div className="tutorFeedTitleBadge">{apptData.length}</div>
-          </div>
+// export function EnrollReqComp() {
+//   return (
+//     <div className="tutorFeedWrapper">
+//       <div className="tutorFeedCard">
+//         <div className="tutorFeedTitle">
+//           <div className="tutorFeedTitleLeft">
+//             <div className="tutorFeedTitleName">Enrollment Requests</div>
+//             <div className="tutorFeedTitleBadge">{apptData.length}</div>
+//           </div>
 
-          <div className="tutorFeedTitleRight">
-            <TaskOutlined className="tutorFeedTitleIcon" />
-          </div>
-        </div>
+//           <div className="tutorFeedTitleRight">
+//             <TaskOutlined className="tutorFeedTitleIcon" />
+//           </div>
+//         </div>
 
-        <div className="tutorFeedWidgetWrapper">
-          <EnrReq />
-        </div>
-      </div>
-    </div>
-  );
-}
+//         <div className="tutorFeedWidgetWrapper">
+//           <EnrReq />
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }
 
-export function MsgReqComp() {
-  return (
-    <div className="tutorFeed">
-      <div className="tutorFeedWrapper">
-        <div className="tutorFeedCard">
-          <div className="tutorFeedTitle">
-            <div className="tutorFeedTitleLeft">
-              <div className="tutorFeedTitleName">Message Request</div>
-              <div className="tutorFeedTitleBadge">{msgData.length}</div>
-            </div>
+// export function MsgReqComp() {
+//   return (
+//     <div className="tutorFeed">
+//       <div className="tutorFeedWrapper">
+//         <div className="tutorFeedCard">
+//           <div className="tutorFeedTitle">
+//             <div className="tutorFeedTitleLeft">
+//               <div className="tutorFeedTitleName">Message Request</div>
+//               <div className="tutorFeedTitleBadge">{msgData.length}</div>
+//             </div>
 
-            <div className="tutorFeedTitleRight">
-              <ForumOutlined className="tutorFeedTitleIcon" />
-            </div>
-          </div>
+//             <div className="tutorFeedTitleRight">
+//               <ForumOutlined className="tutorFeedTitleIcon" />
+//             </div>
+//           </div>
 
-          <div className="tutorFeedWidgetWrapper">
-            <MsgReq />
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
+//           <div className="tutorFeedWidgetWrapper">
+//             <MsgReq />
+//           </div>
+//         </div>
+//       </div>
+//     </div>
+//   );
+// }

@@ -326,7 +326,6 @@ const handleShowBalance = async (setUserData, userId, push, setPush) => {
       withCredentials: true,
     })
     .then((response) => {
-      // console.log(response);
       setUserData({
         fullname: response.data.fullname,
         username: response.data.username,
@@ -355,7 +354,6 @@ const handleGetNotification = async (setNotificationData, userId) => {
 };
 
 const handleReadNotification = async (
-  setNotificationData,
   notificationId,
   push,
   setPush
@@ -363,11 +361,9 @@ const handleReadNotification = async (
   await axios
     .patch(
       `http://localhost:3000/notification/${notificationId}`,
+      {},
       {
         withCredentials: true,
-      },
-      {
-        dummy: "",
       }
     )
     .then((response) => {

@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { DataGrid } from "@mui/x-data-grid";
-import axios from "axios";
 import "./myEnrollListTable.css";
 
 var APIHandler = require("../../../../simple/api/APIHandler");
@@ -70,7 +69,10 @@ export default function MyEnrollListTable({ cookie, setCookie, removeCookie }) {
 
   return (
     <div className="mainEnroll">
-      <div className="mainEnrollTitle">Enrollment Request</div>
+      <div className="mainEnrollTopper">
+        <div className="mainEnrollTitle">Enrollment Request</div>
+      </div>
+
       <div className="mainEnrollTable">
         <DataGrid
           rows={enroll}

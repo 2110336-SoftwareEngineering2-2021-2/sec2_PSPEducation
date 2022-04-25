@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./myEnrollCourseTable.css";
-import { CloseOutlined, AddCircle } from "@mui/icons-material";
 import { DataGrid } from "@mui/x-data-grid";
-import { Link } from "react-router-dom";
 
 var APIHandler = require("../../../simple/api/APIHandler");
 
@@ -12,7 +10,6 @@ export default function MyEnrollCourseTable({
   removeCookie,
 }) {
   const [push, setPush] = useState(false);
-
   const [enroll, setEnroll] = useState(null);
 
   useEffect(() => {
@@ -71,7 +68,7 @@ export default function MyEnrollCourseTable({
   return (
     <div className="mainEnroll">
       <div className="mainEnrollTopper">
-        <div className="mainEnrollTitle">List Enroll</div>
+        <div className="mainEnrollTitle">Course Enrollment</div>
       </div>
 
       <div className="mainEnrollTable">
@@ -79,7 +76,7 @@ export default function MyEnrollCourseTable({
           autoHeight
           rows={enroll}
           columns={columns}
-          getRowId={(r) => r._id}
+          getRowId={(row) => row._id}
           initialState={{
             sorting: {
               sortModel: [{ field: "status", sort: "desc" }],

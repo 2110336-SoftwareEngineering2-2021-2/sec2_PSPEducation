@@ -22,7 +22,7 @@ import { Routes, Route } from "react-router-dom";
 import {
   MyCourseList,
   MyEnrollList,
-  MsgReqComp,
+  // MsgReqComp,
 } from "./components/tutor/feed/TutorFeed";
 import { MyEnrollCourseList } from "./components/student/feed/StudentFeed";
 import {
@@ -155,7 +155,7 @@ function App() {
               />
             }
           />
-          <Route
+          {/* <Route
             path="msgreq"
             element={
               <MsgReqComp
@@ -164,7 +164,7 @@ function App() {
                 removeCookie={removeCookie}
               />
             }
-          />
+          /> */}
           <Route
             path="search"
             element={

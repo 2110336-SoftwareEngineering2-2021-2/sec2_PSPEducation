@@ -11,6 +11,7 @@ import {
   PaymentsRounded,
   HelpOutline,
   Event,
+  Report,
 } from "@mui/icons-material";
 import { Link } from "react-router-dom";
 
@@ -73,6 +74,13 @@ function TutorSidebarList({ cookie }) {
           Events
         </Link>
       </li>
+
+      <li className="sidebarListItem">
+        <Report className="sidebarIcon" />
+        <Link className="sidebarListItemText" to="/report">
+          Report
+        </Link>
+      </li>
     </>
   ) : (
     ""
@@ -107,6 +115,13 @@ function StudentSidebarList({ cookie }) {
         <Event className="sidebarIcon" />
         <Link className="sidebarListItemText" to="/student">
           Events
+        </Link>
+      </li>
+
+      <li className="sidebarListItem">
+        <Report className="sidebarIcon" />
+        <Link className="sidebarListItemText" to="/report">
+          Report
         </Link>
       </li>
     </>

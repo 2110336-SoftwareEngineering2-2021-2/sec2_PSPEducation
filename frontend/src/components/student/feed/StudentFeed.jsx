@@ -8,13 +8,7 @@ import { myCourseData, apptData } from "../../../dummyData";
 import { Outlet } from "react-router-dom";
 
 export default function StudentFeed({ cookie, setCookie, removeCookie }) {
-  return (
-    <div className="feed">
-      <div className="feedWrapper">
-        <Outlet />
-      </div>
-    </div>
-  );
+  return <Outlet />;
 }
 
 export function MyEnrollCourseList({ cookie, setCookie, removeCookie }) {
