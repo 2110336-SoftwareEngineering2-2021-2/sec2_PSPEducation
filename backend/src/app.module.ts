@@ -8,7 +8,7 @@ import { CreditModule } from './credit/credit.module';
 import { NotificationModule } from './notification/notification.module';
 
 @Module({
-  imports: [RegisterModule, CourseModule, MongooseModule.forRoot('mongodb://localhost:27017/whereismytutor'), EnrollModule, ReportModule, CreditModule, NotificationModule],
+  imports: [RegisterModule, CourseModule, MongooseModule.forRoot('mongodb://admin:1234@db:27017/whereismytutor?authSource=admin'), EnrollModule, ReportModule, CreditModule, NotificationModule],
   controllers: [],
   providers: [],
 })

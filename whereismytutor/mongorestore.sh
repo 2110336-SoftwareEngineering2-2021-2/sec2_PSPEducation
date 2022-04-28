@@ -1,0 +1,1 @@
+mongorestore -d whereismytutor ./docker-entrypoint-initdb.d/db-dump
