@@ -29,6 +29,9 @@ export default function NotificationItem({
     case "E2":
       link = `/course/${description.courseId}`;
       break;
+    // case "R1":
+    //   link = `/course/${description.courseId}`;
+    //   break;
     default:
       link = null;
       break;
@@ -37,7 +40,7 @@ export default function NotificationItem({
   return link ? (
     isRead ? (
       <div className="notificationItemWrapperWithRead">
-        <Link className="notificationListItemText" to={link}>
+        <Link to={link} className="notificationListItemText">
           <span className="notificationHeader">{header}</span>
           <div className="notificationContent">
             <span className="notificationBody">{body}</span>
@@ -46,43 +49,42 @@ export default function NotificationItem({
       </div>
     ) : (
       <div className="notificationItemWrapperWithUnRead">
-        <Link
-          className="notificationListItemText"
-          to={link}
-          onClick={APIHandler.handleReadNotification(
-            notificationID,
-            push,
-            setPush
-          )}
-        >
-          <span className="notificationHeader">{header}</span>
-          <div className="notificationContent">
-            <span className="notificationBody">{body}</span>
-          </div>
+        <Link to={link} className="notificationListItemText">
+          <button
+            onClick={() => {
+              APIHandler.handleReadNotification(notificationID, push, setPush);
+            }}
+          >
+            <span className="notificationHeader">{header}</span>
+            <div className="notificationContent">
+              <span className="notificationBody">{body}</span>
+            </div>
+          </button>
         </Link>
       </div>
     )
   ) : isRead ? (
     <div className="notificationItemWrapperWithRead">
-      <span className="notificationHeader">{header}</span>
-      <div className="notificationContent">
-        <span className="notificationBody">{body}</span>
-      </div>
-    </div>
-  ) : (
-    <div className="notificationItemWrapperWithUnRead">
-      <Link
-        className="notificationListItemText"
-        onClick={APIHandler.handleReadNotification(
-          notificationID,
-          push,
-          setPush
-        )}
-      >
+      <Link className="notificationListItemText" to="#">
         <span className="notificationHeader">{header}</span>
         <div className="notificationContent">
           <span className="notificationBody">{body}</span>
         </div>
+      </Link>
+    </div>
+  ) : (
+    <div className="notificationItemWrapperWithUnRead">
+      <Link className="notificationListItemText" to="#">
+        <button
+          onClick={() => {
+            APIHandler.handleReadNotification(notificationID, push, setPush);
+          }}
+        >
+          <span className="notificationHeader">{header}</span>
+          <div className="notificationContent">
+            <span className="notificationBody">{body}</span>
+          </div>
+        </button>
       </Link>
     </div>
   );
