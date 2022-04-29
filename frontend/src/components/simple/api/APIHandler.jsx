@@ -27,7 +27,8 @@ const handleLogin = async (
     .then((response) => {
       console.log(response.data);
       setCookie("user", response.data.id);
-      setCookie("user_role", response.data.type);
+      let user_role = position === "admin" ? "admin" : response.data.type
+      setCookie("user_role", user_role);
       setState(true);
     })
     .catch((e) => {

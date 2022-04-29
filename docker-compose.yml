@@ -1,0 +1,35 @@
+version: '3.3'
+
+services:
+    db:
+        build: ./whereismytutor
+        ports:
+            - "27018:27017"
+        networks:
+          - mynetwork
+
+    frontend:
+        build: ./frontend
+        ports:
+            - "5000:5000"
+        networks:
+          - mynetwork
+
+    backend:
+        build: ./backend
+        ports:
+            - "3000:3000"
+        links:
+            - frontend
+            - db
+        depends_on:
+            - db
+        # environment:
+        #     - MONGO_HOST=db
+        #     - PORT=3000
+        networks:
+            - mynetwork
+
+
+networks:
+  mynetwork:
