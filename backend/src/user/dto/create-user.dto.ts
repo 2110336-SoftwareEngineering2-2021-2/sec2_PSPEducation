@@ -61,7 +61,7 @@ export class CreateUserDto {
 
   @IsBase64()
   @ApiProperty({type: String, description: "picture"})
-  picture: string;
+  picture: String[];
 
   @IsString()
   @IsThaiCitizenId({message: 'Invalid Citizen ID'})
